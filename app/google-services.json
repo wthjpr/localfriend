@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "678020696264",
+    "firebase_url": "https://localfriend-b985d.firebaseio.com",
+    "project_id": "localfriend-b985d",
+    "storage_bucket": "localfriend-b985d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678020696264:android:f7d1028da38c0c65",
+        "android_client_info": {
+          "package_name": "com.localfriend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678020696264-aul751m85qpev6kn5dv19qnra3eqeeok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.localfriend",
+            "certificate_hash": "06e70ef31dae86fe0d67fe174fcb28493421d66e"
+          }
+        },
+        {
+          "client_id": "678020696264-498al1fj3nmrgi6ufh4931l1lt7la7fe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYlTP-uXCpxhoiBPX0c4qVcLMT268Ihwg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678020696264-498al1fj3nmrgi6ufh4931l1lt7la7fe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
