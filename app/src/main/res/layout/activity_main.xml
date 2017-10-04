@@ -13,9 +13,10 @@
         android:id="@+id/main_drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="#44A89E"
+        android:orientation="vertical"
         tools:context="com.localfriend.MainActivity">
+
         <RelativeLayout
             android:id="@+id/rl_top"
             android:layout_width="match_parent"
@@ -34,125 +35,134 @@
                 android:src="@drawable/menu_white" />
 
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:textColor="@color/white"
-    android:text="Local Friend"
-    android:textSize="@dimen/dim_20"
-    />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Local Friend"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dim_20" />
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-           <ScrollView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_above="@+id/bottom_nav_layout"
-    android:orientation="vertical">
-<android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/card_breakfast"
-    app:contentPadding="@dimen/dim_10"
-    app:cardBackgroundColor="#346D97">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dim_30"
-        android:text="BreakFast"
-        />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:layout_gravity="right"
-        android:src="@drawable/breakfastt"/>
-    </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:contentPadding="@dimen/dim_10"
-        android:id="@+id/card_lunch"
-        app:cardBackgroundColor="#4CB79C"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dim_30"
-            android:text="Lunch"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_gravity="right"
-            android:src="@drawable/breakfastt"/>
-    </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:contentPadding="@dimen/dim_10"
-        android:id="@+id/card_dinner"
-        app:cardBackgroundColor="#346D97">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dim_30"
-            android:text="Dinner"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_gravity="right"
-            android:src="@drawable/dinnerrrrr"/>
-    </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/card_snacks"
-        app:contentPadding="@dimen/dim_10"
-        app:cardBackgroundColor="#4CB79C"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dim_30"
-            android:text="Snacks"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_gravity="right"
-            android:src="@drawable/bavregesss"/>
-    </android.support.v7.widget.CardView>
-</LinearLayout>
-            </ScrollView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <LinearLayout
-                    android:id="@+id/bottom_nav_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true">
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/bottom_nav_layout"
+                    android:orientation="vertical">
 
-                    <include layout="@layout/bottom"></include>
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/card_breakfast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#346D97"
+                        app:contentPadding="@dimen/dim_10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="BreakFast"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dim_30" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:background="@null"
+                            android:src="@drawable/breakfastt" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/card_lunch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#4CB79C"
+                        app:contentPadding="@dimen/dim_10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="Lunch"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dim_30" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:background="@null"
+                            android:src="@drawable/breakfastt" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/card_dinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#346D97"
+                        app:contentPadding="@dimen/dim_10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="Dinner"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dim_30" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:background="@null"
+                            android:src="@drawable/dinnerrrrr" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/card_snacks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#4CB79C"
+                        app:contentPadding="@dimen/dim_10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="Snacks"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dim_30" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:background="@null"
+                            android:src="@drawable/bavregesss" />
+                    </android.support.v7.widget.CardView>
                 </LinearLayout>
+            </ScrollView>
 
-            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/bottom_nav_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <include layout="@layout/bottom"></include>
+            </LinearLayout>
+
+        </RelativeLayout>
 
 
     </LinearLayout>
