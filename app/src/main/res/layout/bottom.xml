@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
-    android:background="#BFEFE2"
+    android:background="@color/white"
     android:orientation="horizontal">
 
     <RelativeLayout
@@ -12,25 +12,26 @@
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
 
-        <!--<ImageView-->
-        <!--android:id="@+id/btn_tab_1"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="-15dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:background="@null"-->
-        <!--android:padding="@dimen/dim_10"-->
-        <!--android:src="@drawable/search_active" />-->
+        <ImageView
+        android:id="@+id/img_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        android:layout_centerInParent="true"
+        android:background="@null"
+        android:padding="@dimen/dim_10"
+        android:src="@drawable/ic_home" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/tv_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Home"
+            android:drawableTop="@drawable/ic_home"
             android:textColor="#888F8C"
             android:textSize="@dimen/dim_16"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
     </RelativeLayout>
 
     <RelativeLayout
@@ -40,25 +41,26 @@
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
 
-        <!--<ImageView-->
-        <!--android:id="@+id/btn_tab_2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="-15dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:background="@null"-->
-        <!--android:padding="@dimen/dim_10"-->
-        <!--android:src="@drawable/services_inactive" />-->
+        <ImageView
+        android:id="@+id/img_tiffin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        android:layout_centerInParent="true"
+        android:background="@null"
+        android:padding="@dimen/dim_10"
+        android:src="@drawable/ic_tifin" />
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/tv_tiffin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Tiffin"
+            android:drawableTop="@drawable/ic_tifin"
             android:textColor="#888F8C"
             android:textSize="@dimen/dim_16"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
     </RelativeLayout>
 
     <RelativeLayout
@@ -68,25 +70,26 @@
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
 
-        <!--<ImageView-->
-        <!--android:id="@+id/btn_tab_3"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="-15dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:background="@null"-->
-        <!--android:padding="@dimen/dim_10"-->
-        <!--android:src="@drawable/notifications_inactive" />-->
+        <ImageView
+        android:id="@+id/img_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        android:layout_centerInParent="true"
+        android:background="@null"
+        android:padding="@dimen/dim_10"
+        android:src="@drawable/ic_cart" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/tv_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Cart"
+            android:drawableTop="@drawable/ic_cart"
             android:textColor="#888F8C"
             android:textSize="@dimen/dim_16"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
     </RelativeLayout>
 
     <RelativeLayout
@@ -96,25 +99,26 @@
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
 
-        <!--<ImageView-->
-        <!--android:id="@+id/btn_tab_4"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="-15dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:padding="@dimen/dim_10"-->
-        <!--android:background="@null"-->
-        <!--android:src="@drawable/account_inactive" />-->
+        <ImageView
+        android:id="@+id/img_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/dim_10"
+        android:background="@null"
+        android:src="@drawable/ic_more" />
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/tv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="More"
+            android:drawableTop="@drawable/ic_more"
             android:textColor="#888F8C"
             android:textSize="@dimen/dim_16"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
     </RelativeLayout>
 
 </LinearLayout>
