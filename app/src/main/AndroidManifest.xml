@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginSignupActivity"
+            android:name=".SampleActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,13 +36,17 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".LoginActivity"
-            android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".SigninActivityOne"
-            android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".SigninActivityTwo"
-            android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".SigninActivityOne"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".SigninActivityTwo"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="sensorPortrait"></activity>
     </application>
 

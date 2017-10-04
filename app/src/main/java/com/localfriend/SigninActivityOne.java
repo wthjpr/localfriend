@@ -30,11 +30,11 @@ public class SigninActivityOne extends CustomActivity {
         setTouchNClick(R.id.img_btn_back);
 
 
-        edt_cust_mobile = (EditText) findViewById(R.id.edt_cust_mobile);
+        edt_cust_mobile = findViewById(R.id.edt_cust_mobile);
 
-        tv_btn_next = (TextView) findViewById(R.id.tv_btn_next);
+        tv_btn_next = findViewById(R.id.tv_btn_next);
 
-        img_btn_back = (ImageButton) findViewById(R.id.img_btn_back);
+        img_btn_back = findViewById(R.id.img_btn_back);
     }
 
     public void onClick(View v) {
@@ -45,7 +45,7 @@ public class SigninActivityOne extends CustomActivity {
                 return;
             }
             startActivity(new Intent(getContext(), SigninActivityTwo.class));
-        }else if(v.getId()== R.id.tv_btn_next){
+        } else if (v.getId() == R.id.tv_btn_next) {
             startActivity(new Intent(getContext(), LoginSignupActivity.class));
         }
 
