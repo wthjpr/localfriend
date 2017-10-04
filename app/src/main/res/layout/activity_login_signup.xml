@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:padding="@dimen/dim_10"
+    tools:context="com.localfriend.LoginSignupActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/dim_50">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner_blue"
+        android:text="Hello there, I'm your Local Friend"
+        android:textSize="@dimen/dim_16"
+        android:padding="@dimen/dim_10"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_15"
+        android:background="@drawable/rounded_corner_blue"
+        android:text="I'm here to help you with anything , anytime"
+        android:textSize="@dimen/dim_16"
+        android:padding="@dimen/dim_10"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner_white"
+        android:text="Let's get started"
+        android:textSize="@dimen/dim_16"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dim_25"
+        android:padding="@dimen/dim_10"
+        android:textColor="@color/blue_text"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@null"
+        android:text="Already have an account ? "
+        android:textColor="@color/white"
+        android:id="@+id/tv_already_account"
+        android:textSize="@dimen/dim_18"
+        android:layout_marginTop="@dimen/dim_25"
+        />
+    </LinearLayout>
+</RelativeLayout>

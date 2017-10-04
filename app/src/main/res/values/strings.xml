@@ -16,4 +16,18 @@
     <string name="ok">OK</string>
     <string name="no_data_avail">No Data available</string>
     <string name="something_wrong">Something went wrong</string>
+
+    <string name="drawer_open">openDrawer</string>
+    <string name="drawer_close">closeDrawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string-array name="nav_drawer_labels">
+        <item>Home</item>
+        <item>Home Service Requests</item>
+        <item>Chats</item>
+        <item>Notifications</item>
+        <item>Wallet</item>
+        <item>Switch To Service Provider</item>
+    </string-array>
 </resources>
