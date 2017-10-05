@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,8 +32,10 @@ import android.widget.TextView;
 
 import com.localfriend.adapter.DrawerAdapter;
 import com.localfriend.application.MyApp;
+import com.localfriend.fragments.CartFragment;
 import com.localfriend.fragments.CenteredTextFragment;
 import com.localfriend.fragments.FragmentDrawer;
+import com.localfriend.fragments.HomeFragment;
 import com.localfriend.fragments.TiffinFragment;
 import com.localfriend.utils.DrawerItem;
 import com.localfriend.utils.SimpleItem;
@@ -44,16 +47,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.sql.Types.NULL;
+
 public class MainActivity extends CustomActivity implements DrawerAdapter.OnItemSelectedListener {
     private static final int POS_DASHBOARD = 0;
     private static final int POS_ACCOUNT = 1;
     private static final int POS_MESSAGES = 2;
     private static final int POS_CART = 3;
     private static final int POS_LOGOUT = 5;
-
     private String[] screenTitles;
     private Drawable[] screenIcons;
-
+    private Toolbar toolbar;
     private SlidingRootNav slidingRootNav;
 
     //private TextView tv_home, tv_tiffin, tv_cart, tv_more;
@@ -66,8 +70,15 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(false);
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle.setText("Local Friend");
+        actionBar.setTitle("");
 
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
@@ -99,7 +110,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.service_container, new TiffinFragment()).commit();
+        mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
 
         setupUiElements();
 
@@ -226,7 +237,10 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
             img_more.setSelected(false);
-
+            toolbar.setBackgroundResource(NULL);
+            mFragmentManager = getSupportFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
 
       /*      tv_home.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.search_active, 0, 0);
             tv_cart.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.notifications_inactive, 0, 0);
@@ -248,7 +262,10 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             img_tiffin.setSelected(true);
             img_cart.setSelected(false);
             img_more.setSelected(false);
-
+            toolbar.setBackgroundResource(NULL);
+            mFragmentManager = getSupportFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.service_container, new TiffinFragment()).commit();
           /*  tv_home.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.search_inactive, 0, 0);
             tv_cart.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.notifications_inactive, 0, 0);
             tv_tiffin.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.services_active, 0, 0);
@@ -270,7 +287,10 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             img_tiffin.setSelected(false);
             img_cart.setSelected(true);
             img_more.setSelected(false);
-
+            toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
+            mFragmentManager = getSupportFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.service_container, new CartFragment()).commit();
            /* tv_home.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.search_inactive, 0, 0);
             tv_cart.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.notifications_active, 0, 0);
             tv_tiffin.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.services_inactive, 0, 0);

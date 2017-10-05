@@ -8,5 +8,6 @@
         android:centerX="1"
         android:type="linear"
         />
-
+    <corners
+        android:radius="@dimen/dim_25"/>
 </shape>

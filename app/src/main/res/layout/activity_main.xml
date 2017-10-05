@@ -1,190 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main_drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#44A89E"
-        android:orientation="vertical"
-        tools:context="com.localfriend.MainActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
-<!--        <RelativeLayout
-            android:id="@+id/rl_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:orientation="horizontal"
-            android:padding="@dimen/dim_10">
+    android:orientation="vertical"
+    tools:context="com.localfriend.MainActivity">
 
-            <ImageButton
-                android:id="@+id/nav_drawer_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="@null"
-                android:src="@drawable/menu_white" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Local Friend"
-                android:textColor="@color/white"
-                android:textSize="@dimen/dim_20" />
-
-        </RelativeLayout>-->
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+    <!--        <RelativeLayout
+                android:id="@+id/rl_top"
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:background="@drawable/main_gradient_bg">
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:orientation="horizontal"
+                android:padding="@dimen/dim_10">
 
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.AppBarLayout>
+                <ImageButton
+                    android:id="@+id/nav_drawer_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:src="@drawable/menu_white" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Local Friend"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dim_20" />
+
+            </RelativeLayout>-->
+
+
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-        <RelativeLayout
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+      >
+
+        <FrameLayout
+            android:id="@+id/service_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <FrameLayout
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_nav_layout"
+            android:background="@null">
+
+
+        </FrameLayout>
+        <!--<android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null">-->
+            <include
+                layout="@layout/toolbar"/>
+           <!-- <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:layout_above="@+id/bottom_nav_layout"
-                android:id="@+id/service_container">
-
-
-
-
-            </FrameLayout>
-            <!--<ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_above="@+id/bottom_nav_layout"
-                    android:orientation="vertical">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/card_breakfast"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="#346D97"
-                        app:contentPadding="@dimen/dim_10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text="BreakFast"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dim_30" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:background="@null"
-                            android:src="@drawable/breakfastt" />
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/card_lunch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="#4CB79C"
-                        app:contentPadding="@dimen/dim_10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text="Lunch"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dim_30" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:background="@null"
-                            android:src="@drawable/breakfastt" />
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/card_dinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="#346D97"
-                        app:contentPadding="@dimen/dim_10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text="Dinner"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dim_30" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:background="@null"
-                            android:src="@drawable/dinnerrrrr" />
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/card_snacks"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="#4CB79C"
-                        app:contentPadding="@dimen/dim_10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text="Snacks"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/dim_30" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:background="@null"
-                            android:src="@drawable/bavregesss" />
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>
-            </ScrollView>-->
+                android:layout_height="?actionBarSize"
+                android:background="@null">
+            </android.support.v7.widget.Toolbar>-->
+        <!--</android.support.design.widget.AppBarLayout>-->
+        <!--<ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/bottom_nav_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dim_50"
-                android:layout_alignParentBottom="true">
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_nav_layout"
+                android:orientation="vertical">
 
-                <include layout="@layout/bottom"></include>
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_breakfast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#346D97"
+                    app:contentPadding="@dimen/dim_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="BreakFast"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dim_30" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@null"
+                        android:src="@drawable/breakfastt" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_lunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#4CB79C"
+                    app:contentPadding="@dimen/dim_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Lunch"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dim_30" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@null"
+                        android:src="@drawable/breakfastt" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_dinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#346D97"
+                    app:contentPadding="@dimen/dim_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Dinner"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dim_30" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@null"
+                        android:src="@drawable/dinnerrrrr" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_snacks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#4CB79C"
+                    app:contentPadding="@dimen/dim_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Snacks"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dim_30" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@null"
+                        android:src="@drawable/bavregesss" />
+                </android.support.v7.widget.CardView>
             </LinearLayout>
+        </ScrollView>-->
 
-        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/bottom_nav_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <include layout="@layout/bottom"></include>
+        </LinearLayout>
+
+    </RelativeLayout>
 
 
-    </LinearLayout>
+</RelativeLayout>
 
 
 

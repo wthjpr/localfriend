@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dim_10"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/dim_5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dim_10">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:background="@null"
+            android:id="@+id/img_btn_close"
+            android:src="@drawable/close" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/fast_food" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_10"
+                android:layout_toRightOf="@+id/img_food"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dim_10"
+                android:paddingRight="@dimen/dim_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Veggie Burger"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dim_18"
+                    android:id="@+id/tv_item_name"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs 100"
+                        android:id="@+id/tv_item_cost"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/dim_18" />
+
+                    <TextView
+                        android:id="@+id/tv_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/circular_bg"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:text=" + "
+                        android:textSize="@dimen/dim_18" />
+
+                    <TextView
+                        android:id="@+id/tv_counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/tv_plus"
+                        android:text="1"
+                        android:layout_marginRight="@dimen/dim_10"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/blue_text"
+                        android:textSize="@dimen/dim_18" />
+                    <TextView
+                        android:id="@+id/tv_minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/tv_counter"
+                        android:background="@drawable/circular_bg"
+                        android:gravity="center"
+                        android:text=" + "
+                        android:layout_marginRight="@dimen/dim_10"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/dim_18" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
