@@ -175,9 +175,9 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         // navBtn = (ImageButton) findViewById(R.id.nav_drawer_btn);
 
         img_home = (ImageView) findViewById(R.id.img_home);
-        img_tiffin = (ImageView) findViewById(R.id.img_home);
-        img_cart = (ImageView) findViewById(R.id.img_home);
-        img_more = (ImageView) findViewById(R.id.img_home);
+        img_tiffin = (ImageView) findViewById(R.id.img_tiffin);
+        img_cart = (ImageView) findViewById(R.id.img_cart);
+        img_more = (ImageView) findViewById(R.id.img_more);
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
         setClick(R.id.rl_tab_3);
@@ -237,7 +237,14 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
             img_more.setSelected(false);
+
+            img_home.setImageResource(R.drawable.ic_home_active);
+            img_tiffin.setImageResource(R.drawable.ic_tifin);
+            img_cart.setImageResource(R.drawable.ic_cart);
+            img_more.setImageResource(R.drawable.ic_more);
+
             toolbar.setBackgroundResource(NULL);
+
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
@@ -262,7 +269,14 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             img_tiffin.setSelected(true);
             img_cart.setSelected(false);
             img_more.setSelected(false);
-            toolbar.setBackgroundResource(NULL);
+
+            img_home.setImageResource(R.drawable.ic_home);
+            img_tiffin.setImageResource(R.drawable.ic_tiffin_active);
+            img_cart.setImageResource(R.drawable.ic_cart);
+            img_more.setImageResource(R.drawable.ic_more);
+
+            toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
+
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new TiffinFragment()).commit();
@@ -287,7 +301,14 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             img_tiffin.setSelected(false);
             img_cart.setSelected(true);
             img_more.setSelected(false);
+
+            img_home.setImageResource(R.drawable.ic_home);
+            img_tiffin.setImageResource(R.drawable.ic_tifin);
+            img_cart.setImageResource(R.drawable.ic_cart_active);
+            img_more.setImageResource(R.drawable.ic_more);
+
             toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
+
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new CartFragment()).commit();
@@ -313,6 +334,11 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
             img_more.setSelected(true);
+
+            img_home.setImageResource(R.drawable.ic_home);
+            img_tiffin.setImageResource(R.drawable.ic_tifin);
+            img_cart.setImageResource(R.drawable.ic_cart);
+            img_more.setImageResource(R.drawable.ic_more_active);
 
            /* tv_home.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.search_inactive, 0, 0);
             tv_cart.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.notifications_inactive, 0, 0);

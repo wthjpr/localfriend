@@ -1,6 +1,7 @@
 package com.localfriend.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.localfriend.CheckOutActivity;
 import com.localfriend.R;
 import com.localfriend.adapter.CartAdapter;
 import com.localfriend.adapter.DummyCartData;
@@ -42,7 +44,13 @@ public class CartFragment extends Fragment {
         recy_cart.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new CartAdapter(listdata, getContext());
         recy_cart.setAdapter(adapter);
-
+        tv_checkout=(TextView)myView.findViewById(R.id.tv_checkout);
+        tv_checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), CheckOutActivity.class));
+            }
+        });
         return myView;
     }
 

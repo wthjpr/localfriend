@@ -11,20 +11,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/dim_10">
+        android:orientation="vertical">
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|top"
             android:background="@null"
+            android:layout_margin="@dimen/dim_5"
             android:id="@+id/img_btn_close"
             android:src="@drawable/close" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dim_10">
 
             <ImageView
                 android:id="@+id/img_food"
@@ -39,6 +40,7 @@
                 android:layout_marginLeft="@dimen/dim_10"
                 android:layout_toRightOf="@+id/img_food"
                 android:orientation="vertical"
+                android:paddingBottom="@dimen/dim_10"
                 android:paddingLeft="@dimen/dim_10"
                 android:paddingRight="@dimen/dim_10">
 
@@ -54,7 +56,7 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_10">
+                    android:layout_marginTop="@dimen/dim_15">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -92,7 +94,7 @@
                         android:layout_toLeftOf="@+id/tv_counter"
                         android:background="@drawable/circular_bg"
                         android:gravity="center"
-                        android:text=" + "
+                        android:text=" - "
                         android:layout_marginRight="@dimen/dim_10"
                         android:layout_centerVertical="true"
                         android:textSize="@dimen/dim_18" />

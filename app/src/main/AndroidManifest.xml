@@ -47,7 +47,9 @@
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="sensorPortrait"></activity>
+            android:screenOrientation="sensorPortrait" />
+        <activity android:name=".CheckOutActivity" />
+        <activity android:name=".FoodActivity"></activity>
     </application>
 
 </manifest>

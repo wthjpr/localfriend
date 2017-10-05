@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/food_ai"
+    tools:context="com.localfriend.FoodActivity">
+
+    <include layout="@layout/toolbar_common" />
+<Space
+    android:layout_width="wrap_content"
+    android:layout_below="@+id/toolbar_common"
+    android:id="@+id/top_space"
+    android:layout_height="@dimen/dim_220"/>
+    <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:id="@+id/lnr_left"
+    android:layout_below="@+id/top_space"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dim_80"
+    >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/lnr_bakery">
+
+    <ImageButton
+        android:id="@+id/img_btn_backery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/bakery" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bakery"
+        android:layout_marginTop="@dimen/dim_10"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/dim_16"
+        android:textColor="@color/black" />
+</LinearLayout>
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dim_30"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/lnr_south_indian"
+    android:orientation="vertical">
+    <ImageButton
+        android:id="@+id/img_btn_fast_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_toRightOf="@+id/img_btn_backery"
+        android:background="@null"
+        android:src="@drawable/south_indian" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="South Indian"
+        android:layout_marginTop="@dimen/dim_10"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/dim_16"
+        android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_space"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dim_15"
+        android:layout_toRightOf="@+id/lnr_left"
+        android:paddingLeft="@dimen/dim_20"
+        >
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/lnr_fast_food"
+    android:orientation="vertical">
+        <ImageButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/fast_food" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fast Food"
+            android:layout_marginTop="@dimen/dim_10"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/dim_16"
+            android:textColor="@color/black" />
+</LinearLayout>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dim_20"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dim_10"
+    android:id="@+id/lnr_drinks"
+    android:orientation="vertical">
+        <ImageButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:src="@drawable/drinks" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drinks"
+            android:layout_marginTop="@dimen/dim_10"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/dim_16"
+            android:textColor="@color/black" />
+    </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

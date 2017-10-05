@@ -1,0 +1,116 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.localfriend.fragments.AddressFragment">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyTextInputLayout"
+        android:layout_marginTop="@dimen/dim_10">
+
+        <EditText
+            android:id="@+id/edt_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPersonName"
+
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blue_text" />
+
+
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyTextInputLayout"
+        android:layout_marginTop="@dimen/dim_5">
+
+        <EditText
+            android:id="@+id/edt_flat_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Flat/House/Office No"
+            android:imeOptions="actionUnspecified"
+            android:inputType="text"
+
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blue_text" />
+
+
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyTextInputLayout"
+        android:layout_marginTop="@dimen/dim_5">
+
+        <EditText
+            android:id="@+id/edt_street_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Street/Society/Office Name"
+            android:imeOptions="actionUnspecified"
+            android:inputType="text"
+
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blue_text" />
+
+
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyTextInputLayout"
+        android:layout_marginTop="@dimen/dim_5">
+
+        <EditText
+            android:id="@+id/edt_city_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"
+            android:imeOptions="actionUnspecified"
+            android:inputType="text"
+
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blue_text" />
+
+
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyTextInputLayout"
+        android:layout_marginTop="@dimen/dim_5">
+
+        <EditText
+            android:id="@+id/edt_phone_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Phone Number"
+            android:imeOptions="actionUnspecified"
+            android:inputType="phone"
+
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blue_text" />
+
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>

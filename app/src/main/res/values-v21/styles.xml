@@ -18,6 +18,9 @@
         <item name="android:background">@color/white</item>
         <item name="android:windowFullscreen">false</item>
     </style>
+    <style name="MyTextInputLayout" parent="AppTheme">
+        <item name="colorAccent">@color/blue_text</item>
+    </style>
     <style name="CustomActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:windowActionBarOverlay">true</item>
         <!-- Support library compatibility -->

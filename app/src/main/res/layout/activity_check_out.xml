@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EEEF"
+    tools:context="com.localfriend.CheckOutActivity">
+
+    <include layout="@layout/toolbar_common" />
+    <LinearLayout
+        android:id="@+id/top_nav_layout"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar_common"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/top_nav"></include>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/service_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_nav_layout"
+        android:layout_above="@+id/tv_make_payment"
+        android:layout_marginBottom="@dimen/dim_15"
+        android:background="@null">
+    </FrameLayout>
+    <TextView
+        android:id="@+id/tv_make_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/curvy_gradient_bg"
+        android:gravity="center"
+        android:padding="@dimen/dim_10"
+        android:text="MAKE PAYMENT"
+        android:layout_margin="@dimen/dim_10"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_18" />
+</RelativeLayout>

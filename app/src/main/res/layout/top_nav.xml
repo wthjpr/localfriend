@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@null"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_1"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground">
+
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="ADDRESS"
+            android:textColor="#19598C"
+            android:textSize="@dimen/dim_18" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_2"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground">
+
+
+        <TextView
+            android:id="@+id/tv_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="PAYMENT"
+            android:textColor="#40B799"
+            android:textSize="@dimen/dim_18" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_tab_3"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackground">
+
+
+        <TextView
+            android:id="@+id/tv_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="REVIEW"
+            android:textColor="#40B799"
+            android:textSize="@dimen/dim_18" />
+    </RelativeLayout>
+
+
+</LinearLayout>
