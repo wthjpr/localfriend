@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#346D97"
+        android:elevation="@dimen/dim_11"
         app:contentPadding="@dimen/dim_10">
 
         <TextView
@@ -33,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#4CB79C"
+        android:elevation="@dimen/dim_11"
         app:contentPadding="@dimen/dim_10">
 
         <TextView
@@ -56,6 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#346D97"
+        android:elevation="@dimen/dim_11"
         app:contentPadding="@dimen/dim_10">
 
         <TextView
@@ -79,6 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#4CB79C"
+        android:elevation="@dimen/dim_11"
         app:contentPadding="@dimen/dim_10">
 
         <TextView

@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.localfriend.BreakFastActivity;
 import com.localfriend.R;
 
 
@@ -51,22 +52,22 @@ public class TiffinFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.card_breakfast:
             {
-                Toast.makeText(getActivity(), "Order Breakfast", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), BreakFastActivity.class));
                 break;
             }
             case R.id.card_lunch:
             {
-                Toast.makeText(getActivity(), "Order Lunch", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), BreakFastActivity.class));
                 break;
             }
             case R.id.card_dinner:
             {
-                Toast.makeText(getActivity(), "Order Dinner", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), BreakFastActivity.class));
                 break;
             }
             case R.id.card_snacks:
             {
-                Toast.makeText(getActivity(), "Order Snacks", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), BreakFastActivity.class));
                 break;
             }
         }

@@ -8,36 +8,13 @@
     android:paddingTop="@dimen/dim_10"
     tools:context="com.localfriend.SigninActivityTwo">
 
-    <RelativeLayout
-        android:id="@+id/rel_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/dim_10">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:id="@+id/img_btn_back"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="5dp"
-
-             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="SIGN IN"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dim_20"
-            android:textStyle="bold" />
-    </RelativeLayout>
+    <include
+        layout="@layout/toolbar_common"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rel_top"
+        android:layout_below="@+id/toolbar_common"
         android:layout_marginTop="@dimen/dim_10"
         android:orientation="vertical"
         android:padding="@dimen/dim_10">

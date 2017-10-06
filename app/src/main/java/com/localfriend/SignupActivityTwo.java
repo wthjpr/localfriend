@@ -8,22 +8,22 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import static java.sql.Types.NULL;
 
-public class SigninActivityOne extends CustomActivity {
-    private EditText edt_cust_mobile;
-    private TextView tv_btn_next;
+public class SignupActivityTwo extends CustomActivity {
+    private TextView tv_btn_signin;
+
+    private EditText edt_phone_no;
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin_one);
+        setContentView(R.layout.activity_signup_two);
         toolbar = (Toolbar) findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -31,39 +31,36 @@ public class SigninActivityOne extends CustomActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
-        mTitle.setText("SIGN IN");
+        mTitle.setText("SIGN UP");
         actionBar.setTitle("");
         toolbar.setBackgroundResource(NULL);
         setupUiElement();
     }
-
-
     private void setupUiElement() {
 
-        setTouchNClick(R.id.tv_btn_next);
+        setTouchNClick(R.id.tv_btn_signin);
 
 
 
-        edt_cust_mobile = findViewById(R.id.edt_cust_mobile);
+        edt_phone_no = (EditText) findViewById(R.id.edt_phone_no);
 
-        tv_btn_next = findViewById(R.id.tv_btn_next);
+        tv_btn_signin = (TextView) findViewById(R.id.tv_btn_signin);
 
 
     }
-
     public void onClick(View v) {
         super.onClick(v);
-        if (v.getId() == R.id.tv_btn_next) {
-            if (TextUtils.isEmpty(edt_cust_mobile.getText().toString())) {
-                edt_cust_mobile.setError("Enter Mobile Number");
+        if (v.getId() == R.id.tv_btn_signin) {
+            if (TextUtils.isEmpty(edt_phone_no.getText().toString())) {
+                edt_phone_no.setError("Enter Your Mobile Number");
                 return;
             }
-            startActivity(new Intent(getContext(), SigninActivityTwo.class));
+            startActivity(new Intent(getContext(), MainActivity.class));
         }
 
     }
 
     private Context getContext() {
-        return SigninActivityOne.this;
+        return SignupActivityTwo.this;
     }
 }

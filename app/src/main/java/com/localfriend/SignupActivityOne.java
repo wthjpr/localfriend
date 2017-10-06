@@ -8,22 +8,20 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import static java.sql.Types.NULL;
 
-public class SigninActivityOne extends CustomActivity {
-    private EditText edt_cust_mobile;
+public class SignupActivityOne extends CustomActivity {
+    private EditText edt_cust_name;
     private TextView tv_btn_next;
     private Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin_one);
+        setContentView(R.layout.activity_signup_one);
         toolbar = (Toolbar) findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -31,12 +29,11 @@ public class SigninActivityOne extends CustomActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
-        mTitle.setText("SIGN IN");
+        mTitle.setText("SIGN UP");
         actionBar.setTitle("");
         toolbar.setBackgroundResource(NULL);
         setupUiElement();
     }
-
 
     private void setupUiElement() {
 
@@ -44,7 +41,7 @@ public class SigninActivityOne extends CustomActivity {
 
 
 
-        edt_cust_mobile = findViewById(R.id.edt_cust_mobile);
+        edt_cust_name = findViewById(R.id.edt_cust_name);
 
         tv_btn_next = findViewById(R.id.tv_btn_next);
 
@@ -54,16 +51,16 @@ public class SigninActivityOne extends CustomActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.tv_btn_next) {
-            if (TextUtils.isEmpty(edt_cust_mobile.getText().toString())) {
-                edt_cust_mobile.setError("Enter Mobile Number");
+            if (TextUtils.isEmpty(edt_cust_name.getText().toString())) {
+                edt_cust_name.setError("Enter Your Name");
                 return;
             }
-            startActivity(new Intent(getContext(), SigninActivityTwo.class));
+            startActivity(new Intent(getContext(), SignupActivityTwo.class));
         }
 
     }
 
     private Context getContext() {
-        return SigninActivityOne.this;
+        return SignupActivityOne.this;
     }
 }

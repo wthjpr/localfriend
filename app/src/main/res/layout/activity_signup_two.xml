@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_gradient_bg"
     android:paddingTop="@dimen/dim_10"
-    tools:context="com.localfriend.SigninActivityOne">
+    tools:context="com.localfriend.SigninActivityTwo">
 
-   <include
-       layout="@layout/toolbar_common"/>
+    <include
+        layout="@layout/toolbar_common"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_common"
         android:layout_marginTop="@dimen/dim_10"
@@ -23,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome back, Enter your\n Mobile number ?"
+            android:text="Welcome Customer Name\nEnter your Mobile Number"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_18"
             android:textStyle="bold" />
@@ -35,7 +34,7 @@
             android:backgroundTint="@color/white"
             android:inputType="phone"
             android:maxLines="1"
-            android:id="@+id/edt_cust_mobile"
+            android:id="@+id/edt_phone_no"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_16"
 
@@ -47,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@null"
-        android:src="@drawable/walkthroughs" />
+        android:src="@drawable/walkthroughss" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -60,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="Step 1 of 2"
+            android:text="Step 2 of 4"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_18"
             android:textStyle="bold" />
@@ -72,12 +71,13 @@
             android:layout_centerVertical="true"
             android:background="@drawable/rounded_curvy_white"
             android:gravity="center"
-            android:id="@+id/tv_btn_next"
-            android:paddingBottom="@dimen/dim_7"
+            android:id="@+id/tv_btn_signin"
+            android:paddingBottom="@dimen/dim_10"
             android:paddingLeft="@dimen/dim_15"
             android:paddingRight="@dimen/dim_15"
-            android:paddingTop="@dimen/dim_7"
+            android:paddingTop="@dimen/dim_10"
             android:text="NEXT"
+
             android:textColor="@color/blue_text"
             android:textSize="@dimen/dim_18" />
     </RelativeLayout>
