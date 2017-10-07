@@ -29,6 +29,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.localfriend.adapter.DrawerAdapter;
 import com.localfriend.application.MyApp;
@@ -96,7 +97,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 createItemFor(POS_ACCOUNT),
                 createItemFor(POS_MESSAGES),
                 createItemFor(POS_CART),
-                new SpaceItem(48),
+               /* new SpaceItem(48),*/
                 createItemFor(POS_LOGOUT)));
         adapter.setListener(this);
 
@@ -119,8 +120,18 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
     @Override
     public void onItemSelected(int position) {
-        if (position == POS_LOGOUT) {
-            finish();
+        if (position == 0) {
+        }else if(position == 1){
+            startActivity(new Intent(getContext(), OrderActivity.class));
+        }else if(position == 2){
+            startActivity(new Intent(getContext(), AddressActivity.class));
+        }else if(position == 3){
+            startActivity(new Intent(getContext(), SettingsActivity.class));
+        }else if(position == 4){
+            Toast.makeText(this, "Need Help", Toast.LENGTH_SHORT).show();
+        }
+        else if(position == 5){
+            Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
         }
         slidingRootNav.closeMenu();
         Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
@@ -135,8 +146,8 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
     private DrawerItem createItemFor(int position) {
         return new SimpleItem(screenIcons[position], screenTitles[position])
-                .withIconTint(color(R.color.black))
-                .withTextTint(color(R.color.black))
+                .withIconTint(color(R.color.white))
+                .withTextTint(color(R.color.white))
                 .withSelectedIconTint(color(R.color.colorAccent))
                 .withSelectedTextTint(color(R.color.colorAccent));
     }

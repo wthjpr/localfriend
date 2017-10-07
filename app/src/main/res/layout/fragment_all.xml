@@ -1,11 +1,15 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.localfriend.fragments.AllFragment">
+    android:gravity="center"
+    android:id="@+id/all_frag_gridview"
+    android:horizontalSpacing="@dimen/dim_5"
+    android:numColumns="2"
+    android:padding="@dimen/dim_5"
+    android:stretchMode="columnWidth"
+    android:verticalSpacing="4dp"
+    tools:context="com.localfriend.fragments.AllFragment" />
 
 
-
-</LinearLayout>

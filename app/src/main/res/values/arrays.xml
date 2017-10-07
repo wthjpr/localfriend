@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ld_activityScreenTitles">
-        <item>Dashboard</item>
-        <item>My Account</item>
-        <item>Messages</item>
-        <item>Cart</item>
-        <item />
-        <item>Log Out</item>
+        <item>Home</item>
+        <item>Orders</item>
+        <item>Address</item>
+        <item>Settings</item>
+        <item>Need Help ?</item>
+        <item>About Us</item>
     </string-array>
 
     <array name="ld_activityScreenIcons">
@@ -14,7 +14,7 @@
         <item>@drawable/ic_back</item>
         <item>@drawable/ic_back</item>
         <item>@drawable/ic_back</item>
-        <item>0</item>
+        <item>@drawable/ic_back</item>
         <item>@drawable/ic_back</item>
     </array>
 </resources>

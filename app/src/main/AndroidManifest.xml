@@ -48,14 +48,37 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="sensorPortrait" />
-        <activity android:name=".CheckOutActivity" />
-        <activity android:name=".FoodActivity" />
-        <activity android:name=".BreakFastActivity" />
-        <activity android:name=".SignupActivityOne" />
-        <activity android:name=".SignupActivityTwo" />
-        <activity android:name=".SignupActivityThree" />
-        <activity android:name=".SignupActivityFour" />
-        <activity android:name=".AllActivity"></activity>
+        <activity
+            android:name=".CheckOutActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".FoodActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".BreakFastActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".SignupActivityOne"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".SignupActivityTwo"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".SignupActivityThree"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".SignupActivityFour"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".AllActivity"
+            android:screenOrientation="sensorPortrait"
+            android:parentActivityName=".OrderActivity"/>
+        <activity android:name=".OrderActivity"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".AddressActivity"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".SettingsActivity"
+            android:screenOrientation="sensorPortrait"></activity>
     </application>
 
 </manifest>

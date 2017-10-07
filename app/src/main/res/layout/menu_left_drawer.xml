@@ -16,8 +16,8 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="vertical"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingLeft="@dimen/dim_60"
+       android:paddingTop="@dimen/dim_20">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/img_profile"
@@ -42,7 +42,7 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="50dp" />
+        android:layout_height="@dimen/dim_50" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
@@ -51,6 +51,6 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="40dp" />
+        android:layout_height="@dimen/dim_40" />
 
 </LinearLayout>

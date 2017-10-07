@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.localfriend.fragments.AllFragment;
 import com.localfriend.fragments.CartFragment;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class AllActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new CartFragment(), "All");
+        adapter.addFrag(new AllFragment(), "All");
         adapter.addFrag(new CartFragment(), "Bakery");
         adapter.addFrag(new CartFragment(), "Dinner");
         adapter.addFrag(new CartFragment(), "Drinks");

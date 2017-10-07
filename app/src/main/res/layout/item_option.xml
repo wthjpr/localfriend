@@ -13,15 +13,15 @@
         android:layout_height="wrap_content" />
 
     <Space
-        android:layout_width="12dp"
+        android:layout_width="@dimen/dim_12"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:textColor="?android:textColorPrimary" />
+        android:layout_marginLeft="@dimen/dim_16"
+        android:layout_marginRight="@dimen/dim_16"
+        android:textColor="@color/white" />
 
 </LinearLayout>

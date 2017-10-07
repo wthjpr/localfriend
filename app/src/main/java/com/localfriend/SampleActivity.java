@@ -92,8 +92,8 @@ public class SampleActivity extends CustomActivity implements DrawerAdapter.OnIt
 
     private DrawerItem createItemFor(int position) {
         return new SimpleItem(screenIcons[position], screenTitles[position])
-                .withIconTint(color(R.color.black))
-                .withTextTint(color(R.color.black))
+                .withIconTint(color(R.color.white))
+                .withTextTint(color(R.color.white))
                 .withSelectedIconTint(color(R.color.colorAccent))
                 .withSelectedTextTint(color(R.color.colorAccent));
     }

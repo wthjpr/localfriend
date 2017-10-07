@@ -49,6 +49,7 @@
             android:background="@drawable/rounded_corner_white"
             android:gravity="center"
             android:padding="@dimen/dim_10"
+            android:id="@+id/tv_lets_get_started"
             android:text="Let's get started"
             android:textColor="@color/blue_text"
             android:textSize="@dimen/dim_16" />
