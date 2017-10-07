@@ -42,8 +42,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dim_20"
-            android:text="Logout"
             android:padding="10dp"
+            android:text="Logout"
             android:textColor="@color/blue_text"
             android:textSize="@dimen/dim_16"
             android:textStyle="bold" />

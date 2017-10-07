@@ -25,8 +25,8 @@
             android:layout_height="@dimen/dim_75"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dim_15"
-            android:src="@drawable/markzuckerberg"
-            app:civ_border_color="#FF000000"
+            android:src="@drawable/default_pic"
+            app:civ_border_color="#FF3CBEA3"
             app:civ_border_width="1dp" />
 
         <TextView
@@ -42,7 +42,7 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/dim_50" />
+        android:layout_height="@dimen/dim_20" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"

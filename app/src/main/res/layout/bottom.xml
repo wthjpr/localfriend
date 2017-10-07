@@ -2,6 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
+    android:layout_marginBottom="-1dp"
+    android:layout_marginLeft="-1dp"
+    android:layout_marginRight="-1dp"
     android:background="@drawable/rounded_top"
     android:orientation="horizontal">
 
@@ -13,14 +16,14 @@
         android:background="?attr/selectableItemBackground">
 
         <ImageView
-        android:id="@+id/img_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
-        android:layout_centerInParent="true"
-        android:background="@null"
-        android:padding="@dimen/dim_10"
-        android:src="@drawable/ic_home_active" />
+            android:id="@+id/img_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="-15dp"
+            android:background="@null"
+            android:padding="@dimen/dim_10"
+            android:src="@drawable/ic_home_active" />
 
         <!--<TextView
             android:id="@+id/tv_home"
@@ -42,25 +45,25 @@
         android:background="?attr/selectableItemBackground">
 
         <ImageView
-        android:id="@+id/img_tiffin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
-        android:layout_centerInParent="true"
-        android:background="@null"
-        android:padding="@dimen/dim_10"
-        android:src="@drawable/ic_tifin" />
-
-       <!-- <TextView
-            android:id="@+id/tv_tiffin"
+            android:id="@+id/img_tiffin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Tiffin"
-            android:drawableTop="@drawable/ic_tifin"
-            android:textColor="#888F8C"
-            android:textSize="@dimen/dim_16"
-            android:textStyle="bold" />-->
+            android:layout_marginTop="-15dp"
+            android:background="@null"
+            android:padding="@dimen/dim_10"
+            android:src="@drawable/ic_tifin" />
+
+        <!-- <TextView
+             android:id="@+id/tv_tiffin"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:text="Tiffin"
+             android:drawableTop="@drawable/ic_tifin"
+             android:textColor="#888F8C"
+             android:textSize="@dimen/dim_16"
+             android:textStyle="bold" />-->
     </RelativeLayout>
 
     <RelativeLayout
@@ -71,14 +74,14 @@
         android:background="?attr/selectableItemBackground">
 
         <ImageView
-        android:id="@+id/img_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
-        android:layout_centerInParent="true"
-        android:background="@null"
-        android:padding="@dimen/dim_10"
-        android:src="@drawable/ic_cart" />
+            android:id="@+id/img_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="-15dp"
+            android:background="@null"
+            android:padding="@dimen/dim_10"
+            android:src="@drawable/ic_cart" />
 
         <!--<TextView
             android:id="@+id/tv_cart"
@@ -100,25 +103,25 @@
         android:background="?attr/selectableItemBackground">
 
         <ImageView
-        android:id="@+id/img_more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
-        android:layout_centerInParent="true"
-        android:padding="@dimen/dim_10"
-        android:background="@null"
-        android:src="@drawable/ic_more" />
-
-       <!-- <TextView
-            android:id="@+id/tv_more"
+            android:id="@+id/img_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="More"
-            android:drawableTop="@drawable/ic_more"
-            android:textColor="#888F8C"
-            android:textSize="@dimen/dim_16"
-            android:textStyle="bold" />-->
+            android:layout_marginTop="-15dp"
+            android:background="@null"
+            android:padding="@dimen/dim_10"
+            android:src="@drawable/ic_more" />
+
+        <!-- <TextView
+             android:id="@+id/tv_more"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:text="More"
+             android:drawableTop="@drawable/ic_more"
+             android:textColor="#888F8C"
+             android:textSize="@dimen/dim_16"
+             android:textStyle="bold" />-->
     </RelativeLayout>
 
 </LinearLayout>

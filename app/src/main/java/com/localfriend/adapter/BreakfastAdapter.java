@@ -56,7 +56,7 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
     public void onBindViewHolder(DataHolder holder, int position) {
         DummyBreakfastItem item = listdata.get(position);
         holder.tv_breakfast_name.setText(item.getBreakFastName());
-        holder.rel_break_fast.setBackgroundResource(item.getBreakFastImage());
+//        holder.rel_break_fast.setBackgroundResource(item.getBreakFastImage());
         holder.tv_breakfast_cost.setText(item.getBreakFastCost());
 
     }
@@ -69,7 +69,7 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
 
     class DataHolder extends RecyclerView.ViewHolder {
         TextView tv_breakfast_cost, tv_add, tv_breakfast_name;
-        RelativeLayout rel_break_fast;
+        ImageView rel_break_fast;
 
 
         public DataHolder(final View itemView) {
@@ -79,9 +79,7 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
             tv_add = (TextView) itemView.findViewById(R.id.tv_add);
 
 
-            rel_break_fast = (RelativeLayout) itemView.findViewById(R.id.rel_break_fast);
-
-
+            rel_break_fast = (ImageView) itemView.findViewById(R.id.rel_break_fast);
         }
 
 

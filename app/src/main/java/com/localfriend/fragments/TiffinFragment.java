@@ -17,7 +17,7 @@ import com.localfriend.R;
 
 
 public class TiffinFragment extends Fragment implements View.OnClickListener {
-    CardView card_breakfast, card_lunch, card_dinner, card_snacks;
+    private CardView card_breakfast, card_lunch, card_dinner, card_snacks;
 
     public TiffinFragment() {
         // Required empty public constructor
@@ -35,10 +35,10 @@ public class TiffinFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View myView = inflater.inflate(R.layout.fragment_tiffin, container, false);
-        card_breakfast=(CardView)myView.findViewById(R.id.card_breakfast);
-        card_lunch=(CardView)myView.findViewById(R.id.card_lunch);
-        card_dinner=(CardView)myView.findViewById(R.id.card_dinner);
-        card_snacks=(CardView)myView.findViewById(R.id.card_snacks);
+        card_breakfast = myView.findViewById(R.id.card_breakfast);
+        card_lunch = myView.findViewById(R.id.card_lunch);
+        card_dinner = myView.findViewById(R.id.card_dinner);
+        card_snacks = myView.findViewById(R.id.card_snacks);
         card_breakfast.setOnClickListener(this);
         card_lunch.setOnClickListener(this);
         card_dinner.setOnClickListener(this);
@@ -50,23 +50,19 @@ public class TiffinFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.card_breakfast:
-            {
+            case R.id.card_breakfast: {
                 startActivity(new Intent(getActivity(), BreakFastActivity.class));
                 break;
             }
-            case R.id.card_lunch:
-            {
+            case R.id.card_lunch: {
                 startActivity(new Intent(getActivity(), BreakFastActivity.class));
                 break;
             }
-            case R.id.card_dinner:
-            {
+            case R.id.card_dinner: {
                 startActivity(new Intent(getActivity(), BreakFastActivity.class));
                 break;
             }
-            case R.id.card_snacks:
-            {
+            case R.id.card_snacks: {
                 startActivity(new Intent(getActivity(), BreakFastActivity.class));
                 break;
             }

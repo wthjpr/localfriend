@@ -1,17 +1,14 @@
 package com.localfriend;
 
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.localfriend.adapter.BreakfastAdapter;
-import com.localfriend.adapter.CartAdapter;
 import com.localfriend.adapter.DummyBreakfastData;
-import com.localfriend.adapter.DummyCartData;
 
 import java.util.ArrayList;
 
@@ -20,6 +17,7 @@ public class BreakFastActivity extends CustomActivity {
     private RecyclerView recy_breakfast;
     private BreakfastAdapter adapter;
     private ArrayList listdata;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

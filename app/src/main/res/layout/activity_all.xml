@@ -19,6 +19,7 @@
             android:background="#F7F7F7"
             app:tabSelectedTextColor="#19598C"
             app:tabMode="scrollable"/>
+            />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager

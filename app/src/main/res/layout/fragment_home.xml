@@ -2,170 +2,196 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.localfriend.fragments.HomeFragment">
 
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/slider_home_frag"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/home_bg"
-        android:orientation="vertical">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/dim_15"
-    android:padding="@dimen/dim_10"
-    >
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lrn_fruit"
-        android:padding="@dimen/dim_10"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_fruit"
-        />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Fruit"
-            android:textSize="@dimen/dim_18"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lrn_vegetable"
-       android:layout_centerInParent="true"
-        android:padding="@dimen/dim_10"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_vegetable"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Vegetable"
-            android:textSize="@dimen/dim_18"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lrn_tiffin"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:padding="@dimen/dim_10"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_tifin_two"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Tiffin"
-            android:textSize="@dimen/dim_18"
-            />
-    </LinearLayout>
-    </RelativeLayout>
+        android:background="#BEE9FC"
+        android:layout_height="@dimen/dim_320" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_15"
-        android:padding="@dimen/dim_10"
-        >
+        android:layout_height="match_parent"
+        android:background="@drawable/home_bg">
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lrn_food"
-            android:padding="@dimen/dim_10"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_food"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Food"
-                android:textSize="@dimen/dim_18"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/lrn_mithaiwala"
-            android:layout_centerInParent="true"
-            android:padding="@dimen/dim_10"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_mithaiwala"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Mithai wala"
-                android:textSize="@dimen/dim_18"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/lrn_discount"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dim_10"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_discount"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Discount"
-                android:textSize="@dimen/dim_18"
-                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/lrn_fruit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dim_10">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@null"
+                        android:src="@drawable/ic_tifin_two" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Tiffin wala"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/dim_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lrn_vegetable"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dim_10">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@null"
+                        android:src="@drawable/ic_vegetable" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Vegetable"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/dim_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lrn_tiffin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dim_10">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@null"
+                        android:src="@drawable/ic_fruit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Fresh Fruits"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/dim_14" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/lrn_food"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dim_10">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@null"
+                        android:src="@drawable/ic_food" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Fast Food"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/dim_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lrn_mithaiwala"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dim_10">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@null"
+                        android:src="@drawable/ic_mithaiwala" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Mithai wala"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/dim_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lrn_discount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dim_10">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@null"
+                        android:src="@drawable/ic_discount" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Hot Deals"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/dim_14" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
-        </LinearLayout>
 </LinearLayout>

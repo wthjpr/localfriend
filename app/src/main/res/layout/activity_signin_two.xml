@@ -64,7 +64,6 @@
             android:textSize="@dimen/dim_18"
             android:textStyle="bold" />
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,11 +72,12 @@
             android:background="@drawable/rounded_curvy_white"
             android:gravity="center"
             android:id="@+id/tv_btn_signin"
-            android:paddingBottom="@dimen/dim_7"
+            android:paddingBottom="@dimen/dim_10"
             android:paddingLeft="@dimen/dim_15"
             android:paddingRight="@dimen/dim_15"
-            android:paddingTop="@dimen/dim_7"
+            android:paddingTop="@dimen/dim_10"
             android:text="SIGN IN"
+
             android:textColor="@color/blue_text"
             android:textSize="@dimen/dim_18" />
     </RelativeLayout>

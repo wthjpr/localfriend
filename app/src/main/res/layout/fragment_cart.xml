@@ -2,32 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#E9EEEF"
-    android:padding="@dimen/dim_10"
+    android:orientation="vertical"
     tools:context="com.localfriend.fragments.CartFragment">
 
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="?actionBarSize"
-
-        android:id="@+id/recy_cart"
-        />
+        android:layout_marginTop="?actionBarSize" />
 
     <TextView
+        android:id="@+id/tv_checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/curvy_gradient_bg"
-        android:id="@+id/tv_checkout"
-
+        android:gravity="center"
+        android:padding="@dimen/dim_8"
         android:text="Checkout"
         android:textColor="@color/white"
-        android:gravity="center"
-        android:textSize="@dimen/dim_18"
-        android:padding="@dimen/dim_10"
-        />
+        android:textSize="@dimen/dim_18" />
 
 </RelativeLayout>

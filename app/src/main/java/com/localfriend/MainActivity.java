@@ -55,6 +55,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     private static final int POS_ACCOUNT = 1;
     private static final int POS_MESSAGES = 2;
     private static final int POS_CART = 3;
+    private static final int HELP = 4;
     private static final int POS_LOGOUT = 5;
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -71,13 +72,13 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(false);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(false);
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        TextView mTitle =  toolbar.findViewById(R.id.toolbar_title);
         mTitle.setText("Local Friend");
         actionBar.setTitle("");
 
@@ -97,6 +98,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 createItemFor(POS_ACCOUNT),
                 createItemFor(POS_MESSAGES),
                 createItemFor(POS_CART),
+                createItemFor(HELP),
                /* new SpaceItem(48),*/
                 createItemFor(POS_LOGOUT)));
         adapter.setListener(this);
@@ -135,14 +137,14 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         }
         slidingRootNav.closeMenu();
         Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
-        showFragment(selectedScreen);
+//        showFragment(selectedScreen);
     }
 
-    private void showFragment(Fragment fragment) {
-        getFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment)
-                .commit();
-    }
+//    private void showFragment(Fragment fragment) {
+//        getFragmentManager().beginTransaction()
+//                .replace(R.id.container, fragment)
+//                .commit();
+//    }
 
     private DrawerItem createItemFor(int position) {
         return new SimpleItem(screenIcons[position], screenTitles[position])
@@ -179,16 +181,11 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     }
 
     private void setupUiElements() {
-        /*tv_home = (TextView) findViewById(R.id.tv_home);
-        tv_tiffin = (TextView) findViewById(R.id.tv_tiffin);
-        tv_cart = (TextView) findViewById(R.id.tv_cart);
-        tv_more = (TextView) findViewById(R.id.tv_more);*/
-        // navBtn = (ImageButton) findViewById(R.id.nav_drawer_btn);
 
-        img_home = (ImageView) findViewById(R.id.img_home);
-        img_tiffin = (ImageView) findViewById(R.id.img_tiffin);
-        img_cart = (ImageView) findViewById(R.id.img_cart);
-        img_more = (ImageView) findViewById(R.id.img_more);
+        img_home =  findViewById(R.id.img_home);
+        img_tiffin =  findViewById(R.id.img_tiffin);
+        img_cart =  findViewById(R.id.img_cart);
+        img_more =  findViewById(R.id.img_more);
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
         setClick(R.id.rl_tab_3);

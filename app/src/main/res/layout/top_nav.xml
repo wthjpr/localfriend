@@ -12,7 +12,6 @@
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
 
-
         <TextView
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"

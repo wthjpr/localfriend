@@ -1,54 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context="com.localfriend.MainActivity">
 
-    <!--        <RelativeLayout
-                android:id="@+id/rl_top"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:orientation="horizontal"
-                android:padding="@dimen/dim_10">
-
-                <ImageButton
-                    android:id="@+id/nav_drawer_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:background="@null"
-                    android:src="@drawable/menu_white" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="Local Friend"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dim_20" />
-
-            </RelativeLayout>-->
-
-
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    <!--<FrameLayout-->
+        <!--android:id="@+id/container"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--/>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-      >
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/service_container"
@@ -63,14 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null">-->
-            <include
-                layout="@layout/toolbar"/>
-           <!-- <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:background="@null">
-            </android.support.v7.widget.Toolbar>-->
+        <include layout="@layout/toolbar" />
+        <!-- <android.support.v7.widget.Toolbar
+             android:id="@+id/toolbar"
+             android:layout_width="match_parent"
+             android:layout_height="?actionBarSize"
+             android:background="@null">
+         </android.support.v7.widget.Toolbar>-->
         <!--</android.support.design.widget.AppBarLayout>-->
         <!--<ScrollView
             android:layout_width="match_parent"

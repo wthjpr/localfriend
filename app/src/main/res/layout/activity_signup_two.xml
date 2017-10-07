@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_gradient_bg"
-    android:paddingTop="@dimen/dim_10"
     tools:context="com.localfriend.SigninActivityTwo">
 
-    <include
-        layout="@layout/toolbar_common"/>
+    <include layout="@layout/toolbar_common" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,13 +25,13 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edt_phone_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_10"
             android:backgroundTint="@color/white"
             android:inputType="phone"
             android:maxLines="1"
-            android:id="@+id/edt_phone_no"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_16"
 
@@ -65,13 +62,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_btn_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/rounded_curvy_white"
             android:gravity="center"
-            android:id="@+id/tv_btn_signin"
             android:paddingBottom="@dimen/dim_10"
             android:paddingLeft="@dimen/dim_15"
             android:paddingRight="@dimen/dim_15"

@@ -10,11 +10,11 @@
     </string-array>
 
     <array name="ld_activityScreenIcons">
-        <item>@drawable/ic_back</item>
-        <item>@drawable/ic_back</item>
-        <item>@drawable/ic_back</item>
-        <item>@drawable/ic_back</item>
-        <item>@drawable/ic_back</item>
-        <item>@drawable/ic_back</item>
+        <item>@drawable/menu_home</item>
+        <item>@drawable/menu_orders</item>
+        <item>@drawable/menu_address</item>
+        <item>@drawable/menu_settings</item>
+        <item>@drawable/menu_home</item>
+        <item>@drawable/menu_about_us</item>
     </array>
 </resources>

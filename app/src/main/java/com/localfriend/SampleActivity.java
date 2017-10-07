@@ -63,6 +63,7 @@ public class SampleActivity extends CustomActivity implements DrawerAdapter.OnIt
                 createItemFor(POS_MESSAGES),
                 createItemFor(POS_CART),
                 new SpaceItem(48),
+
                 createItemFor(POS_LOGOUT)));
         adapter.setListener(this);
 

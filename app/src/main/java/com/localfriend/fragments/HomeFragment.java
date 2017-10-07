@@ -1,7 +1,6 @@
 package com.localfriend.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
-import com.localfriend.FoodActivity;
 import com.localfriend.MainActivity;
 import com.localfriend.R;
 
@@ -27,10 +25,12 @@ import java.util.HashMap;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class HomeFragment extends CustomFragment implements BaseSliderView.OnSliderClickListener,
+        ViewPagerEx.OnPageChangeListener {
 
     private SliderLayout slider_home_frag;
-    private LinearLayout lrn_fruit, lrn_vegetable,lrn_tiffin,lrn_food, lrn_mithaiwala, lrn_discount;
+    private LinearLayout lrn_fruit,lrn_vegetable,lrn_tiffin,lrn_food,lrn_mithaiwala,lrn_discount;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -40,7 +40,13 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.fragment_home, container, false);
-        slider_home_frag=(SliderLayout)myView.findViewById(R.id.slider_home_frag);
+        slider_home_frag = (SliderLayout) myView.findViewById(R.id.slider_home_frag);
+        lrn_fruit = myView.findViewById(R.id.lrn_fruit);
+        lrn_vegetable = myView.findViewById(R.id.lrn_vegetable);
+        lrn_tiffin = myView.findViewById(R.id.lrn_tiffin);
+        lrn_food = myView.findViewById(R.id.lrn_food);
+        lrn_mithaiwala = myView.findViewById(R.id.lrn_mithaiwala);
+        lrn_discount = myView.findViewById(R.id.lrn_discount);
 
         /*HashMap<String,String> url_maps = new HashMap<String, String>();
         url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
@@ -70,27 +76,21 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
             slider_home_frag.addSlider(textSliderView);
         }
-        slider_home_frag.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        slider_home_frag.setPresetTransformer(SliderLayout.Transformer.Default);
         slider_home_frag.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         slider_home_frag.setCustomAnimation(new DescriptionAnimation());
         slider_home_frag.setDuration(4000);
         slider_home_frag.addOnPageChangeListener(this);
 
+        setTouchNClick(lrn_fruit);
+        setTouchNClick(lrn_vegetable);
+        setTouchNClick(lrn_tiffin);
+        setTouchNClick(lrn_food);
+        setTouchNClick(lrn_mithaiwala);
+        setTouchNClick(lrn_discount);
 
-        lrn_fruit=(LinearLayout)myView.findViewById(R.id.lrn_fruit);
-        lrn_vegetable=(LinearLayout)myView.findViewById(R.id.lrn_vegetable);
-        lrn_tiffin=(LinearLayout)myView.findViewById(R.id.lrn_tiffin);
-        lrn_food=(LinearLayout)myView.findViewById(R.id.lrn_food);
-        lrn_mithaiwala=(LinearLayout)myView.findViewById(R.id.lrn_mithaiwala);
-        lrn_discount=(LinearLayout)myView.findViewById(R.id.lrn_discount);
-       // lrn_fruit, lrn_vegetable,lrn_tiffin,lrn_food, lrn_mithaiwala, lrn_discount
-        lrn_food.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), FoodActivity.class));
-            }
-        });
-       return myView;
+
+        return myView;
     }
 
     @Override
