@@ -3,22 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/main_gradient_bg"
+    android:orientation="vertical"
     android:padding="@dimen/dim_15"
     tools:context="com.localfriend.LoginSignupActivity">
 
     <ImageView
+        android:id="@+id/img_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dim_35"
         android:background="@null"
-        android:id="@+id/img_logo"
         android:src="@drawable/home_icon" />
-<Space
-    android:layout_width="wrap_content"
-    android:layout_height="@dimen/dim_130"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dim_130" />
     <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,49 +30,53 @@
         android:layout_marginBottom="@dimen/dim_50"
         android:orientation="vertical">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corner_blue"
-            android:padding="@dimen/dim_10"
-            android:id="@+id/tv_hello_label"
-            android:text="Hello there, I'm your Local Friend"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dim_14" />
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/tv_hello_label"
+        app:textStyle="@integer/roboto_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner_blue"
+        android:padding="@dimen/dim_10"
+        android:text="Hello there, I'm your Local Friend"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_14" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_15"
-            android:background="@drawable/rounded_corner_blue"
-            android:padding="@dimen/dim_10"
-            android:id="@+id/tv_help"
-            android:text="I'm here to help you with anything , anytime"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dim_14" />
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/tv_help"
+        app:textStyle="@integer/roboto_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_15"
+        android:background="@drawable/rounded_corner_blue"
+        android:padding="@dimen/dim_10"
+        android:text="I'm here to help you with anything , anytime"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_14" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_25"
-            android:background="@drawable/rounded_corner_white"
-            android:gravity="center"
-            android:padding="@dimen/dim_10"
-            android:id="@+id/tv_lets_get_started"
-            android:text="Let's get started"
-            android:textColor="@color/blue_text"
-            android:textSize="@dimen/dim_16" />
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/tv_lets_get_started"
+        app:textStyle="@integer/roboto_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_25"
+        android:background="@drawable/rounded_corner_white"
+        android:gravity="center"
+        android:padding="@dimen/dim_10"
+        android:text="Let's get started"
+        android:textColor="@color/blue_text"
+        android:textSize="@dimen/dim_16" />
 
-        <TextView
-            android:id="@+id/tv_already_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="@dimen/dim_25"
-            android:background="@null"
-            android:padding="@dimen/dim_5"
-            android:text="Already have an account ? "
-            android:textColor="@color/white"
-            android:textSize="@dimen/dim_16" />
-<!--    </LinearLayout>-->
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/tv_already_account"
+        app:textStyle="@integer/roboto_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/dim_25"
+        android:background="@null"
+        android:padding="@dimen/dim_5"
+        android:text="Already have an account ? "
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_16" />
+    <!--    </LinearLayout>-->
 </LinearLayout>

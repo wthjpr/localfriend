@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="roboto_light">10</integer>
+    <integer name="roboto_bold">11</integer>
+    <integer name="roboto_regular">12</integer>
+    <integer name="roboto_medium">13</integer>
+</resources>

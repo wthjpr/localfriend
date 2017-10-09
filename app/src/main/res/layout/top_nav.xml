@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@null"
     android:orientation="horizontal">
 
@@ -12,8 +13,9 @@
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_address"
+            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -30,8 +32,9 @@
         android:background="?attr/selectableItemBackground">
 
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_payment"
+            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -48,8 +51,9 @@
         android:background="?attr/selectableItemBackground">
 
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_review"
+            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

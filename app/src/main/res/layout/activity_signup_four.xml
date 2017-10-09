@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_gradient_bg"
-    android:paddingTop="@dimen/dim_10"
     tools:context="com.localfriend.SignupActivityFour">
 
     <include layout="@layout/toolbar_common" />
@@ -20,7 +19,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter your password"
@@ -58,7 +57,7 @@
         android:layout_marginBottom="@dimen/dim_15"
         android:padding="@dimen/dim_10">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -67,7 +66,7 @@
             android:textSize="@dimen/dim_18"
             android:textStyle="bold" />
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
             android:id="@+id/tv_btn_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

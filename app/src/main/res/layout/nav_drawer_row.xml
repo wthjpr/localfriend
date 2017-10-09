@@ -2,16 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true">
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/title"
+        app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/dim_15"
-        android:layout_marginLeft="@dimen/dim_10"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dim_10"
+        android:layout_marginRight="@dimen/dim_15"
         android:gravity="center_vertical"
         android:padding="@dimen/dim_14"
         android:textColor="@color/white"

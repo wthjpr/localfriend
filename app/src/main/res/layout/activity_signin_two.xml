@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_gradient_bg"
-    android:paddingTop="@dimen/dim_10"
     tools:context="com.localfriend.SigninActivityTwo">
 
     <include
@@ -19,7 +18,7 @@
         android:orientation="vertical"
         android:padding="@dimen/dim_10">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter your password"
@@ -46,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@null"
+        android:scaleType="fitXY"
         android:src="@drawable/walkthroughss" />
 
     <RelativeLayout
@@ -55,7 +55,7 @@
         android:layout_marginBottom="@dimen/dim_15"
         android:padding="@dimen/dim_10">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -64,7 +64,7 @@
             android:textSize="@dimen/dim_18"
             android:textStyle="bold" />
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

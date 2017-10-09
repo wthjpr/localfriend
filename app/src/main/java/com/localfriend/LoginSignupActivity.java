@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 public class LoginSignupActivity extends CustomActivity {
     private TextView tv_already_account, tv_lets_get_started, tv_hello_label, tv_help;
-    private static final int SPLASH_DURATION_MS = 1000;
-    private static final int SPLASH_DURATION_two = 2000;
-    private static final int SPLASH_DURATION_three = 3000;
-    private static final int SPLASH_DURATION_four = 4000;
-    private static final int SPLASH_DURATION_five = 5000;
+    private static final int SPLASH_DURATION_MS = 500;
+    private static final int SPLASH_DURATION_two = 1000;
+    private static final int SPLASH_DURATION_three = 1500;
+    private static final int SPLASH_DURATION_four = 2000;
+    private static final int SPLASH_DURATION_five = 2500;
     private Handler mHandler = new Handler();
     private ImageView img_logo;
 

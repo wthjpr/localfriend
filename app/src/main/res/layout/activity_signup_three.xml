@@ -5,38 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_gradient_bg"
-    android:paddingTop="@dimen/dim_10"
     tools:context="com.localfriend.SignupActivityThree">
 
-    <include
-        layout="@layout/toolbar_common"/>
+    <include layout="@layout/toolbar_common" />
 
     <LinearLayout
+        android:id="@+id/lnr_verification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_common"
         android:layout_marginTop="@dimen/dim_10"
         android:orientation="vertical"
-        android:id="@+id/lnr_verification"
         android:padding="@dimen/dim_10">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="To Complete your phone number verification,\nplease enter the 6-digit verification code"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_16"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:textStyle="@integer/roboto_medium" />
 
 
         <EditText
+            android:id="@+id/edt_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_10"
             android:backgroundTint="@color/white"
             android:inputType="number"
             android:maxLines="1"
-            android:id="@+id/edt_code"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_16"
 
@@ -46,8 +45,8 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/lnr_verification"
+        android:layout_centerHorizontal="true"
         android:background="@null"
         android:src="@drawable/basket_with_pt_sans" />
 
@@ -58,16 +57,17 @@
         android:layout_marginBottom="@dimen/dim_15"
         android:padding="@dimen/dim_10">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="Step 3 of 4"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_18"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:textStyle="@integer/roboto_medium" />
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,6 +81,7 @@
             android:paddingTop="@dimen/dim_7"
             android:text="NEXT"
             android:textColor="@color/blue_text"
-            android:textSize="@dimen/dim_18" />
+            android:textSize="@dimen/dim_18"
+            app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 </RelativeLayout>

@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/nav_item_home"
+        app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:drawablePadding="@dimen/dim_10"
         android:gravity="center_vertical"
         android:paddingBottom="@dimen/dim_5"
@@ -20,8 +21,9 @@
 
         android:textSize="@dimen/dim_18" />
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/nav_item_service_request"
+        app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_10"
@@ -46,7 +48,8 @@
         android:paddingRight="@dimen/dim_10"
         android:paddingTop="@dimen/dim_5">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
+            app:textStyle="@integer/roboto_medium"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,16 +63,17 @@
 
             android:textSize="@dimen/dim_18" />
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/count_chat"
+            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
 
+            android:layout_centerVertical="true"
             android:paddingLeft="@dimen/dim_10"
             android:paddingRight="@dimen/dim_10"
             android:text="3"
-            android:id="@+id/count_chat"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_18" />
     </RelativeLayout>
@@ -84,7 +88,8 @@
         android:paddingRight="@dimen/dim_10"
         android:paddingTop="@dimen/dim_5">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
+            app:textStyle="@integer/roboto_medium"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,16 +103,17 @@
 
             android:textSize="@dimen/dim_18" />
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/count_notification"
+            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
 
+            android:layout_centerVertical="true"
             android:paddingLeft="@dimen/dim_10"
             android:paddingRight="@dimen/dim_10"
             android:text="2"
-            android:id="@+id/count_notification"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_18" />
     </RelativeLayout>
@@ -122,7 +128,8 @@
         android:paddingRight="@dimen/dim_10"
         android:paddingTop="@dimen/dim_5">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
+            app:textStyle="@integer/roboto_medium"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,11 +143,12 @@
 
             android:textSize="@dimen/dim_18" />
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/nav_wallet_amt"
+            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:id="@+id/nav_wallet_amt"
 
             android:layout_centerVertical="true"
             android:paddingLeft="@dimen/dim_7"
@@ -150,8 +158,9 @@
     </RelativeLayout>
 
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/nav_item_promo_offer"
+        app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_10"
@@ -166,8 +175,9 @@
 
         android:textSize="@dimen/dim_18" />
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/nav_item_switch_profile"
+        app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_10"
@@ -186,8 +196,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/nav_item_customer_support"
+            app:textStyle="@integer/roboto_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

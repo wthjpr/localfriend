@@ -55,7 +55,7 @@
                     app:cardBackgroundColor="#346D97"
                     app:contentPadding="@dimen/dim_10">
 
-                    <TextView
+                    <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -78,7 +78,7 @@
                     app:cardBackgroundColor="#4CB79C"
                     app:contentPadding="@dimen/dim_10">
 
-                    <TextView
+                    <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -101,7 +101,7 @@
                     app:cardBackgroundColor="#346D97"
                     app:contentPadding="@dimen/dim_10">
 
-                    <TextView
+                    <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -124,7 +124,7 @@
                     app:cardBackgroundColor="#4CB79C"
                     app:contentPadding="@dimen/dim_10">
 
-                    <TextView
+                    <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E9EEEF"
     android:orientation="vertical"
     tools:context="com.localfriend.fragments.CartFragment">
@@ -13,11 +14,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="?actionBarSize" />
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_checkout"
+        app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dim_5"
+        android:layout_marginLeft="@dimen/dim_20"
+        android:layout_marginRight="@dimen/dim_20"
         android:background="@drawable/curvy_gradient_bg"
         android:gravity="center"
         android:padding="@dimen/dim_8"

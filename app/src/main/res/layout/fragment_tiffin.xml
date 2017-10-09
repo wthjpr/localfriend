@@ -21,21 +21,22 @@
             app:cardElevation="@dimen/dim_8"
             app:contentPadding="@dimen/dim_15">
 
-            <TextView
+            <com.localfriend.fonts.CustomFontTextView
+                android:id="@+id/tv_breakfast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="BreakFast"
-                android:id="@+id/tv_breakfast"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dim_30" />
+                android:textSize="@dimen/dim_30"
+                app:textStyle="@integer/roboto_medium" />
 
             <ImageView
+                android:id="@+id/img_breakfast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:background="@null"
-                android:id="@+id/img_breakfast"
                 android:src="@drawable/breakfastt" />
         </android.support.v7.widget.CardView>
 
@@ -50,31 +51,31 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#4CB79C"
-                app:cardElevation="@dimen/dim_8"
                 app:contentPadding="@dimen/dim_15">
 
-                <TextView
+                <com.localfriend.fonts.CustomFontTextView
+                    android:id="@+id/tv_lunch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Lunch"
-                    android:id="@+id/tv_lunch"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dim_30" />
+                    android:textSize="@dimen/dim_30"
+                    app:textStyle="@integer/roboto_medium" />
 
                 <ImageView
+                    android:id="@+id/img_lunch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:background="@null"
-                    android:id="@+id/img_lunch"
-                    android:src="@drawable/breakfastt" />
+                    android:src="@drawable/lunchhhh" />
             </android.support.v7.widget.CardView>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:background="@drawable/shadow" />
+                android:src="@drawable/shadow" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -87,34 +88,34 @@
                 android:layout_height="wrap_content"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#346D97"
-                app:cardElevation="@dimen/dim_8"
                 app:contentPadding="@dimen/dim_15">
 
-                <TextView
+                <com.localfriend.fonts.CustomFontTextView
+                    android:id="@+id/tv_dinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Dinner"
-                    android:id="@+id/tv_dinner"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dim_30" />
+                    android:textSize="@dimen/dim_30"
+                    app:textStyle="@integer/roboto_medium" />
 
                 <ImageView
+                    android:id="@+id/img_dinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:background="@null"
-                    android:id="@+id/img_dinner"
                     android:src="@drawable/dinnerrrrr" />
             </android.support.v7.widget.CardView>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:background="@drawable/shadow" />
+                android:src="@drawable/shadow" />
         </RelativeLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -127,21 +128,22 @@
                 app:cardElevation="@dimen/dim_8"
                 app:contentPadding="@dimen/dim_15">
 
-                <TextView
+                <com.localfriend.fonts.CustomFontTextView
+                    android:id="@+id/tv_snacks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Snacks"
-                    android:id="@+id/tv_snacks"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dim_30" />
+                    android:textSize="@dimen/dim_30"
+                    app:textStyle="@integer/roboto_medium" />
 
                 <ImageView
+                    android:id="@+id/img_snacks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:background="@null"
-                    android:id="@+id/img_snacks"
                     android:src="@drawable/bavregesss" />
 
             </android.support.v7.widget.CardView>
@@ -149,8 +151,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
-                android:background="@drawable/shadow"></ImageView>
+                android:src="@drawable/shadow"></ImageView>
 
-        </FrameLayout>
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>

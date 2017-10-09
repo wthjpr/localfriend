@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="56dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="24dp"
@@ -16,8 +17,9 @@
         android:layout_width="@dimen/dim_12"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/title"
+        app:textStyle="@integer/roboto_medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dim_16"

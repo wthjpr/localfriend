@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,7 +27,7 @@
         android:layout_marginBottom="@dimen/dim_15"
         android:background="@null"></FrameLayout>
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_make_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,5 +38,6 @@
         android:padding="@dimen/dim_10"
         android:text="MAKE PAYMENT"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_18" />
+        android:textSize="@dimen/dim_18"
+        app:textStyle="@integer/roboto_medium" />
 </RelativeLayout>

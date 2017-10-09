@@ -18,37 +18,40 @@
         android:background="@null"
         android:src="@drawable/bag" />
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_bag"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorPrimaryDark"
         android:layout_marginTop="@dimen/dim_16"
         android:text="You have no saved addresses"
-        android:textSize="@dimen/dim_16" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/dim_16"
+        app:textStyle="@integer/roboto_medium" />
 
-    <TextView
+    <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_lets_get_started"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_label"
-        android:layout_marginTop="@dimen/dim_10"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dim_10"
         android:text="Tell us where you want your "
-        android:textSize="@dimen/dim_16" />
-    <TextView
+        android:textSize="@dimen/dim_16"
+        app:textStyle="@integer/roboto_medium" />
+
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/tv_add_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/curvy_gradient_bg"
-        android:id="@+id/tv_add_address"
-        android:text="Add New Address"
         android:layout_margin="@dimen/dim_16"
-        android:textColor="@color/white"
+        android:background="@drawable/curvy_gradient_bg"
         android:gravity="center"
-        android:textSize="@dimen/dim_18"
         android:padding="@dimen/dim_10"
-        />
+        android:text="Add New Address"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_18"
+        app:textStyle="@integer/roboto_medium" />
 </RelativeLayout>
