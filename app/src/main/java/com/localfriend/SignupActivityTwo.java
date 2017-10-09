@@ -55,7 +55,7 @@ public class SignupActivityTwo extends CustomActivity {
                 edt_phone_no.setError("Enter Your Mobile Number");
                 return;
             }
-            startActivity(new Intent(getContext(), MainActivity.class));
+            startActivity(new Intent(getContext(), SignupActivityThree.class));
         }
 
     }

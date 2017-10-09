@@ -1,8 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_gradient_bg"
+    android:paddingTop="@dimen/dim_10"
     tools:context="com.localfriend.SignupActivityThree">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        layout="@layout/toolbar_common"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_common"
+        android:layout_marginTop="@dimen/dim_10"
+        android:orientation="vertical"
+        android:id="@+id/lnr_verification"
+        android:padding="@dimen/dim_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To Complete your phone number verification,\nplease enter the 6-digit verification code"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dim_16"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_10"
+            android:backgroundTint="@color/white"
+            android:inputType="number"
+            android:maxLines="1"
+            android:id="@+id/edt_code"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dim_16"
+
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lnr_verification"
+        android:background="@null"
+        android:src="@drawable/basket_with_pt_sans" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dim_15"
+        android:padding="@dimen/dim_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Step 3 of 4"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dim_18"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/rounded_curvy_white"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dim_7"
+            android:paddingLeft="@dimen/dim_15"
+            android:paddingRight="@dimen/dim_15"
+            android:paddingTop="@dimen/dim_7"
+            android:text="NEXT"
+            android:textColor="@color/blue_text"
+            android:textSize="@dimen/dim_18" />
+    </RelativeLayout>
+</RelativeLayout>

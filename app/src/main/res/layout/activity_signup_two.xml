@@ -74,7 +74,6 @@
             android:paddingRight="@dimen/dim_15"
             android:paddingTop="@dimen/dim_10"
             android:text="NEXT"
-
             android:textColor="@color/blue_text"
             android:textSize="@dimen/dim_18" />
     </RelativeLayout>

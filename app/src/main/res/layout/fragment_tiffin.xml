@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="BreakFast"
+                android:id="@+id/tv_breakfast"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dim_30" />
 
@@ -34,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:background="@null"
+                android:id="@+id/img_breakfast"
                 android:src="@drawable/breakfastt" />
         </android.support.v7.widget.CardView>
 
@@ -56,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Lunch"
+                    android:id="@+id/tv_lunch"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dim_30" />
 
@@ -64,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:background="@null"
+                    android:id="@+id/img_lunch"
                     android:src="@drawable/breakfastt" />
             </android.support.v7.widget.CardView>
 
@@ -91,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Dinner"
+                    android:id="@+id/tv_dinner"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dim_30" />
 
@@ -99,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:background="@null"
+                    android:id="@+id/img_dinner"
                     android:src="@drawable/dinnerrrrr" />
             </android.support.v7.widget.CardView>
 
@@ -126,6 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Snacks"
+                    android:id="@+id/tv_snacks"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dim_30" />
 
@@ -134,6 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:background="@null"
+                    android:id="@+id/img_snacks"
                     android:src="@drawable/bavregesss" />
 
             </android.support.v7.widget.CardView>
