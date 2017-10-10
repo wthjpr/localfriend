@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.localfriend.fragments.AddressFragment;
 import com.localfriend.fragments.CartFragment;
 import com.localfriend.fragments.HomeFragment;
+import com.localfriend.fragments.PaymentFragment;
 import com.localfriend.fragments.ScheduleFragment;
 import com.localfriend.fragments.TiffinFragment;
 
@@ -120,7 +121,9 @@ public class CheckOutActivity extends CustomActivity {
             tv_review.setTextColor(Color.parseColor("#40B799"));
 
 
-            //startActivity(new Intent(MainActivity.this, AllServicesActivity.class));
+            mFragmentManager = getSupportFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.service_container, new PaymentFragment()).commit();
 
         } else if (v.getId() == R.id.rl_tab_3) {
             tv_address.setSelected(true);
