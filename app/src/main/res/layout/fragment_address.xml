@@ -1,11 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EcF2F2"
     android:orientation="vertical"
+    android:padding="@dimen/dim_10"
     tools:context="com.localfriend.fragments.AddressFragment">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -17,10 +22,12 @@
             android:id="@+id/edt_full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:hint="Full Name"
+            android:background="@drawable/rounded_white"
+            android:padding="@dimen/dim_10"
             android:imeOptions="actionUnspecified"
             android:inputType="textPersonName"
-
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/black"
@@ -42,7 +49,8 @@
             android:hint="Flat/House/Office No"
             android:imeOptions="actionUnspecified"
             android:inputType="text"
-
+            android:background="@drawable/rounded_white"
+            android:padding="@dimen/dim_10"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/black"
@@ -61,10 +69,11 @@
             android:id="@+id/edt_street_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Street/Society/Office Name"
+            android:hint="Street/Office No"
             android:imeOptions="actionUnspecified"
             android:inputType="text"
-
+            android:background="@drawable/rounded_white"
+            android:padding="@dimen/dim_10"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/black"
@@ -86,7 +95,8 @@
             android:hint="City"
             android:imeOptions="actionUnspecified"
             android:inputType="text"
-
+            android:background="@drawable/rounded_white"
+            android:padding="@dimen/dim_10"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/black"
@@ -105,14 +115,29 @@
             android:id="@+id/edt_phone_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Phone Number"
+            android:hint="Mobile No"
             android:imeOptions="actionUnspecified"
             android:inputType="phone"
             android:maxLines="1"
+            android:background="@drawable/rounded_white"
+            android:padding="@dimen/dim_10"
             android:textColor="@color/black"
             android:textColorHint="@color/blue_text" />
 
 
     </android.support.design.widget.TextInputLayout>
-
 </LinearLayout>
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/tv_make_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dim_10"
+        android:background="@drawable/curvy_gradient_white_bg"
+        android:gravity="center"
+        android:padding="@dimen/dim_10"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_18"
+        app:textStyle="@integer/roboto_medium" />
+</RelativeLayout>

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.localfriend.fragments.AddressFragment;
 import com.localfriend.fragments.CartFragment;
 import com.localfriend.fragments.HomeFragment;
+import com.localfriend.fragments.ScheduleFragment;
 import com.localfriend.fragments.TiffinFragment;
 
 import static java.sql.Types.NULL;
@@ -23,7 +24,7 @@ import static java.sql.Types.NULL;
 public class CheckOutActivity extends CustomActivity {
     private Toolbar toolbar;
     private TextView tv_address, tv_payment, tv_review;
-    private TextView tv_make_payment;
+    //private TextView tv_make_payment;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
     @Override
@@ -42,7 +43,7 @@ public class CheckOutActivity extends CustomActivity {
 
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
-        mFragmentTransaction.replace(R.id.service_container, new AddressFragment()).commit();
+        mFragmentTransaction.replace(R.id.service_container, new ScheduleFragment()).commit();
 
         setupUiElements();
 
@@ -57,12 +58,12 @@ public class CheckOutActivity extends CustomActivity {
         tv_payment = (TextView) findViewById(R.id.tv_payment);
         tv_review = (TextView) findViewById(R.id.tv_review);
 
-        tv_make_payment = (TextView) findViewById(R.id.tv_make_payment);
+      //  tv_make_payment = (TextView) findViewById(R.id.tv_make_payment);
 
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
         setClick(R.id.rl_tab_3);
-        setClick(R.id.tv_make_payment);
+        //setClick(R.id.tv_make_payment);
 
 
         tv_address.setSelected(true);
@@ -94,7 +95,7 @@ public class CheckOutActivity extends CustomActivity {
             tv_review.setTextColor(Color.parseColor("#40B799"));
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
-            mFragmentTransaction.replace(R.id.service_container, new AddressFragment()).commit();
+            mFragmentTransaction.replace(R.id.service_container, new ScheduleFragment()).commit();
 
         } else if (v.getId() == R.id.rl_tab_2) {
             tv_address.setSelected(true);
@@ -139,12 +140,12 @@ public class CheckOutActivity extends CustomActivity {
             tv_review.setTextColor(Color.parseColor("#19598C"));
 
 
-        } else if (v.getId() == R.id.tv_make_payment) {
+        } /*else if (v.getId() == R.id.tv_make_payment) {
 
            startActivity(new Intent(CheckOutActivity.this, FoodActivity.class));
 
 
-        }
+        }*/
     }
 
 }

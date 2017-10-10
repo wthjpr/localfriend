@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
 
-        <com.localfriend.fonts.CustomFontTextView
+        <!--<com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_address"
             app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
@@ -22,8 +22,18 @@
             android:text="SCHEDULE"
             android:gravity="center_vertical"
             android:textColor="#19598C"
-            android:textSize="@dimen/dim_16" />
-
+            android:textSize="@dimen/dim_16" />-->
+<RadioButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:text="Home"
+    android:id="@+id/rd_btn_home"
+    android:checked="true"
+    android:gravity="center_vertical"
+    android:textColor="#19598C"
+    android:textSize="@dimen/dim_18"
+    />
     </RelativeLayout>
    <!-- <ImageView
         android:layout_width="wrap_content"
@@ -37,9 +47,19 @@
         android:layout_height="?actionBarSize"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Office"
+            android:id="@+id/rd_btn_office"
 
+            android:gravity="center_vertical"
+            android:textColor="#19598C"
+            android:textSize="@dimen/dim_18"
+            />
 
-        <com.localfriend.fonts.CustomFontTextView
+      <!--  <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_payment"
             app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
@@ -48,7 +68,7 @@
             android:text="PAYMENT"
             android:gravity="center_vertical"
             android:textColor="@color/black"
-            android:textSize="@dimen/dim_16" />
+            android:textSize="@dimen/dim_16" />-->
     </RelativeLayout>
     <!--<ImageView
         android:layout_width="wrap_content"
@@ -62,9 +82,19 @@
         android:layout_height="?actionBarSize"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Other"
+            android:id="@+id/rd_btn_other"
 
+            android:gravity="center_vertical"
+            android:textColor="#19598C"
+            android:textSize="@dimen/dim_18"
+            />
 
-        <com.localfriend.fonts.CustomFontTextView
+      <!--  <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_review"
             app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
@@ -73,7 +103,7 @@
             android:text="REVIEW"
             android:gravity="center_vertical"
             android:textColor="@color/black"
-            android:textSize="@dimen/dim_16" />
+            android:textSize="@dimen/dim_16" />-->
     </RelativeLayout>
 
 

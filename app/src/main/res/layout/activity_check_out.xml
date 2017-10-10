@@ -22,22 +22,10 @@
         android:id="@+id/service_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tv_make_payment"
+
         android:layout_below="@+id/top_nav_layout"
         android:layout_marginBottom="@dimen/dim_15"
         android:background="@null"></FrameLayout>
 
-    <com.localfriend.fonts.CustomFontTextView
-        android:id="@+id/tv_make_payment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dim_10"
-        android:background="@drawable/curvy_gradient_bg"
-        android:gravity="center"
-        android:padding="@dimen/dim_10"
-        android:text="MAKE PAYMENT"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dim_18"
-        app:textStyle="@integer/roboto_medium" />
+
 </RelativeLayout>

@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECF2F2"
+    tools:context="com.localfriend.fragments.PaymentFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_review_order"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/payment_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+           android:layout_marginTop="@dimen/dim_50"
+            android:padding="@dimen/dim_15"
+            android:text="Please Choose Your Payment Method"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dim_18" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dim_11"
+            android:layout_margin="@dimen/dim_10">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/dim_15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_cod"
+                    android:text="Cash on Delivery"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:drawablePadding="@dimen/dim_10"
+                    android:textSize="@dimen/dim_18" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dim_11"
+           android:layout_marginLeft="@dimen/dim_10"
+            android:layout_marginRight="@dimen/dim_10"
+            android:layout_marginTop="@dimen/dim_5">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/dim_15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_paytm"
+                    android:text="Pay with Paytm"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:drawablePadding="@dimen/dim_10"
+                    android:textSize="@dimen/dim_18" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/tv_review_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dim_10"
+        android:background="@drawable/curvy_gradient_white_bg"
+        android:gravity="center"
+        android:padding="@dimen/dim_10"
+        android:text="REVIEW ORDER"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_18"
+        app:textStyle="@integer/roboto_medium" />
+</RelativeLayout>
