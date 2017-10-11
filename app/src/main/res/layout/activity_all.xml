@@ -9,17 +9,17 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <include
-            layout="@layout/toolbar_common"/>
+        <include layout="@layout/toolbar_common" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#F7F7F7"
-            app:tabSelectedTextColor="#19598C"
-            app:tabMode="scrollable"/>
-            />
+            app:tabMode="scrollable"
+            app:tabTextColor="@color/gray_tab"
+            app:tabSelectedTextColor="#19598C" />
+        />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager

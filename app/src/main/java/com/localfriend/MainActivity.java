@@ -126,7 +126,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         }else if(position == 1){
             startActivity(new Intent(getContext(), OrderActivity.class));
         }else if(position == 2){
-            startActivity(new Intent(getContext(), AddressActivity.class));
+            startActivity(new Intent(getContext(), AddressListActivity.class));
         }else if(position == 3){
             startActivity(new Intent(getContext(), SettingsActivity.class));
         }else if(position == 4){

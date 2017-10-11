@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/main_gradient_bg"
     tools:context="com.localfriend.SigninActivityTwo">
 
     <include layout="@layout/toolbar_common" />
 
     <LinearLayout
+        android:id="@+id/ll_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_common"
@@ -18,13 +19,13 @@
         android:padding="@dimen/dim_10">
 
         <com.localfriend.fonts.CustomFontTextView
-            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome Customer Name\nEnter your Mobile Number"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_18"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:textStyle="@integer/roboto_medium" />
 
         <EditText
             android:id="@+id/edt_phone_no"
@@ -43,9 +44,10 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@+id/ll_name"
+        android:layout_marginTop="@dimen/dim_60"
         android:background="@null"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/walkthroughss" />
 
     <RelativeLayout
@@ -56,30 +58,30 @@
         android:padding="@dimen/dim_10">
 
         <com.localfriend.fonts.CustomFontTextView
-            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="Step 2 of 4"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_18"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:textStyle="@integer/roboto_medium" />
 
         <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_btn_signin"
-            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/rounded_curvy_white"
             android:gravity="center"
-            android:paddingBottom="@dimen/dim_10"
-            android:paddingLeft="@dimen/dim_15"
-            android:paddingRight="@dimen/dim_15"
-            android:paddingTop="@dimen/dim_10"
+            android:paddingBottom="@dimen/dim_12"
+            android:paddingLeft="@dimen/dim_30"
+            android:paddingRight="@dimen/dim_30"
+            android:paddingTop="@dimen/dim_12"
             android:text="NEXT"
             android:textColor="@color/blue_text"
-            android:textSize="@dimen/dim_18" />
+            android:textSize="@dimen/dim_14"
+            app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 </RelativeLayout>

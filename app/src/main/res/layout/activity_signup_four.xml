@@ -48,6 +48,7 @@
         android:layout_below="@+id/lnr_verification"
         android:layout_centerHorizontal="true"
         android:background="@null"
+        android:scaleType="centerCrop"
         android:src="@drawable/panda_new_with_pt_sans" />
 
     <RelativeLayout
@@ -74,12 +75,12 @@
             android:layout_centerVertical="true"
             android:background="@drawable/rounded_curvy_white"
             android:gravity="center"
-            android:paddingBottom="@dimen/dim_7"
-            android:paddingLeft="@dimen/dim_15"
-            android:paddingRight="@dimen/dim_15"
-            android:paddingTop="@dimen/dim_7"
+            android:paddingBottom="@dimen/dim_12"
+            android:paddingLeft="@dimen/dim_30"
+            android:paddingRight="@dimen/dim_30"
+            android:paddingTop="@dimen/dim_12"
             android:text="SIGN UP"
             android:textColor="@color/blue_text"
-            android:textSize="@dimen/dim_18" />
+            android:textSize="@dimen/dim_14" />
     </RelativeLayout>
 </RelativeLayout>

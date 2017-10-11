@@ -1,21 +1,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.localfriend.fragments.HomeFragment">
 
-    <com.daimajia.slider.library.SliderLayout
-        android:id="@+id/slider_home_frag"
+    <ss.com.bannerslider.views.BannerSlider
+        android:id="@+id/banner_slider1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dim_320"
-        android:background="#BEE9FC" />
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        app:interval="3000" />
+    <!--<com.daimajia.slider.library.SliderLayout-->
+    <!--android:id="@+id/slider_home_frag"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1.5"-->
+    <!--android:background="#BEE9FC" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@drawable/home_bg">
 
         <LinearLayout
@@ -44,16 +52,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@null"
-                        android:src="@drawable/ic_tifin_two" />
+                        android:src="@drawable/tiffine_wala" />
 
                     <com.localfriend.fonts.CustomFontTextView
-                        app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="Tiffin wala"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/dim_14" />
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/dim_14"
+                        app:textStyle="@integer/roboto_medium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -71,16 +79,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@null"
-                        android:src="@drawable/ic_vegetable" />
+                        android:src="@drawable/vegetables" />
 
                     <com.localfriend.fonts.CustomFontTextView
-                        app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="Vegetable"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/dim_14" />
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/dim_14"
+                        app:textStyle="@integer/roboto_medium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -99,16 +107,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@null"
-                        android:src="@drawable/ic_fruit" />
+                        android:src="@drawable/fresh_fruits" />
 
                     <com.localfriend.fonts.CustomFontTextView
-                        app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="Fresh Fruits"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/dim_14" />
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/dim_14"
+                        app:textStyle="@integer/roboto_medium" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -132,16 +140,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@null"
-                        android:src="@drawable/ic_food" />
+                        android:src="@drawable/fast_food_home" />
 
                     <com.localfriend.fonts.CustomFontTextView
-                        app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="Fast Food"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/dim_14" />
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/dim_14"
+                        app:textStyle="@integer/roboto_medium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -159,16 +167,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@null"
-                        android:src="@drawable/ic_mithaiwala" />
+                        android:src="@drawable/laddo" />
 
                     <com.localfriend.fonts.CustomFontTextView
-                        app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="Mithai wala"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/dim_14" />
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/dim_14"
+                        app:textStyle="@integer/roboto_medium" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -187,16 +195,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@null"
-                        android:src="@drawable/ic_discount" />
+                        android:src="@drawable/hot_deals" />
 
                     <com.localfriend.fonts.CustomFontTextView
-                        app:textStyle="@integer/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="Hot Deals"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/dim_14" />
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/dim_14"
+                        app:textStyle="@integer/roboto_medium" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

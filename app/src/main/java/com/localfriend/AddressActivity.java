@@ -51,13 +51,13 @@ public class AddressActivity extends CustomActivity {
 
         //  tv_make_payment = (TextView) findViewById(R.id.tv_make_payment);
 
-        setClick(R.id.rl_tab_1);
-        setClick(R.id.rl_tab_2);
-        setClick(R.id.rl_tab_3);
+//        setClick(R.id.rl_tab_1);
+//        setClick(R.id.rl_tab_2);
+//        setClick(R.id.rl_tab_3);
 
-        rd_btn_home.setSelected(true);
-        rd_btn_home.setChecked(true);
-        rd_btn_home.setTextColor(getResources().getColor(R.color.blue_text));
+//        rd_btn_home.setSelected(true);
+//        rd_btn_home.setChecked(true);
+//        rd_btn_home.setTextColor(getResources().getColor(R.color.blue_text));
     }
 
 

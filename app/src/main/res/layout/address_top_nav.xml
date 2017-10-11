@@ -2,109 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@null"
     android:orientation="horizontal">
 
-    <RelativeLayout
-        android:id="@+id/rl_tab_1"
-        android:layout_width="0dp"
-        android:layout_height="?actionBarSize"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackground">
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/rl_tab_1"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="?actionBarSize"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="?attr/selectableItemBackground">-->
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <!--<com.localfriend.fonts.CustomFontTextView
-            android:id="@+id/tv_address"
-            app:textStyle="@integer/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="SCHEDULE"
-            android:gravity="center_vertical"
-            android:textColor="#19598C"
-            android:textSize="@dimen/dim_16" />-->
-<RadioButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:text="Home"
-    android:id="@+id/rd_btn_home"
-    android:checked="true"
-    android:gravity="center_vertical"
-    android:textColor="#19598C"
-    android:textSize="@dimen/dim_18"
-    />
-    </RelativeLayout>
-   <!-- <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_forward_arrow"/>-->
-    <RelativeLayout
-        android:id="@+id/rl_tab_2"
-        android:layout_width="0dp"
-        android:layout_height="?actionBarSize"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackground">
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Office"
-            android:id="@+id/rd_btn_office"
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-            android:gravity="center_vertical"
-            android:textColor="#19598C"
-            android:textSize="@dimen/dim_18"
-            />
+            <RadioButton
+                android:id="@+id/rd_btn_home"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:checked="true"
+                android:padding="@dimen/dim_10"
+                android:text="Home"
+                android:textColor="#19598C"
+                android:textSize="@dimen/dim_18" />
+        </RelativeLayout>
 
-      <!--  <com.localfriend.fonts.CustomFontTextView
-            android:id="@+id/tv_payment"
-            app:textStyle="@integer/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="PAYMENT"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dim_16" />-->
-    </RelativeLayout>
-    <!--<ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_forward_arrow"/>-->
-    <RelativeLayout
-        android:id="@+id/rl_tab_3"
-        android:layout_width="0dp"
-        android:layout_height="?actionBarSize"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackground">
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Other"
-            android:id="@+id/rd_btn_other"
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-            android:gravity="center_vertical"
-            android:textColor="#19598C"
-            android:textSize="@dimen/dim_18"
-            />
+            <RadioButton
+                android:id="@+id/rd_btn_office"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/dim_10"
+                android:text="Office"
+                android:textColor="#19598C"
+                android:textSize="@dimen/dim_18" />
+        </RelativeLayout>
 
-      <!--  <com.localfriend.fonts.CustomFontTextView
-            android:id="@+id/tv_review"
-            app:textStyle="@integer/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="REVIEW"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dim_16" />-->
-    </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/rd_btn_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="@dimen/dim_10"
+                android:text="Other"
+                android:textColor="#19598C"
+                android:textSize="@dimen/dim_18" />
+        </RelativeLayout>
+
+
+    </RadioGroup>
 
 </LinearLayout>

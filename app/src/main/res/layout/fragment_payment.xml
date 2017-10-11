@@ -3,87 +3,110 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECF2F2"
     tools:context="com.localfriend.fragments.PaymentFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tv_review_order"
-        android:orientation="vertical">
+        android:layout_above="@+id/tv_review_order">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/payment_icon" />
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/dim_20"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-           android:layout_marginTop="@dimen/dim_50"
-            android:padding="@dimen/dim_15"
-            android:text="Please Choose Your Payment Method"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dim_18" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/payment_new" />
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/dim_11"
-            android:layout_margin="@dimen/dim_10">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Please Choose Your Payment Method"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dim_18" />
 
-            <RelativeLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:padding="@dimen/dim_15">
+                android:layout_margin="@dimen/dim_10"
+                app:cardElevation="@dimen/dim_5">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_cod"
-                    android:text="Cash on Delivery"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/black"
-                    android:drawablePadding="@dimen/dim_10"
-                    android:textSize="@dimen/dim_18" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/dim_11"
-           android:layout_marginLeft="@dimen/dim_10"
-            android:layout_marginRight="@dimen/dim_10"
-            android:layout_marginTop="@dimen/dim_5">
+                    android:background="@color/white"
+                    android:padding="@dimen/dim_10">
 
-            <RelativeLayout
+                    <com.localfriend.fonts.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawableLeft="@drawable/ic_cod"
+                        android:drawablePadding="@dimen/dim_10"
+                        android:text="Cash on Delivery"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_18"
+                        app:textStyle="@integer/roboto_medium" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:checked="true" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:padding="@dimen/dim_15">
+                android:layout_marginLeft="@dimen/dim_10"
+                android:layout_marginRight="@dimen/dim_10"
+                android:layout_marginTop="@dimen/dim_5"
+                app:cardElevation="@dimen/dim_5">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_paytm"
-                    android:text="Pay with Paytm"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/black"
-                    android:drawablePadding="@dimen/dim_10"
-                    android:textSize="@dimen/dim_18" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+                    android:background="@color/white"
+                    android:padding="@dimen/dim_10">
+
+                    <com.localfriend.fonts.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:drawableLeft="@drawable/ic_paytm"
+                        android:drawablePadding="@dimen/dim_10"
+                        android:text="Pay with Paytm"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_18"
+                        app:textStyle="@integer/roboto_medium" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:checked="false" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
 
     <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_review_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dim_10"
+        android:layout_marginBottom="@dimen/dim_10"
+        android:layout_marginLeft="@dimen/dim_20"
+        android:layout_marginRight="@dimen/dim_20"
         android:background="@drawable/curvy_gradient_white_bg"
         android:gravity="center"
         android:padding="@dimen/dim_10"

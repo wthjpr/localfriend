@@ -71,13 +71,19 @@
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".AllActivity"
-            android:screenOrientation="sensorPortrait"
-            android:parentActivityName=".OrderActivity"/>
-        <activity android:name=".OrderActivity"
-            android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".AddressActivity"
-            android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".OrderActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".OrderActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".AddressActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".AddressListActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".SettingsActivity"
             android:screenOrientation="sensorPortrait"></activity>
     </application>
 

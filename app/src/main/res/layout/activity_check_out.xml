@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E9EEEF"
+    android:background="@color/light_bg"
     tools:context="com.localfriend.CheckOutActivity">
 
     <include layout="@layout/toolbar_common" />
@@ -13,19 +13,68 @@
         android:id="@+id/top_nav_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_common">
+        android:layout_below="@+id/toolbar_common"
+        android:orientation="vertical">
 
-        <include layout="@layout/top_nav"></include>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#F7F7F7"
+                app:tabIndicatorColor="@color/colorAccent"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/colorPrimary"
+                app:tabTextColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_schedule_gray"
+                    android:gravity="center"
+                    android:drawableRight="@drawable/ic_arrow_next"
+                    android:text="Schedule" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_payment_gray"
+                    android:drawableRight="@drawable/ic_arrow_next"
+                    android:gravity="center"
+                    android:text="Payment" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_order_gray"
+                    android:gravity="center"
+                    android:text="Order" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        <!--<include layout="@layout/top_nav"></include>-->
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/service_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:layout_below="@+id/top_nav_layout"
-        android:layout_marginBottom="@dimen/dim_15"
-        android:background="@null"></FrameLayout>
-
-
+    <!--<FrameLayout-->
+    <!--android:id="@+id/service_container"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@+id/top_nav_layout"-->
+    <!--android:background="@null"></FrameLayout>-->
 </RelativeLayout>

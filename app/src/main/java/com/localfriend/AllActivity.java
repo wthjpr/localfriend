@@ -45,15 +45,15 @@ public class AllActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new AllFragment(), "All");
-        adapter.addFrag(new CartFragment(), "Bakery");
-        adapter.addFrag(new CartFragment(), "Dinner");
-        adapter.addFrag(new CartFragment(), "Drinks");
-        adapter.addFrag(new CartFragment(), "Fast Food");
-        adapter.addFrag(new CartFragment(), "Lunch");
-        adapter.addFrag(new CartFragment(), "Beverages");
-        adapter.addFrag(new CartFragment(), "Vegetables");
-        adapter.addFrag(new CartFragment(), "Fruits");
-        adapter.addFrag(new CartFragment(), "Breakfast");
+        adapter.addFrag(new AllFragment(), "Bakery");
+        adapter.addFrag(new AllFragment(), "Dinner");
+        adapter.addFrag(new AllFragment(), "Drinks");
+        adapter.addFrag(new AllFragment(), "Fast Food");
+        adapter.addFrag(new AllFragment(), "Lunch");
+        adapter.addFrag(new AllFragment(), "Beverages");
+        adapter.addFrag(new AllFragment(), "Vegetables");
+        adapter.addFrag(new AllFragment(), "Fruits");
+        adapter.addFrag(new AllFragment(), "Breakfast");
         viewPager.setAdapter(adapter);
     }
 

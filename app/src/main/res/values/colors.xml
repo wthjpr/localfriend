@@ -13,5 +13,9 @@
     <color name="red">#ED1C24</color>
     <color name="bg_color">#247580</color>
     <color name="light_blue">#4AA0A5</color>
+    <color name="gray_tab">#aaaaab</color>
+    <color name="light_bg">#E8EDEE</color>
+    <color name="gray_text">#575455</color>
+
 
 </resources>
