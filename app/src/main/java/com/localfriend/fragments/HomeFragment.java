@@ -168,12 +168,14 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
     @Override
     public void onTimeOutRetry(int callNumber) {
         if (callNumber == 2) {
+            dismissDialog();
             MyApp.popMessage("Error!", "Time-out error occurred, please try again.", getContext());
         }
     }
 
     @Override
     public void onErrorReceived(String error) {
+        dismissDialog();
         MyApp.popMessage("Error!", error, getContext());
     }
 }

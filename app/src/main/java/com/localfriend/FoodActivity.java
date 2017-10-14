@@ -127,11 +127,29 @@ public class FoodActivity extends CustomActivity {
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
         } else if (v.getId() == R.id.rl_cat2) {
-
+            List<String> listStore = new ArrayList<>();
+            for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
+                listStore.add(catList.get(0).getStorelist().get(i).getsName());
+            }
+            SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+                    true);
         } else if (v.getId() == R.id.rl_cat3) {
-
+            List<String> listStore = new ArrayList<>();
+            for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
+                listStore.add(catList.get(0).getStorelist().get(i).getsName());
+            }
+            SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+                    true);
         } else if (v.getId() == R.id.rl_cat4) {
-
+            List<String> listStore = new ArrayList<>();
+            for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
+                listStore.add(catList.get(0).getStorelist().get(i).getsName());
+            }
+            SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+                    true);
         }
     }
 
