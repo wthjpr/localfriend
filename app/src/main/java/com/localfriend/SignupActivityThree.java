@@ -78,7 +78,6 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
     private void verifyPhoneNumberWithCode(String verificationId, String code) {
         if (code.equals("111111")) {
-
             Intent intent = new Intent(getContext(), SignupActivityFour.class);
             intent.putExtra("name", userName);
             intent.putExtra("phone", phoneNumber);

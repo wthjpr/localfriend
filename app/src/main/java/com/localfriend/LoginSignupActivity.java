@@ -11,9 +11,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.localfriend.application.MyApp;
+import com.localfriend.utils.AppConstant;
+
 import java.util.Locale;
 
-public class LoginSignupActivity extends CustomActivity  implements
+public class LoginSignupActivity extends CustomActivity implements
         TextToSpeech.OnInitListener {
     private TextView tv_already_account, tv_lets_get_started, tv_hello_label, tv_help;
     private static final int SPLASH_DURATION_MS = 800;
@@ -28,6 +31,13 @@ public class LoginSignupActivity extends CustomActivity  implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (MyApp.getStatus(AppConstant.IS_LOGIN)) {
+            startActivity(new Intent(LoginSignupActivity.this, MainActivity.class));
+            finish();
+            return;
+        }
+
         tts = new TextToSpeech(this, this);
         setContentView(R.layout.activity_login_signup);
         img_logo = (ImageView) findViewById(R.id.img_logo);
@@ -93,6 +103,15 @@ public class LoginSignupActivity extends CustomActivity  implements
         }, SPLASH_DURATION_five);
 
 
+    }
+
+    @Override
+    protected void onStop() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onStop();
     }
 
     @Override

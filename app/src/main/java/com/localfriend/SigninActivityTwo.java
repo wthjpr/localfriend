@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.localfriend.application.MyApp;
+import com.localfriend.model.User;
 import com.localfriend.utils.AppConstant;
 
 import org.json.JSONArray;
@@ -22,7 +24,7 @@ import org.json.JSONObject;
 
 import static java.sql.Types.NULL;
 
-public class SigninActivityTwo extends CustomActivity implements CustomActivity.ResponseCallback{
+public class SigninActivityTwo extends CustomActivity implements CustomActivity.ResponseCallback {
     private TextView tv_btn_signin;
     private EditText edt_password;
     private Toolbar toolbar;
@@ -54,7 +56,6 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
         setTouchNClick(R.id.tv_btn_signin);
 
 
-
         edt_password = (EditText) findViewById(R.id.edt_password);
 
         tv_btn_signin = (TextView) findViewById(R.id.tv_btn_signin);
@@ -73,7 +74,8 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
         }
 
     }
-    private void userLogin(){
+
+    private void userLogin() {
         JSONObject o = new JSONObject();
         try {
             o.put("MobileNumber", Mobile);
@@ -81,8 +83,8 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        postCall(getContext(), AppConstant.BASE_URL + "Account/Login", o, "Logging.....", 1);
-
+        showLoadingDialog("");
+        postCall(getContext(), AppConstant.BASE_URL + "Account/Login", o, "", 1);
 
     }
 
@@ -93,11 +95,16 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
+        dismissDialog();
         if (callNumber == 1) {
             if (o.optString("status").equals("Success")) {
                 try {
+                    MyApp.setStatus(AppConstant.IS_LOGIN, true);
+                    User u = new Gson().fromJson(o.toString(), User.class);
+                    MyApp.getApplication().writeUser(u);
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     startActivity(intent);
+                    finishAffinity();
                 } catch (JsonSyntaxException ee) {
 
                 }
@@ -118,12 +125,14 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
 
     @Override
     public void onTimeOutRetry(int callNumber) {
-
+        dismissDialog();
+        MyApp.popMessage("Error", "Time-out error occurred.\nPlease try again.", getContext());
     }
 
     @Override
     public void onErrorReceived(String error) {
-
+        dismissDialog();
+        MyApp.popMessage("Error", error, getContext());
     }
 
     @Override

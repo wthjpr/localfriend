@@ -9,10 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.localfriend.AllActivity;
 import com.localfriend.FoodActivity;
 import com.localfriend.R;
 import com.localfriend.application.AppConstants;
@@ -84,7 +82,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
             @Override
             public void onClick(int position) {
-                startActivity(new Intent(getContext(), AllActivity.class));
+//                startActivity(new Intent(getContext(), AllActivity.class));
             }
         });
 
@@ -139,7 +137,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
                     @Override
                     public void onClick(int position) {
-                        startActivity(new Intent(getContext(), AllActivity.class));
+//                        startActivity(new Intent(getContext(), AllActivity.class));
                     }
                 });
             }

@@ -1,6 +1,9 @@
 package com.localfriend;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.localfriend.application.MyApp;
 import com.localfriend.utils.TouchEffect;
@@ -245,5 +250,31 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         void onErrorReceived(String error);
 
     }
+    private Dialog dialog;
 
+    public void dismissDialog() {
+        try {
+            dialog.dismiss();
+        }catch (Exception e){}
+
+    }
+
+    public void showLoadingDialog(String message) {
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_loader);
+
+        TextView txt_load_message = (TextView) dialog.findViewById(R.id.txt_load_message);
+        txt_load_message.setText(message);
+
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = -1;
+        lp.height = -1;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
 }

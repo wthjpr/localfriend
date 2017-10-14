@@ -73,7 +73,8 @@ public class FoodActivity extends CustomActivity {
 
         if (catList.size() == 1) {
             setTouchNClick(R.id.rl_cat1);
-            Picasso.with(getContext()).load(catList.get(0).getImage()).into(img1);
+            Picasso.with(getContext()).load(catList.get(0).getImage()).placeholder(R.drawable.bakery)
+                    .error(R.drawable.bakery).into(img1);
             txt1.setText(catList.get(0).getName());
         }
         if (catList.size() == 2) {
@@ -123,7 +124,7 @@ public class FoodActivity extends CustomActivity {
                 listStore.add(catList.get(0).getStorelist().get(i).getsName());
             }
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
-            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter,clickListener, itemClickListener, dismissListener, cancelListener,
+            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
         } else if (v.getId() == R.id.rl_cat2) {
 
@@ -133,6 +134,7 @@ public class FoodActivity extends CustomActivity {
 
         }
     }
+
     OnClickListener clickListener = new OnClickListener() {
         @Override
         public void onClick(DialogPlus dialog, View view) {

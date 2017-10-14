@@ -43,7 +43,6 @@ public class SigninActivityOne extends CustomActivity {
         setTouchNClick(R.id.tv_btn_next);
 
 
-
         edt_cust_mobile = findViewById(R.id.edt_cust_mobile);
 
         tv_btn_next = findViewById(R.id.tv_btn_next);
@@ -56,6 +55,10 @@ public class SigninActivityOne extends CustomActivity {
         if (v.getId() == R.id.tv_btn_next) {
             if (TextUtils.isEmpty(edt_cust_mobile.getText().toString())) {
                 edt_cust_mobile.setError("Enter Mobile Number");
+                return;
+            }
+            if (edt_cust_mobile.getText().toString().length() < 10) {
+                edt_cust_mobile.setError("Please enter a valid mobile number");
                 return;
             }
             Intent intent = new Intent(getContext(), SigninActivityTwo.class);

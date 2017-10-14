@@ -31,6 +31,7 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
     private Toolbar toolbar;
     private String userName;
     private String phoneNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
         phoneNumber = getIntent().getStringExtra("phone");
         setupUiElement();
     }
+
     private void setupUiElement() {
 
         setTouchNClick(R.id.tv_btn_signup);
@@ -69,12 +71,11 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
                 signup_edt_password.setError("Enter Your Password");
                 return;
             }
-          registerUser();
-           // startActivity(new Intent(getContext(), LoginSignupActivity.class));
+            registerUser();
+            // startActivity(new Intent(getContext(), LoginSignupActivity.class));
         }
 
     }
-
 
 
     private void registerUser() {
@@ -90,7 +91,8 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        postCall(getContext(), AppConstant.BASE_URL + "Account/Register", o, "Registering...", 1);
+        showLoadingDialog("");
+        postCall(getContext(), AppConstant.BASE_URL + "Account/Register", o, "", 1);
     }
 
 
@@ -106,6 +108,7 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
         tv_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finishAffinity();
                 startActivity(new Intent(getContext(), LoginSignupActivity.class));
             }
         });
@@ -123,6 +126,7 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         if (callNumber == 1) {
+            dismissDialog();
             if (o.optString("status").equals("success")) {
                 try {
                     phVerification();
@@ -145,12 +149,14 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
 
     @Override
     public void onTimeOutRetry(int callNumber) {
-
+        dismissDialog();
+        MyApp.popMessage("Error", "Time-out error occurred. Please try again.", getContext());
     }
 
     @Override
     public void onErrorReceived(String error) {
-
+        dismissDialog();
+        MyApp.popMessage("Error", error, getContext());
     }
 
     @Override

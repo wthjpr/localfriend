@@ -231,7 +231,11 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     private Dialog dialog;
 
     public void dismissDialog() {
-        dialog.dismiss();
+        try {
+            dialog.dismiss();
+        } catch (Exception e) {
+        }
+
     }
 
     public void showLoadingDialog(String message) {

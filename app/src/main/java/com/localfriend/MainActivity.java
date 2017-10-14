@@ -38,6 +38,7 @@ import com.localfriend.fragments.CenteredTextFragment;
 import com.localfriend.fragments.FragmentDrawer;
 import com.localfriend.fragments.HomeFragment;
 import com.localfriend.fragments.TiffinFragment;
+import com.localfriend.utils.AppConstant;
 import com.localfriend.utils.DrawerItem;
 import com.localfriend.utils.SimpleItem;
 import com.localfriend.utils.SpaceItem;
@@ -57,6 +58,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     private static final int POS_CART = 3;
     private static final int HELP = 4;
     private static final int POS_LOGOUT = 5;
+    private static final int LOGOUT = 6;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     private Toolbar toolbar;
@@ -72,13 +74,13 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar =  findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(false);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(false);
-        TextView mTitle =  toolbar.findViewById(R.id.toolbar_title);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
         mTitle.setText("Local Friend");
         actionBar.setTitle("");
 
@@ -100,7 +102,8 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 createItemFor(POS_CART),
                 createItemFor(HELP),
                /* new SpaceItem(48),*/
-                createItemFor(POS_LOGOUT)));
+                createItemFor(POS_LOGOUT),
+                createItemFor(LOGOUT)));
         adapter.setListener(this);
 
         RecyclerView list = findViewById(R.id.list);
@@ -110,30 +113,32 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
         adapter.setSelected(POS_DASHBOARD);
 
-
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
 
+        TextView txt_user_name = findViewById(R.id.txt_user_name);
+        txt_user_name.setText(MyApp.getApplication().readUser().getUserInfo().getFullName());
         setupUiElements();
-
-
     }
 
     @Override
     public void onItemSelected(int position) {
         if (position == 0) {
-        }else if(position == 1){
+        } else if (position == 1) {
             startActivity(new Intent(getContext(), OrderActivity.class));
-        }else if(position == 2){
+        } else if (position == 2) {
             startActivity(new Intent(getContext(), AddressListActivity.class));
-        }else if(position == 3){
+        } else if (position == 3) {
             startActivity(new Intent(getContext(), SettingsActivity.class));
-        }else if(position == 4){
+        } else if (position == 4) {
             Toast.makeText(this, "Need Help", Toast.LENGTH_SHORT).show();
-        }
-        else if(position == 5){
+        } else if (position == 5) {
             Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
+        } else if (position == 6) {
+            MyApp.setStatus(AppConstant.IS_LOGIN, false);
+            startActivity(new Intent(getContext(), LoginSignupActivity.class));
+            finish();
         }
         slidingRootNav.closeMenu();
         Fragment selectedScreen = CenteredTextFragment.createFor(screenTitles[position]);
@@ -182,64 +187,21 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
     private void setupUiElements() {
 
-        img_home =  findViewById(R.id.img_home);
-        img_tiffin =  findViewById(R.id.img_tiffin);
-        img_cart =  findViewById(R.id.img_cart);
-        img_more =  findViewById(R.id.img_more);
+        img_home = findViewById(R.id.img_home);
+        img_tiffin = findViewById(R.id.img_tiffin);
+        img_cart = findViewById(R.id.img_cart);
+        img_more = findViewById(R.id.img_more);
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
         setClick(R.id.rl_tab_3);
         setClick(R.id.rl_tab_4);
-        // setClick(R.id.nav_drawer_btn);
-
-        /*tv_home.setSelected(true);
-        tv_home.setTextColor(Color.parseColor("#166DB6"));*/
-
     }
 
-  /*  @Override
-    public void onDrawerItemSelected(View view, int position) {
-
-        if (position == 0) {
-            //  MyApp.showMassage(getContext(), "will go to my service requests");
-           // startActivity(new Intent(getContext(), ScheduleServiceActivity.class));
-        } else if (position == 1) {
-            MyApp.showMassage(getContext(), "will go to my service requests");
-        } else if (position == 2) {
-           // startActivity(new Intent(getContext(), ChatActivity.class));
-        } else if (position == 3) {
-            MyApp.showMassage(getContext(), "will go to History");
-        } else if (position == 4) {
-            //startActivity(new Intent(MainActivity.this, WalletActivity.class));
-        } else if (position == 5) {
-            MyApp.showMassage(getContext(), "will go to promos and offers");
-        } else if (position == 6) {
-            MyApp.showMassage(getContext(), "will go to Favourites");
-        } else if (position == 7) {
-
-            String shareBody = "https://play.google.com/store/apps/details?" + "id=com.localfriend";
-            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Local Friend (Open it in Google Play Store to Download the Application)");
-
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-            startActivity(Intent.createChooser(sharingIntent, "Share via"));
-
-            //  MyApp.showMassage(getContext(), "will invite your friends");
-        } else if (position == 8) {
-            MyApp.showMassage(getContext(), "will switch to service mode");
-        }
-    }*/
 
 
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.rl_tab_1) {
-
-           /* tv_home.setSelected(true);
-            tv_tiffin.setSelected(false);
-            tv_cart.setSelected(false);
-            tv_more.setSelected(false);*/
 
             img_home.setSelected(true);
             img_tiffin.setSelected(false);
@@ -257,22 +219,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
 
-      /*      tv_home.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.search_active, 0, 0);
-            tv_cart.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.notifications_inactive, 0, 0);
-            tv_tiffin.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.services_inactive, 0, 0);
-            tv_more.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.account_inactive, 0, 0);*/
-
-
-           /* tv_home.setTextColor(Color.parseColor("#166DB6"));
-            tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
-            tv_cart.setTextColor(Color.parseColor("#888F8C"));
-            tv_more.setTextColor(Color.parseColor("#888F8C"));*/
         } else if (v.getId() == R.id.rl_tab_2) {
-            /*tv_home.setSelected(false);
-            tv_tiffin.setSelected(true);
-            tv_cart.setSelected(false);
-            tv_more.setSelected(false);*/
-
             img_home.setSelected(false);
             img_tiffin.setSelected(true);
             img_cart.setSelected(false);
@@ -288,23 +235,8 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new TiffinFragment()).commit();
-          /*  tv_home.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.search_inactive, 0, 0);
-            tv_cart.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.notifications_inactive, 0, 0);
-            tv_tiffin.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.services_active, 0, 0);
-            tv_more.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.account_inactive, 0, 0);*/
-
-          /*  tv_home.setTextColor(Color.parseColor("#888F8C"));
-            tv_tiffin.setTextColor(Color.parseColor("#166DB6"));
-            tv_cart.setTextColor(Color.parseColor("#888F8C"));
-            tv_more.setTextColor(Color.parseColor("#888F8C"));
-*/
-            //startActivity(new Intent(MainActivity.this, AllServicesActivity.class));
 
         } else if (v.getId() == R.id.rl_tab_3) {
-            /*tv_home.setSelected(false);
-            tv_tiffin.setSelected(false);
-            tv_cart.setSelected(true);
-            tv_more.setSelected(false);*/
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
             img_cart.setSelected(true);
@@ -320,51 +252,19 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new CartFragment()).commit();
-           /* tv_home.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.search_inactive, 0, 0);
-            tv_cart.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.notifications_active, 0, 0);
-            tv_tiffin.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.services_inactive, 0, 0);
-            tv_more.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.account_inactive, 0, 0);*/
-
-
-         /*   tv_home.setTextColor(Color.parseColor("#888F8C"));
-            tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
-            tv_cart.setTextColor(Color.parseColor("#166DB6"));
-            tv_more.setTextColor(Color.parseColor("#888F8C"));
-//            openImage();*/
-            //  startActivity(new Intent(MainActivity.this, NotificationActivity.class));
         } else if (v.getId() == R.id.rl_tab_4) {
-            /*tv_home.setSelected(false);
-            tv_tiffin.setSelected(false);
-            tv_cart.setSelected(false);
-            tv_more.setSelected(true);
-*/
+
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
             img_more.setSelected(true);
-
             img_home.setImageResource(R.drawable.ic_home);
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more_active);
 
-           /* tv_home.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.search_inactive, 0, 0);
-            tv_cart.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.notifications_inactive, 0, 0);
-            tv_tiffin.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.services_inactive, 0, 0);
-            tv_more.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.account_active, 0, 0);*/
-
-
-           /* tv_home.setTextColor(Color.parseColor("#888F8C"));
-            tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
-            tv_cart.setTextColor(Color.parseColor("#888F8C"));
-            tv_more.setTextColor(Color.parseColor("#166DB6"));*/
-            //  startActivity(new Intent(MainActivity.this, AddMoneyActivity.class));
-
-            // startActivity(new Intent(MainActivity.this, ScheduleServiceActivity.class));
-
         }
     }
-
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
