@@ -36,20 +36,22 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_label"
             android:layout_marginTop="@dimen/dim_10"
+            android:gravity="center"
+            android:letterSpacing="25"
+            android:padding="15dp"
             android:backgroundTint="@color/white"
             android:inputType="number"
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_16"
-
             />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_label"
-            android:layout_centerInParent="true" />
+        <!--<ProgressBar-->
+            <!--android:id="@+id/progress_bar"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/tv_label"-->
+            <!--android:layout_centerInParent="true" />-->
     </RelativeLayout>
 
     <RelativeLayout

@@ -1,6 +1,7 @@
 package com.localfriend.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,26 +9,43 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.localfriend.AllActivity;
+import com.localfriend.FoodActivity;
 import com.localfriend.R;
+import com.localfriend.application.AppConstants;
+import com.localfriend.application.MyApp;
+import com.localfriend.application.SingleInstance;
+import com.localfriend.model.CategoryDetails;
+import com.localfriend.model.Slider;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
+import pl.droidsonroids.gif.GifImageView;
 import ss.com.bannerslider.banners.Banner;
-import ss.com.bannerslider.banners.DrawableBanner;
+import ss.com.bannerslider.banners.RemoteBanner;
+import ss.com.bannerslider.events.OnBannerClickListener;
 import ss.com.bannerslider.views.BannerSlider;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends CustomFragment{
+public class HomeFragment extends CustomFragment implements CustomFragment.ResponseCallback {
 
     private BannerSlider bannerSlider;
     private LinearLayout lrn_fruit, lrn_vegetable, lrn_tiffin, lrn_food, lrn_mithaiwala, lrn_discount;
+    private GifImageView gif_loader;
+//    private AVLoadingIndicatorView loading;
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
 
@@ -42,49 +60,8 @@ public class HomeFragment extends CustomFragment{
         lrn_food = myView.findViewById(R.id.lrn_food);
         lrn_mithaiwala = myView.findViewById(R.id.lrn_mithaiwala);
         lrn_discount = myView.findViewById(R.id.lrn_discount);
-
-        /*HashMap<String,String> url_maps = new HashMap<String, String>();
-        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
-        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");*/
-
-        HashMap<String, Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Breakfast", R.drawable.slider_one_img);
-        file_maps.put("Indian Dish", R.drawable.slider_two);
-        file_maps.put("Breakfast", R.drawable.slider_one_img);
-        file_maps.put("Dinner", R.drawable.slider_two);
-
-        List<Banner> banners=new ArrayList<>();
-        //add banner using image url
-//        banners.add(new RemoteBanner("Put banner image url here ..."));
-        //add banner using resource drawable
-        banners.add(new DrawableBanner(R.drawable.slider_one_img));
-        banners.add(new DrawableBanner(R.drawable.slider_two));
-        banners.add(new DrawableBanner(R.drawable.slider_one_img));
-        banners.add(new DrawableBanner(R.drawable.slider_two));
-        bannerSlider.setBanners(banners);
-//        for (String name : file_maps.keySet()) {
-//            TextSliderView textSliderView = new TextSliderView(getActivity());
-//            // initialize a SliderLayout
-//            textSliderView
-////                    .description(name)
-//                    .image(file_maps.get(name))
-//                    .setScaleType(BaseSliderView.ScaleType.Fit)
-//                    .setOnSliderClickListener(this);
-//
-//            //add your extra information
-//            textSliderView.bundle(new Bundle());
-//            textSliderView.getBundle()
-//                    .putString("extra", name);
-//
-//            slider_home_frag.addSlider(textSliderView);
-//        }
-//        slider_home_frag.setPresetTransformer(SliderLayout.Transformer.Default);
-//        slider_home_frag.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-//        slider_home_frag.setCustomAnimation(new DescriptionAnimation());
-//        slider_home_frag.setDuration(4000);
-//        slider_home_frag.addOnPageChangeListener(this);
+        gif_loader = myView.findViewById(R.id.gif_loader);
+        setResponseListener(this);
 
         setTouchNClick(lrn_fruit);
         setTouchNClick(lrn_vegetable);
@@ -93,27 +70,112 @@ public class HomeFragment extends CustomFragment{
         setTouchNClick(lrn_mithaiwala);
         setTouchNClick(lrn_discount);
 
+        List<Banner> banners = new ArrayList<>();
+        List<Slider> sliderList = SingleInstance.getInstance().getSliderList();
+        if (sliderList.size() == 0) {
+            getCall(AppConstants.BASE_URL + AppConstants.SLIDER, "", 1);
+        }
+
+        for (int i = 0; i < sliderList.size(); i++) {
+            String url = sliderList.get(i).getImageURL();
+            banners.add(new RemoteBanner(url));
+        }
+        bannerSlider.setBanners(banners);
+        bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
+            @Override
+            public void onClick(int position) {
+                startActivity(new Intent(getContext(), AllActivity.class));
+            }
+        });
 
         return myView;
     }
 
-//    @Override
-//    public void onSliderClick(BaseSliderView slider) {
-//        startActivity(new Intent(getContext(), AllActivity.class));
-//    }
-//
-//    @Override
-//    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//    }
-//
-//    @Override
-//    public void onPageSelected(int position) {
-//
-//    }
-//
-//    @Override
-//    public void onPageScrollStateChanged(int state) {
-//
-//    }
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        if (v == lrn_fruit) {
+            loadCategory(4);
+        } else if (v == lrn_vegetable) {
+            loadCategory(1);
+        } else if (v == lrn_tiffin) {
+            loadCategory(3);
+        } else if (v == lrn_food) {
+            loadCategory(2);
+        } else if (v == lrn_mithaiwala) {
+            loadCategory(5);
+        } else if (v == lrn_discount) {
+            MyApp.popMessage("LocalFriend", "No Deals available for now.\nThank you", getContext());
+        }
+    }
+
+    private void loadCategory(int i) {
+        showLoadingDialog("");
+        getCall(AppConstants.BASE_URL + "Category/" + i, "", 2);
+    }
+
+
+    @Override
+    public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
+
+        if (callNumber == 1) {
+            if (o.optString("status").equals("success")) {
+                List<Slider> sliderList = null;
+                try {
+                    Type listType = new TypeToken<ArrayList<Slider>>() {
+                    }.getType();
+                    sliderList = new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
+                    SingleInstance.getInstance().setSliderList(sliderList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                List<Banner> banners = new ArrayList<>();
+                for (Slider s : sliderList) {
+                    banners.add(new RemoteBanner(s.getImageURL()));
+                }
+
+
+                bannerSlider.setBanners(banners);
+                bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
+                    @Override
+                    public void onClick(int position) {
+                        startActivity(new Intent(getContext(), AllActivity.class));
+                    }
+                });
+            }
+        } else if (callNumber == 2) {
+            dismissDialog();
+            Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
+            }.getType();
+            try {
+                List<CategoryDetails> catList =
+                        new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
+                if (catList.size() == 0) {
+                    MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+                } else {
+                    SingleInstance.getInstance().setCatList(catList);
+                    startActivity(new Intent(getContext(), FoodActivity.class));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
+
+    }
+
+    @Override
+    public void onTimeOutRetry(int callNumber) {
+        if (callNumber == 2) {
+            MyApp.popMessage("Error!", "Time-out error occurred, please try again.", getContext());
+        }
+    }
+
+    @Override
+    public void onErrorReceived(String error) {
+        MyApp.popMessage("Error!", error, getContext());
+    }
 }

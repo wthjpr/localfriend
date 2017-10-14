@@ -1,10 +1,17 @@
 package com.localfriend.fragments;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.localfriend.CustomActivity;
 import com.localfriend.R;
@@ -116,6 +123,50 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    public void getCall(String url, String loadingMsg, final int callNumber) {
+//        if (!TextUtils.isEmpty(loadingMsg))
+//            MyApp.spinnerStart(c, loadingMsg);
+        Log.d("URl:", url);
+//        Log.d("Request:", p.toString());
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setTimeout(30000);
+        client.get(url, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
+                MyApp.spinnerStop();
+                Log.d("Response:", response.toString());
+                try {
+                    responseCallback.onJsonObjectResponseReceived(response, callNumber);
+                } catch (Exception e) {
+                    responseCallback.onErrorReceived(getString(R.string.no_data_avail));
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                MyApp.spinnerStop();
+                if (statusCode == 0) {
+                    responseCallback.onTimeOutRetry(callNumber);
+                } else {
+                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                MyApp.spinnerStop();
+                if (statusCode == 0) {
+                    responseCallback.onTimeOutRetry(callNumber);
+                } else {
+                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
+                }
+            }
+        });
+    }
+
     public void postCall10Sec(Context c, String url, RequestParams p, String loadingMsg, final int callNumber) {
         if (!TextUtils.isEmpty(loadingMsg))
             MyApp.spinnerStart(c, loadingMsg);
@@ -177,5 +228,36 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    private Dialog dialog;
 
+    public void dismissDialog() {
+        dialog.dismiss();
+    }
+
+    public void showLoadingDialog(String message) {
+        dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_loader);
+
+        TextView txt_load_message = (TextView) dialog.findViewById(R.id.txt_load_message);
+        txt_load_message.setText(message);
+
+//        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+//        dialogButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = -1;
+        lp.height = -1;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
 }

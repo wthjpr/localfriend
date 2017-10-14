@@ -1,146 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/food_ai"
     tools:context="com.localfriend.FoodActivity">
 
     <include layout="@layout/toolbar_common" />
 
-    <Space
-        android:id="@+id/top_space"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dim_220"
-        android:layout_below="@+id/toolbar_common" />
+    <View
+        android:id="@+id/center_view"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_centerInParent="true"></View>
 
-    <LinearLayout
-        android:id="@+id/lnr_left"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_cat1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top_space"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/dim_80">
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dim_50"
+        android:layout_toLeftOf="@+id/center_view">
 
-        <LinearLayout
-            android:id="@+id/lnr_bakery"
+        <ImageView
+            android:id="@+id/img1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_centerHorizontal="true" />
 
-            <ImageButton
-                android:id="@+id/img_btn_backery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@null"
-                android:src="@drawable/bakery" />
-
-            <com.localfriend.fonts.CustomFontTextView
-                app:textStyle="@integer/roboto_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dim_10"
-                android:text="Bakery"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dim_16" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dim_30" />
-
-        <LinearLayout
-            android:id="@+id/lnr_south_indian"
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/txt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@+id/img1"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/dim_5"
+            android:textColor="@color/black"
+            app:textStyle="@integer/roboto_medium" />
+    </RelativeLayout>
 
-            <ImageButton
-                android:id="@+id/img_btn_fast_food"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_toRightOf="@+id/img_btn_backery"
-                android:background="@null"
-                android:src="@drawable/south_indian" />
-
-            <com.localfriend.fonts.CustomFontTextView
-                app:textStyle="@integer/roboto_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dim_10"
-                android:text="South Indian"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dim_16" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_cat2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top_space"
-        android:layout_toRightOf="@+id/lnr_left"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/dim_20"
-        android:paddingTop="@dimen/dim_15">
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dim_50"
+        android:layout_toRightOf="@+id/center_view">
 
-        <LinearLayout
-            android:id="@+id/lnr_fast_food"
+        <ImageView
+            android:id="@+id/img2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_centerHorizontal="true" />
 
-            <ImageButton
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@null"
-                android:src="@drawable/fast_food" />
-
-            <com.localfriend.fonts.CustomFontTextView
-                app:textStyle="@integer/roboto_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dim_10"
-                android:text="Fast Food"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dim_16" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dim_20" />
-
-        <LinearLayout
-            android:id="@+id/lnr_drinks"
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/txt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/dim_10">
+            android:layout_below="@+id/img2"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/dim_5"
+            android:textColor="@color/black"
+            app:textStyle="@integer/roboto_medium" />
+    </RelativeLayout>
 
-            <ImageButton
+    <RelativeLayout
+        android:id="@+id/rl_cat4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/center_view"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dim_50"
+        android:layout_marginTop="@dimen/dim_75"
+        android:layout_toRightOf="@+id/center_view">
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@null"
-                android:src="@drawable/drinks" />
+        <ImageView
+            android:id="@+id/img4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
 
-            <com.localfriend.fonts.CustomFontTextView
-                app:textStyle="@integer/roboto_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dim_10"
-                android:text="Drinks"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dim_16" />
-        </LinearLayout>
-    </LinearLayout>
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/txt4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img4"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/dim_5"
+            android:textColor="@color/black"
+            app:textStyle="@integer/roboto_medium" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_cat3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/center_view"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dim_50"
+        android:layout_marginTop="@dimen/dim_75"
+        android:layout_toLeftOf="@+id/center_view">
+
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/txt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img3"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/dim_5"
+            android:textColor="@color/black"
+            app:textStyle="@integer/roboto_medium" />
+    </RelativeLayout>
+    <!--<LinearLayout-->
+    <!--android:id="@+id/lnr_left"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:orientation="vertical"-->
+    <!--android:paddingLeft="@dimen/dim_80">-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/lnr_bakery"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/img_btn_backery"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:background="@null"-->
+    <!--android:src="@drawable/bakery" />-->
+
+    <!--<com.localfriend.fonts.CustomFontTextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_marginTop="@dimen/dim_10"-->
+    <!--android:text="Bakery"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:textSize="@dimen/dim_16"-->
+    <!--app:textStyle="@integer/roboto_medium" />-->
+    <!--</LinearLayout>-->
+
+    <!--<Space-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="@dimen/dim_30" />-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/lnr_south_indian"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/img_btn_fast_food"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_toRightOf="@+id/img_btn_backery"-->
+    <!--android:background="@null"-->
+    <!--android:src="@drawable/south_indian" />-->
+
+    <!--<com.localfriend.fonts.CustomFontTextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_marginTop="@dimen/dim_10"-->
+    <!--android:text="South Indian"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:textSize="@dimen/dim_16"-->
+    <!--app:textStyle="@integer/roboto_medium" />-->
+    <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_toRightOf="@+id/lnr_left"-->
+    <!--android:orientation="vertical"-->
+    <!--android:paddingLeft="@dimen/dim_20"-->
+    <!--android:paddingTop="@dimen/dim_15">-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/lnr_fast_food"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<ImageButton-->
+
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:background="@null"-->
+    <!--android:src="@drawable/fast_food" />-->
+
+    <!--<com.localfriend.fonts.CustomFontTextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_marginTop="@dimen/dim_10"-->
+    <!--android:text="Fast Food"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:textSize="@dimen/dim_16"-->
+    <!--app:textStyle="@integer/roboto_medium" />-->
+    <!--</LinearLayout>-->
+
+    <!--<Space-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="@dimen/dim_20" />-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/lnr_drinks"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--android:paddingLeft="@dimen/dim_10">-->
+
+    <!--<ImageButton-->
+
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:background="@null"-->
+    <!--android:src="@drawable/drinks" />-->
+
+    <!--<com.localfriend.fonts.CustomFontTextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_marginTop="@dimen/dim_10"-->
+    <!--android:text="Drinks"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:textSize="@dimen/dim_16"-->
+    <!--app:textStyle="@integer/roboto_medium" />-->
+    <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
 </RelativeLayout>

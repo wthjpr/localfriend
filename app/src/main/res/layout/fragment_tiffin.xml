@@ -1,158 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:layout_marginTop="?actionBarSize"
-    android:scrollbars="none">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_breakfast"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="#346D97"
+        app:cardElevation="@dimen/dim_8"
+        app:contentPadding="@dimen/dim_15">
+
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/tv_breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="BreakFast"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dim_30"
+            app:textStyle="@integer/roboto_medium" />
+
+        <ImageView
+            android:id="@+id/img_breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@null"
+            android:src="@drawable/breakfastt" />
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_lunch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="#4CB79C"
+        app:contentPadding="@dimen/dim_15">
+
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/tv_lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Lunch"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dim_30"
+            app:textStyle="@integer/roboto_medium" />
+
+        <ImageView
+            android:id="@+id/img_lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@null"
+            android:src="@drawable/lunchhhh" />
+    </android.support.v7.widget.CardView>
+
+
 
         <android.support.v7.widget.CardView
-            android:id="@+id/card_breakfast"
+            android:id="@+id/card_dinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="#346D97"
-            app:cardElevation="@dimen/dim_8"
             app:contentPadding="@dimen/dim_15">
 
             <com.localfriend.fonts.CustomFontTextView
-                android:id="@+id/tv_breakfast"
+                android:id="@+id/tv_dinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="BreakFast"
+                android:text="Dinner"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dim_30"
                 app:textStyle="@integer/roboto_medium" />
 
             <ImageView
-                android:id="@+id/img_breakfast"
+                android:id="@+id/img_dinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:background="@null"
-                android:src="@drawable/breakfastt" />
+                android:src="@drawable/dinnerrrrr" />
         </android.support.v7.widget.CardView>
 
-        <RelativeLayout
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_snacks"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="#4CB79C"
+            app:contentPadding="@dimen/dim_15">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_lunch"
-                android:layout_width="match_parent"
+            <com.localfriend.fonts.CustomFontTextView
+                android:id="@+id/tv_snacks"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="#4CB79C"
-                app:contentPadding="@dimen/dim_15">
-
-                <com.localfriend.fonts.CustomFontTextView
-                    android:id="@+id/tv_lunch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Lunch"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dim_30"
-                    app:textStyle="@integer/roboto_medium" />
-
-                <ImageView
-                    android:id="@+id/img_lunch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:background="@null"
-                    android:src="@drawable/lunchhhh" />
-            </android.support.v7.widget.CardView>
+                android:layout_gravity="center_vertical"
+                android:text="Snacks"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dim_30"
+                app:textStyle="@integer/roboto_medium" />
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:src="@drawable/shadow" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_dinner"
-                android:layout_width="match_parent"
+                android:id="@+id/img_snacks"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="#346D97"
-                app:contentPadding="@dimen/dim_15">
+                android:layout_gravity="right"
+                android:background="@null"
+                android:src="@drawable/bavregesss" />
 
-                <com.localfriend.fonts.CustomFontTextView
-                    android:id="@+id/tv_dinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Dinner"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dim_30"
-                    app:textStyle="@integer/roboto_medium" />
+        </android.support.v7.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/img_dinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:background="@null"
-                    android:src="@drawable/dinnerrrrr" />
-            </android.support.v7.widget.CardView>
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="15dp"-->
+            <!--android:src="@drawable/shadow"></ImageView>-->
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:src="@drawable/shadow" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_snacks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardBackgroundColor="#4CB79C"
-                app:cardElevation="@dimen/dim_8"
-                app:contentPadding="@dimen/dim_15">
-
-                <com.localfriend.fonts.CustomFontTextView
-                    android:id="@+id/tv_snacks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Snacks"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/dim_30"
-                    app:textStyle="@integer/roboto_medium" />
-
-                <ImageView
-                    android:id="@+id/img_snacks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:background="@null"
-                    android:src="@drawable/bavregesss" />
-
-            </android.support.v7.widget.CardView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:src="@drawable/shadow"></ImageView>
-
-        </RelativeLayout>
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

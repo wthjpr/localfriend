@@ -7,12 +7,28 @@
     android:orientation="vertical"
     tools:context="com.localfriend.fragments.HomeFragment">
 
-    <ss.com.bannerslider.views.BannerSlider
-        android:id="@+id/banner_slider1"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
-        app:interval="3000" />
+        android:background="#BEE9FC"
+        android:layout_weight="1.5">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif_loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/loader"
+            android:background="@drawable/loader"
+            />
+
+        <ss.com.bannerslider.views.BannerSlider
+            android:id="@+id/banner_slider1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            app:interval="3000" />
+    </RelativeLayout>
     <!--<com.daimajia.slider.library.SliderLayout-->
     <!--android:id="@+id/slider_home_frag"-->
     <!--android:layout_width="match_parent"-->

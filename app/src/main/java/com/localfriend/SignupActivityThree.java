@@ -42,7 +42,6 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
     private String value;
     private String mb_no;
     private TextView txt_counter;
-    private ProgressBar progress_bar;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
@@ -103,7 +102,6 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
         tv_btn_next = (TextView) findViewById(R.id.tv_btn_next);
 
         txt_counter = (TextView) findViewById(R.id.txt_counter);
-        progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
     }
 
     public void onClick(View v) {

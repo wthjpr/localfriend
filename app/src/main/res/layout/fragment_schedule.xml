@@ -294,6 +294,6 @@
         android:padding="@dimen/dim_10"
         android:text="MAKE PAYMENT"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_18"
+        android:textSize="@dimen/dim_15"
         app:textStyle="@integer/roboto_medium" />
 </RelativeLayout>

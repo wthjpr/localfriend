@@ -26,9 +26,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
 
     public interface ItemClickCallback {
         void onItemClick(int p);
-
         void onSecondaryIconClick(int p);
-
     }
 
 
@@ -41,17 +39,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
         this.listdata = listdata;
     }
 
-
     @Override
     public DataHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view = inflater.inflate(R.layout.cart_item, parent, false);
         return new DataHolder(view);
-
     }
-
-
-
 
     @Override
     public void onBindViewHolder(DataHolder holder, int position) {
@@ -66,14 +58,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
         return listdata.size();
     }
 
-
-
     class DataHolder extends RecyclerView.ViewHolder {
         TextView tv_item_name, tv_item_cost, tv_plus, tv_counter, tv_minus;
         ImageButton img_btn_close;
         ImageView img_food;
-
-
 
         public DataHolder(final View itemView) {
             super(itemView);
@@ -88,8 +76,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
             img_food=(ImageView)itemView.findViewById(R.id.img_food);
 
         }
-
-
     }
 
     public void setListData(ArrayList<DummyCartItem> exerciseList) {
@@ -97,10 +83,4 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
         this.listdata.addAll(exerciseList);
 
     }
-
-
-
-
 }
-
-
