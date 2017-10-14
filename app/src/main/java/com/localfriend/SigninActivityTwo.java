@@ -12,17 +12,27 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.gson.JsonSyntaxException;
+import com.localfriend.application.MyApp;
+import com.localfriend.utils.AppConstant;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import static java.sql.Types.NULL;
 
-public class SigninActivityTwo extends CustomActivity {
+public class SigninActivityTwo extends CustomActivity implements CustomActivity.ResponseCallback{
     private TextView tv_btn_signin;
     private EditText edt_password;
     private Toolbar toolbar;
+    private String Mobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin_two);
+        setResponseListener(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -33,6 +43,8 @@ public class SigninActivityTwo extends CustomActivity {
         mTitle.setText("SIGN IN");
         actionBar.setTitle("");
         toolbar.setBackgroundResource(NULL);
+        Bundle extras = getIntent().getExtras();
+        Mobile = extras.getString("mobile").toString();
         setupUiElement();
 
     }
@@ -57,13 +69,65 @@ public class SigninActivityTwo extends CustomActivity {
                 edt_password.setError("Enter the Password");
                 return;
             }
-            startActivity(new Intent(getContext(), MainActivity.class));
+            userLogin();
         }
 
     }
+    private void userLogin(){
+        JSONObject o = new JSONObject();
+        try {
+            o.put("MobileNumber", Mobile);
+            o.put("Password", edt_password.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        postCall(getContext(), AppConstant.BASE_URL + "Account/Login", o, "Logging.....", 1);
+
+
+    }
+
 
     private Context getContext() {
         return SigninActivityTwo.this;
     }
 
+    @Override
+    public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
+        if (callNumber == 1) {
+            if (o.optString("status").equals("Success")) {
+                try {
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    startActivity(intent);
+                } catch (JsonSyntaxException ee) {
+
+                }
+            } else {
+                MyApp.popFinishableMessage("Alert!", o.optString("message"), SigninActivityTwo.this);
+                return;
+            }
+            /*Intent intent = new Intent(PhoneVerificationActivity.this, SucessfullLoginActivity.class);
+            intent.putExtra("ezy", value);
+            startActivity(intent);*/
+        }
+    }
+
+    @Override
+    public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
+
+    }
+
+    @Override
+    public void onTimeOutRetry(int callNumber) {
+
+    }
+
+    @Override
+    public void onErrorReceived(String error) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

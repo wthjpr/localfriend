@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_gradient_bg"
-    tools:context="com.localfriend.SigninActivityTwo">
+    tools:context="com.localfriend.SignupActivityTwo">
 
     <include layout="@layout/toolbar_common" />
 
@@ -24,6 +24,7 @@
             android:text="Welcome Customer Name\nEnter your Mobile Number"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_18"
+            android:id="@+id/tv_welcome"
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
 

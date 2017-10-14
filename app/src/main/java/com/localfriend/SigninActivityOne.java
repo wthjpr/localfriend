@@ -58,7 +58,9 @@ public class SigninActivityOne extends CustomActivity {
                 edt_cust_mobile.setError("Enter Mobile Number");
                 return;
             }
-            startActivity(new Intent(getContext(), SigninActivityTwo.class));
+            Intent intent = new Intent(getContext(), SigninActivityTwo.class);
+            intent.putExtra("mobile", edt_cust_mobile.getText().toString());
+            startActivity(intent);
         }
 
     }

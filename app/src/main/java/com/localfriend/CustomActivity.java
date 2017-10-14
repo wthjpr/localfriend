@@ -20,10 +20,12 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 /**
  * This is a common activity that all other activities of the app can extend to
@@ -96,7 +98,7 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
     // }
 
 	/*
-	 * (non-Javadoc)
+     * (non-Javadoc)
 	 * 
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
 	 */
@@ -138,14 +140,20 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         return v;
     }
 
-    public void postCall(Context c, String url, RequestParams p, String loadingMsg, final int callNumber) {
+    public void postCall(Context c, String url, JSONObject object, String loadingMsg, final int callNumber) {
         if (!TextUtils.isEmpty(loadingMsg))
             MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);
-        Log.d("Request:", p.toString());
+        Log.d("Request:", object.toString());
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(object.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(30000);
-        client.post(url, p, new JsonHttpResponseHandler() {
+        client.post(c, url, entity, "application/json", new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {

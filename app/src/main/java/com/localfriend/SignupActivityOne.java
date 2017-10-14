@@ -55,7 +55,10 @@ public class SignupActivityOne extends CustomActivity {
                 edt_cust_name.setError("Enter Your Name");
                 return;
             }
-            startActivity(new Intent(getContext(), SignupActivityTwo.class));
+
+            Intent intent = new Intent(getContext(), SignupActivityTwo.class);
+            intent.putExtra("name", edt_cust_name.getText().toString());
+            startActivity(intent);
         }
 
     }
