@@ -25,8 +25,8 @@
 
         <ImageView
             android:id="@+id/img1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dim_80"
+            android:layout_height="@dimen/dim_75"
             android:layout_centerHorizontal="true" />
 
         <com.localfriend.fonts.CustomFontTextView
@@ -50,8 +50,8 @@
 
         <ImageView
             android:id="@+id/img2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dim_80"
+            android:layout_height="@dimen/dim_75"
             android:layout_centerHorizontal="true" />
 
         <com.localfriend.fonts.CustomFontTextView
@@ -77,8 +77,8 @@
 
         <ImageView
             android:id="@+id/img4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dim_80"
+            android:layout_height="@dimen/dim_75"
             android:layout_centerHorizontal="true" />
 
         <com.localfriend.fonts.CustomFontTextView
@@ -104,8 +104,8 @@
 
         <ImageView
             android:id="@+id/img3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dim_80"
+            android:layout_height="@dimen/dim_75"
             android:layout_centerHorizontal="true" />
 
         <com.localfriend.fonts.CustomFontTextView

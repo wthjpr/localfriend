@@ -1,6 +1,7 @@
 package com.localfriend;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -73,27 +74,27 @@ public class FoodActivity extends CustomActivity {
 
         if (catList.size() == 1) {
             setTouchNClick(R.id.rl_cat1);
-            Picasso.with(getContext()).load(catList.get(0).getImage()).placeholder(R.drawable.bakery)
+            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.bakery)
                     .error(R.drawable.bakery).into(img1);
             txt1.setText(catList.get(0).getName());
         }
         if (catList.size() == 2) {
             setTouchNClick(R.id.rl_cat1);
             setTouchNClick(R.id.rl_cat2);
-            Picasso.with(getContext()).load(catList.get(0).getImage()).into(img1);
+            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).into(img1);
             txt1.setText(catList.get(0).getName());
-            Picasso.with(getContext()).load(catList.get(1).getImage()).into(img2);
+            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).into(img2);
             txt2.setText(catList.get(1).getName());
         }
         if (catList.size() == 3) {
             setTouchNClick(R.id.rl_cat1);
             setTouchNClick(R.id.rl_cat2);
             setTouchNClick(R.id.rl_cat3);
-            Picasso.with(getContext()).load(catList.get(0).getImage()).into(img1);
+            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).into(img1);
             txt1.setText(catList.get(0).getName());
-            Picasso.with(getContext()).load(catList.get(1).getImage()).into(img2);
+            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).into(img2);
             txt2.setText(catList.get(1).getName());
-            Picasso.with(getContext()).load(catList.get(2).getImage()).into(img3);
+            Picasso.with(getContext()).load(catList.get(2).getThumbImage()).into(img3);
             txt3.setText(catList.get(2).getName());
         }
         if (catList.size() == 4) {
@@ -101,13 +102,13 @@ public class FoodActivity extends CustomActivity {
             setTouchNClick(R.id.rl_cat2);
             setTouchNClick(R.id.rl_cat3);
             setTouchNClick(R.id.rl_cat4);
-            Picasso.with(getContext()).load(catList.get(0).getImage()).into(img1);
+            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).into(img1);
             txt1.setText(catList.get(0).getName());
-            Picasso.with(getContext()).load(catList.get(1).getImage()).into(img2);
+            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).into(img2);
             txt2.setText(catList.get(1).getName());
-            Picasso.with(getContext()).load(catList.get(2).getImage()).into(img3);
+            Picasso.with(getContext()).load(catList.get(2).getThumbImage()).into(img3);
             txt3.setText(catList.get(2).getName());
-            Picasso.with(getContext()).load(catList.get(3).getImage()).into(img4);
+            Picasso.with(getContext()).load(catList.get(3).getThumbImage()).into(img4);
             txt4.setText(catList.get(3).getName());
         }
     }
@@ -123,6 +124,10 @@ public class FoodActivity extends CustomActivity {
             for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
                 listStore.add(catList.get(0).getStorelist().get(i).getsName());
             }
+            if (listStore.size() == 1) {
+                startActivity(new Intent(getContext(), AllActivity.class));
+                return;
+            }
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
@@ -130,6 +135,10 @@ public class FoodActivity extends CustomActivity {
             List<String> listStore = new ArrayList<>();
             for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
                 listStore.add(catList.get(0).getStorelist().get(i).getsName());
+            }
+            if (listStore.size() == 1) {
+                startActivity(new Intent(getContext(), AllActivity.class));
+                return;
             }
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
@@ -139,6 +148,10 @@ public class FoodActivity extends CustomActivity {
             for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
                 listStore.add(catList.get(0).getStorelist().get(i).getsName());
             }
+            if (listStore.size() == 1) {
+                startActivity(new Intent(getContext(), AllActivity.class));
+                return;
+            }
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
@@ -146,6 +159,10 @@ public class FoodActivity extends CustomActivity {
             List<String> listStore = new ArrayList<>();
             for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
                 listStore.add(catList.get(0).getStorelist().get(i).getsName());
+            }
+            if (listStore.size() == 1) {
+                startActivity(new Intent(getContext(), AllActivity.class));
+                return;
             }
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
@@ -194,8 +211,7 @@ public class FoodActivity extends CustomActivity {
         public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
             TextView textView = (TextView) view.findViewById(R.id.text_view);
             String clickedAppName = textView.getText().toString();
-            //        dialog.dismiss();
-            //        Toast.makeText(MainActivity.this, clickedAppName + " clicked", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getContext(), AllActivity.class));
         }
     };
 
