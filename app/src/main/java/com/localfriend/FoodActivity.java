@@ -17,10 +17,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.localfriend.adapter.SimpleAdapter;
+import com.localfriend.application.AppConstants;
+import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.fragments.AddressFragment;
+import com.localfriend.fragments.CustomFragment;
 import com.localfriend.model.CategoryDetails;
+import com.localfriend.model.Product;
+import com.localfriend.model.Slider;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.ListHolder;
@@ -30,12 +37,16 @@ import com.orhanobut.dialogplus.OnDismissListener;
 import com.orhanobut.dialogplus.OnItemClickListener;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodActivity extends CustomActivity {
+public class FoodActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     private Toolbar toolbar;
     private ImageView img1, img2, img3, img4;
     private TextView txt1, txt2, txt3, txt4;
@@ -44,6 +55,7 @@ public class FoodActivity extends CustomActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setResponseListener(this);
         setContentView(R.layout.activity_food);
         toolbar = (Toolbar) findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
@@ -117,51 +129,57 @@ public class FoodActivity extends CustomActivity {
         return FoodActivity.this;
     }
 
+    private String catId;
+
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.rl_cat1) {
+            catId = catList.get(0).getID();
             List<String> listStore = new ArrayList<>();
             for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
                 listStore.add(catList.get(0).getStorelist().get(i).getsName());
             }
             if (listStore.size() == 1) {
-                startActivity(new Intent(getContext(), AllActivity.class));
+                getProducts(catId, catList.get(0).getStorelist().get(0).getsID());
                 return;
             }
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
         } else if (v.getId() == R.id.rl_cat2) {
+            catId = catList.get(1).getID();
             List<String> listStore = new ArrayList<>();
-            for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
-                listStore.add(catList.get(0).getStorelist().get(i).getsName());
+            for (int i = 0; i < catList.get(1).getStorelist().size(); i++) {
+                listStore.add(catList.get(1).getStorelist().get(i).getsName());
             }
             if (listStore.size() == 1) {
-                startActivity(new Intent(getContext(), AllActivity.class));
+                getProducts(catId, catList.get(1).getStorelist().get(0).getsID());
                 return;
             }
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
         } else if (v.getId() == R.id.rl_cat3) {
+            catId = catList.get(2).getID();
             List<String> listStore = new ArrayList<>();
-            for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
-                listStore.add(catList.get(0).getStorelist().get(i).getsName());
+            for (int i = 0; i < catList.get(2).getStorelist().size(); i++) {
+                listStore.add(catList.get(2).getStorelist().get(i).getsName());
             }
             if (listStore.size() == 1) {
-                startActivity(new Intent(getContext(), AllActivity.class));
+                getProducts(catId, catList.get(2).getStorelist().get(0).getsID());
                 return;
             }
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
         } else if (v.getId() == R.id.rl_cat4) {
+            catId = catList.get(3).getID();
             List<String> listStore = new ArrayList<>();
-            for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
-                listStore.add(catList.get(0).getStorelist().get(i).getsName());
+            for (int i = 0; i < catList.get(3).getStorelist().size(); i++) {
+                listStore.add(catList.get(3).getStorelist().get(i).getsName());
             }
             if (listStore.size() == 1) {
-                startActivity(new Intent(getContext(), AllActivity.class));
+                getProducts(catId, catList.get(3).getStorelist().get(0).getsID());
                 return;
             }
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
@@ -211,7 +229,7 @@ public class FoodActivity extends CustomActivity {
         public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
             TextView textView = (TextView) view.findViewById(R.id.text_view);
             String clickedAppName = textView.getText().toString();
-            startActivity(new Intent(getContext(), AllActivity.class));
+            getProducts(catId, catList.get(position).getStorelist().get(0).getsID());
         }
     };
 
@@ -244,5 +262,46 @@ public class FoodActivity extends CustomActivity {
                 //                .setOutMostMargin(0, 100, 0, 0)
                 .create();
         dialog.show();
+    }
+
+    private void getProducts(String catId, String storeId) {
+        catId = "22";
+        storeId = "85d0c459-9025-4806-a634-2cc1553ef115";
+//        http://www.localfriend.co.in/api/product?categoryid=22&storeid=85d0c459-9025-4806-a634-2cc1553ef115
+        showLoadingDialog("");
+        getCall(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, "", 1);
+
+    }
+
+    @Override
+    public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
+        dismissDialog();
+        if (callNumber == 1) {
+            Type listType = new TypeToken<ArrayList<Product>>() {
+            }.getType();
+            try {
+                List<Product> productList = new GsonBuilder().create().fromJson(o.getJSONObject("data").getJSONArray("product").toString(), listType);
+                int size = productList.size();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
+
+    }
+
+    @Override
+    public void onTimeOutRetry(int callNumber) {
+        dismissDialog();
+        MyApp.popMessage("Error", "Time-out error occurred, please try again later.", getContext());
+    }
+
+    @Override
+    public void onErrorReceived(String error) {
+        dismissDialog();
+        MyApp.popMessage("Error", error, getContext());
     }
 }

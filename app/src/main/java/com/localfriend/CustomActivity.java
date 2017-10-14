@@ -259,6 +259,50 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
 
     }
 
+    public void getCall(String url, String loadingMsg, final int callNumber) {
+//        if (!TextUtils.isEmpty(loadingMsg))
+//            MyApp.spinnerStart(c, loadingMsg);
+        Log.d("URl:", url);
+//        Log.d("Request:", p.toString());
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setTimeout(30000);
+        client.get(url, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
+                MyApp.spinnerStop();
+                Log.d("Response:", response.toString());
+                try {
+                    responseCallback.onJsonObjectResponseReceived(response, callNumber);
+                } catch (Exception e) {
+                    responseCallback.onErrorReceived(getString(R.string.no_data_avail));
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                MyApp.spinnerStop();
+                if (statusCode == 0) {
+                    responseCallback.onTimeOutRetry(callNumber);
+                } else {
+                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                MyApp.spinnerStop();
+                if (statusCode == 0) {
+                    responseCallback.onTimeOutRetry(callNumber);
+                } else {
+                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
+                }
+            }
+        });
+    }
+
     public void showLoadingDialog(String message) {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
