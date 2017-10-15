@@ -1,16 +1,21 @@
 package com.localfriend.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.localfriend.ItemDetailActivity;
 import com.localfriend.R;
 import com.localfriend.adapter.CustomAdapter;
+import com.localfriend.application.SingleInstance;
 import com.localfriend.model.ProductDetails;
+import com.localfriend.utils.AppConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +45,15 @@ public class AllFragment extends Fragment {
 
         CustomAdapter customAdapter = new CustomAdapter(getActivity(), allProducts);
         gridview.setAdapter(customAdapter);
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String imgUrl = allProducts.get(position).getpGalleryFileList().get(0);
+                SingleInstance.getInstance().setSelectedProduct(allProducts.get(position));
+                startActivity(new Intent(getContext(), ItemDetailActivity.class)
+                        .putExtra(AppConstant.EXTRA_1, imgUrl));
+            }
+        });
         return myView;
     }
 

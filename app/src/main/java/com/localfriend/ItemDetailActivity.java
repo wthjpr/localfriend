@@ -1,12 +1,11 @@
 package com.localfriend;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,7 +13,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.application.AppConstants;
 import com.localfriend.application.SingleInstance;
+import com.localfriend.model.ProductDetails;
 import com.localfriend.model.Slider;
+import com.localfriend.utils.AppConstant;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,17 +28,18 @@ import java.util.List;
 
 import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.banners.RemoteBanner;
-import ss.com.bannerslider.events.OnBannerClickListener;
-import ss.com.bannerslider.views.BannerSlider;
 
 public class ItemDetailActivity extends CustomActivity implements CustomActivity.ResponseCallback {
-    private BannerSlider bannerSlider;
+    //    private BannerSlider bannerSlider;
     private Toolbar toolbar;
-    private TextView tv_add_cart,tv_description,tv_cost,tv_five_kg,tv_four_kg,tv_three_kg,tv_two_kg,tv_one_kg;
+    private TextView tv_add_cart, tv_description, tv_cost, tv_five_kg, tv_four_kg, tv_three_kg, tv_two_kg, tv_one_kg;
+    private ProductDetails productDetails;
+    private ImageView img_product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        productDetails = SingleInstance.getInstance().getSelectedProduct();
         setContentView(R.layout.activity_item_detail);
         toolbar = (Toolbar) findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
@@ -46,10 +49,10 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
-        mTitle.setText("Apple");
+        mTitle.setText(productDetails.getName());
         actionBar.setTitle("");
 
-        bannerSlider = (BannerSlider)findViewById(R.id.banner_slider1);
+//        bannerSlider = (BannerSlider) findViewById(R.id.banner_slider1);
         List<Banner> banners = new ArrayList<>();
         List<Slider> sliderList = SingleInstance.getInstance().getSliderList();
         if (sliderList.size() == 0) {
@@ -60,15 +63,26 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
             String url = sliderList.get(i).getImageURL();
             banners.add(new RemoteBanner(url));
         }
-        bannerSlider.setBanners(banners);
-        bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
-            @Override
-            public void onClick(int position) {
+        img_product = findViewById(R.id.img_product);
+        try {
+            Picasso.with(getContext()).load(getIntent().getStringExtra(AppConstant.EXTRA_1))
+                    .into(img_product);
+        } catch (Exception e) {
+        }
+
+//        bannerSlider.setBanners(banners);
+//        bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
+//            @Override
+//            public void onClick(int position) {
 //                startActivity(new Intent(getContext(), AllActivity.class));
-            }
-        });
+//            }
+//        });
 
         setupUiElement();
+    }
+
+    private Context getContext() {
+        return ItemDetailActivity.this;
     }
 
 
@@ -83,14 +97,12 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         setTouchNClick(R.id.tv_five_kg);
 
 
-
-
         tv_add_cart = findViewById(R.id.tv_add_cart);
 
         tv_cost = findViewById(R.id.tv_cost);
 
         tv_description = findViewById(R.id.tv_description);
-
+        tv_description.setText(productDetails.getuDescription());
         tv_one_kg = findViewById(R.id.tv_one_kg);
         tv_two_kg = findViewById(R.id.tv_two_kg);
         tv_three_kg = findViewById(R.id.tv_three_kg);
@@ -107,13 +119,13 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
 
         } else if (v.getId() == R.id.tv_one_kg) {
             Toast.makeText(this, "1 kg Added", Toast.LENGTH_SHORT).show();
-        }else if (v.getId() == R.id.tv_two_kg) {
+        } else if (v.getId() == R.id.tv_two_kg) {
             Toast.makeText(this, "2 kg Added", Toast.LENGTH_SHORT).show();
-        }else if (v.getId() == R.id.tv_three_kg) {
+        } else if (v.getId() == R.id.tv_three_kg) {
             Toast.makeText(this, "3 kg Added", Toast.LENGTH_SHORT).show();
-        }else if (v.getId() == R.id.tv_four_kg) {
+        } else if (v.getId() == R.id.tv_four_kg) {
             Toast.makeText(this, "4 kg Added", Toast.LENGTH_SHORT).show();
-        }else if (v.getId() == R.id.tv_five_kg) {
+        } else if (v.getId() == R.id.tv_five_kg) {
             Toast.makeText(this, "5 kg Added", Toast.LENGTH_SHORT).show();
         }
 
@@ -138,13 +150,13 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
                 }
 
 
-                bannerSlider.setBanners(banners);
-                bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
-                    @Override
-                    public void onClick(int position) {
-//                        startActivity(new Intent(getContext(), AllActivity.class));
-                    }
-                });
+//                bannerSlider.setBanners(banners);
+//                bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
+//                    @Override
+//                    public void onClick(int position) {
+////                        startActivity(new Intent(getContext(), AllActivity.class));
+//                    }
+//                });
             }
         }
 

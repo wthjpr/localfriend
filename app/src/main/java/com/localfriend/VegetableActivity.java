@@ -11,8 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.localfriend.application.SingleInstance;
 import com.localfriend.fragments.AllFragment;
 import com.localfriend.fragments.VegetableFragment;
+import com.localfriend.model.ProductData;
+import com.localfriend.model.ProductDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +24,14 @@ public class VegetableActivity extends CustomActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ProductData productData;
+    private List<ProductDetails> allProducts = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        productData = SingleInstance.getInstance().getProductData();
         setContentView(R.layout.activity_vegetable);
         toolbar = (Toolbar) findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
@@ -43,17 +51,26 @@ public class VegetableActivity extends CustomActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
+
+        for (int i = 0; i < productData.getProduct().size(); i++) {
+            for (int j = 0; j < productData.getProduct().get(i).getpDetailsList().size(); j++) {
+                ProductDetails d = productData.getProduct().get(i).getpDetailsList().get(j);
+                d.setpGalleryFileList(productData.getProduct().get(i).getpGalleryFileList());
+                d.setName(productData.getProduct().get(i).getpName());
+                allProducts.add(d);
+            }
+        }
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new VegetableFragment(), "Vegetable");
-        adapter.addFrag(new VegetableFragment(), "Bakery");
-        adapter.addFrag(new VegetableFragment(), "Dinner");
-        adapter.addFrag(new VegetableFragment(), "Drinks");
-        adapter.addFrag(new VegetableFragment(), "Fast Food");
-        adapter.addFrag(new VegetableFragment(), "Lunch");
-        adapter.addFrag(new VegetableFragment(), "Beverages");
-        adapter.addFrag(new VegetableFragment(), "Vegetables");
-        adapter.addFrag(new VegetableFragment(), "Fruits");
-        adapter.addFrag(new VegetableFragment(), "Breakfast");
+        adapter.addFrag(new VegetableFragment(allProducts), "All");
+        if (productData.getCategory().size() > 0) {
+            for (int i = 0; i < productData.getCategory().size(); i++) {
+                adapter.addFrag(new AllFragment(allProducts), productData.getCategory().get(i).getName());
+            }
+
+        }
+
+
         viewPager.setAdapter(adapter);
     }
 

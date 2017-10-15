@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.localfriend.AllActivity;
 import com.localfriend.FoodActivity;
 import com.localfriend.ItemDetailActivity;
 import com.localfriend.R;
@@ -19,6 +21,7 @@ import com.localfriend.application.AppConstants;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.model.CategoryDetails;
+import com.localfriend.model.ProductData;
 import com.localfriend.model.Slider;
 
 import org.json.JSONArray;
@@ -95,8 +98,10 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
     public void onClick(View v) {
         super.onClick(v);
         if (v == lrn_fruit) {
-           // startActivity(new Intent(getActivity(),ItemDetailActivity.class));
-           loadCategory(4);
+            showLoadingDialog("");
+            getCall(AppConstants.BASE_URL + "product?categoryid=" + 4 + "&storeid=90390cdd-f991-4539-b666-488858d60a94", "", 3);
+            // startActivity(new Intent(getActivity(),ItemDetailActivity.class));
+//            loadCategory(4);
         } else if (v == lrn_vegetable) {
 //            loadCategory(1);
             startActivity(new Intent(getContext(), VegetableActivity.class));
@@ -115,9 +120,6 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         showLoadingDialog("");
         getCall(AppConstants.BASE_URL + "Category/" + i, "", 2);
     }
-private void loadProduct(){
-
-}
 
 
     @Override
@@ -161,6 +163,21 @@ private void loadProduct(){
                     SingleInstance.getInstance().setCatList(catList);
                     startActivity(new Intent(getContext(), FoodActivity.class));
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if (callNumber == 3) {
+            dismissDialog();
+            try {
+                ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
+                SingleInstance.getInstance().setProductData(data);
+                if (data.getProduct().size() > 0) {
+                    startActivity(new Intent(getContext(), VegetableActivity.class));
+                } else {
+                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
+                            " Please come back later.\nThank you.", getContext());
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
