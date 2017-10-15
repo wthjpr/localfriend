@@ -3,6 +3,7 @@ package com.localfriend;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -238,8 +239,10 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                                     OnDismissListener dismissListener, OnCancelListener cancelListener,
                                     boolean expanded) {
         final DialogPlus dialog = DialogPlus.newDialog(this)
+
                 .setContentHolder(holder)
                 .setHeader(R.layout.header_store)
+                .setContentBackgroundResource(R.drawable.rounded_corner_white)
 //                .setFooter(R.layout.footer)
                 .setCancelable(true)
                 .setGravity(gravity)
@@ -257,10 +260,11 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
 //        .setContentWidth(800)
                 .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
                 .setOnCancelListener(cancelListener)
-                .setOverlayBackgroundResource(android.R.color.transparent)
+                .setOverlayBackgroundResource(R.color.transparent)
 //        .setContentBackgroundResource(R.drawable.corner_background)
                 //                .setOutMostMargin(0, 100, 0, 0)
                 .create();
+       // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
     }
 

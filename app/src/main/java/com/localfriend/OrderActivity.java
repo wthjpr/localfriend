@@ -28,7 +28,7 @@ public class OrderActivity extends CustomActivity {
         tv_start_shopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OrderActivity.this, AllActivity.class));
+                startActivity(new Intent(OrderActivity.this, VegetableActivity.class));
 
             }
         });

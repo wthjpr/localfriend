@@ -93,6 +93,9 @@
         <activity
             android:name=".SettingsActivity"
             android:screenOrientation="sensorPortrait"></activity>
+        <activity
+            android:name=".VegetableActivity"
+            android:screenOrientation="sensorPortrait"></activity>
     </application>
 
 </manifest>
