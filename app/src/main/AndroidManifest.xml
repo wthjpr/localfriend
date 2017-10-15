@@ -29,9 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<meta-data
+        <!--
+            <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCQ4-nqC85wyQtTBd9ZqrAxJ9t1SBRz-0U" />-->
+            android:value="AIzaSyCQ4-nqC85wyQtTBd9ZqrAxJ9t1SBRz-0U" />
+        -->
 
         <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
@@ -92,10 +94,11 @@
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".SettingsActivity"
-            android:screenOrientation="sensorPortrait"></activity>
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".VegetableActivity"
-            android:screenOrientation="sensorPortrait"></activity>
+            android:screenOrientation="sensorPortrait" />
+        <activity android:name=".ItemDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -14,13 +14,10 @@ import android.widget.TextView;
 import com.localfriend.fragments.AllFragment;
 import com.localfriend.fragments.VegetableFragment;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class VegetableActivity extends CustomActivity implements CustomActivity.ResponseCallback {
+public class VegetableActivity extends CustomActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -58,31 +55,6 @@ public class VegetableActivity extends CustomActivity implements CustomActivity.
         adapter.addFrag(new VegetableFragment(), "Fruits");
         adapter.addFrag(new VegetableFragment(), "Breakfast");
         viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
-
-    }
-
-    @Override
-    public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
-
-    }
-
-    @Override
-    public void onTimeOutRetry(int callNumber) {
-
-    }
-
-    @Override
-    public void onErrorReceived(String error) {
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

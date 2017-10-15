@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.FoodActivity;
+import com.localfriend.ItemDetailActivity;
 import com.localfriend.R;
 import com.localfriend.VegetableActivity;
 import com.localfriend.application.AppConstants;
@@ -94,7 +95,8 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
     public void onClick(View v) {
         super.onClick(v);
         if (v == lrn_fruit) {
-            loadCategory(4);
+           // startActivity(new Intent(getActivity(),ItemDetailActivity.class));
+           loadCategory(4);
         } else if (v == lrn_vegetable) {
 //            loadCategory(1);
             startActivity(new Intent(getContext(), VegetableActivity.class));
@@ -113,6 +115,9 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         showLoadingDialog("");
         getCall(AppConstants.BASE_URL + "Category/" + i, "", 2);
     }
+private void loadProduct(){
+
+}
 
 
     @Override

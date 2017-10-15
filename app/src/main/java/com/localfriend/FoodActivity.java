@@ -262,6 +262,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                         getProducts(catId, currentStoreList.get(position).getsID());
                         Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
                                 item + "], position = [" + position + "]");
+                        Toast.makeText(FoodActivity.this, ""+position, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setOnDismissListener(dismissListener)

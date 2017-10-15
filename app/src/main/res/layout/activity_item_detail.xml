@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context="com.localfriend.ItemDetailActivity">
+    <include
+        layout="@layout/toolbar_common"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_above="@+id/tv_add_cart"
+    android:layout_below="@+id/toolbar_common">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/rel_slider"
+        android:layout_below="@+id/toolbar_common"
+        android:layout_weight="1">
+        <ss.com.bannerslider.views.BannerSlider
+            android:id="@+id/banner_slider1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            app:interval="3000" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rel_slider"
+        android:padding="@dimen/dim_10"
+        android:id="@+id/lnr_quantity"
+        android:orientation="horizontal">
+        <TextView
+
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_corner_green"
+            android:paddingTop="@dimen/dim_5"
+            android:paddingBottom="@dimen/dim_5"
+            android:text="1 KG"
+            android:id="@+id/tv_one_kg"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/dim_16"
+            android:paddingLeft="@dimen/dim_10"
+            android:paddingRight="@dimen/dim_10"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_corner_green"
+            android:paddingTop="@dimen/dim_5"
+            android:paddingBottom="@dimen/dim_5"
+            android:text="2 KG"
+            android:id="@+id/tv_two_kg"
+            android:layout_marginLeft="@dimen/dim_15"
+            android:gravity="center"
+            android:textSize="@dimen/dim_16"
+            android:paddingLeft="@dimen/dim_10"
+            android:paddingRight="@dimen/dim_10"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_corner_green"
+            android:paddingTop="@dimen/dim_5"
+            android:paddingBottom="@dimen/dim_5"
+            android:text="3 KG"
+            android:id="@+id/tv_three_kg"
+            android:layout_marginLeft="@dimen/dim_15"
+            android:gravity="center"
+            android:textSize="@dimen/dim_16"
+            android:paddingLeft="@dimen/dim_10"
+            android:paddingRight="@dimen/dim_10"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_corner_green"
+            android:paddingTop="@dimen/dim_5"
+            android:paddingBottom="@dimen/dim_5"
+            android:text="4 KG"
+            android:layout_marginLeft="@dimen/dim_15"
+            android:gravity="center"
+            android:id="@+id/tv_four_kg"
+            android:textSize="@dimen/dim_16"
+            android:paddingLeft="@dimen/dim_10"
+            android:paddingRight="@dimen/dim_10"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_corner_green"
+            android:paddingTop="@dimen/dim_5"
+            android:paddingBottom="@dimen/dim_5"
+            android:text="5 KG"
+            android:layout_marginLeft="@dimen/dim_15"
+            android:gravity="center"
+            android:id="@+id/tv_five_kg"
+            android:textSize="@dimen/dim_16"
+            android:paddingLeft="@dimen/dim_10"
+            android:paddingRight="@dimen/dim_10"
+            android:textColor="@color/black"
+            />
+        </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cost : Rs 100"
+        android:id="@+id/tv_cost"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dim_18"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/lnr_quantity"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_cost"
+        android:padding="@dimen/dim_10"
+        android:id="@+id/tv_description"
+        android:text="Many plant antioxidants are stored in the leaves, where oxygen is active in photosynthesis. Others appear in plant pigments (for example, the anthocyanins that make the blue-purple colours of blackberries and blueberries) and the chemical defenses of plant skins (for example, quercetin in apple skins)."
+        android:textSize="@dimen/dim_16"
+        />
+    </LinearLayout>
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/tv_add_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dim_16"
+        android:background="@drawable/curvy_gradient_bg"
+        android:gravity="center"
+        android:padding="@dimen/dim_10"
+        android:text="Add to cart"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_18"
+        app:textStyle="@integer/roboto_medium" />
+</RelativeLayout>

@@ -60,6 +60,7 @@ public class SimpleAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.textView = (TextView) view.findViewById(R.id.text_view);
 //            viewHolder.imageView = (ImageView) view.findViewById(R.id.image_view);
+
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
