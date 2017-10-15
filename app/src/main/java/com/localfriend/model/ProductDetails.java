@@ -1,5 +1,7 @@
 package com.localfriend.model;
 
+import java.util.List;
+
 /**
  * Created by SONI on 10/14/2017.
  */
@@ -15,6 +17,24 @@ public class ProductDetails {
     private String maxOrder;
     private String availableUnit;
     private String vProductFileList;
+    private String name;
+    private List<String> pGalleryFileList;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<String> getpGalleryFileList() {
+        return pGalleryFileList;
+    }
+
+    public void setpGalleryFileList(List<String> pGalleryFileList) {
+        this.pGalleryFileList = pGalleryFileList;
+    }
 
     public String getId() {
         return id;

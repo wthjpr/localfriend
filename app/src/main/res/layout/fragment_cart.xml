@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#E9EEEF"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.localfriend.fragments.CartFragment">
 
@@ -13,13 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/tv_checkout"
-       android:paddingLeft="@dimen/dim_15"
-        android:paddingRight="@dimen/dim_15"
-        android:layout_marginTop="?actionBarSize" />
+        android:layout_marginTop="?actionBarSize"
+        android:paddingLeft="@dimen/dim_15"
+        android:paddingRight="@dimen/dim_15" />
 
     <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_checkout"
-        app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -31,6 +30,32 @@
         android:padding="@dimen/dim_8"
         android:text="Checkout"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_18" />
+        android:textSize="@dimen/dim_18"
+        android:visibility="gone"
+        app:textStyle="@integer/roboto_medium" />
+
+    <ImageView
+        android:id="@+id/img_empty_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/empty_cart" />
+
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/tv_start_shopping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dim_5"
+        android:layout_marginLeft="@dimen/dim_20"
+        android:layout_marginRight="@dimen/dim_20"
+        android:background="@drawable/curvy_gradient_bg"
+        android:gravity="center"
+        android:padding="@dimen/dim_8"
+        android:text="Start Shopping"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_18"
+        app:textStyle="@integer/roboto_medium" />
 
 </RelativeLayout>

@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.localfriend.R;
-import com.localfriend.adapter.AllItem;
-import com.localfriend.adapter.CustomAdapter;
 import com.localfriend.adapter.VegetableAdapter;
 import com.localfriend.adapter.VeggetableItem;
 

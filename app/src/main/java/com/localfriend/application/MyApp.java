@@ -162,7 +162,7 @@ public class MyApp extends Application {
                                   Context context) {
         // pop error message
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(titleMsg).setMessage(errorMsg)
+        builder.setTitle(titleMsg).setMessage(errorMsg).setIcon(R.drawable.home_icon)
                 .setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
 
                     @Override

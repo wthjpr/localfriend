@@ -1,6 +1,8 @@
 package com.localfriend.application;
 
 import com.localfriend.model.CategoryDetails;
+import com.localfriend.model.Product;
+import com.localfriend.model.ProductData;
 import com.localfriend.model.Slider;
 
 import java.util.ArrayList;
@@ -21,7 +23,16 @@ public class SingleInstance {
     }
 
     private List<Slider> sliderList = new ArrayList();
-    List<CategoryDetails> catList = new ArrayList<>();
+    private List<CategoryDetails> catList = new ArrayList<>();
+    private ProductData productData;
+
+    public ProductData getProductData() {
+        return productData;
+    }
+
+    public void setProductData(ProductData productData) {
+        this.productData = productData;
+    }
 
     public List<CategoryDetails> getCatList() {
         return catList;

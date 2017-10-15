@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.adapter.SimpleAdapter;
@@ -28,7 +29,9 @@ import com.localfriend.fragments.AddressFragment;
 import com.localfriend.fragments.CustomFragment;
 import com.localfriend.model.CategoryDetails;
 import com.localfriend.model.Product;
+import com.localfriend.model.ProductData;
 import com.localfriend.model.Slider;
+import com.localfriend.model.StoreList;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.ListHolder;
@@ -110,7 +113,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             Picasso.with(getContext()).load(catList.get(2).getThumbImage()).into(img3);
             txt3.setText(catList.get(2).getName());
         }
-        if (catList.size() == 4) {
+        if (catList.size() >= 4) {
             setTouchNClick(R.id.rl_cat1);
             setTouchNClick(R.id.rl_cat2);
             setTouchNClick(R.id.rl_cat3);
@@ -131,6 +134,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
     }
 
     private String catId;
+    private List<StoreList> currentStoreList;
 
     public void onClick(View v) {
         super.onClick(v);
@@ -144,6 +148,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                 getProducts(catId, catList.get(0).getStorelist().get(0).getsID());
                 return;
             }
+            currentStoreList = catList.get(0).getStorelist();
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
@@ -157,6 +162,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                 getProducts(catId, catList.get(1).getStorelist().get(0).getsID());
                 return;
             }
+            currentStoreList = catList.get(1).getStorelist();
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
@@ -170,6 +176,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                 getProducts(catId, catList.get(2).getStorelist().get(0).getsID());
                 return;
             }
+            currentStoreList = catList.get(2).getStorelist();
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
@@ -183,6 +190,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                 getProducts(catId, catList.get(3).getStorelist().get(0).getsID());
                 return;
             }
+            currentStoreList = catList.get(3).getStorelist();
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
@@ -234,7 +242,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
         }
     };
 
-    private void showCompleteDialog(Holder holder, int gravity, BaseAdapter adapter,
+    private void showCompleteDialog(Holder holder, int gravity, final BaseAdapter adapter,
                                     OnClickListener clickListener, OnItemClickListener itemClickListener,
                                     OnDismissListener dismissListener, OnCancelListener cancelListener,
                                     boolean expanded) {
@@ -251,6 +259,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                        getProducts(catId, currentStoreList.get(position).getsID());
                         Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
                                 item + "], position = [" + position + "]");
                     }
@@ -264,13 +273,13 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
 //        .setContentBackgroundResource(R.drawable.corner_background)
                 //                .setOutMostMargin(0, 100, 0, 0)
                 .create();
-       // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
     }
 
     private void getProducts(String catId, String storeId) {
-        catId = "22";
-        storeId = "85d0c459-9025-4806-a634-2cc1553ef115";
+//        catId = "22";
+//        storeId = "85d0c459-9025-4806-a634-2cc1553ef115";
 //        http://www.localfriend.co.in/api/product?categoryid=22&storeid=85d0c459-9025-4806-a634-2cc1553ef115
         showLoadingDialog("");
         getCall(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, "", 1);
@@ -281,11 +290,16 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         dismissDialog();
         if (callNumber == 1) {
-            Type listType = new TypeToken<ArrayList<Product>>() {
-            }.getType();
             try {
-                List<Product> productList = new GsonBuilder().create().fromJson(o.getJSONObject("data").getJSONArray("product").toString(), listType);
-                int size = productList.size();
+                ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
+                SingleInstance.getInstance().setProductData(data);
+                if (data.getProduct().size() > 0) {
+                    startActivity(new Intent(getContext(), AllActivity.class));
+                } else {
+                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
+                            " Please come back later.\nThank you.", getContext());
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
