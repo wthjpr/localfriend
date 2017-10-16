@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
     android:layout_marginBottom="-1dp"
     android:layout_marginLeft="-1dp"
     android:layout_marginRight="-1dp"
+
     android:background="@drawable/rounded_top"
     android:orientation="horizontal">
 
@@ -19,22 +21,24 @@
             android:id="@+id/img_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="-15dp"
+            android:layout_centerHorizontal="true"
+           android:layout_marginTop="@dimen/dim_10"
             android:background="@null"
-            android:padding="@dimen/dim_10"
+
             android:src="@drawable/ic_home_active" />
 
-        <!--<com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
+        <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_below="@+id/img_home"
+            android:layout_centerHorizontal="true"
             android:text="Home"
-            android:drawableTop="@drawable/ic_home"
-            android:textColor="#888F8C"
-            android:textSize="@dimen/dim_16"
-            android:textStyle="bold" />-->
+
+            android:textColor="#275B89"
+            android:textSize="@dimen/dim_14"
+            android:textStyle="bold"
+            app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -48,22 +52,23 @@
             android:id="@+id/img_tiffin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="-15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dim_10"
             android:background="@null"
-            android:padding="@dimen/dim_10"
             android:src="@drawable/ic_tifin" />
 
-        <!-- <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
-             android:id="@+id/tv_tiffin"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerInParent="true"
-             android:text="Tiffin"
-             android:drawableTop="@drawable/ic_tifin"
-             android:textColor="#888F8C"
-             android:textSize="@dimen/dim_16"
-             android:textStyle="bold" />-->
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/tv_tiffin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_tiffin"
+           android:layout_centerHorizontal="true"
+            android:text="Tiffin"
+            android:textColor="#888F8C"
+
+            android:textSize="@dimen/dim_14"
+            android:textStyle="bold"
+            app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -77,22 +82,24 @@
             android:id="@+id/img_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="-15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dim_10"
             android:background="@null"
-            android:padding="@dimen/dim_10"
+
             android:src="@drawable/ic_cart" />
 
-        <!--<com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
+        <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+          android:layout_centerHorizontal="true"
+            android:layout_below="@+id/img_cart"
             android:text="Cart"
-            android:drawableTop="@drawable/ic_cart"
             android:textColor="#888F8C"
-            android:textSize="@dimen/dim_16"
-            android:textStyle="bold" />-->
+            android:textSize="@dimen/dim_14"
+
+            android:textStyle="bold"
+            app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -106,22 +113,23 @@
             android:id="@+id/img_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="-15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dim_10"
             android:background="@null"
-            android:padding="@dimen/dim_10"
             android:src="@drawable/ic_more" />
 
-        <!-- <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
-             android:id="@+id/tv_more"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerInParent="true"
-             android:text="More"
-             android:drawableTop="@drawable/ic_more"
-             android:textColor="#888F8C"
-             android:textSize="@dimen/dim_16"
-             android:textStyle="bold" />-->
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+            android:layout_below="@+id/img_more"
+            android:text="More"
+            android:textColor="#888F8C"
+            android:textSize="@dimen/dim_14"
+            android:textStyle="bold"
+
+            app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 
 </LinearLayout>
