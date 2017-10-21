@@ -39,7 +39,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_schedule_gray"
+                    android:drawableLeft="@drawable/checkout_schedule_gray"
                     android:gravity="center"
                     android:drawableRight="@drawable/ic_arrow_next"
                     android:text="Schedule" />
@@ -48,7 +48,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_payment_gray"
+                    android:drawableLeft="@drawable/checkout_payment_gray"
                     android:drawableRight="@drawable/ic_arrow_next"
                     android:gravity="center"
                     android:text="Payment" />
@@ -57,7 +57,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_order_gray"
+                    android:drawableLeft="@drawable/checkout_done_gray"
                     android:gravity="center"
                     android:text="Order" />
             </LinearLayout>

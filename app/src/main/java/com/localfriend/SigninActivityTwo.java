@@ -2,6 +2,9 @@ package com.localfriend;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,10 +59,13 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
         setTouchNClick(R.id.tv_btn_signin);
 
 
-        edt_password = (EditText) findViewById(R.id.edt_password);
+        edt_password = findViewById(R.id.edt_password);
 
-        tv_btn_signin = (TextView) findViewById(R.id.tv_btn_signin);
-
+        tv_btn_signin = findViewById(R.id.tv_btn_signin);
+        Shader textShader = new LinearGradient(0, 0, 0, 50,
+                new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
+                new float[]{0, 1}, Shader.TileMode.CLAMP);
+        tv_btn_signin.getPaint().setShader(textShader);
 
     }
 

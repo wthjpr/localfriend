@@ -172,19 +172,32 @@ public class VegetableActivity extends CustomActivity {
     private void setupViewPager(ViewPager viewPager) {
 
         for (int i = 0; i < productData.getProduct().size(); i++) {
+//            for (int j = 0; j < productData.getProduct().get(i).getpDetailsList().size(); j++) {
+            ProductDetails d = productData.getProduct().get(i).getpDetailsList().get(0);
+            d.setpGalleryFileList(productData.getProduct().get(i).getpGalleryFileList());
+            d.setName(productData.getProduct().get(i).getpName());
+            d.setCategoryId(productData.getProduct().get(i).getCategoryID());
+            List<ProductDetails> myList = new ArrayList<>();
             for (int j = 0; j < productData.getProduct().get(i).getpDetailsList().size(); j++) {
-                ProductDetails d = productData.getProduct().get(i).getpDetailsList().get(j);
-                d.setpGalleryFileList(productData.getProduct().get(i).getpGalleryFileList());
-                d.setName(productData.getProduct().get(i).getpName());
-                allProducts.add(d);
+                myList.add(productData.getProduct().get(i).getpDetailsList().get(j));
             }
+            d.setMyList(myList);
+            allProducts.add(d);
+//            }
         }
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new VegetableFragment(allProducts), "All");
         if (productData.getCategory().size() > 0) {
+
             for (int i = 0; i < productData.getCategory().size(); i++) {
-                adapter.addFrag(new AllFragment(allProducts), productData.getCategory().get(i).getName());
+                List<ProductDetails> others = new ArrayList<>();
+                for (int j = 0; j < allProducts.size(); j++) {
+                    if (allProducts.get(j).getCategoryId().equals(productData.getCategory().get(i).getParentID())) {
+                        others.add(allProducts.get(j));
+                    }
+                }
+                adapter.addFrag(new VegetableFragment(others), productData.getCategory().get(i).getName());
             }
 
         }

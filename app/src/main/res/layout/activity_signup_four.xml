@@ -43,12 +43,12 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lnr_verification"
         android:layout_centerHorizontal="true"
         android:background="@null"
-        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         android:src="@drawable/panda_new_with_pt_sans" />
 
     <RelativeLayout

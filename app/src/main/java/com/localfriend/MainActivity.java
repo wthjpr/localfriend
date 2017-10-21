@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
@@ -24,20 +25,28 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.localfriend.adapter.DrawerAdapter;
+import com.localfriend.application.AppConstants;
 import com.localfriend.application.MyApp;
+import com.localfriend.application.SingleInstance;
 import com.localfriend.fragments.CartFragment;
 import com.localfriend.fragments.CenteredTextFragment;
+import com.localfriend.fragments.CustomFragment;
 import com.localfriend.fragments.FragmentDrawer;
 import com.localfriend.fragments.HomeFragment;
 import com.localfriend.fragments.TiffinFragment;
+import com.localfriend.model.CategoryDetails;
 import com.localfriend.utils.AppConstant;
 import com.localfriend.utils.DrawerItem;
 import com.localfriend.utils.SimpleItem;
@@ -45,13 +54,18 @@ import com.localfriend.utils.SpaceItem;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static java.sql.Types.NULL;
 
-public class MainActivity extends CustomActivity implements DrawerAdapter.OnItemSelectedListener {
+public class MainActivity extends CustomActivity implements DrawerAdapter.OnItemSelectedListener, CustomActivity.ResponseCallback {
     private static final int POS_DASHBOARD = 0;
     private static final int POS_ACCOUNT = 1;
     private static final int POS_MESSAGES = 2;
@@ -83,7 +97,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
         mTitle.setText("Local Friend");
         actionBar.setTitle("");
-
+        setResponseListener(this);
         slidingRootNav = new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
                 .withMenuOpened(false)
@@ -105,14 +119,26 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 createItemFor(POS_LOGOUT),
                 createItemFor(LOGOUT)));
         adapter.setListener(this);
+        if (Build.VERSION.SDK_INT >= 21) {
 
+            // Set the status bar to dark-semi-transparentish
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+            // Set paddingTop of toolbar to height of status bar.
+            // Fixes statusbar covers toolbar issue
+//            RelativeLayout v = (RelativeLayout) findViewById(R.id.toolbar);
+            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbar.getLayoutParams();
+            lp.setMargins(0, MyApp.getApplication().getStatusBarHeight(), 0, -MyApp.getApplication().getStatusBarHeight());
+//            v.setPadding(getStatusBarHeight(), getStatusBarHeight(), getStatusBarHeight(), 0);
+        }
         RecyclerView list = findViewById(R.id.list);
         list.setNestedScrollingEnabled(false);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
 
         adapter.setSelected(POS_DASHBOARD);
-
+        toolbar.setBackgroundResource(NULL);
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
@@ -120,6 +146,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         TextView txt_user_name = findViewById(R.id.txt_user_name);
         txt_user_name.setText(MyApp.getApplication().readUser().getUserInfo().getFullName());
         setupUiElements();
+        getCall(AppConstants.BASE_URL + "Category/3", "", 1);
     }
 
     @Override
@@ -314,6 +341,41 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
+
+        dismissDialog();
+        Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
+        }.getType();
+        try {
+            List<CategoryDetails> catList =
+                    new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
+            if (catList.size() == 0) {
+//                MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+            } else {
+                SingleInstance.getInstance().setCatList(catList);
+//                startActivity(new Intent(getContext(), FoodActivity.class));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
+
+    }
+
+    @Override
+    public void onTimeOutRetry(int callNumber) {
+
+    }
+
+    @Override
+    public void onErrorReceived(String error) {
 
     }
 }

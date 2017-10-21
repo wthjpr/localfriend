@@ -25,7 +25,7 @@ public class SingleInstance {
 
     private List<Slider> sliderList = new ArrayList();
     private List<CategoryDetails> catList = new ArrayList<>();
-    private ProductData productData;
+    private ProductData productData = new ProductData();
     private ProductDetails selectedProduct;
 
     public ProductDetails getSelectedProduct() {

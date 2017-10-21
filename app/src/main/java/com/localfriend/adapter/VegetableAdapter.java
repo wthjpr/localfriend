@@ -5,6 +5,7 @@ package com.localfriend.adapter;
  */
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.localfriend.R;
+import com.localfriend.fragments.VegetableFragment;
 import com.localfriend.model.ProductDetails;
 import com.squareup.picasso.Picasso;
 
@@ -24,11 +26,11 @@ public class VegetableAdapter extends BaseAdapter {
 
     private LayoutInflater layoutinflater;
     private List<ProductDetails> productList;
-    private Context context;
+    private Fragment context;
 
-    public VegetableAdapter(Context context, List<ProductDetails> productList) {
+    public VegetableAdapter(Fragment context, List<ProductDetails> productList) {
         this.context = context;
-        layoutinflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layoutinflater = (LayoutInflater) context.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.productList = productList;
     }
 
@@ -63,7 +65,7 @@ public class VegetableAdapter extends BaseAdapter {
             listViewHolder.tv_add_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Added To Cart", Toast.LENGTH_SHORT).show();
+                    ((VegetableFragment)context).addToCart(productList.get(position));
                 }
             });
 
@@ -72,7 +74,7 @@ public class VegetableAdapter extends BaseAdapter {
             listViewHolder = (ViewHolder) convertView.getTag();
         }
         try {
-            Picasso.with(context).load(productList.get(position).getpGalleryFileList().get(0)).into(listViewHolder.img_veg);
+            Picasso.with(context.getContext()).load(productList.get(position).getpGalleryFileList().get(0)).into(listViewHolder.img_veg);
         } catch (Exception e) {
             listViewHolder.img_veg.setImageResource(R.drawable.apple);
         }

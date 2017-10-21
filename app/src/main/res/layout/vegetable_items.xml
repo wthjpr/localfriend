@@ -1,48 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/dim_150"
-    android:layout_height="@dimen/dim_220"
-    android:layout_marginTop="@dimen/dim_15"
-    android:elevation="@dimen/dim_11"
-    app:cardCornerRadius="@dimen/dim_15">
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/dim_230"
+    android:background="@drawable/veg_shadow_card_cropped">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/rounded_corner_green">
+        android:layout_height="match_parent">
 
         <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_cost"
-            app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:padding="@dimen/dim_5"
             android:text="Rs.20"
-            android:layout_marginLeft="5dp"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:textStyle="@integer/roboto_medium" />
 
-        <TextView
-            android:id="@+id/tv_offer"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="@drawable/rounded_tv_bg"
-            android:gravity="center"
-            android:layout_marginTop="1dp"
-            android:layout_marginRight="1dp"
-            android:padding="@dimen/dim_5"
-            android:text="50% Off"
-            android:textColor="#49CA99"
-            android:textSize="15sp" />
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:src="@drawable/wish_deactive" />
 
         <ImageView
             android:id="@+id/img_veg"
             android:layout_width="95dp"
             android:layout_height="95dp"
-            android:layout_below="@+id/tv_offer"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="30dp"
             android:background="@null"
             android:src="@drawable/apple" />
 
@@ -56,11 +48,11 @@
             android:text="Shimla Apple\n 1 KG"
             android:textSize="16sp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dim_1"
-            android:layout_above="@+id/tv_add_cart"
-            android:background="@color/colorPrimaryDark" />
+        <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dim_1"-->
+        <!--android:layout_above="@+id/tv_add_cart"-->
+        <!--android:background="@color/colorPrimaryDark" />-->
 
         <TextView
             android:id="@+id/tv_add_cart"
@@ -70,10 +62,11 @@
             android:layout_centerHorizontal="true"
             android:drawableLeft="@drawable/cart_green"
             android:drawablePadding="8dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:padding="@dimen/dim_10"
             android:text="Add to cart"
             android:textColor="#49CA99"
-            android:textSize="@dimen/dim_16" />
+            android:textSize="15sp" />
     </RelativeLayout>
-</android.support.v7.widget.CardView>
+</RelativeLayout>

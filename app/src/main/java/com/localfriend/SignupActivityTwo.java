@@ -2,6 +2,9 @@ package com.localfriend;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -70,7 +73,10 @@ public class SignupActivityTwo extends CustomActivity implements CustomActivity.
         tv_welcome = (TextView) findViewById(R.id.tv_welcome);
         tv_welcome.setText("Welcome "+UserName+"\nEnter your Mobile Number");
 
-
+        Shader textShader = new LinearGradient(0, 0, 0, 50,
+                new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
+                new float[]{0, 1}, Shader.TileMode.CLAMP);
+        tv_btn_signin.getPaint().setShader(textShader);
     }
 
     public void onClick(View v) {

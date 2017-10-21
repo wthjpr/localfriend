@@ -4,32 +4,17 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@null"
+    android:background="@drawable/main_gradient_bg"
     app:theme="@style/ToolbarStyle">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="@dimen/dim_10">
-
-
-        <com.localfriend.fonts.CustomFontTextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dim_35"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:textStyle="@integer/roboto_medium" />
-
-        <!--<ImageButton-->
-        <!--android:id="@+id/search_icon"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:background="@null"-->
-        <!--android:src="@drawable/search" />-->
-    </RelativeLayout>
+        android:layout_gravity="center"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:textStyle="@integer/roboto_medium" />
 </android.support.v7.widget.Toolbar>

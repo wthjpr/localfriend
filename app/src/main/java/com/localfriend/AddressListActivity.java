@@ -2,23 +2,17 @@ package com.localfriend;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.Address;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.localfriend.adapter.AddressAdapter;
-import com.localfriend.adapter.CartAdapter;
 import com.localfriend.adapter.DummyCartData;
 import com.localfriend.adapter.DummyCartItem;
-import com.localfriend.fragments.AddressFragment;
 
 import java.util.ArrayList;
 import java.util.List;

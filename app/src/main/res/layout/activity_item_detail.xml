@@ -20,15 +20,14 @@
             android:id="@+id/rel_slider"
             android:layout_width="match_parent"
             android:layout_height="225dp"
-            android:layout_below="@+id/toolbar_common"
-            >
+            android:layout_below="@+id/toolbar_common">
 
             <ImageView
+                android:id="@+id/img_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:adjustViewBounds="true"
-                android:id="@+id/img_product"/>
+                android:adjustViewBounds="true" />
             <!--<ss.com.bannerslider.views.BannerSlider-->
             <!--android:id="@+id/banner_slider1"-->
             <!--android:layout_width="match_parent"-->
@@ -46,7 +45,6 @@
             android:padding="@dimen/dim_10">
 
             <TextView
-
                 android:id="@+id/tv_one_kg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -75,7 +73,8 @@
                 android:paddingTop="@dimen/dim_5"
                 android:text="2 KG"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_16" />
+                android:textSize="@dimen/dim_16"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_three_kg"
@@ -91,7 +90,8 @@
                 android:paddingTop="@dimen/dim_5"
                 android:text="3 KG"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_16" />
+                android:textSize="@dimen/dim_16"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_four_kg"
@@ -107,7 +107,8 @@
                 android:paddingTop="@dimen/dim_5"
                 android:text="4 KG"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_16" />
+                android:textSize="@dimen/dim_16"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_five_kg"
@@ -123,7 +124,8 @@
                 android:paddingTop="@dimen/dim_5"
                 android:text="5 KG"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_16" />
+                android:textSize="@dimen/dim_16"
+                android:visibility="gone" />
         </LinearLayout>
 
         <TextView

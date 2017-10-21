@@ -1,6 +1,10 @@
 package com.localfriend;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.os.Build;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +12,11 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.localfriend.application.MyApp;
@@ -37,19 +45,23 @@ public class LoginSignupActivity extends CustomActivity implements
             finish();
             return;
         }
+        Shader textShader=new LinearGradient(0, 0, 0, 50,
+                new int[]{Color.parseColor("#3CBEA3"),Color.parseColor("#1D6D9E")},
+                new float[]{0, 1}, Shader.TileMode.CLAMP);
 
         tts = new TextToSpeech(this, this);
         setContentView(R.layout.activity_login_signup);
-        img_logo = (ImageView) findViewById(R.id.img_logo);
+        img_logo =  findViewById(R.id.img_logo);
         img_logo.setVisibility(View.GONE);
-        tv_already_account = (TextView) findViewById(R.id.tv_already_account);
+        tv_already_account =  findViewById(R.id.tv_already_account);
         tv_already_account.setVisibility(View.GONE);
         tv_already_account.setText(Html.fromHtml("<u>Already have an account ? </u>"));
-        tv_lets_get_started = (TextView) findViewById(R.id.tv_lets_get_started);
+        tv_lets_get_started =  findViewById(R.id.tv_lets_get_started);
         tv_lets_get_started.setVisibility(View.GONE);
-        tv_hello_label = (TextView) findViewById(R.id.tv_hello_label);
+        tv_lets_get_started.getPaint().setShader(textShader);
+        tv_hello_label =  findViewById(R.id.tv_hello_label);
         tv_hello_label.setVisibility(View.GONE);
-        tv_help = (TextView) findViewById(R.id.tv_help);
+        tv_help =  findViewById(R.id.tv_help);
         tv_help.setVisibility(View.GONE);
         tv_already_account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +76,20 @@ public class LoginSignupActivity extends CustomActivity implements
                 startActivity(new Intent(LoginSignupActivity.this, SignupActivityOne.class));
             }
         });
+
+//        if (Build.VERSION.SDK_INT >= 21) {
+//
+//            // Set the status bar to dark-semi-transparentish
+//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//
+//            // Set paddingTop of toolbar to height of status bar.
+//            // Fixes statusbar covers toolbar issue
+//            View v = findViewById(R.id.imageview);
+//            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) v.getLayoutParams();
+//            lp.setMargins(0, MyApp.getApplication().getStatusBarHeight(), 0, -MyApp.getApplication().getStatusBarHeight());
+////            v.setPadding(getStatusBarHeight(), getStatusBarHeight(), getStatusBarHeight(), 0);
+//        }
 
         mHandler.postDelayed(new Runnable() {
 

@@ -312,37 +312,17 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
     OnClickListener clickListener = new OnClickListener() {
         @Override
         public void onClick(DialogPlus dialog, View view) {
-            //        switch (view.getId()) {
-            //          case R.id.header_container:
-            //            Toast.makeText(MainActivity.this, "Header clicked", Toast.LENGTH_LONG).show();
-            //            break;
-            //          case R.id.like_it_button:
-            //            Toast.makeText(MainActivity.this, "We're glad that you like it", Toast.LENGTH_LONG).show();
-            //            break;
-            //          case R.id.love_it_button:
-            //            Toast.makeText(MainActivity.this, "We're glad that you love it", Toast.LENGTH_LONG).show();
-            //            break;
-            //          case R.id.footer_confirm_button:
-            //            Toast.makeText(MainActivity.this, "Confirm button clicked", Toast.LENGTH_LONG).show();
-            //            break;
-            //          case R.id.footer_close_button:
-            //            Toast.makeText(MainActivity.this, "Close button clicked", Toast.LENGTH_LONG).show();
-            //            break;
-            //        }
-            //        dialog.dismiss();
         }
     };
     OnDismissListener dismissListener = new OnDismissListener() {
         @Override
         public void onDismiss(DialogPlus dialog) {
-            //        Toast.makeText(MainActivity.this, "dismiss listener invoked!", Toast.LENGTH_SHORT).show();
         }
     };
 
     OnCancelListener cancelListener = new OnCancelListener() {
         @Override
         public void onCancel(DialogPlus dialog) {
-            //        Toast.makeText(MainActivity.this, "cancel listener invoked!", Toast.LENGTH_SHORT).show();
         }
     };
     OnItemClickListener itemClickListener = new OnItemClickListener() {
@@ -374,7 +354,6 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                         getProducts(catId, currentStoreList.get(position).getsID());
                         Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
                                 item + "], position = [" + position + "]");
-                        Toast.makeText(FoodActivity.this, ""+position, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setOnDismissListener(dismissListener)

@@ -2,6 +2,9 @@ package com.localfriend;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -14,7 +17,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -36,7 +41,6 @@ import static java.sql.Types.NULL;
 
 public class SignupActivityThree extends CustomActivity implements CustomActivity.ResponseCallback {
     private TextView tv_btn_next;
-    private EditText edt_code;
     private Toolbar toolbar;
 
     private String value;
@@ -96,25 +100,45 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
         setTouchNClick(R.id.tv_btn_next);
 
-        edt_code = (EditText) findViewById(R.id.edt_code);
 
         tv_btn_next = (TextView) findViewById(R.id.tv_btn_next);
 
         txt_counter = (TextView) findViewById(R.id.txt_counter);
+
+        Shader textShader = new LinearGradient(0, 0, 0, 50,
+                new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
+                new float[]{0, 1}, Shader.TileMode.CLAMP);
+        tv_btn_next.getPaint().setShader(textShader);
+
+        final PinEntryEditText pinEntry = findViewById(R.id.txt_pin_entry);
+        if (pinEntry != null) {
+            pinEntry.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
+                @Override
+                public void onPinEntered(CharSequence str) {
+                    enteredPin = str.toString();
+                    verifyPhoneNumberWithCode(mVerificationId, enteredPin);
+                }
+            });
+        }
     }
 
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.tv_btn_next) {
-            String code = edt_code.getText().toString();
-            if (TextUtils.isEmpty(edt_code.getText().toString())) {
-                edt_code.setError("Enter the verification code");
-                return;
-            }
-            verifyPhoneNumberWithCode(mVerificationId, code);
+
+
+
+//            String code = edt_code.getText().toString();
+//            if (TextUtils.isEmpty(edt_code.getText().toString())) {
+//                edt_code.setError("Enter the verification code");
+//                return;
+//            }
+            verifyPhoneNumberWithCode(mVerificationId, enteredPin);
         }
 
     }
+
+    private String enteredPin = "";
 
     private void showCounter() {
 
@@ -216,7 +240,8 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
 
                         } else {
-                            if (edt_code.getText().toString().equals("111111")) {
+
+                            if (enteredPin.toString().equals("111111")) {
 
 
                                 Intent intent = new Intent(getContext(), SignupActivityFour.class);

@@ -5,6 +5,7 @@ package com.localfriend.adapter;
  */
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 
 import com.localfriend.R;
+import com.localfriend.fragments.AllFragment;
 import com.localfriend.model.Product;
 import com.localfriend.model.ProductDetails;
 import com.squareup.picasso.Picasso;
@@ -26,11 +28,11 @@ public class CustomAdapter extends BaseAdapter {
 
     private LayoutInflater layoutinflater;
     private List<ProductDetails> productList;
-    private Context context;
+    private Fragment context;
 
-    public CustomAdapter(Context context, List<ProductDetails> productList) {
+    public CustomAdapter(Fragment context, List<ProductDetails> productList) {
         this.context = context;
-        layoutinflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layoutinflater = (LayoutInflater) context.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.productList = productList;
     }
 
@@ -64,7 +66,7 @@ public class CustomAdapter extends BaseAdapter {
             listViewHolder.tv_add_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Added To Cart", Toast.LENGTH_SHORT).show();
+                    ((AllFragment)context).addToCart(productList.get(position));
                 }
             });
 
@@ -73,7 +75,7 @@ public class CustomAdapter extends BaseAdapter {
             listViewHolder = (ViewHolder) convertView.getTag();
         }
         try {
-            Picasso.with(context).load(productList.get(position).getpGalleryFileList().get(0)).into(listViewHolder.img_item);
+            Picasso.with(context.getActivity()).load(productList.get(position).getpGalleryFileList().get(0)).into(listViewHolder.img_item);
         } catch (Exception e) {
             listViewHolder.img_item.setImageResource(R.drawable.bakery);
         }

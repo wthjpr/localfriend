@@ -3,109 +3,130 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
     android:layout_marginTop="@dimen/dim_12"
     android:orientation="vertical"
-    android:layout_marginLeft="@dimen/dim_22"
-    android:layout_marginRight="@dimen/dim_22"
-    app:cardElevation="@dimen/dim_10"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="@dimen/dim_5">
+    app:cardCornerRadius="@dimen/dim_5"
+    app:cardElevation="@dimen/dim_10">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageButton
+        <ImageView
+            android:id="@+id/img_btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_gravity="right|top"
-            android:background="@null"
-            android:layout_margin="@dimen/dim_5"
-            android:paddingRight="@dimen/dim_10"
+            android:layout_marginTop="-5dp"
             android:alpha=".5"
-            android:id="@+id/img_btn_close"
-            android:src="@drawable/close" />
+            android:background="@null"
+            android:padding="5dp"
+            android:src="@drawable/ic_delete" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dim_10">
+            android:padding="@dimen/dim_5">
 
             <ImageView
                 android:id="@+id/img_food"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
                 android:background="@null"
-                android:src="@drawable/fast_food" />
+                android:scaleType="centerInside" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_10"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/img_food"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/dim_10"
                 android:paddingLeft="@dimen/dim_10"
                 android:paddingRight="@dimen/dim_10">
 
-                <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
+                <com.localfriend.fonts.CustomFontTextView
+                    android:id="@+id/tv_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Veggie Burger"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dim_18"
-                    android:id="@+id/tv_item_name"
-                    android:textStyle="bold" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:textStyle="@integer/roboto_medium" />
+
+                <com.localfriend.fonts.CustomFontTextView
+                    android:id="@+id/tv_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_item_name"
+                    android:layout_marginTop="8dp"
+                    android:text="Rs 100"
+                    android:textSize="14sp"
+                    app:textStyle="@integer/roboto_medium" />
+
+                <com.localfriend.fonts.CustomFontTextView
+                    android:id="@+id/tv_item_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_unit"
+                    android:layout_marginTop="8dp"
+                    android:text="Rs 100"
+                    android:textSize="14sp"
+                    app:textStyle="@integer/roboto_medium" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_15">
+                    android:layout_alignBottom="@+id/tv_item_cost"
+                    android:layout_marginTop="@dimen/dim_10">
 
-                    <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rs 100"
-                        android:id="@+id/tv_item_cost"
-                        android:layout_centerVertical="true"
-                        android:textSize="@dimen/dim_18" />
-
-                    <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
+                    <com.localfriend.fonts.CustomFontTextView
                         android:id="@+id/tv_plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
                         android:background="@drawable/circular_bg"
                         android:gravity="center"
-                        android:layout_centerVertical="true"
                         android:text=" + "
-                        android:textSize="@dimen/dim_18" />
+                        android:textSize="@dimen/dim_18"
+                        app:textStyle="@integer/roboto_medium" />
 
-                    <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
+                    <com.localfriend.fonts.CustomFontTextView
                         android:id="@+id/tv_counter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/dim_10"
                         android:layout_toLeftOf="@+id/tv_plus"
                         android:text="1"
-                        android:layout_marginRight="@dimen/dim_10"
-                        android:layout_centerVertical="true"
                         android:textColor="@color/blue_text"
-                        android:textSize="@dimen/dim_18" />
-                    <com.localfriend.fonts.CustomFontTextView         app:textStyle="@integer/roboto_medium"
+                        android:textSize="@dimen/dim_18"
+                        app:textStyle="@integer/roboto_medium" />
+
+                    <com.localfriend.fonts.CustomFontTextView
                         android:id="@+id/tv_minus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/dim_10"
                         android:layout_toLeftOf="@+id/tv_counter"
                         android:background="@drawable/circular_bg"
                         android:gravity="center"
                         android:text=" - "
-                        android:layout_marginRight="@dimen/dim_10"
-                        android:layout_centerVertical="true"
-                        android:textSize="@dimen/dim_18" />
+                        android:textSize="@dimen/dim_18"
+                        app:textStyle="@integer/roboto_medium" />
                 </RelativeLayout>
-            </LinearLayout>
+            </RelativeLayout>
         </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

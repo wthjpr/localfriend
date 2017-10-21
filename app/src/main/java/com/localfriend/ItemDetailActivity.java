@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.application.AppConstants;
 import com.localfriend.application.SingleInstance;
+import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.model.Slider;
 import com.localfriend.utils.AppConstant;
@@ -39,6 +40,8 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         productDetails = SingleInstance.getInstance().getSelectedProduct();
         setContentView(R.layout.activity_item_detail);
         toolbar = (Toolbar) findViewById(R.id.toolbar_common);
@@ -53,16 +56,16 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         actionBar.setTitle("");
 
 //        bannerSlider = (BannerSlider) findViewById(R.id.banner_slider1);
-        List<Banner> banners = new ArrayList<>();
-        List<Slider> sliderList = SingleInstance.getInstance().getSliderList();
-        if (sliderList.size() == 0) {
-            getCall(AppConstants.BASE_URL + AppConstants.SLIDER, "", 1);
-        }
+//        List<Banner> banners = new ArrayList<>();
+//        List<Slider> sliderList = SingleInstance.getInstance().getSliderList();
+//        if (sliderList.size() == 0) {
+//            getCall(AppConstants.BASE_URL + AppConstants.SLIDER, "", 1);
+//        }
 
-        for (int i = 0; i < sliderList.size(); i++) {
-            String url = sliderList.get(i).getImageURL();
-            banners.add(new RemoteBanner(url));
-        }
+//        for (int i = 0; i < sliderList.size(); i++) {
+//            String url = sliderList.get(i).getImageURL();
+//            banners.add(new RemoteBanner(url));
+//        }
         img_product = findViewById(R.id.img_product);
         try {
             Picasso.with(getContext()).load(getIntent().getStringExtra(AppConstant.EXTRA_1))
@@ -70,13 +73,6 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         } catch (Exception e) {
         }
 
-//        bannerSlider.setBanners(banners);
-//        bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
-//            @Override
-//            public void onClick(int position) {
-//                startActivity(new Intent(getContext(), AllActivity.class));
-//            }
-//        });
 
         setupUiElement();
     }
@@ -96,19 +92,25 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         setTouchNClick(R.id.tv_four_kg);
         setTouchNClick(R.id.tv_five_kg);
 
-
         tv_add_cart = findViewById(R.id.tv_add_cart);
 
         tv_cost = findViewById(R.id.tv_cost);
 
         tv_description = findViewById(R.id.tv_description);
         tv_description.setText(productDetails.getuDescription());
+        tv_cost.setText("Rs. "+productDetails.getPrice());
         tv_one_kg = findViewById(R.id.tv_one_kg);
         tv_two_kg = findViewById(R.id.tv_two_kg);
         tv_three_kg = findViewById(R.id.tv_three_kg);
         tv_four_kg = findViewById(R.id.tv_four_kg);
         tv_five_kg = findViewById(R.id.tv_five_kg);
 
+        tv_one_kg.setText(productDetails.getUnit() + " " + productDetails.getuType());
+
+        if (productDetails.getMyList().size() > 1) {
+            tv_two_kg.setVisibility(View.VISIBLE);
+            tv_two_kg.setText(productDetails.getMyList().get(1).getUnit()+" "+productDetails.getMyList().get(1).getuType());
+        }
 
     }
 
@@ -116,11 +118,12 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         super.onClick(v);
         if (v.getId() == R.id.tv_add_cart) {
             Toast.makeText(this, "Added To Cart", Toast.LENGTH_SHORT).show();
-
         } else if (v.getId() == R.id.tv_one_kg) {
-            Toast.makeText(this, "1 kg Added", Toast.LENGTH_SHORT).show();
+            tv_description.setText(productDetails.getuDescription());
+            tv_cost.setText("Rs. "+productDetails.getPrice());
         } else if (v.getId() == R.id.tv_two_kg) {
-            Toast.makeText(this, "2 kg Added", Toast.LENGTH_SHORT).show();
+            tv_description.setText(productDetails.getMyList().get(1).getuDescription());
+            tv_cost.setText("Rs. "+productDetails.getMyList().get(1).getPrice());
         } else if (v.getId() == R.id.tv_three_kg) {
             Toast.makeText(this, "3 kg Added", Toast.LENGTH_SHORT).show();
         } else if (v.getId() == R.id.tv_four_kg) {
@@ -149,14 +152,6 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
                     banners.add(new RemoteBanner(s.getImageURL()));
                 }
 
-
-//                bannerSlider.setBanners(banners);
-//                bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
-//                    @Override
-//                    public void onClick(int position) {
-////                        startActivity(new Intent(getContext(), AllActivity.class));
-//                    }
-//                });
             }
         }
 

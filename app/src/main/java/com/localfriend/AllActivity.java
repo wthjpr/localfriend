@@ -1,14 +1,13 @@
 package com.localfriend;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,25 +15,17 @@ import android.widget.TextView;
 
 import com.localfriend.application.SingleInstance;
 import com.localfriend.fragments.AllFragment;
-import com.localfriend.fragments.CartFragment;
-import com.localfriend.fragments.HomeFragment;
-import com.localfriend.fragments.TiffinFragment;
-import com.localfriend.model.Product;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.sql.Types.NULL;
-
 public class AllActivity extends CustomActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ProductData productData;
-    private TextView tv_home, tv_tiffin, tv_cart, tv_more;
-    private ImageView img_home, img_tiffin, img_cart, img_more;
     private List<ProductDetails> allProducts = new ArrayList<>();
 
     @Override
@@ -59,6 +50,10 @@ public class AllActivity extends CustomActivity {
         tabLayout.setupWithViewPager(viewPager);
         setupUiElements();
     }
+
+    private ImageView img_home, img_tiffin, img_cart, img_more;
+    private TextView tv_home, tv_tiffin, tv_cart, tv_more;
+
     private void setupUiElements() {
 
         img_home = findViewById(R.id.img_home);
@@ -103,7 +98,6 @@ public class AllActivity extends CustomActivity {
             img_more.setImageResource(R.drawable.ic_more);
 
 
-
         } else if (v.getId() == R.id.rl_tab_2) {
             img_home.setSelected(false);
             img_tiffin.setSelected(true);
@@ -124,7 +118,6 @@ public class AllActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tiffin_active);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
-
 
 
         } else if (v.getId() == R.id.rl_tab_3) {
@@ -173,27 +166,41 @@ public class AllActivity extends CustomActivity {
 
         }
     }
+
     private void setupViewPager(ViewPager viewPager) {
 
         for (int i = 0; i < productData.getProduct().size(); i++) {
+//            for (int j = 0; j < productData.getProduct().get(i).getpDetailsList().size(); j++) {
+            ProductDetails d = productData.getProduct().get(i).getpDetailsList().get(0);
+            d.setpGalleryFileList(productData.getProduct().get(i).getpGalleryFileList());
+            d.setName(productData.getProduct().get(i).getpTitle());
+            d.setCategoryId(productData.getProduct().get(i).getCategoryID());
+            List<ProductDetails> myList = new ArrayList<>();
             for (int j = 0; j < productData.getProduct().get(i).getpDetailsList().size(); j++) {
-                ProductDetails d = productData.getProduct().get(i).getpDetailsList().get(j);
-                d.setpGalleryFileList(productData.getProduct().get(i).getpGalleryFileList());
-                d.setName(productData.getProduct().get(i).getpName());
-                allProducts.add(d);
+                myList.add(productData.getProduct().get(i).getpDetailsList().get(j));
             }
+            d.setMyList(myList);
+            allProducts.add(d);
+//            }
+
+
         }
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new AllFragment(allProducts), "All");
         if (productData.getCategory().size() > 0) {
+
             for (int i = 0; i < productData.getCategory().size(); i++) {
-                adapter.addFrag(new AllFragment(allProducts), productData.getCategory().get(i).getName());
+                List<ProductDetails> others = new ArrayList<>();
+                for (int j = 0; j < allProducts.size(); j++) {
+                    if (allProducts.get(j).getCategoryId().equals(productData.getCategory().get(i).getParentID())) {
+                        others.add(allProducts.get(j));
+                    }
+                }
+                adapter.addFrag(new AllFragment(others), productData.getCategory().get(i).getName());
             }
 
         }
-
-
         viewPager.setAdapter(adapter);
     }
 

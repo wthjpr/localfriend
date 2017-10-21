@@ -18,6 +18,25 @@ public class ProductDetails {
     private String availableUnit;
     private String vProductFileList;
     private String name;
+    private String categoryId;
+    private List<ProductDetails> myList;
+
+    public List<ProductDetails> getMyList() {
+        return myList;
+    }
+
+    public void setMyList(List<ProductDetails> myList) {
+        this.myList = myList;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
     private List<String> pGalleryFileList;
 
     public String getName() {

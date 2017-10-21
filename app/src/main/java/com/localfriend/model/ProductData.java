@@ -1,5 +1,6 @@
 package com.localfriend.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,8 +9,8 @@ import java.util.List;
 
 public class ProductData {
 
-    private List<CategoryDetails> category;
-    private List<Product> product;
+    private List<CategoryDetails> category = new ArrayList<>();
+    private List<Product> product = new ArrayList<>();
 
     public List<CategoryDetails> getCategory() {
         return category;

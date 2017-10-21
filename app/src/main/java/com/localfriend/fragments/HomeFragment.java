@@ -4,10 +4,14 @@ package com.localfriend.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,12 +21,21 @@ import com.localfriend.FoodActivity;
 import com.localfriend.ItemDetailActivity;
 import com.localfriend.R;
 import com.localfriend.VegetableActivity;
+import com.localfriend.adapter.SimpleAdapter;
 import com.localfriend.application.AppConstants;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.model.CategoryDetails;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.Slider;
+import com.localfriend.model.StoreList;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.Holder;
+import com.orhanobut.dialogplus.ListHolder;
+import com.orhanobut.dialogplus.OnCancelListener;
+import com.orhanobut.dialogplus.OnClickListener;
+import com.orhanobut.dialogplus.OnDismissListener;
+import com.orhanobut.dialogplus.OnItemClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,7 +93,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         }
 
         for (int i = 0; i < sliderList.size(); i++) {
-            String url = sliderList.get(i).getImageURL();
+            String url = sliderList.get(i).getThumbImage();
             banners.add(new RemoteBanner(url));
         }
         bannerSlider.setBanners(banners);
@@ -100,17 +113,16 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         if (v == lrn_fruit) {
             showLoadingDialog("");
             getCall(AppConstants.BASE_URL + "product?categoryid=" + 4 + "&storeid=90390cdd-f991-4539-b666-488858d60a94", "", 3);
-            // startActivity(new Intent(getActivity(),ItemDetailActivity.class));
-//            loadCategory(4);
         } else if (v == lrn_vegetable) {
-//            loadCategory(1);
-            startActivity(new Intent(getContext(), VegetableActivity.class));
+            showLoadingDialog("");
+            getCall(AppConstants.BASE_URL + "product?categoryid=" + 1 + "&storeid=90390cdd-f991-4539-b666-488858d60a94", "", 3);
         } else if (v == lrn_tiffin) {
             loadCategory(3);
         } else if (v == lrn_food) {
             loadCategory(2);
         } else if (v == lrn_mithaiwala) {
-            loadCategory(5);
+            showLoadingDialog("");
+            getCall(AppConstants.BASE_URL + "Category/" + 0, "", 4);
         } else if (v == lrn_discount) {
             MyApp.popMessage("LocalFriend", "No Deals available for now.\nThank you", getContext());
         }
@@ -146,7 +158,6 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
                     @Override
                     public void onClick(int position) {
-//                        startActivity(new Intent(getContext(), AllActivity.class));
                     }
                 });
             }
@@ -181,8 +192,51 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        } else if (callNumber == 4) {
+            dismissDialog();
+            Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
+            }.getType();
+            try {
+                List<CategoryDetails> catList =
+                        new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
+                if (catList.size() == 0) {
+                    MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+                } else {
+                    List<String> listStore = new ArrayList<>();
+                    for (int i = 0; i < catList.get(3).getStorelist().size(); i++) {
+                        listStore.add(catList.get(3).getStorelist().get(i).getsName());
+                    }
+                    if (listStore.size() == 1) {
+                        getProducts("5", catList.get(3).getStorelist().get(0).getsID());
+                        return;
+                    }
+                    currentStoreList = catList.get(3).getStorelist();
+                    SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+                    showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+                            true);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if (callNumber == 5) {
+            dismissDialog();
+            try {
+                ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
+                SingleInstance.getInstance().setProductData(data);
+                if (data.getProduct().size() > 0) {
+                    startActivity(new Intent(getContext(), AllActivity.class));
+                } else {
+                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
+                            " Please come back later.\nThank you.", getContext());
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
+
+    private List<StoreList> currentStoreList;
 
     @Override
     public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
@@ -201,5 +255,65 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
     public void onErrorReceived(String error) {
         dismissDialog();
         MyApp.popMessage("Error!", error, getContext());
+    }
+
+    OnClickListener clickListener = new OnClickListener() {
+        @Override
+        public void onClick(DialogPlus dialog, View view) {
+        }
+    };
+    OnDismissListener dismissListener = new OnDismissListener() {
+        @Override
+        public void onDismiss(DialogPlus dialog) {
+        }
+    };
+
+    OnCancelListener cancelListener = new OnCancelListener() {
+        @Override
+        public void onCancel(DialogPlus dialog) {
+        }
+    };
+    OnItemClickListener itemClickListener = new OnItemClickListener() {
+        @Override
+        public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+
+        }
+    };
+
+    private void showCompleteDialog(Holder holder, int gravity, final BaseAdapter adapter,
+                                    OnClickListener clickListener, OnItemClickListener itemClickListener,
+                                    OnDismissListener dismissListener, OnCancelListener cancelListener,
+                                    boolean expanded) {
+        final DialogPlus dialog = DialogPlus.newDialog(getActivity())
+
+                .setContentHolder(holder)
+                .setHeader(R.layout.header_store)
+                .setContentBackgroundResource(R.drawable.rounded_corner_white)
+//                .setFooter(R.layout.footer)
+                .setCancelable(true)
+                .setGravity(gravity)
+                .setAdapter(adapter)
+                .setOnClickListener(clickListener)
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                        getProducts("5", currentStoreList.get(position).getsID());
+                        Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
+                                item + "], position = [" + position + "]");
+                    }
+                })
+                .setOnDismissListener(dismissListener)
+                .setExpanded(expanded)
+                .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+                .setOnCancelListener(cancelListener)
+                .setOverlayBackgroundResource(R.color.transparent)
+                .create();
+        dialog.show();
+    }
+
+    private void getProducts(String catId, String storeId) {
+        showLoadingDialog("");
+        getCall(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, "", 5);
+
     }
 }

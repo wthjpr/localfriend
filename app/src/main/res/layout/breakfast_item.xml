@@ -11,24 +11,24 @@
         android:id="@+id/frame_breakfast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="-15dp"
         android:paddingLeft="@dimen/dim_20">
 
         <android.support.v7.widget.CardView
             android:id="@+id/card_item"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dim_300"
-            app:cardCornerRadius="@dimen/dim_5"
+            android:layout_height="@dimen/dim_400"
             app:cardBackgroundColor="@color/bg_color"
-            app:cardElevation="@dimen/dim_10">
+            app:cardCornerRadius="@dimen/dim_15"
+            app:cardElevation="@dimen/dim_5">
 
             <ImageView
                 android:id="@+id/rel_break_fast"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:layout_marginRight="-20dp"
-                android:src="@drawable/aloo_paratha"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/aloo_paratha" />
 
             <!--<ImageView
                 android:layout_width="match_parent"
@@ -43,42 +43,40 @@
         android:id="@+id/tv_breakfast_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/frame_breakfast"
         android:layout_marginLeft="@dimen/dim_20"
         android:background="@drawable/tv_trans_bg"
         android:gravity="center"
-        android:layout_alignBottom="@+id/frame_breakfast"
         android:padding="@dimen/dim_8"
         android:text="Aloo Pratha"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_16"
+        android:textSize="16sp"
         app:textStyle="@integer/roboto_medium" />
 
     <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_breakfast_cost"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="@dimen/dim_25"
         android:background="@drawable/tv_gradient_bg"
         android:gravity="center"
-        android:paddingBottom="@dimen/dim_5"
-        android:paddingLeft="@dimen/dim_8"
-        android:paddingRight="@dimen/dim_8"
-        android:paddingTop="@dimen/dim_5"
+        android:padding="5dp"
         android:text="Rs 30"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_18"
+        android:textSize="16sp"
         app:textStyle="@integer/roboto_medium" />
 
     <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_add"
         android:layout_width="@dimen/dim_50"
         android:layout_height="@dimen/dim_50"
-        android:layout_marginTop="@dimen/dim_275"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/dim_30"
+        android:layout_marginTop="@dimen/dim_375"
         android:background="@drawable/gradient_circle_bg"
-        android:text="+"
         android:gravity="center"
+        android:text="+"
         android:textColor="@color/white"
         android:textSize="@dimen/dim_20"
         app:textStyle="@integer/roboto_medium" />
