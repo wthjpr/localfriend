@@ -1,10 +1,12 @@
 package com.localfriend.utils;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.localfriend.R;
@@ -41,12 +43,13 @@ public class SimpleItem extends DrawerItem<SimpleItem.ViewHolder> {
     public void bindViewHolder(ViewHolder holder) {
         holder.title.setText(title);
         holder.icon.setImageDrawable(icon);
-
+        holder.ll_main.setBackgroundColor(isChecked ? Color.parseColor("#aa2F7A7F") : Color.parseColor("#00000000"));
         holder.title.setTextColor(isChecked ? selectedItemTextTint : normalItemTextTint);
         holder.icon.setColorFilter(isChecked ? selectedItemIconTint : normalItemIconTint);
     }
 
     public SimpleItem withSelectedIconTint(int selectedItemIconTint) {
+
         this.selectedItemIconTint = selectedItemIconTint;
         return this;
     }
@@ -70,11 +73,13 @@ public class SimpleItem extends DrawerItem<SimpleItem.ViewHolder> {
 
         private ImageView icon;
         private TextView title;
+        private LinearLayout ll_main;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            icon = (ImageView) itemView.findViewById(R.id.icon);
-            title = (TextView) itemView.findViewById(R.id.title);
+            icon = itemView.findViewById(R.id.icon);
+            title = itemView.findViewById(R.id.title);
+            ll_main = itemView.findViewById(R.id.ll_main);
         }
     }
 }

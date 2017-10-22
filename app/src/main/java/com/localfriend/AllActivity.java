@@ -17,6 +17,7 @@ import com.localfriend.application.SingleInstance;
 import com.localfriend.fragments.AllFragment;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
+import com.localfriend.utils.AppConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,8 @@ public class AllActivity extends CustomActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
-        mTitle.setText("All");
+
+        mTitle.setText(getIntent().getStringExtra(AppConstant.EXTRA_1));
         actionBar.setTitle("");
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);

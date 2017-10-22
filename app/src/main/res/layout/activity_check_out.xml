@@ -35,7 +35,8 @@
                 android:background="@color/white"
                 android:layout_height="match_parent">
 
-                <TextView
+                <com.localfriend.fonts.CustomFontTextView
+                    app:textStyle="@integer/roboto_medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -44,7 +45,8 @@
                     android:drawableRight="@drawable/ic_arrow_next"
                     android:text="Schedule" />
 
-                <TextView
+                <com.localfriend.fonts.CustomFontTextView
+                    app:textStyle="@integer/roboto_medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -53,7 +55,8 @@
                     android:gravity="center"
                     android:text="Payment" />
 
-                <TextView
+                <com.localfriend.fonts.CustomFontTextView
+                    app:textStyle="@integer/roboto_medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

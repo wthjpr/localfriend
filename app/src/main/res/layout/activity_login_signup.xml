@@ -6,13 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/main_gradient_bg"
     android:orientation="vertical"
-    android:padding="@dimen/dim_15"
+    android:fitsSystemWindows="true"
+    android:id="@+id/ll_main"
+
     tools:context="com.localfriend.LoginSignupActivity">
 
     <ImageView
         android:id="@+id/img_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/dim_15"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dim_35"
         android:background="@null"
@@ -37,6 +40,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner_blue"
         android:padding="@dimen/dim_10"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:text="Hello there, I'm your Local Friend"
         android:textColor="@color/white"
         android:textSize="@dimen/dim_14" />
@@ -47,6 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dim_15"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/rounded_corner_blue"
         android:padding="@dimen/dim_10"
         android:text="I'm here to help you with anything , anytime"
@@ -58,6 +65,8 @@
         app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="@dimen/dim_25"
         android:background="@drawable/rounded_corner_white"
         android:gravity="center"

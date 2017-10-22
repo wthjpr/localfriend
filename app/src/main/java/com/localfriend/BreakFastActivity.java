@@ -1,11 +1,15 @@
 package com.localfriend;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.localfriend.adapter.BreakfastAdapter;
@@ -30,6 +34,8 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
     private BreakfastAdapter adapter;
     private ProductData productData = new ProductData();
     private List<ProductDetails> allProducts = new ArrayList<>();
+    private TextView tv_home, tv_tiffin, tv_cart, tv_more;
+    private ImageView img_home, img_tiffin, img_cart, img_more;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,121 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
 
         adapter = new BreakfastAdapter(allProducts, this);
         recy_breakfast.setAdapter(adapter);
+
+        img_home = findViewById(R.id.img_home);
+        img_tiffin = findViewById(R.id.img_tiffin);
+        img_cart = findViewById(R.id.img_cart);
+        img_more = findViewById(R.id.img_more);
+
+
+        tv_home =  findViewById(R.id.tv_home);
+        tv_tiffin =  findViewById(R.id.tv_tiffin);
+        tv_cart =  findViewById(R.id.tv_cart);
+        tv_more =  findViewById(R.id.tv_more);
+
+        setClick(R.id.rl_tab_1);
+        setClick(R.id.rl_tab_2);
+        setClick(R.id.rl_tab_3);
+        setClick(R.id.rl_tab_4);
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        if (v.getId() == R.id.rl_tab_1) {
+
+            img_home.setSelected(true);
+            img_tiffin.setSelected(false);
+            img_cart.setSelected(false);
+            img_more.setSelected(false);
+
+            tv_home.setSelected(true);
+            tv_tiffin.setSelected(false);
+            tv_cart.setSelected(false);
+            tv_more.setSelected(false);
+
+            tv_home.setTextColor(Color.parseColor("#275B89"));
+            tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
+            tv_cart.setTextColor(Color.parseColor("#888F8C"));
+            tv_more.setTextColor(Color.parseColor("#888F8C"));
+
+            img_home.setImageResource(R.drawable.ic_home_active);
+            img_tiffin.setImageResource(R.drawable.ic_tifin);
+            img_cart.setImageResource(R.drawable.ic_cart);
+            img_more.setImageResource(R.drawable.ic_more);
+
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 1));
+            finish();
+        } else if (v.getId() == R.id.rl_tab_2) {
+            img_home.setSelected(false);
+            img_tiffin.setSelected(true);
+            img_cart.setSelected(false);
+            img_more.setSelected(false);
+
+            tv_home.setSelected(false);
+            tv_tiffin.setSelected(true);
+            tv_cart.setSelected(false);
+            tv_more.setSelected(false);
+
+            tv_home.setTextColor(Color.parseColor("#888F8C"));
+            tv_tiffin.setTextColor(Color.parseColor("#275B89"));
+            tv_cart.setTextColor(Color.parseColor("#888F8C"));
+            tv_more.setTextColor(Color.parseColor("#888F8C"));
+
+            img_home.setImageResource(R.drawable.ic_home);
+            img_tiffin.setImageResource(R.drawable.ic_tiffin_active);
+            img_cart.setImageResource(R.drawable.ic_cart);
+            img_more.setImageResource(R.drawable.ic_more);
+
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 2));
+            finish();
+        } else if (v.getId() == R.id.rl_tab_3) {
+            img_home.setSelected(false);
+            img_tiffin.setSelected(false);
+            img_cart.setSelected(true);
+            img_more.setSelected(false);
+
+            tv_home.setSelected(false);
+            tv_tiffin.setSelected(false);
+            tv_cart.setSelected(true);
+            tv_more.setSelected(false);
+
+            tv_home.setTextColor(Color.parseColor("#888F8C"));
+            tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
+            tv_cart.setTextColor(Color.parseColor("#275B89"));
+            tv_more.setTextColor(Color.parseColor("#888F8C"));
+
+            img_home.setImageResource(R.drawable.ic_home);
+            img_tiffin.setImageResource(R.drawable.ic_tifin);
+            img_cart.setImageResource(R.drawable.ic_cart_active);
+            img_more.setImageResource(R.drawable.ic_more);
+
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 3));
+            finish();
+        } else if (v.getId() == R.id.rl_tab_4) {
+
+            img_home.setSelected(false);
+            img_tiffin.setSelected(false);
+            img_cart.setSelected(false);
+            img_more.setSelected(true);
+
+            tv_home.setSelected(false);
+            tv_tiffin.setSelected(false);
+            tv_cart.setSelected(false);
+            tv_more.setSelected(true);
+
+            tv_home.setTextColor(Color.parseColor("#888F8C"));
+            tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
+            tv_cart.setTextColor(Color.parseColor("#888F8C"));
+            tv_more.setTextColor(Color.parseColor("#275B89"));
+
+            img_home.setImageResource(R.drawable.ic_home);
+            img_tiffin.setImageResource(R.drawable.ic_tifin);
+            img_cart.setImageResource(R.drawable.ic_cart);
+            img_more.setImageResource(R.drawable.ic_more_active);
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 4));
+            finish();
+        }
     }
 
     public void addToCart(ProductDetails p) {
@@ -73,7 +194,7 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
             o.put("pDetailsId", p.getId());
             o.put("pQuantity", 1);
             showLoadingDialog("");
-            postCall(getContext(), AppConstant.BASE_URL + "Cart", o, "", 1);
+            postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Cart", o, 1);
         } catch (JSONException e) {
             e.printStackTrace();
         }

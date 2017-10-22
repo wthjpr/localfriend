@@ -59,10 +59,10 @@ public class CustomAdapter extends BaseAdapter {
             listViewHolder = new ViewHolder();
             convertView = layoutinflater.inflate(R.layout.all_items, parent, false);
 
-            listViewHolder.img_item = (ImageView) convertView.findViewById(R.id.img_item);
-            listViewHolder.tv_item_cost = (TextView) convertView.findViewById(R.id.tv_item_cost);
-            listViewHolder.tv_item_name = (TextView) convertView.findViewById(R.id.tv_item_name);
-            listViewHolder.tv_add_cart = (TextView) convertView.findViewById(R.id.tv_add_cart);
+            listViewHolder.img_item =  convertView.findViewById(R.id.img_item);
+            listViewHolder.tv_item_cost =  convertView.findViewById(R.id.tv_item_cost);
+            listViewHolder.tv_item_name =  convertView.findViewById(R.id.tv_item_name);
+            listViewHolder.tv_add_cart =  convertView.findViewById(R.id.tv_add_cart);
             listViewHolder.tv_add_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

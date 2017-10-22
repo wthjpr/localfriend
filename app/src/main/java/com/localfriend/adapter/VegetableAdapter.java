@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.localfriend.R;
+import com.localfriend.application.MyApp;
 import com.localfriend.fragments.VegetableFragment;
 import com.localfriend.model.ProductDetails;
 import com.squareup.picasso.Picasso;
@@ -59,13 +60,15 @@ public class VegetableAdapter extends BaseAdapter {
 
             listViewHolder.img_veg = (ImageView) convertView.findViewById(R.id.img_veg);
             listViewHolder.tv_cost = (TextView) convertView.findViewById(R.id.tv_cost);
+            listViewHolder.tv_cost_old = (TextView) convertView.findViewById(R.id.tv_cost_old);
             listViewHolder.tv_veg_name = (TextView) convertView.findViewById(R.id.tv_veg_name);
+            listViewHolder.txt_unit = (TextView) convertView.findViewById(R.id.txt_unit);
 
             listViewHolder.tv_add_cart = (TextView) convertView.findViewById(R.id.tv_add_cart);
             listViewHolder.tv_add_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((VegetableFragment)context).addToCart(productList.get(position));
+                    ((VegetableFragment) context).addToCart(productList.get(position));
                 }
             });
 
@@ -87,15 +90,17 @@ public class VegetableAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        listViewHolder.tv_cost.setText(string + " " + productList.get(position).getPrice());
-        listViewHolder.tv_veg_name.setText(productList.get(position).getName() + "" +
-                "\n" + productList.get(position).getUnit() + " " + productList.get(position).getuType());
+        listViewHolder.tv_cost_old.setText(string + " " + productList.get(position).getPrice());
+        MyApp.strikeThroughText(listViewHolder.tv_cost_old);
+        listViewHolder.tv_cost.setText(string + " " + productList.get(position).getSellingPrice());
+        listViewHolder.tv_veg_name.setText(productList.get(position).getName() + "");
+        listViewHolder.txt_unit.setText(productList.get(position).getUnit() + " " + productList.get(position).getuType());
         return convertView;
     }
 
     static class ViewHolder {
         ImageView img_veg;
-        TextView tv_cost, tv_offer, tv_veg_name, tv_add_cart;
+        TextView tv_cost, tv_cost_old, txt_unit, tv_veg_name, tv_add_cart;
 
     }
 

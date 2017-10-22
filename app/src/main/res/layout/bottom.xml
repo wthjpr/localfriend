@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_bottom"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
+    android:layout_alignParentBottom="true"
     android:layout_marginBottom="-1dp"
     android:layout_marginLeft="-1dp"
     android:layout_marginRight="-1dp"
-
     android:background="@drawable/rounded_top"
     android:orientation="horizontal">
 
@@ -22,10 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-           android:layout_marginTop="@dimen/dim_10"
+            android:layout_marginTop="@dimen/dim_10"
             android:background="@null"
-
-            android:src="@drawable/ic_home_active" />
+            android:src="@drawable/ic_home" />
 
         <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_home"
@@ -34,8 +34,7 @@
             android:layout_below="@+id/img_home"
             android:layout_centerHorizontal="true"
             android:text="Home"
-
-            android:textColor="#275B89"
+            android:textColor="#888F8C"
             android:textSize="@dimen/dim_14"
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
@@ -62,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/img_tiffin"
-           android:layout_centerHorizontal="true"
+            android:layout_centerHorizontal="true"
             android:text="Tiffin"
             android:textColor="#888F8C"
 
@@ -78,6 +77,7 @@
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
 
+
         <ImageView
             android:id="@+id/img_cart"
             android:layout_width="wrap_content"
@@ -85,15 +85,27 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dim_10"
             android:background="@null"
-
             android:src="@drawable/ic_cart" />
+
+        <TextView
+            android:id="@+id/txt_cart_count"
+            android:layout_width="20dp"
+            android:visibility="gone"
+            android:layout_height="20dp"
+            android:layout_alignRight="@+id/tv_cart"
+            android:layout_marginRight="-5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/counter_cart"
+            android:gravity="center"
+            android:text="9"
+            android:textColor="@color/white" />
 
         <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-          android:layout_centerHorizontal="true"
             android:layout_below="@+id/img_cart"
+            android:layout_centerHorizontal="true"
             android:text="Cart"
             android:textColor="#888F8C"
             android:textSize="@dimen/dim_14"
@@ -122,8 +134,8 @@
             android:id="@+id/tv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:layout_centerHorizontal="true"
             android:layout_below="@+id/img_more"
+            android:layout_centerHorizontal="true"
             android:text="More"
             android:textColor="#888F8C"
             android:textSize="@dimen/dim_14"

@@ -1,5 +1,7 @@
 package com.localfriend;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -8,17 +10,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.localfriend.application.SingleInstance;
-import com.localfriend.fragments.AllFragment;
 import com.localfriend.fragments.VegetableFragment;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
+import com.localfriend.utils.AppConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,7 @@ public class VegetableActivity extends CustomActivity {
     private TextView tv_home, tv_tiffin, tv_cart, tv_more;
     private ImageView img_home, img_tiffin, img_cart, img_more;
     private List<ProductDetails> allProducts = new ArrayList<>();
-
+    private RelativeLayout rl_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,25 @@ public class VegetableActivity extends CustomActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
+        rl_main = findViewById(R.id.rl_main);
         mTitle.setText("Vegetable");
+        String title = getIntent().getStringExtra(AppConstant.EXTRA_1);
+        if (title != null) {
+            mTitle.setText(title);
+        }
+        try {
+            if (title.equals("Mithai")) {
+                rl_main.setBackgroundResource(R.drawable.bg_sweets);
+            } else if (title.equals("Fruits")) {
+                rl_main.setBackgroundResource(R.drawable.bg_fruits);
+            }  else if (title.equals("Vegetable")) {
+                rl_main.setBackgroundResource(R.drawable.bg_fruits);
+            } else {
+                rl_main.setBackgroundResource(R.drawable.bg_cart);
+            }
+        } catch (Exception e) {
+        }
+
         actionBar.setTitle("");
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -55,6 +75,7 @@ public class VegetableActivity extends CustomActivity {
         tabLayout.setupWithViewPager(viewPager);
         setupUiElements();
     }
+
     private void setupUiElements() {
 
         img_home = findViewById(R.id.img_home);
@@ -72,6 +93,10 @@ public class VegetableActivity extends CustomActivity {
         setClick(R.id.rl_tab_2);
         setClick(R.id.rl_tab_3);
         setClick(R.id.rl_tab_4);
+    }
+
+    private Context getContext() {
+        return VegetableActivity.this;
     }
 
     public void onClick(View v) {
@@ -98,7 +123,8 @@ public class VegetableActivity extends CustomActivity {
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
 
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 1));
+            finishAffinity();
 
         } else if (v.getId() == R.id.rl_tab_2) {
             img_home.setSelected(false);
@@ -120,8 +146,8 @@ public class VegetableActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tiffin_active);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
-
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 2));
+            finishAffinity();
 
         } else if (v.getId() == R.id.rl_tab_3) {
             img_home.setSelected(false);
@@ -144,7 +170,8 @@ public class VegetableActivity extends CustomActivity {
             img_cart.setImageResource(R.drawable.ic_cart_active);
             img_more.setImageResource(R.drawable.ic_more);
 
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 3));
+            finishAffinity();
         } else if (v.getId() == R.id.rl_tab_4) {
 
             img_home.setSelected(false);
@@ -166,9 +193,11 @@ public class VegetableActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more_active);
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 4));
+            finishAffinity();
         }
     }
+
     private void setupViewPager(ViewPager viewPager) {
 
         for (int i = 0; i < productData.getProduct().size(); i++) {

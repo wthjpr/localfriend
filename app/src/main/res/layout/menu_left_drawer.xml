@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/main_gradient_bg"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <!--  <Space
@@ -17,14 +18,15 @@
         android:baselineAligned="false"
         android:orientation="vertical"
         android:paddingLeft="@dimen/dim_60"
-        android:paddingTop="@dimen/dim_15">
+        android:paddingTop="10dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/img_profile"
             android:layout_width="@dimen/dim_70"
             android:layout_height="@dimen/dim_70"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dim_15"
+            android:layout_marginTop="10dp"
             android:src="@drawable/default_pic"
             app:civ_border_color="#FF3CBEA3"
             app:civ_border_width="1dp" />
@@ -48,8 +50,8 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content" />
+        android:layout_width="250dp"
+        android:layout_height="match_parent" />
 
     <Space
         android:layout_width="wrap_content"

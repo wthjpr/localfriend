@@ -7,50 +7,40 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Handler;
+import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.localfriend.adapter.CartAdapter;
 import com.localfriend.adapter.DrawerAdapter;
 import com.localfriend.application.AppConstants;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.fragments.CartFragment;
 import com.localfriend.fragments.CenteredTextFragment;
-import com.localfriend.fragments.CustomFragment;
-import com.localfriend.fragments.FragmentDrawer;
 import com.localfriend.fragments.HomeFragment;
 import com.localfriend.fragments.TiffinFragment;
+import com.localfriend.model.Cart;
 import com.localfriend.model.CategoryDetails;
 import com.localfriend.utils.AppConstant;
 import com.localfriend.utils.DrawerItem;
 import com.localfriend.utils.SimpleItem;
-import com.localfriend.utils.SpaceItem;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
@@ -58,6 +48,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,22 +57,25 @@ import java.util.List;
 import static java.sql.Types.NULL;
 
 public class MainActivity extends CustomActivity implements DrawerAdapter.OnItemSelectedListener, CustomActivity.ResponseCallback {
-    private static final int POS_DASHBOARD = 0;
-    private static final int POS_ACCOUNT = 1;
-    private static final int POS_MESSAGES = 2;
-    private static final int POS_CART = 3;
-    private static final int HELP = 4;
-    private static final int POS_LOGOUT = 5;
-    private static final int LOGOUT = 6;
+    private static final int HOME = 0;
+    private static final int ORDER = 1;
+    private static final int WISH_LIST = 2;
+    private static final int ADDRESS = 3;
+    private static final int SETTINGS = 4;
+    private static final int ABOUT_US = 5;
+    private static final int NEED_HELP = 6;
+    private static final int LOGOUT = 7;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     private Toolbar toolbar;
     private SlidingRootNav slidingRootNav;
 
     private TextView tv_home, tv_tiffin, tv_cart, tv_more;
+    public  TextView txt_cart_count;
     private ImageView img_home, img_tiffin, img_cart, img_more;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+    private TextView mTitle;
 
     // private ImageButton navBtn;
     @Override
@@ -94,7 +88,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         actionBar.setDisplayShowCustomEnabled(false);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(false);
-        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
+        mTitle = toolbar.findViewById(R.id.toolbar_title);
         mTitle.setText("Local Friend");
         actionBar.setTitle("");
         setResponseListener(this);
@@ -110,15 +104,32 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         screenTitles = loadScreenTitles();
 
         DrawerAdapter adapter = new DrawerAdapter(Arrays.asList(
-                createItemFor(POS_DASHBOARD).setChecked(true),
-                createItemFor(POS_ACCOUNT),
-                createItemFor(POS_MESSAGES),
-                createItemFor(POS_CART),
-                createItemFor(HELP),
+                createItemFor(HOME).setChecked(true),
+                createItemFor(ORDER),
+                createItemFor(WISH_LIST),
+                createItemFor(ADDRESS),
+                createItemFor(SETTINGS),
+                createItemFor(ABOUT_US),
                /* new SpaceItem(48),*/
-                createItemFor(POS_LOGOUT),
+                createItemFor(NEED_HELP),
                 createItemFor(LOGOUT)));
         adapter.setListener(this);
+        RelativeLayout v = findViewById(R.id.main_drawer_layout);
+        // transparent statusbar for marshmallow and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (toolbar
+                    != null) {
+                toolbar.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
+        }
+
+        //make full transparent statusBar
+        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+            MyApp.setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
+        }
+        if (Build.VERSION.SDK_INT >= 19) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
         if (Build.VERSION.SDK_INT >= 21) {
 
             // Set the status bar to dark-semi-transparentish
@@ -131,13 +142,19 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbar.getLayoutParams();
             lp.setMargins(0, MyApp.getApplication().getStatusBarHeight(), 0, -MyApp.getApplication().getStatusBarHeight());
 //            v.setPadding(getStatusBarHeight(), getStatusBarHeight(), getStatusBarHeight(), 0);
+            MyApp.setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
+
         RecyclerView list = findViewById(R.id.list);
+//        DividerItemDecoration itemDecorator = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+//        itemDecorator.setDrawable(ContextCompat.getDrawable(this, R.drawable.gradient_divider));
+//        list.addItemDecoration(itemDecorator);
         list.setNestedScrollingEnabled(false);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
 
-        adapter.setSelected(POS_DASHBOARD);
+        adapter.setSelected(HOME);
         toolbar.setBackgroundResource(NULL);
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
@@ -146,7 +163,135 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         TextView txt_user_name = findViewById(R.id.txt_user_name);
         txt_user_name.setText(MyApp.getApplication().readUser().getUserInfo().getFullName());
         setupUiElements();
+
         getCall(AppConstants.BASE_URL + "Category/3", "", 1);
+
+        img_home.setImageResource(R.drawable.ic_home_active);
+        tv_home.setTextColor(Color.parseColor("#275B89"));
+
+        int tabNumber = getIntent().getIntExtra(AppConstant.TAB, 0);
+        if (tabNumber != 0)
+            changeTab(tabNumber);
+
+        getCallWithHeader(AppConstant.BASE_URL + "Cart", 10);
+    }
+
+    private void changeTab(int tabNumber) {
+        switch (tabNumber) {
+            case 1:
+                mTitle.setText("Local Friend");
+                img_home.setSelected(true);
+                img_tiffin.setSelected(false);
+                img_cart.setSelected(false);
+                img_more.setSelected(false);
+
+                tv_home.setSelected(true);
+                tv_tiffin.setSelected(false);
+                tv_cart.setSelected(false);
+                tv_more.setSelected(false);
+
+                tv_home.setTextColor(Color.parseColor("#275B89"));
+                tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
+                tv_cart.setTextColor(Color.parseColor("#888F8C"));
+                tv_more.setTextColor(Color.parseColor("#888F8C"));
+
+                img_home.setImageResource(R.drawable.ic_home_active);
+                img_tiffin.setImageResource(R.drawable.ic_tifin);
+                img_cart.setImageResource(R.drawable.ic_cart);
+                img_more.setImageResource(R.drawable.ic_more);
+
+                toolbar.setBackgroundResource(NULL);
+
+                mFragmentManager = getSupportFragmentManager();
+                mFragmentTransaction = mFragmentManager.beginTransaction();
+                mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
+
+                break;
+            case 2:
+                mTitle.setText("Tiffin");
+                img_home.setSelected(false);
+                img_tiffin.setSelected(true);
+                img_cart.setSelected(false);
+                img_more.setSelected(false);
+
+                tv_home.setSelected(false);
+                tv_tiffin.setSelected(true);
+                tv_cart.setSelected(false);
+                tv_more.setSelected(false);
+
+                tv_home.setTextColor(Color.parseColor("#888F8C"));
+                tv_tiffin.setTextColor(Color.parseColor("#275B89"));
+                tv_cart.setTextColor(Color.parseColor("#888F8C"));
+                tv_more.setTextColor(Color.parseColor("#888F8C"));
+
+                img_home.setImageResource(R.drawable.ic_home);
+                img_tiffin.setImageResource(R.drawable.ic_tiffin_active);
+                img_cart.setImageResource(R.drawable.ic_cart);
+                img_more.setImageResource(R.drawable.ic_more);
+
+                toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
+
+                mFragmentManager = getSupportFragmentManager();
+                mFragmentTransaction = mFragmentManager.beginTransaction();
+                mFragmentTransaction.replace(R.id.service_container, new TiffinFragment()).commit();
+
+                break;
+            case 3:
+                mTitle.setText("Cart");
+                img_home.setSelected(false);
+                img_tiffin.setSelected(false);
+                img_cart.setSelected(true);
+                img_more.setSelected(false);
+
+                tv_home.setSelected(false);
+                tv_tiffin.setSelected(false);
+                tv_cart.setSelected(true);
+                tv_more.setSelected(false);
+
+                tv_home.setTextColor(Color.parseColor("#888F8C"));
+                tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
+                tv_cart.setTextColor(Color.parseColor("#275B89"));
+                tv_more.setTextColor(Color.parseColor("#888F8C"));
+
+                img_home.setImageResource(R.drawable.ic_home);
+                img_tiffin.setImageResource(R.drawable.ic_tifin);
+                img_cart.setImageResource(R.drawable.ic_cart_active);
+                img_more.setImageResource(R.drawable.ic_more);
+
+                toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
+
+                mFragmentManager = getSupportFragmentManager();
+                mFragmentTransaction = mFragmentManager.beginTransaction();
+                mFragmentTransaction.replace(R.id.service_container, new CartFragment()).commit();
+                break;
+            case 4:
+                mTitle.setText("More");
+                img_home.setSelected(false);
+                img_tiffin.setSelected(false);
+                img_cart.setSelected(false);
+                img_more.setSelected(true);
+
+                tv_home.setSelected(false);
+                tv_tiffin.setSelected(false);
+                tv_cart.setSelected(false);
+                tv_more.setSelected(true);
+
+                tv_home.setTextColor(Color.parseColor("#888F8C"));
+                tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
+                tv_cart.setTextColor(Color.parseColor("#888F8C"));
+                tv_more.setTextColor(Color.parseColor("#275B89"));
+
+                img_home.setImageResource(R.drawable.ic_home);
+                img_tiffin.setImageResource(R.drawable.ic_tifin);
+                img_cart.setImageResource(R.drawable.ic_cart);
+                img_more.setImageResource(R.drawable.ic_more_active);
+
+                break;
+            default:
+                break;
+
+        }
+
     }
 
     @Override
@@ -155,14 +300,16 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         } else if (position == 1) {
             startActivity(new Intent(getContext(), OrderActivity.class));
         } else if (position == 2) {
-            startActivity(new Intent(getContext(), AddressListActivity.class));
+            MyApp.showMassage(getContext(), "wish list");
         } else if (position == 3) {
-            startActivity(new Intent(getContext(), SettingsActivity.class));
+            startActivity(new Intent(getContext(), AddressListActivity.class));
         } else if (position == 4) {
-            Toast.makeText(this, "Need Help", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getContext(), SettingsActivity.class));
         } else if (position == 5) {
-            Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Need Help", Toast.LENGTH_SHORT).show();
         } else if (position == 6) {
+            Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
+        } else if (position == 7) {
             MyApp.setStatus(AppConstant.IS_LOGIN, false);
             startActivity(new Intent(getContext(), LoginSignupActivity.class));
             finish();
@@ -219,11 +366,17 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         img_cart = findViewById(R.id.img_cart);
         img_more = findViewById(R.id.img_more);
 
+        tv_home = findViewById(R.id.tv_home);
+        tv_tiffin = findViewById(R.id.tv_tiffin);
+        tv_cart = findViewById(R.id.tv_cart);
+        tv_more = findViewById(R.id.tv_more);
+        txt_cart_count = findViewById(R.id.txt_cart_count);
+        txt_cart_count.setVisibility(View.VISIBLE);
+        if (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) > 0) {
+            txt_cart_count.setVisibility(View.VISIBLE);
+            txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
+        }
 
-        tv_home = (TextView) findViewById(R.id.tv_home);
-        tv_tiffin = (TextView) findViewById(R.id.tv_tiffin);
-        tv_cart = (TextView) findViewById(R.id.tv_cart);
-        tv_more = (TextView) findViewById(R.id.tv_more);
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
         setClick(R.id.rl_tab_3);
@@ -234,7 +387,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.rl_tab_1) {
-
+            mTitle.setText("Local Friend");
             img_home.setSelected(true);
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
@@ -262,6 +415,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
 
         } else if (v.getId() == R.id.rl_tab_2) {
+            mTitle.setText("Tiffin");
             img_home.setSelected(false);
             img_tiffin.setSelected(true);
             img_cart.setSelected(false);
@@ -289,6 +443,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentTransaction.replace(R.id.service_container, new TiffinFragment()).commit();
 
         } else if (v.getId() == R.id.rl_tab_3) {
+            mTitle.setText("Cart");
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
             img_cart.setSelected(true);
@@ -315,7 +470,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new CartFragment()).commit();
         } else if (v.getId() == R.id.rl_tab_4) {
-
+            mTitle.setText("More");
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
@@ -346,22 +501,39 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
+        if (callNumber == 10) {
+            try {
+                Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
+                if (c.getCartlist().size() > 0) {
+                    txt_cart_count.setVisibility(View.VISIBLE);
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
+                } else {
+                    txt_cart_count.setVisibility(View.GONE);
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
+                }
 
-        dismissDialog();
-        Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
-        }.getType();
-        try {
-            List<CategoryDetails> catList =
-                    new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
-            if (catList.size() == 0) {
-//                MyApp.popMessage("Local Friend", "No data available for this category", getContext());
-            } else {
-                SingleInstance.getInstance().setCatList(catList);
-//                startActivity(new Intent(getContext(), FoodActivity.class));
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        } else {
+            dismissDialog();
+            Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
+            }.getType();
+            try {
+                List<CategoryDetails> catList =
+                        new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
+                if (catList.size() == 0) {
+//                MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+                } else {
+                    SingleInstance.getInstance().setCatList(catList);
+//                startActivity(new Intent(getContext(), FoodActivity.class));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     @Override

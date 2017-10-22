@@ -3,6 +3,7 @@
     <string-array name="ld_activityScreenTitles">
         <item>Home</item>
         <item>Orders</item>
+        <item>Wishlist</item>
         <item>Address</item>
         <item>Settings</item>
         <item>Need Help ?</item>
@@ -13,6 +14,7 @@
     <array name="ld_activityScreenIcons">
         <item>@drawable/menu_home</item>
         <item>@drawable/menu_orders</item>
+        <item>@drawable/menu_wishlist</item>
         <item>@drawable/menu_address</item>
         <item>@drawable/menu_settings</item>
         <item>@drawable/menu_home</item>

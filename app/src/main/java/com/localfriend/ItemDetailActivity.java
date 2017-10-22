@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.application.AppConstants;
+import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
@@ -44,7 +45,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
 
         productDetails = SingleInstance.getInstance().getSelectedProduct();
         setContentView(R.layout.activity_item_detail);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_common);
+        toolbar =  findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         setResponseListener(this);
         ActionBar actionBar = getSupportActionBar();
@@ -55,17 +56,6 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         mTitle.setText(productDetails.getName());
         actionBar.setTitle("");
 
-//        bannerSlider = (BannerSlider) findViewById(R.id.banner_slider1);
-//        List<Banner> banners = new ArrayList<>();
-//        List<Slider> sliderList = SingleInstance.getInstance().getSliderList();
-//        if (sliderList.size() == 0) {
-//            getCall(AppConstants.BASE_URL + AppConstants.SLIDER, "", 1);
-//        }
-
-//        for (int i = 0; i < sliderList.size(); i++) {
-//            String url = sliderList.get(i).getImageURL();
-//            banners.add(new RemoteBanner(url));
-//        }
         img_product = findViewById(R.id.img_product);
         try {
             Picasso.with(getContext()).load(getIntent().getStringExtra(AppConstant.EXTRA_1))
@@ -98,7 +88,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
 
         tv_description = findViewById(R.id.tv_description);
         tv_description.setText(productDetails.getuDescription());
-        tv_cost.setText("Rs. "+productDetails.getPrice());
+        tv_cost.setText("Rs. "+productDetails.getSellingPrice());
         tv_one_kg = findViewById(R.id.tv_one_kg);
         tv_two_kg = findViewById(R.id.tv_two_kg);
         tv_three_kg = findViewById(R.id.tv_three_kg);
@@ -117,13 +107,24 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.tv_add_cart) {
-            Toast.makeText(this, "Added To Cart", Toast.LENGTH_SHORT).show();
+            JSONObject o = new JSONObject();
+
+            try {
+                o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
+                o.put("oprationid", 1);
+                o.put("pDetailsId", productDetails.getId());
+                o.put("pQuantity", 1);
+                showLoadingDialog("");
+                postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Cart", o, 1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         } else if (v.getId() == R.id.tv_one_kg) {
             tv_description.setText(productDetails.getuDescription());
-            tv_cost.setText("Rs. "+productDetails.getPrice());
+            tv_cost.setText("Rs. "+productDetails.getSellingPrice());
         } else if (v.getId() == R.id.tv_two_kg) {
             tv_description.setText(productDetails.getMyList().get(1).getuDescription());
-            tv_cost.setText("Rs. "+productDetails.getMyList().get(1).getPrice());
+            tv_cost.setText("Rs. "+productDetails.getMyList().get(1).getSellingPrice());
         } else if (v.getId() == R.id.tv_three_kg) {
             Toast.makeText(this, "3 kg Added", Toast.LENGTH_SHORT).show();
         } else if (v.getId() == R.id.tv_four_kg) {
@@ -137,39 +138,27 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         if (callNumber == 1) {
-            if (o.optString("status").equals("success")) {
-                List<Slider> sliderList = null;
-                try {
-                    Type listType = new TypeToken<ArrayList<Slider>>() {
-                    }.getType();
-                    sliderList = new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
-                    SingleInstance.getInstance().setSliderList(sliderList);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                List<Banner> banners = new ArrayList<>();
-                for (Slider s : sliderList) {
-                    banners.add(new RemoteBanner(s.getImageURL()));
-                }
-
-            }
+            dismissDialog();
+            MyApp.showMassage(getContext(), o.optString("message"));
         }
 
     }
 
     @Override
     public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
-
+        dismissDialog();
     }
 
     @Override
     public void onTimeOutRetry(int callNumber) {
-
+        dismissDialog();
+        MyApp.popMessage("Error","Time-out error occurred, please try again.",getContext());
     }
 
     @Override
     public void onErrorReceived(String error) {
-
+        dismissDialog();
+        MyApp.popMessage("Error",error,getContext());
     }
 
     @Override

@@ -30,11 +30,13 @@ import com.localfriend.fragments.CartFragment;
 import com.localfriend.fragments.CustomFragment;
 import com.localfriend.fragments.HomeFragment;
 import com.localfriend.fragments.TiffinFragment;
+import com.localfriend.fragments.VegetableFragment;
 import com.localfriend.model.CategoryDetails;
 import com.localfriend.model.Product;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.Slider;
 import com.localfriend.model.StoreList;
+import com.localfriend.utils.AppConstant;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.ListHolder;
@@ -98,10 +100,10 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
         img_more = findViewById(R.id.img_more);
 
 
-        tv_home = (TextView) findViewById(R.id.tv_home);
-        tv_tiffin = (TextView) findViewById(R.id.tv_tiffin);
-        tv_cart = (TextView) findViewById(R.id.tv_cart);
-        tv_more = (TextView) findViewById(R.id.tv_more);
+        tv_home = findViewById(R.id.tv_home);
+        tv_tiffin = findViewById(R.id.tv_tiffin);
+        tv_cart = findViewById(R.id.tv_cart);
+        tv_more = findViewById(R.id.tv_more);
 
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
@@ -156,11 +158,13 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
     }
 
     private String catId;
+    private String title;
     private List<StoreList> currentStoreList;
 
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.rl_cat1) {
+            title = catList.get(0).getName();
             catId = catList.get(0).getID();
             List<String> listStore = new ArrayList<>();
             for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
@@ -172,9 +176,11 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             }
             currentStoreList = catList.get(0).getStorelist();
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
-            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener,
+                    dismissListener, cancelListener,
                     true);
         } else if (v.getId() == R.id.rl_cat2) {
+            title = catList.get(1).getName();
             catId = catList.get(1).getID();
             List<String> listStore = new ArrayList<>();
             for (int i = 0; i < catList.get(1).getStorelist().size(); i++) {
@@ -189,6 +195,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
         } else if (v.getId() == R.id.rl_cat3) {
+            title = catList.get(2).getName();
             catId = catList.get(2).getID();
             List<String> listStore = new ArrayList<>();
             for (int i = 0; i < catList.get(2).getStorelist().size(); i++) {
@@ -203,6 +210,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                     true);
         } else if (v.getId() == R.id.rl_cat4) {
+            title = catList.get(3).getName();
             catId = catList.get(3).getID();
             List<String> listStore = new ArrayList<>();
             for (int i = 0; i < catList.get(3).getStorelist().size(); i++) {
@@ -238,7 +246,8 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
 
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 1));
+            finish();
         } else if (v.getId() == R.id.rl_tab_2) {
             img_home.setSelected(false);
             img_tiffin.setSelected(true);
@@ -260,8 +269,8 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
 
-
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 2));
+            finish();
         } else if (v.getId() == R.id.rl_tab_3) {
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
@@ -283,7 +292,8 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             img_cart.setImageResource(R.drawable.ic_cart_active);
             img_more.setImageResource(R.drawable.ic_more);
 
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 3));
+            finish();
         } else if (v.getId() == R.id.rl_tab_4) {
 
             img_home.setSelected(false);
@@ -305,7 +315,8 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more_active);
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 4));
+            finish();
         }
     }
 
@@ -354,6 +365,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                         getProducts(catId, currentStoreList.get(position).getsID());
                         Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
                                 item + "], position = [" + position + "]");
+                        dialog.dismiss();
                     }
                 })
                 .setOnDismissListener(dismissListener)
@@ -386,7 +398,12 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                 ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
                 SingleInstance.getInstance().setProductData(data);
                 if (data.getProduct().size() > 0) {
-                    startActivity(new Intent(getContext(), AllActivity.class));
+                    if (title.equals("Bakery")) {
+                        startActivity(new Intent(getContext(), VegetableActivity.class).putExtra(AppConstant.EXTRA_1, title));
+                    } else {
+                        startActivity(new Intent(getContext(), AllActivity.class).putExtra(AppConstant.EXTRA_1, title));
+                    }
+
                 } else {
                     MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
                             " Please come back later.\nThank you.", getContext());

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_main"
     android:layout_width="match_parent"
-    android:background="@drawable/veg_bg"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/veg_bg">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/app_bar"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <include layout="@layout/toolbar_common" />
@@ -19,18 +20,18 @@
             android:layout_height="wrap_content"
             android:background="#F7F7F7"
             app:tabMode="scrollable"
-            app:tabTextColor="@color/gray_tab"
-            app:tabSelectedTextColor="#19598C" />
-        />
+            app:tabSelectedTextColor="#19598C"
+            app:tabTextColor="@color/gray_tab" />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
-        android:layout_above="@+id/bottom_nav_layout"
-        android:layout_below="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_nav_layout"
+        android:layout_below="@+id/app_bar"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
     <LinearLayout
         android:id="@+id/bottom_nav_layout"
         android:layout_width="match_parent"

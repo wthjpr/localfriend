@@ -1,6 +1,9 @@
 package com.localfriend.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +61,12 @@ public class SimpleAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.item_store, parent, false);
 
             viewHolder = new ViewHolder();
+
             viewHolder.textView = (TextView) view.findViewById(R.id.text_view);
+            Shader textShader = new LinearGradient(0, 0, 0, 50,
+                    new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
+                    new float[]{0, 1}, Shader.TileMode.CLAMP);
+            viewHolder.textView.getPaint().setShader(textShader);
 //            viewHolder.imageView = (ImageView) view.findViewById(R.id.image_view);
 
             view.setTag(viewHolder);

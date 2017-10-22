@@ -12,4 +12,6 @@ public class AppConstant {
     public static final String EXTRA_2 = "extra2";
     public static final String IS_LOGIN = "isLogin";
     public static final String BASE_URL = "http://www.localfriend.co.in/api/";
+    public static final String TAB = "tab";
+    public static final String CART_COUNTER = "cartCounter";
 }
