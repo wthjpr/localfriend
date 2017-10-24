@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_bg"
-    android:orientation="vertical"
+
     tools:context="com.localfriend.AddressActivity">
 
-    <include layout="@layout/toolbar_common"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/txt_add_new"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_addresses"
+        <include layout="@layout/toolbar_common"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_addresses"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dim_10"
+            android:paddingRight="@dimen/dim_10">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <com.localfriend.fonts.CustomFontTextView
+        android:id="@+id/txt_add_new"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/dim_10"
-        android:paddingRight="@dimen/dim_10">
-
-    </android.support.v7.widget.RecyclerView>
-
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dim_10"
+        android:background="@drawable/curvy_gradient_white_bg"
+        android:gravity="center"
+        android:padding="@dimen/dim_10"
+        android:text="Add New Address"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_18"
+        app:textStyle="@integer/roboto_medium" />
+</RelativeLayout>

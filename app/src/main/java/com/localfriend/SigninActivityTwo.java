@@ -42,7 +42,7 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin_two);
         setResponseListener(this);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_common);
+        toolbar =  findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);

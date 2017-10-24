@@ -12,7 +12,7 @@ import com.localfriend.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddressFragment extends Fragment {
+public class AddressFragment extends CustomFragment {
 
 
     public AddressFragment() {

@@ -1,5 +1,6 @@
 package com.localfriend;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,12 +21,14 @@ import com.localfriend.fragments.CustomFragment;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
+import com.localfriend.utils.CircleAnimationUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BreakFastActivity extends CustomActivity implements CustomActivity.ResponseCallback {
@@ -34,7 +37,7 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
     private BreakfastAdapter adapter;
     private ProductData productData = new ProductData();
     private List<ProductDetails> allProducts = new ArrayList<>();
-    private TextView tv_home, tv_tiffin, tv_cart, tv_more;
+    private TextView tv_home, tv_tiffin, tv_cart, tv_more, txt_cart_count;
     private ImageView img_home, img_tiffin, img_cart, img_more;
 
     @Override
@@ -75,11 +78,16 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
         img_more = findViewById(R.id.img_more);
 
 
-        tv_home =  findViewById(R.id.tv_home);
-        tv_tiffin =  findViewById(R.id.tv_tiffin);
-        tv_cart =  findViewById(R.id.tv_cart);
-        tv_more =  findViewById(R.id.tv_more);
+        tv_home = findViewById(R.id.tv_home);
+        tv_tiffin = findViewById(R.id.tv_tiffin);
+        tv_cart = findViewById(R.id.tv_cart);
+        tv_more = findViewById(R.id.tv_more);
+        txt_cart_count = findViewById(R.id.txt_cart_count);
 
+        if (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) > 0) {
+            txt_cart_count.setVisibility(View.VISIBLE);
+            txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
+        }
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
         setClick(R.id.rl_tab_3);
@@ -185,9 +193,9 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
         }
     }
 
-    public void addToCart(ProductDetails p) {
+    public void addToCart(ProductDetails p, ImageView view) {
         JSONObject o = new JSONObject();
-
+        makeFlyAnimation(view, p.getId());
         try {
             o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
             o.put("oprationid", 1);
@@ -226,5 +234,33 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
     public void onErrorReceived(String error) {
         dismissDialog();
         MyApp.popMessage("Error", error, getContext());
+    }
+
+    public void makeFlyAnimation(ImageView targetView, String key) {
+        HashMap<String, String> map = MyApp.getApplication().readType();
+        if (!map.containsKey(key)) {
+            map.put(key, key);
+            MyApp.getApplication().writeType(map);
+            int counter = MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER);
+            counter = counter + 1;
+            MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, counter);
+            txt_cart_count.setText("" + counter);
+        }
+        txt_cart_count.setVisibility(View.VISIBLE);
+        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(700)
+                .setDestView(txt_cart_count).setAnimationListener(new Animator.AnimatorListener() {
+            public void onAnimationStart(Animator animation) {
+            }
+
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            public void onAnimationRepeat(Animator animation) {
+            }
+        }).startAnimation();
     }
 }

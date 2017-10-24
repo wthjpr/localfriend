@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.localfriend.ItemDetailActivity;
 import com.localfriend.R;
+import com.localfriend.VegetableActivity;
 import com.localfriend.adapter.VegetableAdapter;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
@@ -62,9 +64,9 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
         return myView;
     }
 
-    public void addToCart(ProductDetails p) {
+    public void addToCart(ProductDetails p, ImageView view) {
         JSONObject o = new JSONObject();
-
+        ((VegetableActivity) getActivity()).makeFlyAnimation(view, p.getId());
         try {
             o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
             o.put("oprationid", 1);
@@ -75,7 +77,19 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
+    public void addToWish(ProductDetails p) {
+        JSONObject o = new JSONObject();
+        try {
+            o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
+            o.put("oprationid", 1);
+            o.put("pDetailsId", p.getId());
+            showLoadingDialog("");
+            postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -100,4 +114,6 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
         dismissDialog();
         MyApp.popMessage("Error", error, getContext());
     }
+
+
 }

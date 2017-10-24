@@ -1,5 +1,8 @@
 package com.localfriend;
 
+import android.animation.Animator;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -13,13 +16,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.fragments.AllFragment;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
+import com.localfriend.utils.CircleAnimationUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AllActivity extends CustomActivity {
@@ -54,7 +60,7 @@ public class AllActivity extends CustomActivity {
     }
 
     private ImageView img_home, img_tiffin, img_cart, img_more;
-    private TextView tv_home, tv_tiffin, tv_cart, tv_more;
+    private TextView tv_home, tv_tiffin, tv_cart, tv_more, txt_cart_count;
 
     private void setupUiElements() {
 
@@ -64,10 +70,17 @@ public class AllActivity extends CustomActivity {
         img_more = findViewById(R.id.img_more);
 
 
-        tv_home = (TextView) findViewById(R.id.tv_home);
-        tv_tiffin = (TextView) findViewById(R.id.tv_tiffin);
-        tv_cart = (TextView) findViewById(R.id.tv_cart);
-        tv_more = (TextView) findViewById(R.id.tv_more);
+        tv_home = findViewById(R.id.tv_home);
+        tv_tiffin = findViewById(R.id.tv_tiffin);
+        tv_cart = findViewById(R.id.tv_cart);
+        tv_more = findViewById(R.id.tv_more);
+        txt_cart_count = findViewById(R.id.txt_cart_count);
+
+        if (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) > 0) {
+            txt_cart_count.setVisibility(View.VISIBLE);
+            txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
+        }
+
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
         setClick(R.id.rl_tab_3);
@@ -98,7 +111,8 @@ public class AllActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 1));
+            finishAffinity();
 
         } else if (v.getId() == R.id.rl_tab_2) {
             img_home.setSelected(false);
@@ -120,7 +134,8 @@ public class AllActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tiffin_active);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 2));
+            finishAffinity();
 
         } else if (v.getId() == R.id.rl_tab_3) {
             img_home.setSelected(false);
@@ -142,7 +157,8 @@ public class AllActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart_active);
             img_more.setImageResource(R.drawable.ic_more);
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 3));
+            finishAffinity();
 
         } else if (v.getId() == R.id.rl_tab_4) {
 
@@ -165,8 +181,13 @@ public class AllActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more_active);
-
+            startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 4));
+            finishAffinity();
         }
+    }
+
+    private Context getContext() {
+        return AllActivity.this;
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -235,4 +256,31 @@ public class AllActivity extends CustomActivity {
         }
     }
 
+    public void makeFlyAnimation(ImageView targetView, String key) {
+        HashMap<String, String> map = MyApp.getApplication().readType();
+        if (!map.containsKey(key)) {
+            map.put(key, key);
+            MyApp.getApplication().writeType(map);
+            int counter = MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER);
+            counter = counter + 1;
+            MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, counter);
+            txt_cart_count.setText("" + counter);
+        }
+        txt_cart_count.setVisibility(View.VISIBLE);
+        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(700)
+                .setDestView(txt_cart_count).setAnimationListener(new Animator.AnimatorListener() {
+            public void onAnimationStart(Animator animation) {
+            }
+
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            public void onAnimationRepeat(Animator animation) {
+            }
+        }).startAnimation();
+    }
 }

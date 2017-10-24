@@ -6,295 +6,332 @@
     android:background="#ECF2F2"
     android:orientation="vertical"
     tools:context="com.localfriend.fragments.ScheduleFragment">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_above="@+id/tv_make_payment"
-        android:layout_height="wrap_content">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
 
-    android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/dim_10">
-
-        <com.localfriend.fonts.CustomFontTextView
-            app:textStyle="@integer/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DELIVERY ADDRESS"
-            android:textSize="@dimen/dim_18" />
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_10"
-            android:elevation="@dimen/dim_10"
-            app:cardBackgroundColor="@color/white">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dim_30">
-
-                <com.localfriend.fonts.CustomFontTextView
-                    app:textStyle="@integer/roboto_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/tv_bg"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/dim_10"
-                    android:paddingLeft="@dimen/dim_20"
-                    android:paddingRight="@dimen/dim_20"
-                    android:paddingTop="@dimen/dim_10"
-                    android:text="      +  ADD ADDRESS       "
-                    android:textSize="@dimen/dim_18" />
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <com.localfriend.fonts.CustomFontTextView
-            app:textStyle="@integer/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_15"
-            android:text="DELIVERY TIMING"
-            android:textSize="@dimen/dim_18" />
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_5"
-            android:elevation="@dimen/dim_10"
-            app:cardBackgroundColor="@color/white">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="@dimen/dim_15"
-    android:paddingBottom="@dimen/dim_15"
-    android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dim_10">
-
-                <com.localfriend.fonts.CustomFontTextView
-                    app:textStyle="@integer/roboto_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total Price :- Rs 100"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dim_18"
-                    android:textStyle="bold" />
-                <com.localfriend.fonts.CustomFontTextView
-                    app:textStyle="@integer/roboto_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="View items"
-                    android:gravity="center_vertical"
-                    android:drawableRight="@drawable/ic_expand_more"
-                    android:textSize="@dimen/dim_16"
-                    android:textColor="@color/blue_text"
-                    />
-            </RelativeLayout>
-<View
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/dim_1"
-    android:background="#DEE0E0"/>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.localfriend.fonts.CustomFontTextView
-            app:textStyle="@integer/roboto_medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dim_15"
-       android:layout_centerHorizontal="true"
-        android:text="Tomorrow, 8 AM - 10 AM"
-        android:textColor="@color/blue_text"
-        android:gravity="center_vertical"
-        android:textSize="@dimen/dim_18"
-        />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_marginTop="@dimen/dim_5"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_expand_more"
-            />
-    </RelativeLayout>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_make_payment">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_10"
-            android:elevation="@dimen/dim_10"
-            app:cardBackgroundColor="@color/white">
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/dim_15"
-                android:paddingBottom="@dimen/dim_15"
-                android:orientation="vertical">
-                <RelativeLayout
+                android:orientation="vertical"
+                android:padding="@dimen/dim_10">
+
+                <com.localfriend.fonts.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DELIVERY ADDRESS"
+                    android:textSize="16sp"
+                    app:textStyle="@integer/roboto_medium" />
+
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dim_10">
+                    android:layout_marginTop="@dimen/dim_10"
+                    android:elevation="@dimen/dim_10"
+                    app:cardBackgroundColor="@color/white">
 
-                    <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Total Price :- Rs 100"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/dim_18"
-                        android:textStyle="bold" />
-                    <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="View items"
-                        android:gravity="center_vertical"
-                        android:drawableRight="@drawable/ic_expand_more"
-                        android:textSize="@dimen/dim_16"
-                        android:textColor="@color/blue_text"
-                        />
-                </RelativeLayout>
-                <View
+                        android:padding="@dimen/dim_30">
+
+                        <com.localfriend.fonts.CustomFontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/tv_bg"
+                            android:gravity="center"
+                            android:paddingBottom="@dimen/dim_10"
+                            android:paddingLeft="@dimen/dim_20"
+                            android:paddingRight="@dimen/dim_20"
+                            android:paddingTop="@dimen/dim_10"
+                            android:text="      +  ADD ADDRESS       "
+                            android:textSize="16sp"
+                            app:textStyle="@integer/roboto_medium" />
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <com.localfriend.fonts.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_15"
+                    android:text="DELIVERY TIMING"
+                    android:textSize="16sp"
+                    app:textStyle="@integer/roboto_medium" />
+
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dim_1"
-                    android:background="#DEE0E0"/>
-                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_5"
+                    android:elevation="@dimen/dim_10"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp">
+
+                            <com.localfriend.fonts.CustomFontTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Total Price :- Rs 100"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                app:textStyle="@integer/roboto_medium" />
+
+                            <com.localfriend.fonts.CustomFontTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:drawableRight="@drawable/ic_expand_more"
+                                android:gravity="center_vertical"
+                                android:text="View items"
+                                android:textColor="@color/blue_text"
+                                android:textSize="15sp"
+                                app:textStyle="@integer/roboto_medium" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dim_1"
+                            android:background="#DEE0E0" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.localfriend.fonts.CustomFontTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:gravity="center_vertical"
+                                android:paddingTop="@dimen/dim_15"
+                                android:text="Tomorrow, 8 AM - 10 AM"
+                                android:textColor="@color/blue_text"
+                                android:textSize="14sp"
+                                app:textStyle="@integer/roboto_medium" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/dim_5"
+                                android:background="@null"
+                                android:padding="4dp"
+                                android:src="@drawable/ic_expand_more" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
-                        android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_15"
+                    android:elevation="@dimen/dim_10"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/dim_15"
-                        android:layout_centerHorizontal="true"
-                        android:text="Tomorrow, 8 AM - 10 AM"
-                        android:textColor="@color/blue_text"
-                        android:gravity="center_vertical"
-                        android:textSize="@dimen/dim_18"
-                        />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:layout_marginTop="@dimen/dim_5"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:src="@drawable/ic_expand_more"
-                        />
-                </RelativeLayout>
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp">
+
+                            <com.localfriend.fonts.CustomFontTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Total Price :- Rs 100"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                app:textStyle="@integer/roboto_medium" />
+
+                            <com.localfriend.fonts.CustomFontTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:drawableRight="@drawable/ic_expand_more"
+                                android:gravity="center_vertical"
+                                android:text="View items"
+                                android:textColor="@color/blue_text"
+                                android:textSize="15sp"
+                                app:textStyle="@integer/roboto_medium" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dim_1"
+                            android:background="#DEE0E0" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.localfriend.fonts.CustomFontTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:gravity="center_vertical"
+                                android:paddingTop="@dimen/dim_15"
+                                android:text="Tomorrow, 8 AM - 10 AM"
+                                android:textColor="@color/blue_text"
+                                android:textSize="14sp"
+                                app:textStyle="@integer/roboto_medium" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/dim_5"
+                                android:background="@null"
+                                android:padding="4dp"
+                                android:src="@drawable/ic_expand_more" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
             </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
-<android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:elevation="@dimen/dim_10"
-    app:cardBackgroundColor="@color/white"
-    >
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/dim_10"
+                app:cardBackgroundColor="@color/white">
+
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dim_5"
-        android:paddingBottom="@dimen/dim_5"
-        android:orientation="horizontal">
+        android:layout_above="@+id/tv_make_payment"
+        android:background="@color/white"
+        android:orientation="horizontal"
+         >
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingTop="@dimen/dim_15"
-            android:paddingBottom="@dimen/dim_15"
-            android:orientation="vertical">
-<com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:text="Sub Total"
-    android:textSize="@dimen/dim_18"
-    android:textColor="@color/blue_text"
-    />
-            <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <com.localfriend.fonts.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Rs. 120"
+                android:text="Sub Total"
+                android:textColor="@color/blue_text"
+                android:textSize="16sp"
+                app:textStyle="@integer/roboto_regular" />
+
+            <com.localfriend.fonts.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/dim_10"
-                android:textSize="@dimen/dim_18"
+                android:text="Rs. 120"
                 android:textColor="@color/black"
-                />
-            </LinearLayout>
+                android:textSize="16sp"
+                app:textStyle="@integer/roboto_regular" />
+        </LinearLayout>
+
         <View
             android:layout_width="@dimen/dim_1"
             android:layout_height="match_parent"
-            android:background="@color/blue_text"/>
+            android:background="@color/blue_text" />
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingTop="@dimen/dim_15"
-            android:paddingBottom="@dimen/dim_15"
-            android:orientation="vertical">
-            <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_5"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="Promo code"
+                android:padding="5dp"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/dim_1"
+            android:layout_height="match_parent"
+            android:background="@color/blue_text" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <com.localfriend.fonts.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Total Amount"
-                android:textSize="@dimen/dim_18"
                 android:textColor="@color/blue_text"
-                />
-            <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+                android:textSize="16sp"
+                app:textStyle="@integer/roboto_regular" />
+
+            <com.localfriend.fonts.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dim_10"
                 android:text="Rs. 120"
-                android:layout_marginTop="@dimen/dim_10"
-                android:textSize="@dimen/dim_18"
                 android:textColor="@color/black"
-                />
+                android:textSize="16sp"
+                app:textStyle="@integer/roboto_regular" />
         </LinearLayout>
-        <View
-            android:layout_width="@dimen/dim_1"
-            android:layout_height="match_parent"
-            android:background="@color/blue_text"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingTop="@dimen/dim_15"
-            android:paddingBottom="@dimen/dim_15"
-            android:orientation="vertical">
 
-            <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Promo code"
-                android:layout_marginTop="@dimen/dim_10"
-                android:textSize="@dimen/dim_18"
-
-                />
-        </LinearLayout>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
     </LinearLayout>
-</ScrollView>
+
     <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_make_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dim_10"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/curvy_gradient_white_bg"
         android:gravity="center"
         android:padding="@dimen/dim_10"

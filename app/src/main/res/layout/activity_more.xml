@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_cart"
+    android:orientation="vertical"
+    tools:context="com.localfriend.MoreActivity">
+
+    <include layout="@layout/toolbar_common"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.localfriend.fonts.CustomFontTextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="25dp"
+                android:text="ABOUT US"
+                android:textSize="20sp"
+                app:textStyle="@integer/roboto_medium" />
+
+            <com.localfriend.fonts.CustomFontTextView
+                android:id="@+id/txt_first_para"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/about_us"
+                android:textColor="@color/transparent"
+                android:textSize="16sp"
+                app:textStyle="@integer/roboto_medium" />
+
+            <com.localfriend.fonts.CustomFontTextView
+                android:id="@+id/txt_para_title1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:text="What we do"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:textStyle="@integer/roboto_medium" />
+
+            <com.localfriend.fonts.CustomFontTextView
+                android:id="@+id/txt_second_para"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/about_us"
+                android:textColor="@color/transparent"
+                android:textSize="16sp"
+                app:textStyle="@integer/roboto_medium" />
+
+            <com.localfriend.fonts.CustomFontTextView
+                android:id="@+id/txt_para_title2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:text="What we do"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:textStyle="@integer/roboto_medium" />
+
+            <com.localfriend.fonts.CustomFontTextView
+                android:id="@+id/txt_third_para"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/about_us"
+                android:textColor="@color/transparent"
+                android:textSize="16sp"
+                app:textStyle="@integer/roboto_medium" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.localfriend.application;
 
+import com.localfriend.model.Address;
 import com.localfriend.model.CategoryDetails;
 import com.localfriend.model.Product;
 import com.localfriend.model.ProductData;
@@ -27,6 +28,24 @@ public class SingleInstance {
     private List<CategoryDetails> catList = new ArrayList<>();
     private ProductData productData = new ProductData();
     private ProductDetails selectedProduct;
+    private boolean isUpdateDone;
+    private Address updatingAddress;
+
+    public Address getUpdatingAddress() {
+        return updatingAddress;
+    }
+
+    public void setUpdatingAddress(Address updatingAddress) {
+        this.updatingAddress = updatingAddress;
+    }
+
+    public boolean isUpdateDone() {
+        return isUpdateDone;
+    }
+
+    public void setUpdateDone(boolean updateDone) {
+        isUpdateDone = updateDone;
+    }
 
     public ProductDetails getSelectedProduct() {
         return selectedProduct;

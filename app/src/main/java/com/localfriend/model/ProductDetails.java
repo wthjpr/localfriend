@@ -17,6 +17,16 @@ public class ProductDetails {
     private String maxOrder;
     private String availableUnit;
     private String vProductFileList;
+    private boolean isWished;
+
+    public boolean isWished() {
+        return isWished;
+    }
+
+    public void setWished(boolean wished) {
+        isWished = wished;
+    }
+
     private String name;
     private String categoryId;
     private List<ProductDetails> myList;

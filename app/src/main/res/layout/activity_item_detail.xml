@@ -152,7 +152,7 @@
         android:id="@+id/tv_add_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/ll_bottom"
         android:layout_margin="@dimen/dim_16"
         android:background="@drawable/curvy_gradient_bg"
         android:gravity="center"
@@ -161,4 +161,5 @@
         android:textColor="@color/white"
         android:textSize="@dimen/dim_18"
         app:textStyle="@integer/roboto_medium" />
+    <include layout="@layout/bottom"></include>
 </RelativeLayout>

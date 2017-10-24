@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.google.gson.JsonObject;
+import com.localfriend.AllActivity;
 import com.localfriend.ItemDetailActivity;
 import com.localfriend.R;
+import com.localfriend.VegetableActivity;
 import com.localfriend.adapter.CustomAdapter;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
@@ -66,9 +69,9 @@ public class AllFragment extends CustomFragment implements CustomFragment.Respon
         return myView;
     }
 
-    public void addToCart(ProductDetails p) {
+    public void addToCart(ImageView view, ProductDetails p) {
         JSONObject o = new JSONObject();
-
+        ((AllActivity) getActivity()).makeFlyAnimation(view, p.getId());
         try {
             o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
             o.put("oprationid", 1);

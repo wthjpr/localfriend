@@ -36,6 +36,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -133,6 +134,14 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
                     }
                     txt_total.setText(string + " " + c.getSellingprice());
                     txt_subtotal.setText(string + " " + c.getTotalprice());
+
+                    HashMap<String, String> map = new HashMap<>();
+                    for (int i = 0; i < c.getCartlist().size(); i++) {
+                        map.put(c.getCartlist().get(i).getId(), c.getCartlist().get(i).getId());
+                    }
+
+                    MyApp.getApplication().writeType(map);
+
                 } else {
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
                     ((MainActivity) getActivity()).txt_cart_count.setText("0" + c.getCartlist().size());
@@ -148,7 +157,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
         } else {
             MyApp.showMassage(getContext(), o.optString("message"));
             showLoadingDialog("");
-            getCallWithHeader(AppConstant.BASE_URL, 1);
+            getCallWithHeader(AppConstant.BASE_URL + "Cart", 1);
         }
     }
 

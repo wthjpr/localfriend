@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,9 +34,6 @@ import static java.sql.Types.NULL;
 public class CheckOutActivity extends CustomActivity {
     private Toolbar toolbar;
     private TextView tv_address, tv_payment, tv_review;
-    //private TextView tv_make_payment;
-//    FragmentManager mFragmentManager;
-//    FragmentTransaction mFragmentTransaction;
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
@@ -52,11 +50,12 @@ public class CheckOutActivity extends CustomActivity {
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
         mTitle.setText("Checkout");
         actionBar.setTitle("");
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        createTabIcons();
 //        mFragmentManager = getSupportFragmentManager();
 //        mFragmentTransaction = mFragmentManager.beginTransaction();
 //        mFragmentTransaction.replace(R.id.service_container, new ScheduleFragment()).commit();
@@ -65,6 +64,68 @@ public class CheckOutActivity extends CustomActivity {
 
 
     }
+
+    private void createTabIcons() {
+
+        final TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabOne.setText("Schedule");
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_schdule, 0);
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        final TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabTwo.setText("Payment");
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_payment_blue, 0);
+        tabLayout.getTabAt(1).setCustomView(tabTwo);
+
+        final TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabThree.setText("Review");
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_done_blue, 0);
+        tabLayout.getTabAt(2).setCustomView(tabThree);
+        tabOne.setTextColor(Color.parseColor("#0891CF"));
+        tabTwo.setTextColor(Color.parseColor("#000000"));
+        tabThree.setTextColor(Color.parseColor("#000000"));
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_schdule, 0);
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_payment_gray, 0);
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_done_gray, 0);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0) {
+                    tabOne.setTextColor(Color.parseColor("#0891CF"));
+                    tabTwo.setTextColor(Color.parseColor("#000000"));
+                    tabThree.setTextColor(Color.parseColor("#000000"));
+                    tabOne.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_schdule, 0);
+                    tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_payment_gray, 0);
+                    tabThree.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_done_gray, 0);
+                } else if (tab.getPosition() == 1) {
+                    tabOne.setTextColor(Color.parseColor("#000000"));
+                    tabTwo.setTextColor(Color.parseColor("#0891CF"));
+                    tabThree.setTextColor(Color.parseColor("#000000"));
+                    tabOne.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_schedule_gray, 0);
+                    tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_payment_blue, 0);
+                    tabThree.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_done_gray, 0);
+                } else {
+                    tabOne.setTextColor(Color.parseColor("#000000"));
+                    tabTwo.setTextColor(Color.parseColor("#000000"));
+                    tabThree.setTextColor(Color.parseColor("#0891CF"));
+                    tabOne.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_schedule_gray, 0);
+                    tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_payment_gray, 0);
+                    tabThree.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.checkout_done_blue, 0);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new ScheduleFragment(), "Schedule");
@@ -195,5 +256,6 @@ public class CheckOutActivity extends CustomActivity {
 //
 //        }*/
 //    }
+
 
 }

@@ -11,8 +11,17 @@ public class Cart {
     private String totalprice;
     private String sellingprice;
     private String saveprice;
-    private String totalitem;
+    private int totalitem;
     private List<Cartlist> cartlist;
+    private List<Cartlist> wishListlist;
+
+    public List<Cartlist> getWishListlist() {
+        return wishListlist;
+    }
+
+    public void setWishListlist(List<Cartlist> wishListlist) {
+        this.wishListlist = wishListlist;
+    }
 
     public String getTotalprice() {
         return totalprice;
@@ -38,11 +47,11 @@ public class Cart {
         this.saveprice = saveprice;
     }
 
-    public String getTotalitem() {
+    public int getTotalitem() {
         return totalitem;
     }
 
-    public void setTotalitem(String totalitem) {
+    public void setTotalitem(int totalitem) {
         this.totalitem = totalitem;
     }
 

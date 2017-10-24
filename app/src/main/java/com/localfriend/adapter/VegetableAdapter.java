@@ -53,22 +53,34 @@ public class VegetableAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        ViewHolder listViewHolder;
+        final ViewHolder listViewHolder;
         if (convertView == null) {
             listViewHolder = new ViewHolder();
+
             convertView = layoutinflater.inflate(R.layout.vegetable_items, parent, false);
+            listViewHolder.img_veg = convertView.findViewById(R.id.img_veg);
+            listViewHolder.img_anim = convertView.findViewById(R.id.img_anim);
+            listViewHolder.tv_cost = convertView.findViewById(R.id.tv_cost);
+            listViewHolder.tv_cost_old = convertView.findViewById(R.id.tv_cost_old);
+            listViewHolder.tv_veg_name = convertView.findViewById(R.id.tv_veg_name);
+            listViewHolder.txt_unit = convertView.findViewById(R.id.txt_unit);
+            listViewHolder.img_wish = convertView.findViewById(R.id.img_wish);
 
-            listViewHolder.img_veg = (ImageView) convertView.findViewById(R.id.img_veg);
-            listViewHolder.tv_cost = (TextView) convertView.findViewById(R.id.tv_cost);
-            listViewHolder.tv_cost_old = (TextView) convertView.findViewById(R.id.tv_cost_old);
-            listViewHolder.tv_veg_name = (TextView) convertView.findViewById(R.id.tv_veg_name);
-            listViewHolder.txt_unit = (TextView) convertView.findViewById(R.id.txt_unit);
-
-            listViewHolder.tv_add_cart = (TextView) convertView.findViewById(R.id.tv_add_cart);
+            listViewHolder.tv_add_cart = convertView.findViewById(R.id.tv_add_cart);
             listViewHolder.tv_add_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((VegetableFragment) context).addToCart(productList.get(position));
+//                    listViewHolder.img_anim.setImageBitmap(listViewHolder.img_veg.getDrawingCache());
+                    ((VegetableFragment) context).addToCart(productList.get(position), listViewHolder.img_veg);
+                }
+            });
+
+            listViewHolder.img_wish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    productList.get(position).setWished(true);
+                    ((VegetableFragment) context).addToWish(productList.get(position));
+                    notifyDataSetChanged();
                 }
             });
 
@@ -90,6 +102,12 @@ public class VegetableAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
+        if (productList.get(position).isWished()) {
+            listViewHolder.img_wish.setImageResource(R.drawable.wish_active);
+        } else {
+            listViewHolder.img_wish.setImageResource(R.drawable.wish_deactive);
+        }
+
         listViewHolder.tv_cost_old.setText(string + " " + productList.get(position).getPrice());
         MyApp.strikeThroughText(listViewHolder.tv_cost_old);
         listViewHolder.tv_cost.setText(string + " " + productList.get(position).getSellingPrice());
@@ -98,8 +116,8 @@ public class VegetableAdapter extends BaseAdapter {
         return convertView;
     }
 
-    static class ViewHolder {
-        ImageView img_veg;
+    public static class ViewHolder {
+        ImageView img_veg, img_anim, img_wish;
         TextView tv_cost, tv_cost_old, txt_unit, tv_veg_name, tv_add_cart;
 
     }

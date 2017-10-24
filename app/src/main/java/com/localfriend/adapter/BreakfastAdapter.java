@@ -58,7 +58,7 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
 
 
     @Override
-    public void onBindViewHolder(DataHolder holder, int position) {
+    public void onBindViewHolder(final DataHolder holder, int position) {
         final ProductDetails p = allProducts.get(position);
         holder.tv_breakfast_name.setText(p.getName());
         String string = "\u20B9";
@@ -74,7 +74,7 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
         holder.tv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((BreakFastActivity)c).addToCart(p);
+                ((BreakFastActivity) c).addToCart(p, holder.rel_break_fast);
             }
         });
 //        holder.rel_break_fast.setBackgroundResource(item.getBreakFastImage());

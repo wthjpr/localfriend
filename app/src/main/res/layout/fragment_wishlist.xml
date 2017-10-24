@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_cart"
+    android:orientation="vertical"
+    tools:context="com.localfriend.fragments.CartFragment">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy_cart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/card_price"
+        android:layout_marginTop="?actionBarSize"
+        android:paddingLeft="@dimen/dim_5"
+        android:paddingRight="@dimen/dim_5"
+        android:visibility="visible" />
+
+
+    <!--<com.localfriend.fonts.CustomFontTextView-->
+        <!--android:id="@+id/tv_checkout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="@dimen/dim_5"-->
+        <!--android:layout_marginLeft="@dimen/dim_20"-->
+        <!--android:layout_marginRight="@dimen/dim_20"-->
+        <!--android:background="@drawable/rounded_gredient"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="@dimen/dim_9"-->
+        <!--android:text="Checkout"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="@dimen/dim_18"-->
+        <!--android:visibility="visible"-->
+        <!--app:textStyle="@integer/roboto_medium" />-->
+
+    <!--<com.localfriend.fonts.CustomFontTextView-->
+        <!--android:id="@+id/tv_start_shopping"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="@dimen/dim_5"-->
+        <!--android:layout_marginLeft="@dimen/dim_20"-->
+        <!--android:layout_marginRight="@dimen/dim_20"-->
+        <!--android:background="@drawable/rounded_gredient"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="@dimen/dim_8"-->
+        <!--android:text="Start Shopping"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="@dimen/dim_18"-->
+        <!--android:visibility="visible"-->
+        <!--app:textStyle="@integer/roboto_medium" />-->
+
+</RelativeLayout>

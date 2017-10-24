@@ -54,19 +54,19 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        ViewHolder listViewHolder;
+        final ViewHolder listViewHolder;
         if (convertView == null) {
             listViewHolder = new ViewHolder();
             convertView = layoutinflater.inflate(R.layout.all_items, parent, false);
 
-            listViewHolder.img_item =  convertView.findViewById(R.id.img_item);
-            listViewHolder.tv_item_cost =  convertView.findViewById(R.id.tv_item_cost);
-            listViewHolder.tv_item_name =  convertView.findViewById(R.id.tv_item_name);
-            listViewHolder.tv_add_cart =  convertView.findViewById(R.id.tv_add_cart);
+            listViewHolder.img_item = convertView.findViewById(R.id.img_item);
+            listViewHolder.tv_item_cost = convertView.findViewById(R.id.tv_item_cost);
+            listViewHolder.tv_item_name = convertView.findViewById(R.id.tv_item_name);
+            listViewHolder.tv_add_cart = convertView.findViewById(R.id.tv_add_cart);
             listViewHolder.tv_add_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((AllFragment)context).addToCart(productList.get(position));
+                    ((AllFragment) context).addToCart(listViewHolder.img_item, productList.get(position));
                 }
             });
 
@@ -75,7 +75,8 @@ public class CustomAdapter extends BaseAdapter {
             listViewHolder = (ViewHolder) convertView.getTag();
         }
         try {
-            Picasso.with(context.getActivity()).load(productList.get(position).getpGalleryFileList().get(0)).into(listViewHolder.img_item);
+            Picasso.with(context.getActivity()).load(productList.get(position).getpGalleryFileList().get(0))
+                    .into(listViewHolder.img_item);
         } catch (Exception e) {
             listViewHolder.img_item.setImageResource(R.drawable.bakery);
         }
@@ -88,7 +89,7 @@ public class CustomAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        listViewHolder.tv_item_cost.setText(string +" "+ productList.get(position).getPrice());
+        listViewHolder.tv_item_cost.setText(string + " " + productList.get(position).getPrice());
         listViewHolder.tv_item_name.setText(productList.get(position).getName());
         return convertView;
     }

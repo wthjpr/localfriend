@@ -16,55 +16,85 @@
         android:layout_below="@+id/toolbar_common"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?actionBarSize">-->
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#F7F7F7"
-                app:tabIndicatorColor="@color/colorAccent"
+                android:background="@color/white"
+                app:tabIndicatorColor="@color/colorPrimary"
                 app:tabMode="fixed"
+                app:tabIndicatorHeight="3dp"
                 app:tabSelectedTextColor="@color/colorPrimary"
                 app:tabTextColor="@color/black" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:background="@color/white"
-                android:layout_height="match_parent">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginBottom="5dp"-->
+                <!--android:background="@color/white">-->
 
-                <com.localfriend.fonts.CustomFontTextView
-                    app:textStyle="@integer/roboto_medium"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/checkout_schedule_gray"
-                    android:gravity="center"
-                    android:drawableRight="@drawable/ic_arrow_next"
-                    android:text="Schedule" />
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1">-->
 
-                <com.localfriend.fonts.CustomFontTextView
-                    app:textStyle="@integer/roboto_medium"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/checkout_payment_gray"
-                    android:drawableRight="@drawable/ic_arrow_next"
-                    android:gravity="center"
-                    android:text="Payment" />
+                    <!--<com.localfriend.fonts.CustomFontTextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:drawableLeft="@drawable/checkout_schdule"-->
+                        <!--android:drawablePadding="10dp"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="Schedule"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--app:textStyle="@integer/roboto_medium" />-->
+                <!--</RelativeLayout>-->
 
-                <com.localfriend.fonts.CustomFontTextView
-                    app:textStyle="@integer/roboto_medium"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/checkout_done_gray"
-                    android:gravity="center"
-                    android:text="Order" />
-            </LinearLayout>
-        </RelativeLayout>
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1">-->
+
+                    <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:src="@drawable/arrow" />&ndash;&gt;-->
+
+                    <!--<com.localfriend.fonts.CustomFontTextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:drawableLeft="@drawable/checkout_payment_gray"-->
+                        <!--android:drawablePadding="10dp"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="Payment"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--app:textStyle="@integer/roboto_medium" />-->
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1">-->
+
+                    <!--<com.localfriend.fonts.CustomFontTextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:drawableLeft="@drawable/checkout_done_gray"-->
+                        <!--android:drawablePadding="10dp"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="Order"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--app:textStyle="@integer/roboto_medium" />-->
+                <!--</RelativeLayout>-->
+            <!--</LinearLayout>-->
+        <!--</RelativeLayout>-->
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"

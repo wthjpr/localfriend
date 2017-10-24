@@ -144,7 +144,8 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         v.setOnClickListener(this);
         return v;
     }
-    public void postCallJsonWithAuthorization(Context c, String url, JSONObject params,final int callNumber) {
+
+    public void postCallJsonWithAuthorization(Context c, String url, JSONObject params, final int callNumber) {
         Log.d("URl:", url);
         Log.d("Request:", params.toString());
         StringEntity entity = null;
@@ -154,9 +155,43 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
             e.printStackTrace();
         }
         AsyncHttpClient client = new AsyncHttpClient();
-        client.addHeader("Authorization","bearer "+MyApp.getApplication().readUser().getData().getAccess_token());
+        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
         client.setTimeout(30000);
         client.post(c, url, entity, "application/json", new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
+                responseCallback.onJsonObjectResponseReceived(response, callNumber);
+                Log.d("Response:", response.toString());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject jsonObject) {
+                MyApp.spinnerStop();
+                responseCallback.onErrorReceived(getString(R.string.something_wrong));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                responseCallback.onErrorReceived(getString(R.string.something_wrong));
+            }
+        });
+
+    }
+
+    public void putCallJsonWithAuthorization(Context c, String url, JSONObject params, final int callNumber) {
+        Log.d("URl:", url);
+        Log.d("Request:", params.toString());
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(params.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
+        client.setTimeout(30000);
+        client.put(c, url, entity, "application/json", new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
@@ -191,6 +226,56 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         AsyncHttpClient client = new AsyncHttpClient();
         client.setTimeout(30000);
         client.post(c, url, entity, "application/json", new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
+                MyApp.spinnerStop();
+                Log.d("Response:", response.toString());
+                try {
+                    responseCallback.onJsonObjectResponseReceived(response, callNumber);
+                } catch (Exception e) {
+                    responseCallback.onErrorReceived(getString(R.string.no_data_avail));
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                MyApp.spinnerStop();
+                if (statusCode == 0) {
+                    responseCallback.onTimeOutRetry(callNumber);
+                } else {
+                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                MyApp.spinnerStop();
+                if (statusCode == 0) {
+                    responseCallback.onTimeOutRetry(callNumber);
+                } else {
+                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
+                }
+            }
+        });
+    }
+
+    public void deleteCall(Context c, String url, final int callNumber) {
+//        if (!TextUtils.isEmpty(loadingMsg))
+//            MyApp.spinnerStart(c, loadingMsg);
+        Log.d("URl:", url);
+//        Log.d("Request:", object.toString());
+        StringEntity entity = null;
+//        try {
+//            entity = new StringEntity(object.toString());
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setTimeout(30000);
+        client.delete(c, url, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
@@ -282,21 +367,24 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         void onErrorReceived(String error);
 
     }
+
     private Dialog dialog;
 
     public void dismissDialog() {
         try {
             dialog.dismiss();
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
     }
+
     public void getCallWithHeader(String url, final int callNumber) {
 //        if (!TextUtils.isEmpty(loadingMsg))
 //            MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);
 //        Log.d("Request:", p.toString());
         AsyncHttpClient client = new AsyncHttpClient();
-        client.addHeader("Authorization","bearer "+MyApp.getApplication().readUser().getData().getAccess_token());
+        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
         client.setTimeout(30000);
         client.get(url, new JsonHttpResponseHandler() {
 
@@ -334,6 +422,7 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
             }
         });
     }
+
     public void getCall(String url, String loadingMsg, final int callNumber) {
 //        if (!TextUtils.isEmpty(loadingMsg))
 //            MyApp.spinnerStart(c, loadingMsg);

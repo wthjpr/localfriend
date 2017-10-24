@@ -1,5 +1,6 @@
 package com.localfriend;
 
+import android.animation.Animator;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -35,10 +37,13 @@ import com.localfriend.application.SingleInstance;
 import com.localfriend.fragments.CartFragment;
 import com.localfriend.fragments.CenteredTextFragment;
 import com.localfriend.fragments.HomeFragment;
+import com.localfriend.fragments.MoreFragment;
 import com.localfriend.fragments.TiffinFragment;
+import com.localfriend.fragments.WishListFragment;
 import com.localfriend.model.Cart;
 import com.localfriend.model.CategoryDetails;
 import com.localfriend.utils.AppConstant;
+import com.localfriend.utils.CircleAnimationUtil;
 import com.localfriend.utils.DrawerItem;
 import com.localfriend.utils.SimpleItem;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
@@ -50,8 +55,10 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static java.sql.Types.NULL;
@@ -61,17 +68,15 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     private static final int ORDER = 1;
     private static final int WISH_LIST = 2;
     private static final int ADDRESS = 3;
-    private static final int SETTINGS = 4;
-    private static final int ABOUT_US = 5;
-    private static final int NEED_HELP = 6;
-    private static final int LOGOUT = 7;
+    private static final int NEED_HELP = 4;
+    private static final int LOGOUT = 5;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     private Toolbar toolbar;
     private SlidingRootNav slidingRootNav;
 
     private TextView tv_home, tv_tiffin, tv_cart, tv_more;
-    public  TextView txt_cart_count;
+    public TextView txt_cart_count;
     private ImageView img_home, img_tiffin, img_cart, img_more;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
@@ -108,8 +113,6 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 createItemFor(ORDER),
                 createItemFor(WISH_LIST),
                 createItemFor(ADDRESS),
-                createItemFor(SETTINGS),
-                createItemFor(ABOUT_US),
                /* new SpaceItem(48),*/
                 createItemFor(NEED_HELP),
                 createItemFor(LOGOUT)));
@@ -280,12 +283,14 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
                 tv_cart.setTextColor(Color.parseColor("#888F8C"));
                 tv_more.setTextColor(Color.parseColor("#275B89"));
-
+                toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
                 img_home.setImageResource(R.drawable.ic_home);
                 img_tiffin.setImageResource(R.drawable.ic_tifin);
                 img_cart.setImageResource(R.drawable.ic_cart);
                 img_more.setImageResource(R.drawable.ic_more_active);
-
+                mFragmentManager = getSupportFragmentManager();
+                mFragmentTransaction = mFragmentManager.beginTransaction();
+                mFragmentTransaction.replace(R.id.service_container, new MoreFragment()).commit();
                 break;
             default:
                 break;
@@ -300,16 +305,38 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         } else if (position == 1) {
             startActivity(new Intent(getContext(), OrderActivity.class));
         } else if (position == 2) {
-            MyApp.showMassage(getContext(), "wish list");
+            mTitle.setText("Wish List");
+            img_home.setSelected(false);
+            img_tiffin.setSelected(false);
+            img_cart.setSelected(false);
+            img_more.setSelected(false);
+
+            tv_home.setSelected(false);
+            tv_tiffin.setSelected(false);
+            tv_cart.setSelected(false);
+            tv_more.setSelected(false);
+
+            tv_home.setTextColor(Color.parseColor("#888F8C"));
+            tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
+            tv_cart.setTextColor(Color.parseColor("#888F8C"));
+            tv_more.setTextColor(Color.parseColor("#888F8C"));
+
+            img_home.setImageResource(R.drawable.ic_home);
+            img_tiffin.setImageResource(R.drawable.ic_tifin);
+            img_cart.setImageResource(R.drawable.ic_cart);
+            img_more.setImageResource(R.drawable.ic_more);
+
+            toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
+
+            mFragmentManager = getSupportFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.service_container, new WishListFragment()).commit();
+
         } else if (position == 3) {
             startActivity(new Intent(getContext(), AddressListActivity.class));
         } else if (position == 4) {
-            startActivity(new Intent(getContext(), SettingsActivity.class));
+            startActivity(new Intent(getContext(), NeedHelp.class));
         } else if (position == 5) {
-            Toast.makeText(this, "Need Help", Toast.LENGTH_SHORT).show();
-        } else if (position == 6) {
-            Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
-        } else if (position == 7) {
             MyApp.setStatus(AppConstant.IS_LOGIN, false);
             startActivity(new Intent(getContext(), LoginSignupActivity.class));
             finish();
@@ -470,6 +497,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new CartFragment()).commit();
         } else if (v.getId() == R.id.rl_tab_4) {
+            toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
             mTitle.setText("More");
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
@@ -490,7 +518,9 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more_active);
-
+            mFragmentManager = getSupportFragmentManager();
+            mFragmentTransaction = mFragmentManager.beginTransaction();
+            mFragmentTransaction.replace(R.id.service_container, new MoreFragment()).commit();
         }
     }
 
@@ -507,6 +537,14 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 if (c.getCartlist().size() > 0) {
                     txt_cart_count.setVisibility(View.VISIBLE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
+                    HashMap<String, String> map = MyApp.getApplication().readType();
+                    for (int i = 0; i < c.getCartlist().size(); i++) {
+                        if (!map.containsKey(c.getCartlist().get(i).getId())) {
+                            map.put(c.getCartlist().get(i).getId(), c.getCartlist().get(i).getId());
+                        }
+                    }
+
+                    MyApp.getApplication().writeType(map);
                 } else {
                     txt_cart_count.setVisibility(View.GONE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
@@ -549,5 +587,23 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     @Override
     public void onErrorReceived(String error) {
 
+    }
+
+    public void makeFlyAnimation(ImageView targetView) {
+        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(700)
+                .setDestView(txt_cart_count).setAnimationListener(new Animator.AnimatorListener() {
+            public void onAnimationStart(Animator animation) {
+            }
+
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            public void onAnimationRepeat(Animator animation) {
+            }
+        }).startAnimation();
     }
 }

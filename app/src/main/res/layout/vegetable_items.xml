@@ -32,6 +32,7 @@
             app:textStyle="@integer/roboto_medium" />
 
         <ImageView
+            android:id="@+id/img_wish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -96,4 +97,9 @@
             android:textSize="14sp"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
+    <ImageView
+        android:id="@+id/img_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" />
 </RelativeLayout>

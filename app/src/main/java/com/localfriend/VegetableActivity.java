@@ -1,5 +1,6 @@
 package com.localfriend;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,13 +17,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.fragments.VegetableFragment;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
+import com.localfriend.utils.CircleAnimationUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class VegetableActivity extends CustomActivity {
@@ -34,6 +38,7 @@ public class VegetableActivity extends CustomActivity {
     private ImageView img_home, img_tiffin, img_cart, img_more;
     private List<ProductDetails> allProducts = new ArrayList<>();
     private RelativeLayout rl_main;
+    private TextView txt_cart_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +63,7 @@ public class VegetableActivity extends CustomActivity {
                 rl_main.setBackgroundResource(R.drawable.bg_sweets);
             } else if (title.equals("Fruits")) {
                 rl_main.setBackgroundResource(R.drawable.bg_fruits);
-            }  else if (title.equals("Vegetable")) {
+            } else if (title.equals("Vegetable")) {
                 rl_main.setBackgroundResource(R.drawable.bg_fruits);
             } else {
                 rl_main.setBackgroundResource(R.drawable.bg_cart);
@@ -68,11 +73,17 @@ public class VegetableActivity extends CustomActivity {
 
         actionBar.setTitle("");
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
+        txt_cart_count = findViewById(R.id.txt_cart_count);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        if (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) > 0) {
+            txt_cart_count.setVisibility(View.VISIBLE);
+            txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
+        }
+
         setupUiElements();
     }
 
@@ -84,10 +95,10 @@ public class VegetableActivity extends CustomActivity {
         img_more = findViewById(R.id.img_more);
 
 
-        tv_home = (TextView) findViewById(R.id.tv_home);
-        tv_tiffin = (TextView) findViewById(R.id.tv_tiffin);
-        tv_cart = (TextView) findViewById(R.id.tv_cart);
-        tv_more = (TextView) findViewById(R.id.tv_more);
+        tv_home = findViewById(R.id.tv_home);
+        tv_tiffin = findViewById(R.id.tv_tiffin);
+        tv_cart = findViewById(R.id.tv_cart);
+        tv_more = findViewById(R.id.tv_more);
 
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
@@ -264,4 +275,31 @@ public class VegetableActivity extends CustomActivity {
         }
     }
 
+    public void makeFlyAnimation(ImageView targetView, String key) {
+        HashMap<String, String> map = MyApp.getApplication().readType();
+        if (!map.containsKey(key)) {
+            map.put(key, key);
+            MyApp.getApplication().writeType(map);
+            int counter = MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER);
+            counter = counter + 1;
+            MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, counter);
+            txt_cart_count.setText("" + counter);
+        }
+        txt_cart_count.setVisibility(View.VISIBLE);
+        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(700)
+                .setDestView(txt_cart_count).setAnimationListener(new Animator.AnimatorListener() {
+            public void onAnimationStart(Animator animation) {
+            }
+
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            public void onAnimationRepeat(Animator animation) {
+            }
+        }).startAnimation();
+    }
 }

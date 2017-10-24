@@ -47,6 +47,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -634,6 +635,53 @@ public class MyApp extends Application {
                 FileInputStream fileIn = new FileInputStream(path);
                 ObjectInputStream in = new ObjectInputStream(fileIn);
                 user = (User) in.readObject();
+                in.close();
+                fileIn.close();
+            } catch (StreamCorruptedException e) {
+                e.printStackTrace();
+            } catch (OptionalDataException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
+
+    public void writeType(HashMap<String,String> user) {
+        try {
+            String path = "/data/data/" + ctx.getPackageName()
+                    + "/type.ser";
+            File f = new File(path);
+            if (f.exists()) {
+                f.delete();
+            }
+            FileOutputStream fileOut = new FileOutputStream(path);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(user);
+            out.close();
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public HashMap<String,String> readType() {
+        String path = "/data/data/" + ctx.getPackageName() + "/type.ser";
+        File f = new File(path);
+        HashMap<String,String> user = new HashMap<>();
+        if (f.exists()) {
+            try {
+                System.gc();
+                FileInputStream fileIn = new FileInputStream(path);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                user = (HashMap<String,String>) in.readObject();
                 in.close();
                 fileIn.close();
             } catch (StreamCorruptedException e) {
