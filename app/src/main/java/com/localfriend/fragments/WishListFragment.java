@@ -98,6 +98,8 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
 
         } else {
             MyApp.showMassage(getContext(), o.optString("message"));
+            showLoadingDialog("");
+            getCallWithHeader(AppConstant.BASE_URL + "WishList", 1);
         }
     }
 
@@ -131,15 +133,14 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
     }
 
     public void moveToCart(Cartlist p, ImageView view) {
-        JSONObject o = new JSONObject();
         makeFlyAnimation(view, p.getProductid());
+        JSONObject o = new JSONObject();
         try {
             o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
-            o.put("oprationid", 1);
+            o.put("oprationid", 4);
             o.put("pDetailsId", p.getId());
-            o.put("pQuantity", 1);
             showLoadingDialog("");
-            postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Cart", o, "");
+            postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
         }

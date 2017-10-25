@@ -423,6 +423,52 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         });
     }
 
+
+    public void getCallWithHeaderForJsonArray(String url, final int callNumber) {
+//        if (!TextUtils.isEmpty(loadingMsg))
+//            MyApp.spinnerStart(c, loadingMsg);
+        Log.d("URl:", url);
+//        Log.d("Request:", p.toString());
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
+        client.setTimeout(30000);
+        client.get(url, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, final JSONArray response) {
+                MyApp.spinnerStop();
+                Log.d("Response:", response.toString());
+                try {
+                    responseCallback.onJsonArrayResponseReceived(response, callNumber);
+                } catch (Exception e) {
+                    responseCallback.onErrorReceived(getString(R.string.no_data_avail));
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                MyApp.spinnerStop();
+                if (statusCode == 0) {
+                    responseCallback.onTimeOutRetry(callNumber);
+                } else {
+                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                MyApp.spinnerStop();
+                if (statusCode == 0) {
+                    responseCallback.onTimeOutRetry(callNumber);
+                } else {
+                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
+                }
+            }
+        });
+    }
+
     public void getCall(String url, String loadingMsg, final int callNumber) {
 //        if (!TextUtils.isEmpty(loadingMsg))
 //            MyApp.spinnerStart(c, loadingMsg);

@@ -2,6 +2,7 @@ package com.localfriend.application;
 
 import com.localfriend.model.Address;
 import com.localfriend.model.CategoryDetails;
+import com.localfriend.model.Checkout;
 import com.localfriend.model.Product;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
@@ -30,6 +31,42 @@ public class SingleInstance {
     private ProductDetails selectedProduct;
     private boolean isUpdateDone;
     private Address updatingAddress;
+    private Checkout checkoutData;
+    private Address selectedAddress;
+    private String ShippingID;
+    private String payAmount;
+
+    public String getPayAmount() {
+        return payAmount;
+    }
+
+    public void setPayAmount(String payAmount) {
+        this.payAmount = payAmount;
+    }
+
+    public String getShippingID() {
+        return ShippingID;
+    }
+
+    public void setShippingID(String shippingID) {
+        ShippingID = shippingID;
+    }
+
+    public Address getSelectedAddress() {
+        return selectedAddress;
+    }
+
+    public void setSelectedAddress(Address selectedAddress) {
+        this.selectedAddress = selectedAddress;
+    }
+
+    public Checkout getCheckoutData() {
+        return checkoutData;
+    }
+
+    public void setCheckoutData(Checkout checkoutData) {
+        this.checkoutData = checkoutData;
+    }
 
     public Address getUpdatingAddress() {
         return updatingAddress;

@@ -3,6 +3,7 @@ package com.localfriend.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,17 +17,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aigestudio.wheelpicker.WheelPicker;
+import com.google.gson.JsonObject;
 import com.localfriend.AddressListActivity;
 import com.localfriend.CheckOutActivity;
+import com.localfriend.OrderPlacedActivity;
 import com.localfriend.R;
-import com.localfriend.adapter.AddressAdapter;
 import com.localfriend.adapter.CheckoutAdapter;
 import com.localfriend.adapter.ViewItemsAdapter;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.model.Address;
 import com.localfriend.model.Checkout;
-import com.localfriend.model.TimeStamp;
 import com.localfriend.utils.AppConstant;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
@@ -47,7 +48,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScheduleFragment extends CustomFragment implements CustomFragment.ResponseCallback {
+public class ReviewFragment extends CustomFragment implements CustomFragment.ResponseCallback {
 
     private TextView txt_ok;
     private TextView txt_toal;
@@ -56,17 +57,14 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
     private TextView txt_address_type;
     private TextView txt_name;
     private TextView txt_address;
-    private TextView txt_add_address;
-    private TextView txt_change;
     private WheelPicker mainWheel;
     private RelativeLayout rl_timestamp;
     private RecyclerView rv_items;
     private CheckoutAdapter adapter;
     private boolean isAddressSelected = false;
-    private List<HashMap<String, String>> mapList = new ArrayList<>();
 
 
-    public ScheduleFragment() {
+    public ReviewFragment() {
         // Required empty public constructor
     }
 
@@ -76,7 +74,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setResponseListener(this);
-        View myView = inflater.inflate(R.layout.fragment_schedule, container, false);
+        View myView = inflater.inflate(R.layout.fragment_review, container, false);
         rv_items = myView.findViewById(R.id.rv_items);
         rv_items.setLayoutManager(new LinearLayoutManager(getContext()));
         txt_ok = myView.findViewById(R.id.txt_ok);
@@ -85,26 +83,17 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         mainWheel = myView.findViewById(R.id.main_wheel);
         rl_timestamp = myView.findViewById(R.id.rl_timestamp);
         tv_make_payment = myView.findViewById(R.id.tv_make_payment);
-        txt_change = myView.findViewById(R.id.txt_change);
 
-        txt_add_address = myView.findViewById(R.id.txt_add_address);
         txt_address = myView.findViewById(R.id.txt_address);
         txt_name = myView.findViewById(R.id.txt_name);
         txt_address_type = myView.findViewById(R.id.txt_address_type);
-        setTouchNClick(txt_add_address);
         setClick(txt_ok);
         try {
             Checkout c = SingleInstance.getInstance().getCheckoutData();
             txt_subtotal.setText("Rs. " + c.getTotalprice());
             txt_toal.setText("Rs. " + c.getSellingprice());
-            adapter = new CheckoutAdapter(c.getCheckoutlist(), ScheduleFragment.this, false);
+            adapter = new CheckoutAdapter(c.getCheckoutlist(), ReviewFragment.this, true);
 
-            for (int i = 0; i < c.getCheckoutlist().size(); i++) {
-                HashMap<String, String> m = new HashMap<>();
-                m.put("catId", c.getCheckoutlist().get(i).getCategoryid());
-                m.put("stampId", c.getCheckoutlist().get(i).getTimestemp().get(0).getId());
-                mapList.add(m);
-            }
         } catch (Exception e) {
         }
 
@@ -112,24 +101,21 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         setTouchNClick(tv_make_payment);
 
         return myView;
+
     }
 
     private String dateString = "";
     private int selectedItemPosition = 0;
 
-    private void initWheel(final List<String> oData, final int pos, final List<TimeStamp> tList, final String catId) {
+    private void initWheel(List<String> data) {
         rl_timestamp.setVisibility(View.VISIBLE);
         mainWheel.setCurved(false);
-        mainWheel.setData(oData);
+        mainWheel.setData(data);
         mainWheel.setSelectedItemPosition(3);
         mainWheel.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
                 dateString = String.valueOf(data);
-                HashMap<String, String> reMap = new HashMap<>();
-                reMap.put("catId", catId);
-                reMap.put("stampId", tList.get(pos).getId());
-                mapList.set(position, reMap);
             }
         });
 
@@ -159,25 +145,19 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                     address += a.getAddSatate() + "";
                 }
 
-                txt_add_address.setVisibility(View.GONE);
                 txt_address.setText(address);
                 txt_address_type.setText(a.getAddType());
-                txt_change.setVisibility(View.VISIBLE);
                 txt_name.setText(a.getAddName());
             } else {
                 isAddressSelected = false;
-                txt_add_address.setVisibility(View.VISIBLE);
                 txt_address.setText("");
                 txt_address_type.setText("");
-                txt_change.setVisibility(View.GONE);
                 txt_name.setText("");
             }
         } catch (Exception e) {
             isAddressSelected = false;
-            txt_add_address.setVisibility(View.VISIBLE);
             txt_address.setText("");
             txt_address_type.setText("");
-            txt_change.setVisibility(View.GONE);
             txt_name.setText("");
         }
     }
@@ -189,43 +169,41 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
             rl_timestamp.setVisibility(View.GONE);
             MyApp.showMassage(getContext(), dateString);
         } else if (v == tv_make_payment) {
-            if (isAddressSelected) {
-                try {
-                    JSONObject o = new JSONObject();
-                    o.put("billingaddressId", SingleInstance.getInstance().getSelectedAddress().getAddID());
-                    o.put("shippingaddressId", SingleInstance.getInstance().getSelectedAddress().getAddID());
-                    JSONArray arr = new JSONArray();
-                    for (int i = 0; i < mapList.size(); i++) {
-                        JSONObject oo = new JSONObject();
-                        oo.put("categoryId", mapList.get(i).get("catId"));
-                        oo.put("timestempId", mapList.get(i).get("stampId"));
-                        arr.put(oo);
-                    }
+            JSONObject o = new JSONObject();
+            try {
+                o.put("shippingID", SingleInstance.getInstance().getShippingID());
+                o.put("transactionID", "");
+                o.put("payAmount", SingleInstance.getInstance().getPayAmount());
+                o.put("promoCode", "");
+                o.put("promoDiscount", "");
+                o.put("paymentMethod", "COD");
+                showLoadingDialog("");
+                postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Order", o, "");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-                    o.put("CategoryTimeStemplist", arr);
-                    Log.d("object", o.toString());
-                    showLoadingDialog("");
-                    postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "CheckOut", o, "");
-//                    ((CheckOutActivity) getActivity()).changeFragmentPosition(1);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else
-                MyApp.popMessage("Alert!", "Please select delivery address first.", getContext());
-        } else if (v == txt_add_address) {
-            startActivity(new Intent(getActivity(), AddressListActivity.class).putExtra(AppConstant.EXTRA_1, true));
-        } else if (v == txt_change) {
-            startActivity(new Intent(getActivity(), AddressListActivity.class).putExtra(AppConstant.EXTRA_1, true));
+//            showLoadingDialog("Thank you for your confirmation. Please do not close this mobile application while we are " +
+//                    "processing your order");
+
+
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    startActivity(new Intent(getActivity(), OrderPlacedActivity.class));
+//                    getActivity().finish();
+//                }
+//            }, 1500);
         }
     }
 
-    public void setTimingsClick(Checkout.CheckoutListData checkoutListData, int position, String catId) {
+    public void setTimingsClick(Checkout.CheckoutListData checkoutListData) {
         List<String> dateTimeData = new ArrayList<>();
         for (int i = 0; i < checkoutListData.getTimestemp().size(); i++) {
             dateTimeData.add(checkoutListData.getTimestemp().get(i).getTimedate() + " " +
                     checkoutListData.getTimestemp().get(i).getTimestemp());
         }
-        initWheel(dateTimeData, position, checkoutListData.getTimestemp(), catId);
+        initWheel(dateTimeData);
     }
 
     public void viewItemsClick(Checkout.CheckoutListData checkoutListData) {
@@ -302,13 +280,8 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         dismissDialog();
         if (o.optString("status").equals("success")) {
-            SingleInstance.getInstance().setShippingID(o.optString("ShippingID"));
-            SingleInstance.getInstance().setPayAmount(txt_toal.getText().toString());
-            ((CheckOutActivity) getActivity()).changeFragmentPosition(1);
-        } else {
-            MyApp.showMassage(getContext(), o.optString("message"));
+            startActivity(new Intent(getActivity(), OrderPlacedActivity.class));
         }
-//
     }
 
     @Override
@@ -324,7 +297,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
 
     @Override
     public void onErrorReceived(String error) {
-        MyApp.popMessage("Alert!", error, getActivity());
         dismissDialog();
+        MyApp.popMessage("Alert!", error, getActivity());
     }
 }

@@ -171,7 +171,7 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 LatLng latlng = getLocationFromAddress(getContext(), address);
                 o.put("addLatitude", latlng.latitude + "");
                 o.put("addLongitude", latlng.longitude + "");
-                o.put("addIsActive", "true");
+                o.put("addIsActive", "1");
                 o.put("addCreationTime", "");
                 o.put("addEmailID", "");
                 if (isUpdate) {

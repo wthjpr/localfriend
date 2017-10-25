@@ -109,6 +109,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
 
             txt_edit.setOnClickListener(this);
             txt_delete.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -117,6 +118,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
                 ((AddressListActivity) c).setEditClick(listdata.get(getLayoutPosition()));
             } else if (v == txt_delete) {
                 ((AddressListActivity) c).setDeleteClick(listdata.get(getLayoutPosition()));
+            } else if(v==itemView){
+                ((AddressListActivity) c).setItemClicked(listdata.get(getLayoutPosition()));
             }
 
         }

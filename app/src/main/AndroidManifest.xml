@@ -65,6 +65,11 @@
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".CheckOutActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".OrderPlacedActivity"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".FoodActivity"

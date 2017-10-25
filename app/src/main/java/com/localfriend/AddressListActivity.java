@@ -35,6 +35,7 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
     private AddressAdapter adapter;
     private TextView txt_add_new;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,4 +135,9 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
     }
 
 
+    public void setItemClicked(Address address) {
+        SingleInstance.getInstance().setSelectedAddress(address);
+        if (getIntent().getBooleanExtra(AppConstant.EXTRA_1, false))
+            finish();
+    }
 }

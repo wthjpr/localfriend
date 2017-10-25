@@ -47,6 +47,12 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
         return v;
     }
 
+    public View setClick(View v) {
+
+        v.setOnClickListener(this);
+        return v;
+    }
+
     public void postCallJsonObject(Context c, String url, JSONObject params, String loadingMsg) {
         Log.d("URl:", url);
         Log.d("Request:", params.toString());

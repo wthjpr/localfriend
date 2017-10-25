@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_history"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:id="@+id/rl_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/img_bag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:background="@null"
+            android:src="@drawable/bag" />
+
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_bag"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dim_16"
+            android:text="You have no past orders"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/dim_16"
+            app:textStyle="@integer/roboto_medium" />
+
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/tv_lets_get_started"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_label"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dim_10"
+            android:text="Lets get you started"
+            android:textSize="@dimen/dim_16"
+            app:textStyle="@integer/roboto_medium" />
+
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/tv_start_shopping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/dim_16"
+            android:background="@drawable/curvy_gradient_bg"
+            android:gravity="center"
+            android:padding="@dimen/dim_10"
+            android:text="Start Shopping"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dim_18"
+            app:textStyle="@integer/roboto_medium" />
+    </RelativeLayout>
+</LinearLayout>
