@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@drawable/main_gradient_bg"
+    android:fitsSystemWindows="true"
     tools:context="com.localfriend.SigninActivityTwo">
 
     <include layout="@layout/toolbar_common" />
@@ -38,16 +38,26 @@
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_16"
-
             />
+
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/txt_forgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Forgot Password?"
+            android:padding="5dp"
+            android:layout_gravity="right"
+            android:textColor="@color/white"
+            app:textStyle="@integer/roboto_regular" />
     </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_name"
-        android:adjustViewBounds="true"
         android:layout_marginTop="@dimen/dim_60"
+        android:adjustViewBounds="true"
         android:src="@drawable/walkthroughss" />
 
     <RelativeLayout

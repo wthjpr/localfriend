@@ -51,7 +51,7 @@ public class OrderPlacedActivity extends CustomActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.txt_track_order) {
-            startActivity(new Intent(getContext(), MainActivity.class));
+            startActivity(new Intent(getContext(), TrackOrderActivity.class));
             finishAffinity();
         } else if (v == txt_go_shopping) {
             startActivity(new Intent(getContext(), MainActivity.class));

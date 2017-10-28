@@ -16,15 +16,15 @@ public class ProductDetails {
     private String dealsPrice;
     private String maxOrder;
     private String availableUnit;
+    private boolean inWishlist;
     private String vProductFileList;
-    private boolean isWished;
 
-    public boolean isWished() {
-        return isWished;
+    public boolean isInWishlist() {
+        return inWishlist;
     }
 
-    public void setWished(boolean wished) {
-        isWished = wished;
+    public void setInWishlist(boolean inWishlist) {
+        this.inWishlist = inWishlist;
     }
 
     private String name;

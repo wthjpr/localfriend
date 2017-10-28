@@ -63,22 +63,24 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
         holder.txt_address_type.setText(a.getAddType());
         holder.txt_name.setText(a.getAddName());
         String address = "";
-        if (a.getAddDetails().length() > 0) {
-            address += a.getAddDetails() + ", ";
-        }
-        if (a.getAddDetails1().length() > 0) {
-            address += a.getAddDetails1() + ", ";
-        }
-        if (a.getAddDetails2().length() > 0) {
-            address += a.getAddDetails2() + ", ";
-        }
-        if (a.getAddZipCode().length() > 0) {
-            address += "(" + a.getAddZipCode() + ")\n";
-        }
-        if (a.getAddSatate().length() > 0) {
-            address += a.getAddSatate() + "";
-        }
+       try{
+           if (a.getAddDetails().length() > 0) {
+               address += a.getAddDetails() + ", ";
+           }
+           if (a.getAddDetails1().length() > 0) {
+               address += a.getAddDetails1() + ", ";
+           }
+           if (a.getAddDetails2().length() > 0) {
+               address += a.getAddDetails2() + ", ";
+           }
+           if (a.getAddZipCode().length() > 0) {
+               address += "(" + a.getAddZipCode() + ")\n";
+           }
+           if (a.getAddSatate().length() > 0) {
+               address += a.getAddSatate() + "";
+           }
 
+       }catch (Exception e){}
         holder.txt_address.setText(address);
 
     }

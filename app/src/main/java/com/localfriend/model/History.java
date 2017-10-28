@@ -1,5 +1,7 @@
 package com.localfriend.model;
 
+import java.util.List;
+
 /**
  * Created by SONI on 10/25/2017.
  */
@@ -15,6 +17,15 @@ public class History {
     private String Order_date;
     private String Order_ShippingID;
     private String Order_Status;
+    private List<HistoryList> orderItemlist;
+
+    public List<HistoryList> getOrderItemlist() {
+        return orderItemlist;
+    }
+
+    public void setOrderItemlist(List<HistoryList> orderItemlist) {
+        this.orderItemlist = orderItemlist;
+    }
 
     public String getOrder_Id() {
         return Order_Id;

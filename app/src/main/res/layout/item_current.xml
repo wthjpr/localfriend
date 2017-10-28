@@ -56,9 +56,9 @@
                 android:layout_below="@+id/txt_date"
                 android:layout_marginLeft="@dimen/dim_10"
                 android:layout_marginRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
                 android:padding="@dimen/dim_5"
-                android:text="No of items"
-                android:textColor="@color/gray_tab"
+                android:text="Processing"
                 android:textSize="14sp"
                 app:textStyle="@integer/roboto_regular" />
 
@@ -71,7 +71,7 @@
                 android:layout_marginRight="10dp"
                 android:padding="@dimen/dim_5"
                 android:text="No of items"
-                android:textColor="@color/gray_tab"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 app:textStyle="@integer/roboto_regular" />
 
@@ -91,6 +91,7 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
+                    android:textColor="@color/colorPrimaryDark"
                     android:paddingTop="5dp"
                     android:text="Track"
                     app:textStyle="@integer/roboto_regular" />
@@ -99,6 +100,7 @@
                     android:id="@+id/txt_view_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
                     android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@+id/txt_track"
                     android:background="@drawable/rounded_corner_green"
@@ -117,6 +119,7 @@
                     android:layout_toLeftOf="@+id/txt_track"
                     android:background="@drawable/rounded_corner_green"
                     android:paddingBottom="5dp"
+                    android:textColor="@color/colorPrimaryDark"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:paddingTop="5dp"

@@ -60,7 +60,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
         mTitle.setText(productDetails.getName());
         actionBar.setTitle("");
-
+        productId = productDetails.getId();
         img_product = findViewById(R.id.img_product);
         try {
             Picasso.with(getContext()).load(getIntent().getStringExtra(AppConstant.EXTRA_1))
@@ -124,6 +124,8 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
 
     }
 
+    private String productId;
+
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.tv_add_cart) {
@@ -132,7 +134,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
             try {
                 o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
                 o.put("oprationid", 1);
-                o.put("pDetailsId", productDetails.getId());
+                o.put("pDetailsId", productId);
                 o.put("pQuantity", 1);
                 showLoadingDialog("");
                 postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Cart", o, 1);
@@ -144,9 +146,11 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         } else if (v.getId() == R.id.tv_one_kg) {
             tv_description.setText(productDetails.getuDescription());
             tv_cost.setText("Rs. " + productDetails.getSellingPrice());
+            productId = productDetails.getId();
         } else if (v.getId() == R.id.tv_two_kg) {
             tv_description.setText(productDetails.getMyList().get(1).getuDescription());
             tv_cost.setText("Rs. " + productDetails.getMyList().get(1).getSellingPrice());
+            productId = productDetails.getMyList().get(1).getId();
         } else if (v.getId() == R.id.tv_three_kg) {
             Toast.makeText(this, "3 kg Added", Toast.LENGTH_SHORT).show();
         } else if (v.getId() == R.id.tv_four_kg) {
@@ -295,7 +299,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
             txt_cart_count.setText("" + counter);
         }
         txt_cart_count.setVisibility(View.VISIBLE);
-        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(700)
+        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(500)
                 .setDestView(txt_cart_count).setAnimationListener(new Animator.AnimatorListener() {
             public void onAnimationStart(Animator animation) {
             }

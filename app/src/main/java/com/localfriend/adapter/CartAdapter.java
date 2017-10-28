@@ -94,18 +94,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
     }
 
     class DataHolder extends RecyclerView.ViewHolder {
-        TextView tv_item_name, tv_item_cost, tv_plus, tv_counter, tv_minus, tv_unit;
+        TextView tv_item_name, tv_item_cost, tv_counter, tv_unit;
         ImageView img_btn_close;
-        ImageView img_food;
+        ImageView img_food,tv_plus,tv_minus;
 
         public DataHolder(final View itemView) {
             super(itemView);
             tv_unit = (TextView) itemView.findViewById(R.id.tv_unit);
             tv_item_name = (TextView) itemView.findViewById(R.id.tv_item_name);
             tv_item_cost = (TextView) itemView.findViewById(R.id.tv_item_cost);
-            tv_plus = (TextView) itemView.findViewById(R.id.tv_plus);
+            tv_plus =  itemView.findViewById(R.id.tv_plus);
             tv_counter = (TextView) itemView.findViewById(R.id.tv_counter);
-            tv_minus = (TextView) itemView.findViewById(R.id.tv_minus);
+            tv_minus =  itemView.findViewById(R.id.tv_minus);
             img_btn_close = itemView.findViewById(R.id.img_btn_close);
             img_food = (ImageView) itemView.findViewById(R.id.img_food);
 

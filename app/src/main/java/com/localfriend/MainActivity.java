@@ -172,14 +172,14 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         img_home.setImageResource(R.drawable.ic_home_active);
         tv_home.setTextColor(Color.parseColor("#275B89"));
 
-        int tabNumber = getIntent().getIntExtra(AppConstant.TAB, 0);
+        int tabNumber = getIntent().getIntExtra(AppConstant.TAB, -1);
         if (tabNumber != 0)
             changeTab(tabNumber);
 
         getCallWithHeader(AppConstant.BASE_URL + "Cart", 10);
     }
 
-    private void changeTab(int tabNumber) {
+    public void changeTab(int tabNumber) {
         switch (tabNumber) {
             case 1:
                 mTitle.setText("Local Friend");
@@ -302,6 +302,34 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     @Override
     public void onItemSelected(int position) {
         if (position == 0) {
+           try{
+               mTitle.setText("Local Friend");
+               img_home.setSelected(true);
+               img_tiffin.setSelected(false);
+               img_cart.setSelected(false);
+               img_more.setSelected(false);
+
+               tv_home.setSelected(true);
+               tv_tiffin.setSelected(false);
+               tv_cart.setSelected(false);
+               tv_more.setSelected(false);
+
+               tv_home.setTextColor(Color.parseColor("#275B89"));
+               tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
+               tv_cart.setTextColor(Color.parseColor("#888F8C"));
+               tv_more.setTextColor(Color.parseColor("#888F8C"));
+
+               img_home.setImageResource(R.drawable.ic_home_active);
+               img_tiffin.setImageResource(R.drawable.ic_tifin);
+               img_cart.setImageResource(R.drawable.ic_cart);
+               img_more.setImageResource(R.drawable.ic_more);
+
+               toolbar.setBackgroundResource(NULL);
+
+               mFragmentManager = getSupportFragmentManager();
+               mFragmentTransaction = mFragmentManager.beginTransaction();
+               mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
+           }catch (Exception e){}
         } else if (position == 1) {
             startActivity(new Intent(getContext(), OrderActivity.class));
         } else if (position == 2) {
@@ -398,7 +426,6 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         tv_cart = findViewById(R.id.tv_cart);
         tv_more = findViewById(R.id.tv_more);
         txt_cart_count = findViewById(R.id.txt_cart_count);
-        txt_cart_count.setVisibility(View.VISIBLE);
         if (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) > 0) {
             txt_cart_count.setVisibility(View.VISIBLE);
             txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
@@ -590,7 +617,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     }
 
     public void makeFlyAnimation(ImageView targetView) {
-        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(700)
+        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(500)
                 .setDestView(txt_cart_count).setAnimationListener(new Animator.AnimatorListener() {
             public void onAnimationStart(Animator animation) {
             }

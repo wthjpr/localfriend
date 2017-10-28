@@ -325,7 +325,7 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     public void showLoadingDialog(String message) {
         dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#88000000")));
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_loader);
 

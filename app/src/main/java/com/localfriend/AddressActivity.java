@@ -186,11 +186,11 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 o.put("addModifiedTime", "");
 
                 showLoadingDialog("");
-                if (isUpdate) {
-                    putCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Address", o, 2);
-                } else {
+//                if (isUpdate) {
+//                    putCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Address", o, 2);
+//                } else {
                     postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Address", o, 1);
-                }
+//                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

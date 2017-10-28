@@ -29,10 +29,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_corner_green_5"
-                android:paddingBottom="10dp"
+                android:paddingBottom="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:paddingTop="10dp"
+                android:textColor="@color/white"
+                android:paddingTop="5dp"
                 android:text="Office"
                 app:textStyle="@integer/roboto_medium" />
 
@@ -74,7 +75,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/rounded_corner_green"
                     android:gravity="center"
-                    android:padding="@dimen/dim_8"
+                    android:padding="@dimen/dim_5"
                     android:text="Edit"
                     android:textColor="@color/colorPrimaryDark"
                     app:textStyle="@integer/roboto_regular" />
@@ -92,7 +93,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/rounded_corner_green"
                     android:gravity="center"
-                    android:padding="@dimen/dim_8"
+                    android:padding="@dimen/dim_5"
                     android:text="Delete"
                     android:textColor="@color/colorPrimaryDark"
                     app:textStyle="@integer/roboto_regular" />

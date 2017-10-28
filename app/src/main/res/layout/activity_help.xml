@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_cart"
+    android:background="@color/light_bg"
     android:orientation="vertical"
     tools:context="com.localfriend.MoreActivity">
 
@@ -31,21 +31,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="15dp"
+                android:padding="5dp"
                 android:text="Contact Us"
-                android:textColor="@color/green_bg"
-                android:textSize="20sp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
                 app:textStyle="@integer/roboto_medium" />
 
-            <com.localfriend.fonts.CustomFontTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Contact Person : Digvijay Singh"
-                android:textColor="@color/gray_tab"
-                android:textSize="15sp"
-                app:textStyle="@integer/roboto_medium" />
+            <!--<com.localfriend.fonts.CustomFontTextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="10dp"-->
+                <!--android:text="Contact Person : Digvijay Singh"-->
+                <!--android:textColor="@color/gray_tab"-->
+                <!--android:textSize="15sp"-->
+                <!--app:textStyle="@integer/roboto_medium" />-->
 
             <com.localfriend.fonts.CustomFontTextView
                 android:layout_width="match_parent"
@@ -62,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="Email : info@localfriend.in"
                 android:textColor="@color/gray_tab"
                 android:textSize="15sp"
@@ -87,7 +88,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_gray"
         android:gravity="start"
-        android:hint="Write here..."
+        android:hint="Leave us a Question"
         android:maxLines="5"
         android:minLines="5"
         android:padding="10dp"
@@ -98,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/curvy_gradient_bg"
         android:paddingBottom="10dp"
         android:paddingLeft="60dp"

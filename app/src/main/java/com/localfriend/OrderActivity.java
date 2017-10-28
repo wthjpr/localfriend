@@ -67,21 +67,15 @@ public class OrderActivity extends CustomActivity {
 
         tabOne.setTextColor(Color.parseColor("#0891CF"));
         tabTwo.setTextColor(Color.parseColor("#000000"));
-//        tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.checkout_schdule, 0, 0, 0);
-//        tabTwo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.checkout_payment_gray, 0, 0, 0);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0) {
                     tabOne.setTextColor(Color.parseColor("#0891CF"));
                     tabTwo.setTextColor(Color.parseColor("#000000"));
-//                    tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.checkout_schdule, 0, 0, 0);
-//                    tabTwo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.checkout_payment_gray, 0, 0, 0);
                 } else if (tab.getPosition() == 1) {
                     tabOne.setTextColor(Color.parseColor("#000000"));
                     tabTwo.setTextColor(Color.parseColor("#0891CF"));
-//                    tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.checkout_schedule_gray, 0, 0, 0);
-//                    tabTwo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.checkout_payment_blue, 0, 0, 0);
                 }
             }
 

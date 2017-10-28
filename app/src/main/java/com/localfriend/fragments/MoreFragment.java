@@ -10,7 +10,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.localfriend.ChangePasswordActivity;
+import com.localfriend.FeedbackActivity;
 import com.localfriend.MoreActivity;
+import com.localfriend.ProfileActivity;
 import com.localfriend.R;
 import com.localfriend.application.MyApp;
 import com.localfriend.utils.AppConstant;
@@ -62,13 +65,13 @@ public class MoreFragment extends CustomFragment implements View.OnClickListener
         if (v == txt_about_us) {
             startActivity(new Intent(getContext(), MoreActivity.class).putExtra(AppConstant.EXTRA_1, 1));
         } else if (v == txt_profile) {
-
+            startActivity(new Intent(getContext(), ProfileActivity.class));
         } else if (v == txt_tc) {
             startActivity(new Intent(getContext(), MoreActivity.class).putExtra(AppConstant.EXTRA_1, 2));
         } else if (v == txt_change_password) {
-
+            startActivity(new Intent(getContext(), ChangePasswordActivity.class).putExtra(AppConstant.EXTRA_1, 2));
         } else if (v == txt_feedback) {
-
+            startActivity(new Intent(getActivity(), FeedbackActivity.class));
         }
     }
 

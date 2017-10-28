@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -57,7 +58,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
     private TextView txt_name;
     private TextView txt_address;
     private TextView txt_add_address;
-    private TextView txt_change;
+    private ImageView img_change;
     private WheelPicker mainWheel;
     private RelativeLayout rl_timestamp;
     private RecyclerView rv_items;
@@ -85,8 +86,8 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         mainWheel = myView.findViewById(R.id.main_wheel);
         rl_timestamp = myView.findViewById(R.id.rl_timestamp);
         tv_make_payment = myView.findViewById(R.id.tv_make_payment);
-        txt_change = myView.findViewById(R.id.txt_change);
-
+        img_change = myView.findViewById(R.id.img_change);
+        setTouchNClick(img_change);
         txt_add_address = myView.findViewById(R.id.txt_add_address);
         txt_address = myView.findViewById(R.id.txt_address);
         txt_name = myView.findViewById(R.id.txt_name);
@@ -162,14 +163,14 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                 txt_add_address.setVisibility(View.GONE);
                 txt_address.setText(address);
                 txt_address_type.setText(a.getAddType());
-                txt_change.setVisibility(View.VISIBLE);
+                img_change.setVisibility(View.VISIBLE);
                 txt_name.setText(a.getAddName());
             } else {
                 isAddressSelected = false;
                 txt_add_address.setVisibility(View.VISIBLE);
                 txt_address.setText("");
                 txt_address_type.setText("");
-                txt_change.setVisibility(View.GONE);
+                img_change.setVisibility(View.GONE);
                 txt_name.setText("");
             }
         } catch (Exception e) {
@@ -177,7 +178,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
             txt_add_address.setVisibility(View.VISIBLE);
             txt_address.setText("");
             txt_address_type.setText("");
-            txt_change.setVisibility(View.GONE);
+            img_change.setVisibility(View.GONE);
             txt_name.setText("");
         }
     }
@@ -214,7 +215,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                 MyApp.popMessage("Alert!", "Please select delivery address first.", getContext());
         } else if (v == txt_add_address) {
             startActivity(new Intent(getActivity(), AddressListActivity.class).putExtra(AppConstant.EXTRA_1, true));
-        } else if (v == txt_change) {
+        } else if (v == img_change) {
             startActivity(new Intent(getActivity(), AddressListActivity.class).putExtra(AppConstant.EXTRA_1, true));
         }
     }
@@ -238,6 +239,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
     OnClickListener clickListener = new OnClickListener() {
         @Override
         public void onClick(DialogPlus dialog, View view) {
+            dialog.dismiss();
         }
     };
     OnDismissListener dismissListener = new OnDismissListener() {
@@ -270,7 +272,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                 .setContentHolder(holder)
                 .setHeader(R.layout.header_view_item)
                 .setContentBackgroundResource(R.drawable.bg_cart)
-//                .setFooter(R.layout.footer)
+                .setFooter(R.layout.footer)
                 .setCancelable(true)
                 .setExpanded(true)
                 .setExpanded(true, ViewGroup.LayoutParams.MATCH_PARENT)

@@ -8,46 +8,25 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_history"
         android:layout_width="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
     <RelativeLayout
         android:id="@+id/rl_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/img_bag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
             android:background="@null"
-            android:src="@drawable/bag" />
+            android:src="@drawable/no_order_yet" />
 
-        <com.localfriend.fonts.CustomFontTextView
-            android:id="@+id/tv_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/img_bag"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dim_16"
-            android:text="You have no past orders"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/dim_16"
-            app:textStyle="@integer/roboto_medium" />
-
-        <com.localfriend.fonts.CustomFontTextView
-            android:id="@+id/tv_lets_get_started"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_label"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dim_10"
-            android:text="Lets get you started"
-            android:textSize="@dimen/dim_16"
-            app:textStyle="@integer/roboto_medium" />
 
         <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_start_shopping"

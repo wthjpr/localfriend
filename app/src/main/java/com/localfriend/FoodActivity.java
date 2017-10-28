@@ -386,7 +386,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
 //        storeId = "85d0c459-9025-4806-a634-2cc1553ef115";
 //        http://www.localfriend.co.in/api/product?categoryid=22&storeid=85d0c459-9025-4806-a634-2cc1553ef115
         showLoadingDialog("");
-        getCall(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, "", 1);
+        getCallWithHeader(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, 1);
 
     }
 

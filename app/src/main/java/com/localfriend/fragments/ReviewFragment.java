@@ -98,6 +98,7 @@ public class ReviewFragment extends CustomFragment implements CustomFragment.Res
         }
 
         rv_items.setAdapter(adapter);
+        rv_items.setNestedScrollingEnabled(false);
         setTouchNClick(tv_make_payment);
 
         return myView;

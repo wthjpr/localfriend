@@ -246,7 +246,7 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
 
     private void getProducts(String catId, String storeId) {
         showLoadingDialog("");
-        getCall(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, "", 1);
+        getCallWithHeader(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, 1);
 
     }
 

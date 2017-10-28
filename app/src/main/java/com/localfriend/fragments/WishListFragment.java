@@ -45,6 +45,7 @@ import java.util.HashMap;
 public class WishListFragment extends CustomFragment implements CustomFragment.ResponseCallback {
     private RecyclerView recy_cart;
     private WishListAdapter adapter;
+    private ImageView img_empty;
 
     public WishListFragment() {
 
@@ -63,6 +64,7 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
 
 
         recy_cart = myView.findViewById(R.id.recy_cart);
+        img_empty = myView.findViewById(R.id.img_empty);
         recy_cart.setLayoutManager(new LinearLayoutManager(getContext()));
 
         if (Build.VERSION.SDK_INT >= 21) {
@@ -79,17 +81,19 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
-        dismissDialog();
+
 //        {"status":"success","data":{"totalprice":0,"sellingprice":0,"saveprice":0,"totalitem":0,"cartlist":[]}}
         if (o.optString("status").equals("success") && callNumber == 1) {
+            dismissDialog();
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getWishListlist().size() > 0) {
                     adapter = new WishListAdapter(c.getWishListlist(), WishListFragment.this);
                     recy_cart.setAdapter(adapter);
-
+                    img_empty.setVisibility(View.GONE);
                 } else {
-                    MyApp.showMassage(getContext(), "No data available");
+                    img_empty.setVisibility(View.VISIBLE);
+//                    MyApp.showMassage(getContext(), "No data available");
                 }
 
             } catch (JSONException e) {
@@ -97,8 +101,9 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
             }
 
         } else {
+//            if (adapter.getItemCount() <= 1)
+//                img_empty.setVisibility(View.VISIBLE);
             MyApp.showMassage(getContext(), o.optString("message"));
-            showLoadingDialog("");
             getCallWithHeader(AppConstant.BASE_URL + "WishList", 1);
         }
     }
@@ -122,7 +127,6 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
         JSONObject o = new JSONObject();
 
         try {
-            o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
             o.put("oprationid", 3);
             o.put("pDetailsId", item.getProductid());
             showLoadingDialog("");
@@ -136,9 +140,8 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
         makeFlyAnimation(view, p.getProductid());
         JSONObject o = new JSONObject();
         try {
-            o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
             o.put("oprationid", 4);
-            o.put("pDetailsId", p.getId());
+            o.put("pDetailsId", p.getProductid());
             showLoadingDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
         } catch (JSONException e) {
@@ -157,7 +160,7 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
             ((MainActivity) getContext()).txt_cart_count.setText("" + counter);
         }
         ((MainActivity) getContext()).txt_cart_count.setVisibility(View.VISIBLE);
-        new CircleAnimationUtil().attachActivity(getActivity()).setTargetView(targetView).setMoveDuration(700)
+        new CircleAnimationUtil().attachActivity(getActivity()).setTargetView(targetView).setMoveDuration(500)
                 .setDestView(((MainActivity) getContext()).txt_cart_count).setAnimationListener(new Animator.AnimatorListener() {
             public void onAnimationStart(Animator animation) {
             }

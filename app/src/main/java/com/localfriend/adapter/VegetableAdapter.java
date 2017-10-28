@@ -67,23 +67,6 @@ public class VegetableAdapter extends BaseAdapter {
             listViewHolder.img_wish = convertView.findViewById(R.id.img_wish);
 
             listViewHolder.tv_add_cart = convertView.findViewById(R.id.tv_add_cart);
-            listViewHolder.tv_add_cart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    listViewHolder.img_anim.setImageBitmap(listViewHolder.img_veg.getDrawingCache());
-                    ((VegetableFragment) context).addToCart(productList.get(position), listViewHolder.img_veg);
-                }
-            });
-
-            listViewHolder.img_wish.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    productList.get(position).setWished(true);
-                    ((VegetableFragment) context).addToWish(productList.get(position));
-                    notifyDataSetChanged();
-                }
-            });
-
             convertView.setTag(listViewHolder);
         } else {
             listViewHolder = (ViewHolder) convertView.getTag();
@@ -102,12 +85,32 @@ public class VegetableAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        if (productList.get(position).isWished()) {
+        if (productList.get(position).isInWishlist()) {
             listViewHolder.img_wish.setImageResource(R.drawable.wish_active);
         } else {
             listViewHolder.img_wish.setImageResource(R.drawable.wish_deactive);
         }
+        listViewHolder.tv_add_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                    listViewHolder.img_anim.setImageBitmap(listViewHolder.img_veg.getDrawingCache());
+                ((VegetableFragment) context).addToCart(productList.get(position), listViewHolder.img_veg);
+            }
+        });
 
+        listViewHolder.img_wish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ((VegetableFragment) context).addToWish(productList.get(position), productList.get(position).isInWishlist());
+                if (productList.get(position).isInWishlist()) {
+                    productList.get(position).setInWishlist(false);
+                } else {
+                    productList.get(position).setInWishlist(true);
+                }
+                notifyDataSetChanged();
+            }
+        });
         listViewHolder.tv_cost_old.setText(string + " " + productList.get(position).getPrice());
         MyApp.strikeThroughText(listViewHolder.tv_cost_old);
         listViewHolder.tv_cost.setText(string + " " + productList.get(position).getSellingPrice());

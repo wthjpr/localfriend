@@ -17,6 +17,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.AllActivity;
 import com.localfriend.FoodActivity;
+import com.localfriend.MainActivity;
 import com.localfriend.R;
 import com.localfriend.VegetableActivity;
 import com.localfriend.adapter.SimpleAdapter;
@@ -114,14 +115,15 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         if (v == lrn_fruit) {
             title = "Fruits";
             showLoadingDialog("");
-            getCall(AppConstants.BASE_URL + "product?categoryid=" + 4 + "&storeid=90390cdd-f991-4539-b666-488858d60a94", "", 3);
+            getCallWithHeader(AppConstants.BASE_URL + "product?categoryid=" + 4 + "&storeid=90390cdd-f991-4539-b666-488858d60a94", 3);
         } else if (v == lrn_vegetable) {
             title = "Vegetable";
             showLoadingDialog("");
-            getCall(AppConstants.BASE_URL + "product?categoryid=" + 1 + "&storeid=90390cdd-f991-4539-b666-488858d60a94", "", 3);
+            getCallWithHeader(AppConstants.BASE_URL + "product?categoryid=" + 1 + "&storeid=90390cdd-f991-4539-b666-488858d60a94", 3);
         } else if (v == lrn_tiffin) {
-            title = "Tiffin";
-            loadCategory(3);
+//            title = "Tiffin";
+//            loadCategory(3);
+            ((MainActivity)getActivity()).changeTab(2);
         } else if (v == lrn_food) {
             title = "Fast Food";
             loadCategory(2);
@@ -157,7 +159,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 }
                 List<Banner> banners = new ArrayList<>();
                 for (Slider s : sliderList) {
-                    banners.add(new RemoteBanner(s.getImageURL()));
+                    banners.add(new RemoteBanner(s.getThumbImage()));
                 }
 
 
@@ -359,13 +361,13 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
 
     private void getProducts(String catId, String storeId) {
         showLoadingDialog("");
-        getCall(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, "", 5);
+        getCallWithHeader(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, 5);
 
     }
 
     private void getMithaiProducts(String catId, String storeId) {
         showLoadingDialog("");
-        getCall(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, "", 7);
+        getCallWithHeader(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, 7);
 
     }
 }

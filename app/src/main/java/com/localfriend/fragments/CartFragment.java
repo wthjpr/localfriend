@@ -52,6 +52,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
     private CartAdapter adapter;
     private ImageView img_empty_cart;
     private CardView card_price;
+    private RelativeLayout rl_main;
 
     public CartFragment() {
 
@@ -70,6 +71,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
                 new float[]{0, 1}, Shader.TileMode.CLAMP);
 
         card_price = myView.findViewById(R.id.card_price);
+        rl_main = myView.findViewById(R.id.rl_main);
         txt_subtotal_title = myView.findViewById(R.id.txt_subtotal_title);
         txt_total_title = myView.findViewById(R.id.txt_total_title);
         txt_subtotal_title.getPaint().setShader(textShader);
@@ -116,6 +118,8 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getCartlist().size() > 0) {
+                    rl_main.setBackgroundResource(R.drawable.bg_cart);
+                    recy_cart.setVisibility(View.VISIBLE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
                     ((MainActivity) getActivity()).txt_cart_count.setText("" + c.getCartlist().size());
                     ((MainActivity) getActivity()).txt_cart_count.setVisibility(View.VISIBLE);
@@ -143,11 +147,15 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
                     MyApp.getApplication().writeType(map);
 
                 } else {
+                    rl_main.setBackgroundResource(0);
+                    rl_main.setBackgroundColor(Color.WHITE);
+                    recy_cart.setVisibility(View.GONE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
                     ((MainActivity) getActivity()).txt_cart_count.setText("0" + c.getCartlist().size());
                     ((MainActivity) getActivity()).txt_cart_count.setVisibility(View.GONE);
                     img_empty_cart.setVisibility(View.VISIBLE);
                     tv_start_shopping.setVisibility(View.VISIBLE);
+                    card_price.setVisibility(View.GONE);
                 }
 
             } catch (JSONException e) {

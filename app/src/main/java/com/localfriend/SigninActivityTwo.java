@@ -36,13 +36,14 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
     private EditText edt_password;
     private Toolbar toolbar;
     private String Mobile;
+    private TextView txt_forgot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin_two);
         setResponseListener(this);
-        toolbar =  findViewById(R.id.toolbar_common);
+        toolbar = findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -80,9 +81,11 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
     private void setupUiElement() {
 
         setTouchNClick(R.id.tv_btn_signin);
+        setTouchNClick(R.id.txt_forgot);
 
 
         edt_password = findViewById(R.id.edt_password);
+        txt_forgot = findViewById(R.id.txt_forgot);
 
         tv_btn_signin = findViewById(R.id.tv_btn_signin);
         Shader textShader = new LinearGradient(0, 0, 0, 50,
@@ -99,7 +102,13 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
                 edt_password.setError("Enter the Password");
                 return;
             }
+//            if (TextUtils.isEmpty(edt_password.getText().toString())) {
+//                edt_password.setError("Enter the Password");
+//                return;
+//            }
             userLogin();
+        } else if (v == txt_forgot) {
+            startActivity(new Intent(getContext(), SignupActivityThree.class).putExtra("phone", Mobile).putExtra(AppConstant.EXTRA_1, true));
         }
 
     }

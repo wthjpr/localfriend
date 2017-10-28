@@ -267,7 +267,7 @@ public class AllActivity extends CustomActivity {
             txt_cart_count.setText("" + counter);
         }
         txt_cart_count.setVisibility(View.VISIBLE);
-        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(700)
+        new CircleAnimationUtil().attachActivity(this).setTargetView(targetView).setMoveDuration(500)
                 .setDestView(txt_cart_count).setAnimationListener(new Animator.AnimatorListener() {
             public void onAnimationStart(Animator animation) {
             }

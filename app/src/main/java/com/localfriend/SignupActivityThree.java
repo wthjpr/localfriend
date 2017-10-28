@@ -34,6 +34,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.localfriend.application.MyApp;
+import com.localfriend.utils.AppConstant;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -58,13 +59,14 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
     private boolean isProvider = false;
     private String phoneNumber;
     private String userName;
+    private boolean isForgot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_three);
         mAuth = FirebaseAuth.getInstance();
-        toolbar = (Toolbar) findViewById(R.id.toolbar_common);
+        toolbar = findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -96,12 +98,22 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
         }
         userName = getIntent().getStringExtra("name");
         phoneNumber = getIntent().getStringExtra("phone");
+
+        isForgot = getIntent().getBooleanExtra(AppConstant.EXTRA_1, false);
+
         mb_no = "+91" + phoneNumber;
         setupUiElement();
         showCounter();
     }
 
     private void verifyPhoneNumberWithCode(String verificationId, String code) {
+        if (isForgot) {
+            Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
+            intent.putExtra("name", userName);
+            intent.putExtra(AppConstant.EXTRA_2, phoneNumber);
+            startActivity(intent);
+            return;
+        }
         if (code.equals("111111")) {
             Intent intent = new Intent(getContext(), SignupActivityFour.class);
             intent.putExtra("name", userName);
@@ -146,7 +158,6 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.tv_btn_next) {
-
 
 
 //            String code = edt_code.getText().toString();
@@ -252,7 +263,13 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
                             Log.d("phone", "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
                             FirebaseAuth.getInstance().signOut();
-
+                            if (isForgot) {
+                                Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
+                                intent.putExtra("name", userName);
+                                intent.putExtra(AppConstant.EXTRA_2, phoneNumber);
+                                startActivity(intent);
+                                return;
+                            }
                             Intent intent = new Intent(getContext(), SignupActivityFour.class);
                             intent.putExtra("name", userName);
                             intent.putExtra("phone", phoneNumber);
@@ -261,7 +278,13 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
 
                         } else {
-
+                            if (isForgot) {
+                                Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
+                                intent.putExtra("name", userName);
+                                intent.putExtra(AppConstant.EXTRA_2, phoneNumber);
+                                startActivity(intent);
+                                return;
+                            }
                             if (enteredPin.toString().equals("111111")) {
 
 

@@ -20,6 +20,7 @@ import com.localfriend.application.SingleInstance;
 import com.localfriend.model.Address;
 import com.localfriend.model.CategoryDetails;
 import com.localfriend.utils.AppConstant;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,15 +93,29 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
 
     public void setDeleteClick(Address address) {
         showLoadingDialog("");
-        deleteCall(getContext(), AppConstant.BASE_URL + "Address/" + address.getAddID(), 2);
+//        JSONObject o = new JSONObject();
+//        try {
+//            o.put("addID", address.getAddID());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        RequestParams p = new RequestParams();
+        p.put("addressid",address.getAddID());
+        postCall10Sec(getContext(), AppConstant.BASE_URL + "Address/Delete", p,"", 3);
     }
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
-        dismissDialog();
+
         if (callNumber == 2) {
+            dismissDialog();
             MyApp.showMassage(getContext(), o.optString("message"));
+        }else if(callNumber==3){
+            MyApp.showMassage(getContext(), o.optString("message"));
+            getCallWithHeader(AppConstant.BASE_URL + "Address", 1);
+            return;
         }
+        dismissDialog();
         Type listType = new TypeToken<ArrayList<Address>>() {
         }.getType();
         try {

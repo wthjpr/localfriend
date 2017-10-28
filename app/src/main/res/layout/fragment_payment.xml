@@ -29,13 +29,14 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Please Choose Your Payment Method"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_18"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
                 app:textStyle="@integer/roboto_medium" />
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dim_10"
+                android:layout_margin="15dp"
                 app:cardElevation="@dimen/dim_5">
 
                 <RelativeLayout
@@ -43,7 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:padding="@dimen/dim_10">
+                    android:padding="8dp">
 
                     <com.localfriend.fonts.CustomFontTextView
                         android:layout_width="wrap_content"

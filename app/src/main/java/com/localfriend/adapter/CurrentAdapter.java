@@ -1,9 +1,11 @@
 package com.localfriend.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +14,11 @@ import android.widget.TextView;
 
 import com.localfriend.AddressListActivity;
 import com.localfriend.R;
+import com.localfriend.TrackOrderActivity;
+import com.localfriend.fragments.CurrentFragment;
 import com.localfriend.model.Address;
 import com.localfriend.model.History;
+import com.localfriend.utils.AppConstant;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -26,7 +31,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.DataHold
     private List<History> listdata;
     private LayoutInflater inflater;
     private ItemClickCallback itemclickcallback;
-    private Context c;
+    private Fragment c;
 
     public interface ItemClickCallback {
         void onItemClick(int p);
@@ -40,8 +45,8 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.DataHold
         this.itemclickcallback = itemClickCallback;
     }
 
-    public CurrentAdapter(List<History> listdata, Context c) {
-        this.inflater = LayoutInflater.from(c);
+    public CurrentAdapter(List<History> listdata, Fragment c) {
+        this.inflater = LayoutInflater.from(c.getContext());
         this.listdata = listdata;
         this.c = c;
     }
@@ -59,7 +64,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.DataHold
     @Override
     public void onBindViewHolder(DataHolder holder, int position) {
         History a = listdata.get(position);
-        holder.txt_order_id.setText("Order ID : LF" + a.getOrder_Id());
+        holder.txt_order_id.setText("Order ID : LF_ " + a.getOrder_Id());
         holder.txt_date.setText(a.getOrder_date());
         String string = "";
         byte[] utf8 = null;
@@ -71,7 +76,8 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.DataHold
         }
 
         holder.txt_price.setText(string + a.getOrder_SubTotal());
-        holder.txt_items_count.setText("No. of items: " + a.getOrder_TotalProduct());
+//        holder.txt_items_count.setText("No. of items: " + a.getOrder_TotalProduct());
+        holder.txt_items_count.setText(a.getOrder_Status());
 
     }
 
@@ -82,7 +88,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.DataHold
 
 
     class DataHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView txt_order_id, txt_date, txt_items_count, txt_price;
+        TextView txt_order_id, txt_date, txt_items_count, txt_price, txt_cancel, txt_view_details, txt_track;
 
 
         public DataHolder(final View itemView) {
@@ -91,6 +97,9 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.DataHold
             txt_date = itemView.findViewById(R.id.txt_date);
             txt_items_count = itemView.findViewById(R.id.txt_items_count);
             txt_price = itemView.findViewById(R.id.txt_price);
+            txt_cancel = itemView.findViewById(R.id.txt_cancel);
+            txt_view_details = itemView.findViewById(R.id.txt_view_details);
+            txt_track = itemView.findViewById(R.id.txt_track);
 
             Shader textShader = new LinearGradient(0, 0, 0, 50,
                     new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
@@ -100,12 +109,20 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.DataHold
 //            txt_edit.setOnClickListener(this);
 //            txt_delete.setOnClickListener(this);
             itemView.setOnClickListener(this);
+            txt_cancel.setOnClickListener(this);
+            txt_view_details.setOnClickListener(this);
+            txt_track.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
-
+            if (v == txt_cancel) {
+                ((CurrentFragment) c).cancelClicked(listdata.get(getLayoutPosition()).getOrder_Id());
+            } else if (v == txt_view_details) {
+                ((CurrentFragment) c).getOrderDetails(listdata.get(getLayoutPosition()).getOrder_Id());
+            } else if (v == txt_track) {
+                c.startActivity(new Intent(c.getContext(), TrackOrderActivity.class).putExtra(AppConstant.EXTRA_1, true));
+            }
         }
     }
 

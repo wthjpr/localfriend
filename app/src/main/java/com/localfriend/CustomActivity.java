@@ -31,6 +31,8 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.message.BasicHeader;
+import cz.msebera.android.httpclient.protocol.HTTP;
 
 /**
  * This is a common activity that all other activities of the app can extend to
@@ -318,8 +320,15 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         Log.d("URl:", url);
         Log.d("Request:", p.toString());
         AsyncHttpClient client = new AsyncHttpClient();
+        Header[] headers = new Header[2];
+        Header h = new BasicHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
+        Header h1 = new BasicHeader("Content-Type", "application/x-www-form-urlencoded");
+        headers[0] = h;
+        headers[1] = h1;
         client.setTimeout(10000);
-        client.post(url, p, new JsonHttpResponseHandler() {
+//        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
+//        client.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        client.post(c, url, headers, p, "application/json", new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
@@ -516,7 +525,7 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
     public void showLoadingDialog(String message) {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#88000000")));
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_loader);
 

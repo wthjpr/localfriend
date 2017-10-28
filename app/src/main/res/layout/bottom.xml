@@ -27,15 +27,15 @@
             android:background="@null"
             android:src="@drawable/ic_home" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/img_home"
             android:layout_centerHorizontal="true"
-            android:text="Home"
+            android:text="HOME"
             android:textColor="#888F8C"
-            android:textSize="@dimen/dim_14"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
@@ -56,16 +56,15 @@
             android:background="@null"
             android:src="@drawable/ic_tifin" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_tiffin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/img_tiffin"
             android:layout_centerHorizontal="true"
-            android:text="Tiffin"
+            android:text="TIFFIN"
             android:textColor="#888F8C"
-
-            android:textSize="@dimen/dim_14"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
@@ -90,26 +89,24 @@
         <TextView
             android:id="@+id/txt_cart_count"
             android:layout_width="20dp"
-            android:visibility="gone"
             android:layout_height="20dp"
             android:layout_alignRight="@+id/tv_cart"
             android:layout_marginRight="-5dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/counter_cart"
             android:gravity="center"
-            android:text="9"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="gone" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/img_cart"
             android:layout_centerHorizontal="true"
-            android:text="Cart"
+            android:text="CART"
             android:textColor="#888F8C"
-            android:textSize="@dimen/dim_14"
-
+            android:textSize="12sp"
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
@@ -130,17 +127,16 @@
             android:background="@null"
             android:src="@drawable/ic_more" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/img_more"
             android:layout_centerHorizontal="true"
-            android:text="More"
+            android:text="MORE"
             android:textColor="#888F8C"
-            android:textSize="@dimen/dim_14"
+            android:textSize="12sp"
             android:textStyle="bold"
-
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 

@@ -79,17 +79,32 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
         }
     }
 
-    public void addToWish(ProductDetails p) {
-        JSONObject o = new JSONObject();
-        try {
-            o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
-            o.put("oprationid", 1);
-            o.put("pDetailsId", p.getId());
-            showLoadingDialog("");
-            postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
-        } catch (JSONException e) {
-            e.printStackTrace();
+    public void addToWish(ProductDetails p,boolean isWish) {
+        if(isWish){
+            JSONObject o = new JSONObject();
+
+            try {
+                o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
+                o.put("oprationid", 3);
+                o.put("pDetailsId", p.getId());
+                showLoadingDialog("");
+                postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            JSONObject o = new JSONObject();
+            try {
+                o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
+                o.put("oprationid", 1);
+                o.put("pDetailsId", p.getId());
+                showLoadingDialog("");
+                postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     @Override
