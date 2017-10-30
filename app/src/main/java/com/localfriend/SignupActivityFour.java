@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,8 +20,10 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.localfriend.application.MyApp;
+import com.localfriend.model.User;
 import com.localfriend.utils.AppConstant;
 import com.loopj.android.http.RequestParams;
 
@@ -41,13 +45,13 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_four);
         setResponseListener(this);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_common);
+        toolbar =  findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
+        TextView mTitle =  toolbar.findViewById(R.id.toolbar_title_common);
         mTitle.setText("SIGN UP");
         actionBar.setTitle("");
         toolbar.setBackgroundResource(NULL);
@@ -80,10 +84,13 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
 
         setTouchNClick(R.id.tv_btn_signup);
 
-        signup_edt_password = (EditText) findViewById(R.id.signup_edt_password);
+        signup_edt_password =  findViewById(R.id.signup_edt_password);
 
-        tv_btn_signup = (TextView) findViewById(R.id.tv_btn_signup);
-
+        tv_btn_signup =  findViewById(R.id.tv_btn_signup);
+        Shader textShader = new LinearGradient(0, 0, 0, 50,
+                new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
+                new float[]{0, 1}, Shader.TileMode.CLAMP);
+        tv_btn_signup.getPaint().setShader(textShader);
 
     }
 
@@ -121,23 +128,23 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
 
     private void phVerification() {
 
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.signup_dialog);
-
-
-        TextView tv_ok = (TextView) dialog.findViewById(R.id.tv_ok);
-
-        tv_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finishAffinity();
-                startActivity(new Intent(getContext(), LoginSignupActivity.class));
-            }
-        });
-
-
-        dialog.show();
+//        final Dialog dialog = new Dialog(this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(R.layout.signup_dialog);
+//
+//
+//        TextView tv_ok = (TextView) dialog.findViewById(R.id.tv_ok);
+//
+//        tv_ok.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finishAffinity();
+//                startActivity(new Intent(getContext(), LoginSignupActivity.class));
+//            }
+//        });
+//
+//
+//        dialog.show();
 
     }
 
@@ -152,7 +159,8 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
             dismissDialog();
             if (o.optString("status").equals("success")) {
                 try {
-                    phVerification();
+//                    phVerification();
+                    userLogin();
                 } catch (JsonSyntaxException ee) {
 
                 }
@@ -161,7 +169,39 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
                 return;
             }
 
+        } else if(callNumber == 2){
+            if (o.optString("status").equals("Success")) {
+                try {
+                    MyApp.setStatus(AppConstant.IS_LOGIN, true);
+                    User u = new Gson().fromJson(o.toString(), User.class);
+                    MyApp.getApplication().writeUser(u);
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    startActivity(intent);
+                    finishAffinity();
+                } catch (JsonSyntaxException ee) {
+
+                }
+            } else {
+                MyApp.popFinishableMessage("Alert!", o.optString("message"), SignupActivityFour.this);
+                return;
+            }
+            /*Intent intent = new Intent(PhoneVerificationActivity.this, SucessfullLoginActivity.class);
+            intent.putExtra("ezy", value);
+            startActivity(intent);*/
         }
+
+    }
+
+    private void userLogin() {
+        JSONObject o = new JSONObject();
+        try {
+            o.put("MobileNumber", phoneNumber);
+            o.put("Password", signup_edt_password.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        showLoadingDialog("");
+        postCall(getContext(), AppConstant.BASE_URL + "Account/Login", o, "", 2);
 
     }
 

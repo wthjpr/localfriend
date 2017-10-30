@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.localfriend.AddressListActivity;
 import com.localfriend.R;
+import com.localfriend.application.MyApp;
 import com.localfriend.fragments.ReviewFragment;
 import com.localfriend.fragments.ScheduleFragment;
 import com.localfriend.model.Checkout;
@@ -26,7 +27,7 @@ import java.util.List;
  */
 
 public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHolder> {
-    private List<Checkout.CheckoutListData> listdata;
+    public List<Checkout.CheckoutListData> listdata;
     private LayoutInflater inflater;
     private Fragment c;
     private boolean isReview;
@@ -54,7 +55,12 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHo
         Checkout.CheckoutListData a = listdata.get(position);
         holder.txt_category.setText(a.getCategoryname());
         holder.txt_price.setText("Total Price :- " + a.getPayamount());
-        holder.select_time.setText(a.getTimestemp().get(0).getTimedate() + " " + a.getTimestemp().get(0).getTimestemp());
+        try {
+            holder.select_time.setText(MyApp.parseDateToddMMMyyyy(a.getTimestemp().get(a.getSelection()).getTimedate())
+                    + "      " + a.getTimestemp().get(a.getSelection()).getTimestemp());
+        } catch (Exception e) {
+            holder.select_time.setText("Not available");
+        }
     }
 
     @Override
@@ -63,15 +69,17 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHo
     }
 
 
+
     class DataHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView txt_view_items, select_time, txt_category, txt_price;
-        ImageView img_select_time;
+        ImageView img_select_time, img_view_items;
 
 
         public DataHolder(final View itemView) {
             super(itemView);
             img_select_time = itemView.findViewById(R.id.img_select_time);
             txt_view_items = itemView.findViewById(R.id.txt_view_items);
+            img_view_items = itemView.findViewById(R.id.img_view_items);
             select_time = itemView.findViewById(R.id.select_time);
             txt_category = itemView.findViewById(R.id.txt_category);
             txt_price = itemView.findViewById(R.id.txt_price);
@@ -86,6 +94,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHo
             img_select_time.setOnClickListener(this);
 //            select_time.setOnClickListener(this);
             txt_view_items.setOnClickListener(this);
+            img_view_items.setOnClickListener(this);
         }
 
         @Override
@@ -95,8 +104,13 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHo
                     ((ReviewFragment) c).viewItemsClick(listdata.get(getLayoutPosition()));
                 else
                     ((ScheduleFragment) c).viewItemsClick(listdata.get(getLayoutPosition()));
+            } else if (v == img_view_items) {
+                if (isReview)
+                    ((ReviewFragment) c).viewItemsClick(listdata.get(getLayoutPosition()));
+                else
+                    ((ScheduleFragment) c).viewItemsClick(listdata.get(getLayoutPosition()));
             } else if (v == img_select_time) {
-                ((ScheduleFragment) c).setTimingsClick(listdata.get(getLayoutPosition()),getLayoutPosition(),
+                ((ScheduleFragment) c).setTimingsClick(listdata.get(getLayoutPosition()), getLayoutPosition(),
                         listdata.get(getLayoutPosition()).getCategoryid());
             }
         }

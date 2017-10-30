@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -51,16 +52,16 @@ import java.util.List;
 public class ScheduleFragment extends CustomFragment implements CustomFragment.ResponseCallback {
 
     private TextView txt_ok;
-    private TextView txt_toal;
+    private TextView txt_total;
     private TextView txt_subtotal;
     private TextView tv_make_payment;
     private TextView txt_address_type;
     private TextView txt_name;
     private TextView txt_address;
-    private TextView txt_add_address;
+    private ImageView txt_add_address;
     private ImageView img_change;
     private WheelPicker mainWheel;
-    private RelativeLayout rl_timestamp;
+    private FrameLayout rl_timestamp;
     private RecyclerView rv_items;
     private CheckoutAdapter adapter;
     private boolean isAddressSelected = false;
@@ -82,7 +83,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         rv_items.setLayoutManager(new LinearLayoutManager(getContext()));
         txt_ok = myView.findViewById(R.id.txt_ok);
         txt_subtotal = myView.findViewById(R.id.txt_subtotal);
-        txt_toal = myView.findViewById(R.id.txt_toal);
+        txt_total = myView.findViewById(R.id.txt_total);
         mainWheel = myView.findViewById(R.id.main_wheel);
         rl_timestamp = myView.findViewById(R.id.rl_timestamp);
         tv_make_payment = myView.findViewById(R.id.tv_make_payment);
@@ -97,13 +98,14 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         try {
             Checkout c = SingleInstance.getInstance().getCheckoutData();
             txt_subtotal.setText("Rs. " + c.getTotalprice());
-            txt_toal.setText("Rs. " + c.getSellingprice());
+            txt_total.setText("Rs. " + c.getSellingprice());
             adapter = new CheckoutAdapter(c.getCheckoutlist(), ScheduleFragment.this, false);
 
             for (int i = 0; i < c.getCheckoutlist().size(); i++) {
                 HashMap<String, String> m = new HashMap<>();
                 m.put("catId", c.getCheckoutlist().get(i).getCategoryid());
                 m.put("stampId", c.getCheckoutlist().get(i).getTimestemp().get(0).getId());
+                m.put("deliverydate", c.getCheckoutlist().get(i).getTimestemp().get(0).getTimestemp());
                 mapList.add(m);
             }
         } catch (Exception e) {
@@ -119,9 +121,11 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
     private int selectedItemPosition = 0;
 
     private void initWheel(final List<String> oData, final int pos, final List<TimeStamp> tList, final String catId) {
+        selectedItemPosition = pos;
         rl_timestamp.setVisibility(View.VISIBLE);
         mainWheel.setCurved(false);
         mainWheel.setData(oData);
+        mainWheel.setItemTextSize(32);
         mainWheel.setSelectedItemPosition(3);
         mainWheel.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
@@ -130,11 +134,14 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                 HashMap<String, String> reMap = new HashMap<>();
                 reMap.put("catId", catId);
                 reMap.put("stampId", tList.get(pos).getId());
-                mapList.set(position, reMap);
+                mapList.set(pos, reMap);
+                positionForTime = position;
             }
         });
 
     }
+
+    private int positionForTime = 0;
 
     @Override
     public void onResume() {
@@ -188,7 +195,9 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         super.onClick(v);
         if (v == txt_ok) {
             rl_timestamp.setVisibility(View.GONE);
-            MyApp.showMassage(getContext(), dateString);
+            adapter.listdata.get(selectedItemPosition).setSelection(positionForTime);
+            adapter.notifyDataSetChanged();
+//            MyApp.showMassage(getContext(), dateString);
         } else if (v == tv_make_payment) {
             if (isAddressSelected) {
                 try {
@@ -223,7 +232,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
     public void setTimingsClick(Checkout.CheckoutListData checkoutListData, int position, String catId) {
         List<String> dateTimeData = new ArrayList<>();
         for (int i = 0; i < checkoutListData.getTimestemp().size(); i++) {
-            dateTimeData.add(checkoutListData.getTimestemp().get(i).getTimedate() + " " +
+            dateTimeData.add(checkoutListData.getTimestemp().get(i).getTimedate() + "         " +
                     checkoutListData.getTimestemp().get(i).getTimestemp());
         }
         initWheel(dateTimeData, position, checkoutListData.getTimestemp(), catId);
@@ -305,7 +314,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         dismissDialog();
         if (o.optString("status").equals("success")) {
             SingleInstance.getInstance().setShippingID(o.optString("ShippingID"));
-            SingleInstance.getInstance().setPayAmount(txt_toal.getText().toString());
+            SingleInstance.getInstance().setPayAmount(txt_total.getText().toString());
             ((CheckOutActivity) getActivity()).changeFragmentPosition(1);
         } else {
             MyApp.showMassage(getContext(), o.optString("message"));

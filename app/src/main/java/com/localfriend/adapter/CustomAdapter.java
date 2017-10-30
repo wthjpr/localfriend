@@ -75,7 +75,7 @@ public class CustomAdapter extends BaseAdapter {
             listViewHolder = (ViewHolder) convertView.getTag();
         }
         try {
-            Picasso.with(context.getActivity()).load(productList.get(position).getpGalleryFileList().get(0))
+            Picasso.with(context.getActivity()).load(productList.get(position).getpGalleryFileList().get(0)).placeholder(R.drawable.place_holder)
                     .into(listViewHolder.img_item);
         } catch (Exception e) {
             listViewHolder.img_item.setImageResource(R.drawable.bakery);

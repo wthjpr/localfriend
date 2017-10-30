@@ -133,6 +133,7 @@ public class MyApp extends Application {
         }
 
     }
+
     public int getStatusBarHeight() {
         int result = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -152,9 +153,11 @@ public class MyApp extends Application {
         }
         win.setAttributes(winParams);
     }
-    public static void strikeThroughText(TextView price){
+
+    public static void strikeThroughText(TextView price) {
         price.setPaintFlags(price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
+
     public static void spinnerStop() {
         if (dialog != null) {
             if (dialog.isShowing()) {
@@ -554,6 +557,23 @@ public class MyApp extends Application {
 
     }
 
+    public static String parseDateToddMMMyyyy(String time) {
+        String inputPattern = "MM/dd/yyyy";// HH:mm:ss
+        String outputPattern = "dd-MMM-yyyy";// h:mm a
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
 
     public static void openFile(Context context, File url) throws IOException {
         // Create URI
@@ -652,7 +672,7 @@ public class MyApp extends Application {
         return user;
     }
 
-    public void writeType(HashMap<String,String> user) {
+    public void writeType(HashMap<String, String> user) {
         try {
             String path = "/data/data/" + ctx.getPackageName()
                     + "/type.ser";
@@ -672,16 +692,16 @@ public class MyApp extends Application {
         }
     }
 
-    public HashMap<String,String> readType() {
+    public HashMap<String, String> readType() {
         String path = "/data/data/" + ctx.getPackageName() + "/type.ser";
         File f = new File(path);
-        HashMap<String,String> user = new HashMap<>();
+        HashMap<String, String> user = new HashMap<>();
         if (f.exists()) {
             try {
                 System.gc();
                 FileInputStream fileIn = new FileInputStream(path);
                 ObjectInputStream in = new ObjectInputStream(fileIn);
-                user = (HashMap<String,String>) in.readObject();
+                user = (HashMap<String, String>) in.readObject();
                 in.close();
                 fileIn.close();
             } catch (StreamCorruptedException e) {

@@ -33,5 +33,46 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="about_us">We are a local mobile e-commerce platform that is transforming the shopping experience for people like you, by connecting them to local stores. We aim to become the one-stop shop for all your needs.\nUsers can order through the app and get everything delivered to their doorstep, quickly.</string>
+    <string name="about_us"><![CDATA[
+    The HUNGER stop to your every  need  of  <b>Morning meals, vegetables, fruits, cooked or uncooked  food and dessert</b> with just a single click and <b>Tiffin</b> service available at  a very low price. we are at your door within 30 minutes<br><br>No need to waste your time in supermarkets  searching for vegetables and fruits  just visit our <b>Local Friend App</b>.  Feeling hungry or have a sweet tooth then just order something of your choice something mouthwatering and  satiable along  with wide range of  fast food from pizza, pasta  to momos. Continental, Italian to punjabi thalis and south Indian within 30 mins is just a  click away. <br><br>Hungry but busy in ur daily work or office work no problem maintain ur tiffin schedule with our app or on call book ur daily tiffins at a reasonable  price. So all the foodies what are you waiting for?
+    ]]></string>
+
+    <string name="terms"><![CDATA[
+    <b>1. Terms</b><br><br>
+    By accessing this web site, you are agreeing to be bound by these web site Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this web site are protected by applicable copyright and trade mark law.
+    <br><br>
+    <b>2. Use License</b>
+    <br><br>
+    Permission is granted to temporarily download one copy of the materials (information or software) on Local Friend\'s web site for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not modify or copy the materials use the materials for any commercial purpose, or for any public display (commercial or non-commercial) attempt to decompile or reverse engineer any software contained on Local Friend\'s web site remove any copyright or other proprietary notations from the materials or transfer the materials to another person or "mirror" the materials on any other server. This license shall automatically terminate if you violate any of these restrictions and may be terminated by Local Friend at any time. Upon terminating your viewing of these materials or upon the termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.
+    <br><br>
+    <b>3. Disclaimer</b>
+    <br><br>
+    The materials on Local Friend\'s web site are provided "as is". Local Friend makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Further, Local Friend does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its Internet web site or otherwise relating to such materials or on any sites linked to this site.
+    <br><br>
+    <b>4. Limitations</b>
+    <br><br>
+    In no event shall Local Friend or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption,) arising out of the use or inability to use the materials on Local Friend\'s Internet site, even if Local Friend or a Local Friend authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
+    <br><br>
+    <b>5. Revisions and Errata</b>
+    <br><br>
+    The materials appearing on Local Friend\'s web site could include technical, typographical, or photographic errors. Local Friend does not warrant that any of the materials on its web site are accurate, complete, or current. Local Friend may make changes to the materials contained on its web site at any time without notice. Local Friend does not, however, make any commitment to update the materials.
+    <br><br>
+    <b>6. Links</b>
+    <br><br>
+    Local Friend has not reviewed all of the sites linked to its Internet web site and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Local Friend of the site. Use of any such linked web site is at the user\'s own risk.
+    <br><br>
+    <b>7. Site Terms of Use Modifications</b>
+    <br><br>
+    Local Friend may revise these terms of use for its web site at any time without notice. By using this web site you are agreeing to be bound by the then current version of these Terms and Conditions of Use.
+    <br><br>
+    <b>8. Governing Law</b>
+    Any claim relating to Local Friend\'s web site shall be governed by the laws of the State of Rajasthan without regard to its conflict of law provisions.<br><br>
+    General Terms and Conditions applicable to Use of a Web Site.<br><br>
+    <b>Privacy Policy</b>
+    <br><br>
+    Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate and disclose and make use of personal information. The following outlines our privacy policy.<br><br>
+    Before or at the time of collecting personal information, we will identify the purposes for which information is being collected. We will collect and use of personal information solely with the objective of fulfilling those purposes specified by us and for other compatible purposes, unless we obtain the consent of the individual concerned or as required by law. We will only retain personal information as long as necessary for the fulfillment of those purposes. We will collect personal information by lawful and fair means and, where appropriate, with the knowledge or consent of the individual concerned. Personal data should be relevant to the purposes for which it is to be used, and, to the extent necessary for those purposes, should be accurate, complete, and up-to-date. We will protect personal information by reasonable security safeguards against loss or theft, as well as unauthorized access, disclosure, copying, use or modification.<br><br>
+    We will make readily available to customers information about our policies and practices relating to the management of personal information.<br><br>
+    We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.<br><br>
+]]></string>
 </resources>

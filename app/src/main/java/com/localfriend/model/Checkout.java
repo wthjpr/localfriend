@@ -64,6 +64,15 @@ public class Checkout {
         private String payamount;
         private List<ChecklistItem> item;
         private List<TimeStamp> timestemp;
+        private int selection = 0;
+
+        public int getSelection() {
+            return selection;
+        }
+
+        public void setSelection(int selection) {
+            this.selection = selection;
+        }
 
         public List<ChecklistItem> getItem() {
             return item;

@@ -3,6 +3,7 @@ package com.localfriend.fragments;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -34,6 +35,7 @@ import com.localfriend.application.SingleInstance;
 import com.localfriend.model.CategoryDetails;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.StoreList;
+import com.localfriend.utils.AppConstant;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.ListHolder;
@@ -100,9 +102,9 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
 
             // Set paddingTop of toolbar to height of status bar.
             // Fixes statusbar covers toolbar issue
-            LinearLayout v =  myView.findViewById(R.id.ll_main);
+            LinearLayout v = myView.findViewById(R.id.ll_main);
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) v.getLayoutParams();
-            lp.setMargins(0, 3*MyApp.getApplication().getStatusBarHeight(), 0, 0);
+            lp.setMargins(0, 3 * MyApp.getApplication().getStatusBarHeight(), 0, 0);
 //            v.setPadding(getStatusBarHeight(), getStatusBarHeight(), getStatusBarHeight(), 0);
         }
 
@@ -143,11 +145,13 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
 
     }
 
+    private String titleSend = "Breakfast";
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.card_breakfast: {
+                titleSend = "Breakfast";
                 currentStoreList = catList.get(0).getStorelist();
                 catId = "12";
                 List<String> listStore = new ArrayList<>();
@@ -165,6 +169,7 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 break;
             }
             case R.id.card_lunch: {
+                titleSend = "Lunch";
                 currentStoreList = catList.get(2).getStorelist();
                 catId = "17";
                 List<String> listStore = new ArrayList<>();
@@ -182,6 +187,7 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 break;
             }
             case R.id.card_dinner: {
+                titleSend = "Dinner";
                 currentStoreList = catList.get(1).getStorelist();
                 catId = "21";
                 List<String> listStore = new ArrayList<>();
@@ -199,6 +205,7 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 break;
             }
             case R.id.card_snacks: {
+                titleSend = "Snacks";
                 currentStoreList = catList.get(3).getStorelist();
                 catId = "18";
                 List<String> listStore = new ArrayList<>();
@@ -252,14 +259,20 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
-        dismissDialog();
         if (callNumber == 1) {
             try {
                 ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
                 SingleInstance.getInstance().setProductData(data);
                 if (data.getProduct().size() > 0) {
-                    startActivity(new Intent(getActivity(), BreakFastActivity.class));
+                    startActivity(new Intent(getActivity(), BreakFastActivity.class).putExtra(AppConstant.EXTRA_1, titleSend));
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            dismissDialog();
+                        }
+                    },1000);
                 } else {
+                    dismissDialog();
                     MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
                             " Please come back later.\nThank you.", getContext());
                 }

@@ -30,7 +30,7 @@ public class SignupActivityOne extends CustomActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_one);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_common);
+        toolbar =  findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);

@@ -16,6 +16,7 @@
     <color name="gray_tab">#aaaaab</color>
     <color name="light_bg">#E8EDEE</color>
     <color name="gray_text">#575455</color>
+    <color name="gray_text_light">#999999</color>
     <color name="transparent">#80000000</color>
 
 

@@ -46,17 +46,17 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
         setResponseListener(this);
         productData = SingleInstance.getInstance().getProductData();
         setContentView(R.layout.activity_break_fast);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_common);
+        toolbar =  findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
-        mTitle.setText("Breakfast");
+        TextView mTitle =  toolbar.findViewById(R.id.toolbar_title_common);
+        mTitle.setText(getIntent().getStringExtra(AppConstant.EXTRA_1));
         actionBar.setTitle("");
 
-        recy_breakfast = (RecyclerView) findViewById(R.id.recy_breakfast);
+        recy_breakfast =  findViewById(R.id.recy_breakfast);
         recy_breakfast.setLayoutManager(new LinearLayoutManager(this));
 
 
@@ -201,7 +201,7 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
             o.put("oprationid", 1);
             o.put("pDetailsId", p.getId());
             o.put("pQuantity", 1);
-            showLoadingDialog("");
+//            showLoadingDialog("");
             postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Cart", o, 1);
         } catch (JSONException e) {
             e.printStackTrace();

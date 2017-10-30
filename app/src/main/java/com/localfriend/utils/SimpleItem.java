@@ -43,7 +43,7 @@ public class SimpleItem extends DrawerItem<SimpleItem.ViewHolder> {
     public void bindViewHolder(ViewHolder holder) {
         holder.title.setText(title);
         holder.icon.setImageDrawable(icon);
-        holder.ll_main.setBackgroundColor(isChecked ? Color.parseColor("#aa2F7A7F") : Color.parseColor("#00000000"));
+        holder.ll_main.setBackgroundResource(isChecked ? R.drawable.selection : 0);
         holder.title.setTextColor(isChecked ? selectedItemTextTint : normalItemTextTint);
         holder.icon.setColorFilter(isChecked ? selectedItemIconTint : normalItemIconTint);
     }

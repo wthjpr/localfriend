@@ -107,7 +107,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
             Shader textShader = new LinearGradient(0, 0, 0, 50,
                     new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
                     new float[]{0, 1}, Shader.TileMode.CLAMP);
-            txt_address_type.getPaint().setShader(textShader);
+//            txt_address_type.getPaint().setShader(textShader);
 
             txt_edit.setOnClickListener(this);
             txt_delete.setOnClickListener(this);

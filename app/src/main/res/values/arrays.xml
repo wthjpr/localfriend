@@ -6,7 +6,6 @@
         <item>Wishlist</item>
         <item>Address</item>
         <item>Need Help ?</item>
-        <item>Logout</item>
     </string-array>
 
     <array name="ld_activityScreenIcons">
@@ -15,6 +14,5 @@
         <item>@drawable/menu_wishlist</item>
         <item>@drawable/menu_adress</item>
         <item>@drawable/menu_need_help</item>
-        <item>@drawable/menu_logout</item>
     </array>
 </resources>

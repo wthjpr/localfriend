@@ -78,7 +78,7 @@ public class ViewItemsAdapter extends BaseAdapter {
         viewHolder.tv_item_name.setText(listData.get(position).getProductname());
         viewHolder.tv_unit.setText(listData.get(position).getVarient());
         viewHolder.tv_item_cost.setText("Rs. "+listData.get(position).getSellingprice());
-        Picasso.with(context).load(listData.get(position).getProductimage()).into(viewHolder.img_food);
+        Picasso.with(context).load(listData.get(position).getProductimage()).placeholder(R.drawable.place_holder).into(viewHolder.img_food);
 
 
         return view;

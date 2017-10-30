@@ -51,7 +51,7 @@ import java.util.List;
 public class ReviewFragment extends CustomFragment implements CustomFragment.ResponseCallback {
 
     private TextView txt_ok;
-    private TextView txt_toal;
+    private TextView txt_total;
     private TextView txt_subtotal;
     private TextView tv_make_payment;
     private TextView txt_address_type;
@@ -79,7 +79,7 @@ public class ReviewFragment extends CustomFragment implements CustomFragment.Res
         rv_items.setLayoutManager(new LinearLayoutManager(getContext()));
         txt_ok = myView.findViewById(R.id.txt_ok);
         txt_subtotal = myView.findViewById(R.id.txt_subtotal);
-        txt_toal = myView.findViewById(R.id.txt_toal);
+        txt_total = myView.findViewById(R.id.txt_total);
         mainWheel = myView.findViewById(R.id.main_wheel);
         rl_timestamp = myView.findViewById(R.id.rl_timestamp);
         tv_make_payment = myView.findViewById(R.id.tv_make_payment);
@@ -91,7 +91,7 @@ public class ReviewFragment extends CustomFragment implements CustomFragment.Res
         try {
             Checkout c = SingleInstance.getInstance().getCheckoutData();
             txt_subtotal.setText("Rs. " + c.getTotalprice());
-            txt_toal.setText("Rs. " + c.getSellingprice());
+            txt_total.setText("Rs. " + c.getSellingprice());
             adapter = new CheckoutAdapter(c.getCheckoutlist(), ReviewFragment.this, true);
 
         } catch (Exception e) {

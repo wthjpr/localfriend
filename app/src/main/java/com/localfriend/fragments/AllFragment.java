@@ -77,7 +77,7 @@ public class AllFragment extends CustomFragment implements CustomFragment.Respon
             o.put("oprationid", 1);
             o.put("pDetailsId", p.getId());
             o.put("pQuantity", 1);
-            showLoadingDialog("");
+//            showLoadingDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();

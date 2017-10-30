@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/main_gradient_bg"
+    android:background="@drawable/gradient_new"
     tools:context="com.localfriend.SignupActivityOne">
 
     <include layout="@layout/toolbar_common" />
@@ -33,9 +33,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_10"
+
             android:backgroundTint="@color/white"
             android:hint="FULL NAME"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords"
             android:maxLines="1"
             android:textColor="@color/white"
             android:textColorHint="@color/white"

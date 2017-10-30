@@ -51,7 +51,7 @@ public class PtSansUtils {
                     return FontCache.getTypeface("PTSans-Regular.ttf", context);
 
                 case 11: // bold
-                    return FontCache.getTypeface("PTSans-Regular.ttf", context);
+                    return FontCache.getTypeface("PTSans-Bold.ttf", context);
 
                 case 12: // regular
                     return FontCache.getTypeface("PTSans-Regular.ttf", context);

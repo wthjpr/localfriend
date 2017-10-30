@@ -325,11 +325,11 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     public void showLoadingDialog(String message) {
         dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#88000000")));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_loader);
 
-        TextView txt_load_message = (TextView) dialog.findViewById(R.id.txt_load_message);
+        TextView txt_load_message =  dialog.findViewById(R.id.txt_load_message);
         txt_load_message.setText(message);
 
 //        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);

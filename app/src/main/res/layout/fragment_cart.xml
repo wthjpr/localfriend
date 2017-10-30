@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/card_price"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="?actionBarSize"
         android:paddingLeft="@dimen/dim_5"
         android:paddingRight="@dimen/dim_5"
@@ -24,13 +25,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/tv_checkout"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/ll_amounts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_above="@+id/tv_make_payment"
             android:background="@color/white"
             android:orientation="horizontal">
@@ -42,7 +45,7 @@
                 android:orientation="vertical"
                 android:paddingBottom="5dp">
 
-                <com.localfriend.fonts.CustomFontPtSansText
+                <com.localfriend.fonts.CustomFontTextView
                     android:id="@+id/txt_subtotal_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -65,9 +68,11 @@
             </LinearLayout>
 
             <View
-                android:layout_width="@dimen/dim_1"
+                android:layout_width="1px"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_height="match_parent"
-                android:background="@color/blue_text" />
+                android:background="@color/gray_tab" />
 
 
             <LinearLayout
@@ -75,9 +80,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingBottom="5dp">
+                 >
 
-                <com.localfriend.fonts.CustomFontPtSansText
+                <com.localfriend.fonts.CustomFontTextView
                     android:id="@+id/txt_total_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,7 +123,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/dim_18"
         android:visibility="gone"
-        app:textStyle="@integer/roboto_medium" />
+        app:textStyle="@integer/roboto_regular" />
 
     <ImageView
         android:id="@+id/img_empty_cart"
@@ -144,6 +149,6 @@
         android:textColor="@color/white"
         android:textSize="@dimen/dim_18"
         android:visibility="gone"
-        app:textStyle="@integer/roboto_medium" />
+        app:textStyle="@integer/roboto_regular" />
 
 </RelativeLayout>

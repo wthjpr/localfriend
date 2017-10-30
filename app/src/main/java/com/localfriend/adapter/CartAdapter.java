@@ -53,11 +53,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
     }
 
     @Override
-    public void onBindViewHolder(DataHolder holder, int position) {
+    public void onBindViewHolder(DataHolder holder, final int position) {
         final Cartlist item = listdata.get(position);
         holder.tv_item_name.setText(item.getProductname());
-        holder.tv_counter.setText(item.getQuantiy());
-        Picasso.with(c.getContext()).load(item.getProductimage()).into(holder.img_food);
+        holder.tv_counter.setText(item.getQuantiy()+"");
+        Picasso.with(c.getContext()).load(item.getProductimage()).placeholder(R.drawable.place_holder).into(holder.img_food);
         String string = "\u20B9";
         byte[] utf8 = null;
         try {
@@ -71,19 +71,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
         holder.tv_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((CartFragment)c).increaseCount(item);
+                listdata.get(position).setQuantiy(listdata.get(position).getQuantiy() + 1);
+                notifyDataSetChanged();
+                ((CartFragment) c).increaseCount(item);
             }
         });
         holder.tv_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((CartFragment)c).decreaseCount(item);
+                if(listdata.get(position).getQuantiy()>1)
+                    notifyDataSetChanged();
+                listdata.get(position).setQuantiy(listdata.get(position).getQuantiy() - 1);
+                ((CartFragment) c).decreaseCount(item);
             }
         });
         holder.img_btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((CartFragment)c).deleteItem(item);
+                listdata.remove(position);
+                notifyDataSetChanged();
+                ((CartFragment) c).deleteItem(item);
             }
         });
     }
@@ -96,16 +103,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
     class DataHolder extends RecyclerView.ViewHolder {
         TextView tv_item_name, tv_item_cost, tv_counter, tv_unit;
         ImageView img_btn_close;
-        ImageView img_food,tv_plus,tv_minus;
+        ImageView img_food, tv_plus, tv_minus;
 
         public DataHolder(final View itemView) {
             super(itemView);
             tv_unit = (TextView) itemView.findViewById(R.id.tv_unit);
             tv_item_name = (TextView) itemView.findViewById(R.id.tv_item_name);
             tv_item_cost = (TextView) itemView.findViewById(R.id.tv_item_cost);
-            tv_plus =  itemView.findViewById(R.id.tv_plus);
+            tv_plus = itemView.findViewById(R.id.tv_plus);
             tv_counter = (TextView) itemView.findViewById(R.id.tv_counter);
-            tv_minus =  itemView.findViewById(R.id.tv_minus);
+            tv_minus = itemView.findViewById(R.id.tv_minus);
             img_btn_close = itemView.findViewById(R.id.img_btn_close);
             img_food = (ImageView) itemView.findViewById(R.id.img_food);
 

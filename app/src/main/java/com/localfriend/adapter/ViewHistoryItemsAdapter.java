@@ -79,7 +79,7 @@ public class ViewHistoryItemsAdapter extends BaseAdapter {
         viewHolder.tv_item_name.setText(listData.get(position).getProductName()+"  X "+listData.get(position).getProductQuantity());
         viewHolder.tv_unit.setText(listData.get(position).getVarient());
         viewHolder.tv_item_cost.setText("Rs. "+listData.get(position).getOrderUnitPrice());
-        Picasso.with(context).load(listData.get(position).getProductImage()).into(viewHolder.img_food);
+        Picasso.with(context).load(listData.get(position).getProductImage()).placeholder(R.drawable.place_holder).into(viewHolder.img_food);
 
 
         return view;

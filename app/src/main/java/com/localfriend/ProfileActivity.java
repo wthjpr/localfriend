@@ -2,6 +2,7 @@ package com.localfriend;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
@@ -28,6 +29,7 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout = null;
     private TextView txt_date;
+    private TextView txt_logout;
 
 
     @Override
@@ -60,7 +62,9 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
 
     private void setContentElements() {
         txt_date = findViewById(R.id.txt_date);
+        txt_date = findViewById(R.id.txt_logout);
         setTouchNClick(R.id.txt_date);
+        setTouchNClick(R.id.txt_logout);
     }
 
     @Override
@@ -74,6 +78,10 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(), this, year, month, day);
 
+        } else if(v==txt_logout){
+            MyApp.setStatus(AppConstant.IS_LOGIN, false);
+            startActivity(new Intent(getContext(), LoginSignupActivity.class));
+            finishAffinity();
         }
     }
 

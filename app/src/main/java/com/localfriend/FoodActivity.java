@@ -121,20 +121,20 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
         if (catList.size() == 2) {
             setTouchNClick(R.id.rl_cat1);
             setTouchNClick(R.id.rl_cat2);
-            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).into(img1);
+            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.place_holder).into(img1);
             txt1.setText(catList.get(0).getName());
-            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).into(img2);
+            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).placeholder(R.drawable.place_holder).into(img2);
             txt2.setText(catList.get(1).getName());
         }
         if (catList.size() == 3) {
             setTouchNClick(R.id.rl_cat1);
             setTouchNClick(R.id.rl_cat2);
             setTouchNClick(R.id.rl_cat3);
-            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).into(img1);
+            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.place_holder).into(img1);
             txt1.setText(catList.get(0).getName());
-            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).into(img2);
+            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).placeholder(R.drawable.place_holder).into(img2);
             txt2.setText(catList.get(1).getName());
-            Picasso.with(getContext()).load(catList.get(2).getThumbImage()).into(img3);
+            Picasso.with(getContext()).load(catList.get(2).getThumbImage()).placeholder(R.drawable.place_holder).into(img3);
             txt3.setText(catList.get(2).getName());
         }
         if (catList.size() >= 4) {
@@ -142,13 +142,13 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             setTouchNClick(R.id.rl_cat2);
             setTouchNClick(R.id.rl_cat3);
             setTouchNClick(R.id.rl_cat4);
-            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).into(img1);
+            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.place_holder).into(img1);
             txt1.setText(catList.get(0).getName());
-            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).into(img2);
+            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).placeholder(R.drawable.place_holder).into(img2);
             txt2.setText(catList.get(1).getName());
-            Picasso.with(getContext()).load(catList.get(2).getThumbImage()).into(img3);
+            Picasso.with(getContext()).load(catList.get(2).getThumbImage()).placeholder(R.drawable.place_holder).into(img3);
             txt3.setText(catList.get(2).getName());
-            Picasso.with(getContext()).load(catList.get(3).getThumbImage()).into(img4);
+            Picasso.with(getContext()).load(catList.get(3).getThumbImage()).placeholder(R.drawable.place_holder).into(img4);
             txt4.setText(catList.get(3).getName());
         }
     }

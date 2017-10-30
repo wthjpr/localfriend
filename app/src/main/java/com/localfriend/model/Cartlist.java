@@ -12,7 +12,7 @@ public class Cartlist {
     private String price;
     private String sellingprice;
     private String dealsprice;
-    private String quantiy;
+    private int quantiy;
     private String maxOrder;
     private String availableUnit;
     private String varient;
@@ -73,11 +73,11 @@ public class Cartlist {
         this.dealsprice = dealsprice;
     }
 
-    public String getQuantiy() {
+    public int getQuantiy() {
         return quantiy;
     }
 
-    public void setQuantiy(String quantiy) {
+    public void setQuantiy(int quantiy) {
         this.quantiy = quantiy;
     }
 

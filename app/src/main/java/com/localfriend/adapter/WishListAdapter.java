@@ -54,7 +54,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.DataHo
     public void onBindViewHolder(final DataHolder holder, int position) {
         final Cartlist item = listdata.get(position);
         holder.tv_item_name.setText(item.getProductname());
-        Picasso.with(c.getContext()).load(item.getProductimage()).into(holder.img_food);
+        Picasso.with(c.getContext()).load(item.getProductimage()).placeholder(R.drawable.place_holder).into(holder.img_food);
         String string = "\u20B9";
         byte[] utf8 = null;
         try {

@@ -3,6 +3,7 @@ package com.localfriend.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
@@ -123,7 +124,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         } else if (v == lrn_tiffin) {
 //            title = "Tiffin";
 //            loadCategory(3);
-            ((MainActivity)getActivity()).changeTab(2);
+            ((MainActivity) getActivity()).changeTab(2);
         } else if (v == lrn_food) {
             title = "Fast Food";
             loadCategory(2);
@@ -132,8 +133,10 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
             showLoadingDialog("");
             getCall(AppConstants.BASE_URL + "Category/" + 0, "", 6);
         } else if (v == lrn_discount) {
-            title = "Hot Deals";
-            MyApp.popMessage("LocalFriend", "No Deals available for now.\nThank you", getContext());
+            title = "Morning Meals";
+            showLoadingDialog("");
+            getCall(AppConstants.BASE_URL + "Category/" + 0, "",8 );
+//            MyApp.popMessage("LocalFriend", "No Deals available for now.\nThank you", getContext());
         }
     }
 
@@ -171,7 +174,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 });
             }
         } else if (callNumber == 2) {
-            dismissDialog();
+
             Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
             }.getType();
             try {
@@ -181,18 +184,24 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                     MyApp.popMessage("Local Friend", "No data available for this category", getContext());
                 } else {
                     SingleInstance.getInstance().setCatList(catList);
-                    startActivity(new Intent(getContext(), FoodActivity.class).putExtra(AppConstant.EXTRA_1,title));
+                    startActivity(new Intent(getContext(), FoodActivity.class).putExtra(AppConstant.EXTRA_1, title));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dismissDialog();
+                }
+            }, 1000);
         } else if (callNumber == 3) {
-            dismissDialog();
             try {
                 ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
                 SingleInstance.getInstance().setProductData(data);
                 if (data.getProduct().size() > 0) {
-                    startActivity(new Intent(getContext(), VegetableActivity.class).putExtra(AppConstant.EXTRA_1,title));
+                    startActivity(new Intent(getContext(), VegetableActivity.class).putExtra(AppConstant.EXTRA_1, title));
                 } else {
                     MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
                             " Please come back later.\nThank you.", getContext());
@@ -201,8 +210,14 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dismissDialog();
+                }
+            }, 1000);
         } else if (callNumber == 4) {
-            dismissDialog();
+
             Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
             }.getType();
             try {
@@ -216,9 +231,10 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                         listStore.add(catList.get(3).getStorelist().get(i).getsName());
                     }
                     if (listStore.size() == 1) {
-                        getProducts("5", catList.get(3).getStorelist().get(0).getsID());
+                        getProducts("5", catList.get(3).getStorelist().get(0).getsID(), false);
                         return;
                     }
+                    dismissDialog();
                     currentStoreList = catList.get(3).getStorelist();
                     SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
                     showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
@@ -228,7 +244,73 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 e.printStackTrace();
             }
         } else if (callNumber == 6) {
-            dismissDialog();
+
+            Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
+            }.getType();
+            try {
+                List<CategoryDetails> catList =
+                        new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
+                if (catList.size() == 0) {
+                    MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+                } else {
+                    List<String> listStore = new ArrayList<>();
+                    for (int i = 0; i < catList.get(4).getStorelist().size(); i++) {
+                        listStore.add(catList.get(4).getStorelist().get(i).getsName());
+                    }
+                    if (listStore.size() == 1) {
+                        getMithaiProducts("5", catList.get(4).getStorelist().get(0).getsID(), false);
+                        return;
+                    }
+                    dismissDialog();
+                    currentStoreList = catList.get(4).getStorelist();
+                    SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+                    showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+                            true);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if (callNumber == 5) {
+
+            try {
+                ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
+                SingleInstance.getInstance().setProductData(data);
+                if (data.getProduct().size() > 0) {
+                    startActivity(new Intent(getContext(), AllActivity.class).putExtra(AppConstant.EXTRA_1, title));
+                } else {
+                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
+                            " Please come back later.\nThank you.", getContext());
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dismissDialog();
+                }
+            }, 1000);
+        } else if (callNumber == 7) {
+
+            try {
+                ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
+                SingleInstance.getInstance().setProductData(data);
+                if (data.getProduct().size() > 0) {
+                    startActivity(new Intent(getContext(), VegetableActivity.class).putExtra(AppConstant.EXTRA_1, title));
+                } else {
+                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
+                            " Please come back later.\nThank you.", getContext());
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dismissDialog();
+                }
+            }, 1000);
+        } else if (callNumber == 8) {
             Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
             }.getType();
             try {
@@ -242,41 +324,14 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                         listStore.add(catList.get(3).getStorelist().get(i).getsName());
                     }
                     if (listStore.size() == 1) {
-                        getMithaiProducts("5", catList.get(3).getStorelist().get(0).getsID());
+                        getMithaiProducts("29", catList.get(3).getStorelist().get(0).getsID(), false);
                         return;
                     }
+                    dismissDialog();
                     currentStoreList = catList.get(3).getStorelist();
                     SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
                     showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
                             true);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        } else if (callNumber == 5) {
-            dismissDialog();
-            try {
-                ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
-                SingleInstance.getInstance().setProductData(data);
-                if (data.getProduct().size() > 0) {
-                    startActivity(new Intent(getContext(), AllActivity.class).putExtra(AppConstant.EXTRA_1,title));
-                } else {
-                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
-                            " Please come back later.\nThank you.", getContext());
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        } else if (callNumber == 7) {
-            dismissDialog();
-            try {
-                ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
-                SingleInstance.getInstance().setProductData(data);
-                if (data.getProduct().size() > 0) {
-                    startActivity(new Intent(getContext(), VegetableActivity.class).putExtra(AppConstant.EXTRA_1,title));
-                } else {
-                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
-                            " Please come back later.\nThank you.", getContext());
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -345,7 +400,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
-                        getProducts("5", currentStoreList.get(position).getsID());
+                        getProducts("5", currentStoreList.get(position).getsID(), true);
                         Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
                                 item + "], position = [" + position + "]");
                     }
@@ -359,14 +414,16 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         dialog.show();
     }
 
-    private void getProducts(String catId, String storeId) {
-        showLoadingDialog("");
+    private void getProducts(String catId, String storeId, boolean isShowDialog) {
+        if (isShowDialog)
+            showLoadingDialog("");
         getCallWithHeader(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, 5);
 
     }
 
-    private void getMithaiProducts(String catId, String storeId) {
-        showLoadingDialog("");
+    private void getMithaiProducts(String catId, String storeId, boolean isShowDialog) {
+        if (isShowDialog)
+            showLoadingDialog("");
         getCallWithHeader(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, 7);
 
     }

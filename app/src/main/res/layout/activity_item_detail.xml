@@ -27,7 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:adjustViewBounds="true" />
+                android:adjustViewBounds="true"
+                android:src="@drawable/place_holder" />
             <!--<ss.com.bannerslider.views.BannerSlider-->
             <!--android:id="@+id/banner_slider1"-->
             <!--android:layout_width="match_parent"-->
@@ -44,12 +45,11 @@
             android:orientation="horizontal"
             android:padding="@dimen/dim_10">
 
-            <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+            <RadioButton
                 android:id="@+id/tv_one_kg"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/small_corner_green"
+                android:checked="true"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dim_5"
                 android:paddingLeft="@dimen/dim_10"
@@ -59,13 +59,11 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/dim_16" />
 
-            <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+            <RadioButton
                 android:id="@+id/tv_two_kg"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_15"
-                android:layout_weight="1"
-                android:background="@drawable/small_corner_green"
+                android:layout_marginLeft="15dp"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dim_5"
                 android:paddingLeft="@dimen/dim_10"
@@ -76,13 +74,11 @@
                 android:textSize="@dimen/dim_16"
                 android:visibility="gone" />
 
-            <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+            <RadioButton
                 android:id="@+id/tv_three_kg"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_15"
-                android:layout_weight="1"
-                android:background="@drawable/small_corner_green"
+                android:layout_marginLeft="15dp"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dim_5"
                 android:paddingLeft="@dimen/dim_10"
@@ -93,7 +89,7 @@
                 android:textSize="@dimen/dim_16"
                 android:visibility="gone" />
 
-            <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+            <com.localfriend.fonts.CustomFontTextView
                 android:id="@+id/tv_four_kg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -108,9 +104,10 @@
                 android:text="4 KG"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dim_16"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:textStyle="@integer/roboto_medium" />
 
-            <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+            <com.localfriend.fonts.CustomFontTextView
                 android:id="@+id/tv_five_kg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -125,10 +122,11 @@
                 android:text="5 KG"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dim_16"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:textStyle="@integer/roboto_medium" />
         </LinearLayout>
 
-        <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+        <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,16 +134,18 @@
             android:layout_gravity="center_horizontal"
             android:text="Cost : Rs 100"
             android:textColor="@color/black"
-            android:textSize="@dimen/dim_18" />
+            android:textSize="@dimen/dim_18"
+            app:textStyle="@integer/roboto_medium" />
 
-        <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
+        <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_cost"
             android:padding="@dimen/dim_10"
             android:text="Many plant antioxidants are stored in the leaves, where oxygen is active in photosynthesis. Others appear in plant pigments (for example, the anthocyanins that make the blue-purple colours of blackberries and blueberries) and the chemical defenses of plant skins (for example, quercetin in apple skins)."
-            android:textSize="@dimen/dim_16" />
+            android:textSize="@dimen/dim_16"
+            app:textStyle="@integer/roboto_medium" />
     </LinearLayout>
 
     <com.localfriend.fonts.CustomFontTextView
@@ -161,5 +161,6 @@
         android:textColor="@color/white"
         android:textSize="@dimen/dim_18"
         app:textStyle="@integer/roboto_medium" />
+
     <include layout="@layout/bottom"></include>
 </RelativeLayout>

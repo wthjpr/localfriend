@@ -48,7 +48,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
         // Inflate the layout for this fragment
         setResponseListener(this);
         View myView = inflater.inflate(R.layout.fragment_vegetable, container, false);
-        GridView gridview = (GridView) myView.findViewById(R.id.all_frag_gridview);
+        GridView gridview =  myView.findViewById(R.id.all_frag_gridview);
 
         VegetableAdapter customAdapter = new VegetableAdapter(VegetableFragment.this, allProducts);
         gridview.setAdapter(customAdapter);
@@ -72,7 +72,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
             o.put("oprationid", 1);
             o.put("pDetailsId", p.getId());
             o.put("pQuantity", 1);
-            showLoadingDialog("");
+//            showLoadingDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -87,7 +87,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
                 o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
                 o.put("oprationid", 3);
                 o.put("pDetailsId", p.getId());
-                showLoadingDialog("");
+//                showLoadingDialog("");
                 postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -98,7 +98,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
                 o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
                 o.put("oprationid", 1);
                 o.put("pDetailsId", p.getId());
-                showLoadingDialog("");
+//                showLoadingDialog("");
                 postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
             } catch (JSONException e) {
                 e.printStackTrace();

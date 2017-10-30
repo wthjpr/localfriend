@@ -164,7 +164,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
 
         } else {
             MyApp.showMassage(getContext(), o.optString("message"));
-            showLoadingDialog("");
+//            showLoadingDialog("");
             getCallWithHeader(AppConstant.BASE_URL + "Cart", 1);
         }
     }
@@ -192,7 +192,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             o.put("oprationid", 1);
             o.put("pDetailsId", item.getProductid());
             o.put("pQuantity", 1);
-            showLoadingDialog("");
+//            showLoadingDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -207,7 +207,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             o.put("oprationid", 2);
             o.put("pDetailsId", item.getProductid());
             o.put("pQuantity", 1);
-            showLoadingDialog("");
+//            showLoadingDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -222,7 +222,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             o.put("oprationid", 3);
             o.put("pDetailsId", item.getProductid());
             o.put("pQuantity", 1);
-            showLoadingDialog("");
+//            showLoadingDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();

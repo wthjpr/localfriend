@@ -69,7 +69,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     private static final int WISH_LIST = 2;
     private static final int ADDRESS = 3;
     private static final int NEED_HELP = 4;
-    private static final int LOGOUT = 5;
+//    private static final int LOGOUT = 5;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     private Toolbar toolbar;
@@ -114,8 +114,8 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 createItemFor(WISH_LIST),
                 createItemFor(ADDRESS),
                /* new SpaceItem(48),*/
-                createItemFor(NEED_HELP),
-                createItemFor(LOGOUT)));
+                createItemFor(NEED_HELP)));
+//                createItemFor(LOGOUT)));
         adapter.setListener(this);
         RelativeLayout v = findViewById(R.id.main_drawer_layout);
         // transparent statusbar for marshmallow and above

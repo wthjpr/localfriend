@@ -28,13 +28,13 @@ public class LoginSignupActivity extends CustomActivity implements
         TextToSpeech.OnInitListener {
     private TextView tv_already_account, tv_lets_get_started, tv_hello_label, tv_help;
     private static final int SPLASH_DURATION_MS = 500;
-    private static final int SPLASH_DURATION_two = 1000;
-    private static final int SPLASH_DURATION_three = 1500;
-    private static final int SPLASH_DURATION_four = 2000;
-    private static final int SPLASH_DURATION_five = 2500;
+    private static final int SPLASH_DURATION_two = 1400;
+    private static final int SPLASH_DURATION_three = 2300;
+    private static final int SPLASH_DURATION_four = 3200;
+    private static final int SPLASH_DURATION_five = 4000;
     private Handler mHandler = new Handler();
     private ImageView img_logo;
-    private TextToSpeech tts;
+//    private TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class LoginSignupActivity extends CustomActivity implements
                 new int[]{Color.parseColor("#3CBEA3"),Color.parseColor("#1D6D9E")},
                 new float[]{0, 1}, Shader.TileMode.CLAMP);
 
-        tts = new TextToSpeech(this, this);
+//        tts = new TextToSpeech(this, this);
         setContentView(R.layout.activity_login_signup);
         img_logo =  findViewById(R.id.img_logo);
         img_logo.setVisibility(View.GONE);
@@ -151,43 +151,43 @@ public class LoginSignupActivity extends CustomActivity implements
 
     @Override
     protected void onStop() {
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
-        }
+//        if (tts != null) {
+//            tts.stop();
+//            tts.shutdown();
+//        }
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
-        }
+//        if (tts != null) {
+//            tts.stop();
+//            tts.shutdown();
+//        }
         super.onDestroy();
     }
 
     @Override
     public void onInit(int status) {
 
-        if (status == TextToSpeech.SUCCESS) {
-
-            int result = tts.setLanguage(Locale.US);
-
-            if (result == TextToSpeech.LANG_MISSING_DATA
-                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS", "This Language is not supported");
-            } else {
-                tts.setSpeechRate(1.5f);
-                speakOut("Hello there, I am your local friend. I am here to help you with anything, anytime. Let's get started.");
-            }
-
-        } else {
-            Log.e("TTS", "Initialization Failed!");
-        }
+//        if (status == TextToSpeech.SUCCESS) {
+//
+//            int result = tts.setLanguage(Locale.US);
+//
+//            if (result == TextToSpeech.LANG_MISSING_DATA
+//                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+//                Log.e("TTS", "This Language is not supported");
+//            } else {
+//                tts.setSpeechRate(1.5f);
+//                speakOut("Hello there, I am your local friend. I am here to help you with anything, anytime. Let's get started.");
+//            }
+//
+//        } else {
+//            Log.e("TTS", "Initialization Failed!");
+//        }
     }
 
-    private void speakOut(String text) {
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-    }
+//    private void speakOut(String text) {
+//        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+//    }
 }

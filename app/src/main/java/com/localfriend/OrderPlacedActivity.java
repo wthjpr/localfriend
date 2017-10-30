@@ -44,7 +44,7 @@ public class OrderPlacedActivity extends CustomActivity {
         Shader textShader = new LinearGradient(0, 0, 0, 50,
                 new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
                 new float[]{0, 1}, Shader.TileMode.CLAMP);
-        txt_go_shopping.getPaint().setShader(textShader);
+//        txt_go_shopping.getPaint().setShader(textShader);
     }
 
     @Override

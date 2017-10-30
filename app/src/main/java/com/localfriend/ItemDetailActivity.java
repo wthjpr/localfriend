@@ -9,9 +9,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.application.AppConstants;
@@ -39,14 +41,14 @@ import ss.com.bannerslider.banners.RemoteBanner;
 public class ItemDetailActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     //    private BannerSlider bannerSlider;
     private Toolbar toolbar;
-    private TextView tv_add_cart, tv_description, tv_cost, tv_five_kg, tv_four_kg, tv_three_kg, tv_two_kg, tv_one_kg;
+    private TextView tv_add_cart, tv_description, tv_cost, tv_five_kg, tv_four_kg;
+    private RadioButton tv_three_kg, tv_two_kg, tv_one_kg;
     private ProductDetails productDetails;
     private ImageView img_product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         productDetails = SingleInstance.getInstance().getSelectedProduct();
         setContentView(R.layout.activity_item_detail);
@@ -57,13 +59,13 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title_common);
         mTitle.setText(productDetails.getName());
         actionBar.setTitle("");
         productId = productDetails.getId();
         img_product = findViewById(R.id.img_product);
         try {
-            Picasso.with(getContext()).load(getIntent().getStringExtra(AppConstant.EXTRA_1))
+            Picasso.with(getContext()).load(getIntent().getStringExtra(AppConstant.EXTRA_1)).placeholder(R.drawable.place_holder)
                     .into(img_product);
         } catch (Exception e) {
         }
@@ -121,7 +123,12 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
             tv_two_kg.setVisibility(View.VISIBLE);
             tv_two_kg.setText(productDetails.getMyList().get(1).getUnit() + " " + productDetails.getMyList().get(1).getuType());
         }
-
+        if (productDetails.getMyList().size() > 2) {
+            tv_two_kg.setVisibility(View.VISIBLE);
+            tv_two_kg.setText(productDetails.getMyList().get(1).getUnit() + " " + productDetails.getMyList().get(1).getuType());
+            tv_three_kg.setVisibility(View.VISIBLE);
+            tv_three_kg.setText(productDetails.getMyList().get(2).getUnit() + " " + productDetails.getMyList().get(2).getuType());
+        }
     }
 
     private String productId;
@@ -130,29 +137,40 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         super.onClick(v);
         if (v.getId() == R.id.tv_add_cart) {
             JSONObject o = new JSONObject();
-
+            makeFlyAnimation(img_product, productDetails.getId());
             try {
                 o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
                 o.put("oprationid", 1);
                 o.put("pDetailsId", productId);
                 o.put("pQuantity", 1);
-                showLoadingDialog("");
+//                showLoadingDialog("");
                 postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Cart", o, 1);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            makeFlyAnimation(img_product, productDetails.getId());
+
         } else if (v.getId() == R.id.tv_one_kg) {
             tv_description.setText(productDetails.getuDescription());
             tv_cost.setText("Rs. " + productDetails.getSellingPrice());
             productId = productDetails.getId();
+            tv_one_kg.setChecked(true);
+            tv_two_kg.setChecked(false);
+            tv_three_kg.setChecked(false);
         } else if (v.getId() == R.id.tv_two_kg) {
             tv_description.setText(productDetails.getMyList().get(1).getuDescription());
             tv_cost.setText("Rs. " + productDetails.getMyList().get(1).getSellingPrice());
             productId = productDetails.getMyList().get(1).getId();
+            tv_one_kg.setChecked(false);
+            tv_two_kg.setChecked(true);
+            tv_three_kg.setChecked(false);
         } else if (v.getId() == R.id.tv_three_kg) {
-            Toast.makeText(this, "3 kg Added", Toast.LENGTH_SHORT).show();
+            tv_description.setText(productDetails.getMyList().get(2).getuDescription());
+            tv_cost.setText("Rs. " + productDetails.getMyList().get(2).getSellingPrice());
+            productId = productDetails.getMyList().get(2).getId();
+            tv_one_kg.setChecked(false);
+            tv_two_kg.setChecked(false);
+            tv_three_kg.setChecked(true);
         } else if (v.getId() == R.id.tv_four_kg) {
             Toast.makeText(this, "4 kg Added", Toast.LENGTH_SHORT).show();
         } else if (v.getId() == R.id.tv_five_kg) {

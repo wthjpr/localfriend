@@ -45,13 +45,13 @@ public class VegetableActivity extends CustomActivity {
         super.onCreate(savedInstanceState);
         productData = SingleInstance.getInstance().getProductData();
         setContentView(R.layout.activity_vegetable);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_common);
+        toolbar =  findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
+        TextView mTitle =  toolbar.findViewById(R.id.toolbar_title_common);
         rl_main = findViewById(R.id.rl_main);
         mTitle.setText("Vegetable");
         String title = getIntent().getStringExtra(AppConstant.EXTRA_1);
@@ -233,7 +233,7 @@ public class VegetableActivity extends CustomActivity {
             for (int i = 0; i < productData.getCategory().size(); i++) {
                 List<ProductDetails> others = new ArrayList<>();
                 for (int j = 0; j < allProducts.size(); j++) {
-                    if (allProducts.get(j).getCategoryId().equals(productData.getCategory().get(i).getParentID())) {
+                    if (allProducts.get(j).getCategoryId().equals(productData.getCategory().get(i).getID())) {
                         others.add(allProducts.get(j));
                     }
                 }

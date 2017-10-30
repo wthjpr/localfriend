@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@drawable/main_gradient_bg"
+    android:background="@drawable/gradient_new"
     tools:context="com.localfriend.LoginActivity">
 
     <!-- Login progress -->

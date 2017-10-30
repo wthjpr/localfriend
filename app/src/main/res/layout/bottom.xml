@@ -35,7 +35,7 @@
             android:layout_centerHorizontal="true"
             android:text="HOME"
             android:textColor="#888F8C"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
@@ -64,8 +64,7 @@
             android:layout_centerHorizontal="true"
             android:text="TIFFIN"
             android:textColor="#888F8C"
-            android:textSize="12sp"
-            android:textStyle="bold"
+            android:textSize="10sp"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 
@@ -106,7 +105,7 @@
             android:layout_centerHorizontal="true"
             android:text="CART"
             android:textColor="#888F8C"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
@@ -135,7 +134,7 @@
             android:layout_centerHorizontal="true"
             android:text="MORE"
             android:textColor="#888F8C"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>

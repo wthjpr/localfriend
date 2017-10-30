@@ -4,31 +4,40 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/dim_60"
-    android:paddingTop="@dimen/dim_20">
+    android:layout_marginLeft="60dp"
+    android:paddingTop="20dp">
 
     <RelativeLayout
         android:id="@+id/frame_breakfast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="-15dp"
-        android:paddingLeft="@dimen/dim_20">
+        android:layout_marginRight="-25dp"
+        android:paddingLeft="20dp">
 
         <android.support.v7.widget.CardView
             android:id="@+id/card_item"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dim_400"
-            app:cardBackgroundColor="@color/bg_color"
-            app:cardCornerRadius="@dimen/dim_15"
-            app:cardElevation="@dimen/dim_5">
+            android:layout_height="450dp"
+            app:cardCornerRadius="15dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginTop="-5dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="10dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/place_holder"
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:id="@+id/rel_break_fast"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/aloo_paratha" />
+                android:scaleType="centerCrop" />
 
             <!--<ImageView
                 android:layout_width="match_parent"
@@ -44,10 +53,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/frame_breakfast"
-        android:layout_marginLeft="@dimen/dim_20"
+        android:layout_marginLeft="34dp"
+        android:layout_marginBottom="19dp"
         android:background="@drawable/tv_trans_bg"
         android:gravity="center"
-        android:padding="@dimen/dim_8"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
         android:text="Aloo Pratha"
         android:textColor="@color/white"
         android:textSize="14sp"
@@ -58,7 +71,7 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="@dimen/dim_25"
+        android:layout_marginTop="45dp"
         android:background="@drawable/tv_gradient_bg"
         android:gravity="center"
         android:padding="5dp"
@@ -69,15 +82,15 @@
 
     <com.localfriend.fonts.CustomFontTextView
         android:id="@+id/tv_add"
-        android:layout_width="@dimen/dim_50"
-        android:layout_height="@dimen/dim_50"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dim_30"
-        android:layout_marginTop="@dimen/dim_375"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="400dp"
         android:background="@drawable/gradient_circle_bg"
         android:gravity="center"
         android:text="+"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_20"
+        android:textSize="30sp"
         app:textStyle="@integer/roboto_medium" />
 </RelativeLayout>

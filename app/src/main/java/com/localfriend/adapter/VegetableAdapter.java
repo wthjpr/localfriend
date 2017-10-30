@@ -72,7 +72,8 @@ public class VegetableAdapter extends BaseAdapter {
             listViewHolder = (ViewHolder) convertView.getTag();
         }
         try {
-            Picasso.with(context.getContext()).load(productList.get(position).getpGalleryFileList().get(0)).into(listViewHolder.img_veg);
+            Picasso.with(context.getContext()).load(productList.get(position).getpGalleryFileList().get(0))
+                    .placeholder(R.drawable.place_holder).into(listViewHolder.img_veg);
         } catch (Exception e) {
             listViewHolder.img_veg.setImageResource(R.drawable.apple);
         }
