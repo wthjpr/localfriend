@@ -102,6 +102,10 @@ public class SigninActivityTwo extends CustomActivity implements CustomActivity.
                 edt_password.setError("Enter the Password");
                 return;
             }
+            if(edt_password.getText().toString().length()<6){
+                edt_password.setError("Password should 6 or more characters");
+                return;
+            }
 //            if (TextUtils.isEmpty(edt_password.getText().toString())) {
 //                edt_password.setError("Enter the Password");
 //                return;

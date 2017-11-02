@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
 import com.localfriend.R;
 import com.localfriend.fragments.AllFragment;
 import com.localfriend.model.Product;
@@ -75,7 +76,7 @@ public class CustomAdapter extends BaseAdapter {
             listViewHolder = (ViewHolder) convertView.getTag();
         }
         try {
-            Picasso.with(context.getActivity()).load(productList.get(position).getpGalleryFileList().get(0)).placeholder(R.drawable.place_holder)
+            Glide.with(context.getActivity()).load(productList.get(position).getpGalleryFileList().get(0)).placeholder(R.drawable.place_holder)
                     .into(listViewHolder.img_item);
         } catch (Exception e) {
             listViewHolder.img_item.setImageResource(R.drawable.bakery);
@@ -89,7 +90,7 @@ public class CustomAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        listViewHolder.tv_item_cost.setText(string + " " + productList.get(position).getPrice());
+        listViewHolder.tv_item_cost.setText(string + " " + productList.get(position).getSellingPrice());
         listViewHolder.tv_item_name.setText(productList.get(position).getName());
         return convertView;
     }

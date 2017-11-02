@@ -33,6 +33,96 @@ public class User implements Serializable {
         private String token_type;
         private String expires_in;
         private String userName;
+        private String fullName;
+        private String email;
+        private String mobileNumber;
+        private String gender;
+        private String dOB;
+        private String altMobileNo;
+        private String profileImageURL;
+        private String address;
+        private String note;
+        private String extra2;
+
+        public String getExtra2() {
+            return extra2;
+        }
+
+        public void setExtra2(String extra2) {
+            this.extra2 = extra2;
+        }
+
+        public String getFullName() {
+            return fullName;
+        }
+
+        public void setFullName(String fullName) {
+            this.fullName = fullName;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getMobileNumber() {
+            return mobileNumber;
+        }
+
+        public void setMobileNumber(String mobileNumber) {
+            this.mobileNumber = mobileNumber;
+        }
+
+        public String getGender() {
+            return gender;
+        }
+
+        public void setGender(String gender) {
+            this.gender = gender;
+        }
+
+        public String getdOB() {
+            return dOB;
+        }
+
+        public void setdOB(String dOB) {
+            this.dOB = dOB;
+        }
+
+        public String getAltMobileNo() {
+            return altMobileNo;
+        }
+
+        public void setAltMobileNo(String altMobileNo) {
+            this.altMobileNo = altMobileNo;
+        }
+
+        public String getProfileImageURL() {
+            return profileImageURL;
+        }
+
+        public void setProfileImageURL(String profileImageURL) {
+            this.profileImageURL = profileImageURL;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getNote() {
+            return note;
+        }
+
+        public void setNote(String note) {
+            this.note = note;
+        }
 
         public String getAccess_token() {
             return access_token;

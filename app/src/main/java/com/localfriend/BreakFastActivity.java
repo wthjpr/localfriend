@@ -14,10 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.localfriend.adapter.BreakfastAdapter;
-import com.localfriend.adapter.DummyBreakfastData;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
-import com.localfriend.fragments.CustomFragment;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
@@ -216,7 +214,7 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         dismissDialog();
-        MyApp.showMassage(getContext(), o.optString("message"));
+//        MyApp.showMassage(getContext(), o.optString("message"));
     }
 
     @Override

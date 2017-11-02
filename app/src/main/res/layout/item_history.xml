@@ -31,7 +31,7 @@
                 android:padding="@dimen/dim_5"
                 android:text="Orderid"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:textStyle="@integer/roboto_regular" />
 
             <com.localfriend.fonts.CustomFontTextView

@@ -3,10 +3,9 @@ package com.localfriend;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,27 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import com.localfriend.adapter.SimpleAdapter;
 import com.localfriend.application.AppConstants;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
-import com.localfriend.fragments.AddressFragment;
-import com.localfriend.fragments.CartFragment;
-import com.localfriend.fragments.CustomFragment;
-import com.localfriend.fragments.HomeFragment;
-import com.localfriend.fragments.TiffinFragment;
-import com.localfriend.fragments.VegetableFragment;
 import com.localfriend.model.CategoryDetails;
-import com.localfriend.model.Product;
 import com.localfriend.model.ProductData;
-import com.localfriend.model.Slider;
 import com.localfriend.model.StoreList;
 import com.localfriend.utils.AppConstant;
 import com.orhanobut.dialogplus.DialogPlus;
@@ -49,13 +37,9 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.sql.Types.NULL;
 
 public class FoodActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     private Toolbar toolbar;
@@ -70,7 +54,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
         super.onCreate(savedInstanceState);
         setResponseListener(this);
         setContentView(R.layout.activity_food);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_common);
+        toolbar = findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -114,27 +98,27 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
 
         if (catList.size() == 1) {
             setTouchNClick(R.id.rl_cat1);
-            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.bakery)
+            Glide.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.bakery)
                     .error(R.drawable.bakery).into(img1);
             txt1.setText(catList.get(0).getName());
         }
         if (catList.size() == 2) {
             setTouchNClick(R.id.rl_cat1);
             setTouchNClick(R.id.rl_cat2);
-            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.place_holder).into(img1);
+            Glide.with(getContext()).load(catList.get(0).getThumbImage()).centerCrop().placeholder(R.drawable.place_holder).into(img1);
             txt1.setText(catList.get(0).getName());
-            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).placeholder(R.drawable.place_holder).into(img2);
+            Glide.with(getContext()).load(catList.get(1).getThumbImage()).centerCrop().placeholder(R.drawable.place_holder).into(img2);
             txt2.setText(catList.get(1).getName());
         }
         if (catList.size() == 3) {
             setTouchNClick(R.id.rl_cat1);
             setTouchNClick(R.id.rl_cat2);
             setTouchNClick(R.id.rl_cat3);
-            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.place_holder).into(img1);
+            Glide.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.place_holder).into(img1);
             txt1.setText(catList.get(0).getName());
-            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).placeholder(R.drawable.place_holder).into(img2);
+            Glide.with(getContext()).load(catList.get(1).getThumbImage()).placeholder(R.drawable.place_holder).into(img2);
             txt2.setText(catList.get(1).getName());
-            Picasso.with(getContext()).load(catList.get(2).getThumbImage()).placeholder(R.drawable.place_holder).into(img3);
+            Glide.with(getContext()).load(catList.get(2).getThumbImage()).placeholder(R.drawable.place_holder).into(img3);
             txt3.setText(catList.get(2).getName());
         }
         if (catList.size() >= 4) {
@@ -142,13 +126,13 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             setTouchNClick(R.id.rl_cat2);
             setTouchNClick(R.id.rl_cat3);
             setTouchNClick(R.id.rl_cat4);
-            Picasso.with(getContext()).load(catList.get(0).getThumbImage()).placeholder(R.drawable.place_holder).into(img1);
+//            Glide.with(getContext()).load(catList.get(0).getThumbImage()).fitCenter().placeholder(R.drawable.place_holder).into(img1);
             txt1.setText(catList.get(0).getName());
-            Picasso.with(getContext()).load(catList.get(1).getThumbImage()).placeholder(R.drawable.place_holder).into(img2);
+//            Glide.with(getContext()).load(catList.get(1).getThumbImage()).fitCenter().placeholder(R.drawable.place_holder).into(img2);
             txt2.setText(catList.get(1).getName());
-            Picasso.with(getContext()).load(catList.get(2).getThumbImage()).placeholder(R.drawable.place_holder).into(img3);
+//            Glide.with(getContext()).load(catList.get(2).getThumbImage()).placeholder(R.drawable.place_holder).into(img3);
             txt3.setText(catList.get(2).getName());
-            Picasso.with(getContext()).load(catList.get(3).getThumbImage()).placeholder(R.drawable.place_holder).into(img4);
+//            Glide.with(getContext()).load(catList.get(3).getThumbImage()).placeholder(R.drawable.place_holder).into(img4);
             txt4.setText(catList.get(3).getName());
         }
     }
@@ -180,50 +164,53 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                     dismissListener, cancelListener,
                     true);
         } else if (v.getId() == R.id.rl_cat2) {
-            title = catList.get(1).getName();
-            catId = catList.get(1).getID();
-            List<String> listStore = new ArrayList<>();
-            for (int i = 0; i < catList.get(1).getStorelist().size(); i++) {
-                listStore.add(catList.get(1).getStorelist().get(i).getsName());
-            }
-            if (listStore.size() == 1) {
-                getProducts(catId, catList.get(1).getStorelist().get(0).getsID());
-                return;
-            }
-            currentStoreList = catList.get(1).getStorelist();
-            SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
-            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                    true);
+            showComingSoon();
+//            title = catList.get(1).getName();
+//            catId = catList.get(1).getID();
+//            List<String> listStore = new ArrayList<>();
+//            for (int i = 0; i < catList.get(1).getStorelist().size(); i++) {
+//                listStore.add(catList.get(1).getStorelist().get(i).getsName());
+//            }
+//            if (listStore.size() == 1) {
+//                getProducts(catId, catList.get(1).getStorelist().get(0).getsID());
+//                return;
+//            }
+//            currentStoreList = catList.get(1).getStorelist();
+//            SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+//            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+//                    true);
         } else if (v.getId() == R.id.rl_cat3) {
-            title = catList.get(2).getName();
-            catId = catList.get(2).getID();
-            List<String> listStore = new ArrayList<>();
-            for (int i = 0; i < catList.get(2).getStorelist().size(); i++) {
-                listStore.add(catList.get(2).getStorelist().get(i).getsName());
-            }
-            if (listStore.size() == 1) {
-                getProducts(catId, catList.get(2).getStorelist().get(0).getsID());
-                return;
-            }
-            currentStoreList = catList.get(2).getStorelist();
-            SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
-            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                    true);
+            showComingSoon();
+//            title = catList.get(2).getName();
+//            catId = catList.get(2).getID();
+//            List<String> listStore = new ArrayList<>();
+//            for (int i = 0; i < catList.get(2).getStorelist().size(); i++) {
+//                listStore.add(catList.get(2).getStorelist().get(i).getsName());
+//            }
+//            if (listStore.size() == 1) {
+//                getProducts(catId, catList.get(2).getStorelist().get(0).getsID());
+//                return;
+//            }
+//            currentStoreList = catList.get(2).getStorelist();
+//            SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+//            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+//                    true);
         } else if (v.getId() == R.id.rl_cat4) {
-            title = catList.get(3).getName();
-            catId = catList.get(3).getID();
-            List<String> listStore = new ArrayList<>();
-            for (int i = 0; i < catList.get(3).getStorelist().size(); i++) {
-                listStore.add(catList.get(3).getStorelist().get(i).getsName());
-            }
-            if (listStore.size() == 1) {
-                getProducts(catId, catList.get(3).getStorelist().get(0).getsID());
-                return;
-            }
-            currentStoreList = catList.get(3).getStorelist();
-            SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
-            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                    true);
+            showComingSoon();
+//            title = catList.get(3).getName();
+//            catId = catList.get(3).getID();
+//            List<String> listStore = new ArrayList<>();
+//            for (int i = 0; i < catList.get(3).getStorelist().size(); i++) {
+//                listStore.add(catList.get(3).getStorelist().get(i).getsName());
+//            }
+//            if (listStore.size() == 1) {
+//                getProducts(catId, catList.get(3).getStorelist().get(0).getsID());
+//                return;
+//            }
+//            currentStoreList = catList.get(3).getStorelist();
+//            SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+//            showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+//                    true);
         } else if (v.getId() == R.id.rl_tab_1) {
 
             img_home.setSelected(true);
@@ -392,7 +379,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
-        dismissDialog();
+
         if (callNumber == 1) {
             try {
                 ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
@@ -405,13 +392,21 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                     }
 
                 } else {
-                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
-                            " Please come back later.\nThank you.", getContext());
+//                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
+//                            " Please come back later.\nThank you.", getContext());
+                    showComingSoon();
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dismissDialog();
+                }
+            },1000);
         }
     }
 

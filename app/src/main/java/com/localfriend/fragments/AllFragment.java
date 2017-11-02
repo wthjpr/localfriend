@@ -90,7 +90,7 @@ public class AllFragment extends CustomFragment implements CustomFragment.Respon
 //        {"status":"success","message":"successfully add quantity"}
 //        MyApp.popMessage("Local Friend",);
         dismissDialog();
-        MyApp.showMassage(getContext(), o.optString("message"));
+//        MyApp.showMassage(getContext(), o.optString("message"));
     }
 
     @Override

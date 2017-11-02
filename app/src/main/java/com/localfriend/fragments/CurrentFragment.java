@@ -123,7 +123,7 @@ public class CurrentFragment extends CustomFragment implements CustomFragment.Re
                 e.printStackTrace();
             }
         } else {
-            MyApp.showMassage(getActivity(), o.optString("message"));
+//            MyApp.showMassage(getActivity(), o.optString("message"));
 //            showLoadingDialog("");
             getCallWithHeader(AppConstant.BASE_URL + "Order/Current", 1);
         }

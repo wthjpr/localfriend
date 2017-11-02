@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.localfriend.R;
 import com.localfriend.fragments.CartFragment;
 import com.localfriend.fragments.WishListFragment;
@@ -51,10 +52,10 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.DataHo
     }
 
     @Override
-    public void onBindViewHolder(final DataHolder holder, int position) {
+    public void onBindViewHolder(final DataHolder holder, final int position) {
         final Cartlist item = listdata.get(position);
         holder.tv_item_name.setText(item.getProductname());
-        Picasso.with(c.getContext()).load(item.getProductimage()).placeholder(R.drawable.place_holder).into(holder.img_food);
+        Glide.with(c.getContext()).load(item.getProductimage()).placeholder(R.drawable.place_holder).into(holder.img_food);
         String string = "\u20B9";
         byte[] utf8 = null;
         try {
@@ -63,19 +64,23 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.DataHo
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        holder.tv_item_cost.setText(string + item.getPrice());
+        holder.tv_item_cost.setText(string + item.getSellingprice());
         holder.tv_unit.setText(item.getVarient());
 
         holder.tv_move_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((WishListFragment) c).moveToCart(item, holder.img_food);
+                listdata.remove(position);
+                notifyDataSetChanged();
             }
         });
 
         holder.img_btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listdata.remove(position);
+                notifyDataSetChanged();
                 ((WishListFragment) c).deleteItem(item);
             }
         });
@@ -99,8 +104,6 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.DataHo
             tv_move_to_cart = itemView.findViewById(R.id.tv_move_to_cart);
             img_btn_close = itemView.findViewById(R.id.img_btn_close);
             img_food = itemView.findViewById(R.id.img_food);
-
-
         }
     }
 

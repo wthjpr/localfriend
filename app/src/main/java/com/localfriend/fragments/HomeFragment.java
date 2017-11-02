@@ -126,7 +126,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
 //            loadCategory(3);
             ((MainActivity) getActivity()).changeTab(2);
         } else if (v == lrn_food) {
-            title = "Fast Food";
+            title = "Food";
             loadCategory(2);
         } else if (v == lrn_mithaiwala) {
             title = "Mithai";
@@ -181,7 +181,8 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 List<CategoryDetails> catList =
                         new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
                 if (catList.size() == 0) {
-                    MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+                    showComingSoon();
+//                    MyApp.popMessage("Local Friend", "No data available for this category", getContext());
                 } else {
                     SingleInstance.getInstance().setCatList(catList);
                     startActivity(new Intent(getContext(), FoodActivity.class).putExtra(AppConstant.EXTRA_1, title));
@@ -203,8 +204,9 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 if (data.getProduct().size() > 0) {
                     startActivity(new Intent(getContext(), VegetableActivity.class).putExtra(AppConstant.EXTRA_1, title));
                 } else {
-                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
-                            " Please come back later.\nThank you.", getContext());
+                    showComingSoon();
+//                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
+//                            " Please come back later.\nThank you.", getContext());
                 }
 
             } catch (JSONException e) {
@@ -224,7 +226,8 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 List<CategoryDetails> catList =
                         new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
                 if (catList.size() == 0) {
-                    MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+                    showComingSoon();
+//                    MyApp.popMessage("Local Friend", "No data available for this category", getContext());
                 } else {
                     List<String> listStore = new ArrayList<>();
                     for (int i = 0; i < catList.get(3).getStorelist().size(); i++) {
@@ -278,8 +281,9 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 if (data.getProduct().size() > 0) {
                     startActivity(new Intent(getContext(), AllActivity.class).putExtra(AppConstant.EXTRA_1, title));
                 } else {
-                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
-                            " Please come back later.\nThank you.", getContext());
+                    showComingSoon();
+//                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
+//                            " Please come back later.\nThank you.", getContext());
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -298,8 +302,9 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 if (data.getProduct().size() > 0) {
                     startActivity(new Intent(getContext(), VegetableActivity.class).putExtra(AppConstant.EXTRA_1, title));
                 } else {
-                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
-                            " Please come back later.\nThank you.", getContext());
+                    showComingSoon();
+//                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
+//                            " Please come back later.\nThank you.", getContext());
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -317,7 +322,8 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 List<CategoryDetails> catList =
                         new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
                 if (catList.size() == 0) {
-                    MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+//                    MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+                    showComingSoon();
                 } else {
                     List<String> listStore = new ArrayList<>();
                     for (int i = 0; i < catList.get(3).getStorelist().size(); i++) {

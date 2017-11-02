@@ -36,6 +36,7 @@
             android:layout_marginTop="@dimen/dim_10"
             android:backgroundTint="@color/white"
             android:inputType="phone"
+            android:maxLength="10"
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="@dimen/dim_16"

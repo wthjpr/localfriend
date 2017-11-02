@@ -1,39 +1,25 @@
 package com.localfriend;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.aigestudio.wheelpicker.WheelPicker;
 import com.google.gson.Gson;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
-import com.localfriend.fragments.AddressFragment;
-import com.localfriend.fragments.AllFragment;
-import com.localfriend.fragments.CartFragment;
-import com.localfriend.fragments.CustomFragment;
-import com.localfriend.fragments.HomeFragment;
 import com.localfriend.fragments.PaymentFragment;
 import com.localfriend.fragments.ReviewFragment;
 import com.localfriend.fragments.ScheduleFragment;
-import com.localfriend.fragments.TiffinFragment;
 import com.localfriend.model.Checkout;
 import com.localfriend.utils.AppConstant;
 
@@ -43,8 +29,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.sql.Types.NULL;
 
 public class CheckOutActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     private Toolbar toolbar;
@@ -168,7 +152,7 @@ public class CheckOutActivity extends CustomActivity implements CustomActivity.R
         }
     }
 
-    public void changeFragmentPosition(int position){
+     public void changeFragmentPosition(int position){
         TabLayout.Tab tab = tabLayout.getTabAt(position);
         tab.select();
     }

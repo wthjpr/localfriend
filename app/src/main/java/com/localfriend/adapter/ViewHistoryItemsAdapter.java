@@ -11,7 +11,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.localfriend.R;
+import com.localfriend.application.MyApp;
 import com.localfriend.model.Checkout;
 import com.localfriend.model.HistoryList;
 import com.squareup.picasso.Picasso;
@@ -78,8 +80,8 @@ public class ViewHistoryItemsAdapter extends BaseAdapter {
 
         viewHolder.tv_item_name.setText(listData.get(position).getProductName()+"  X "+listData.get(position).getProductQuantity());
         viewHolder.tv_unit.setText(listData.get(position).getVarient());
-        viewHolder.tv_item_cost.setText("Rs. "+listData.get(position).getOrderUnitPrice());
-        Picasso.with(context).load(listData.get(position).getProductImage()).placeholder(R.drawable.place_holder).into(viewHolder.img_food);
+        viewHolder.tv_item_cost.setText(MyApp.getRupeeCurrency()+listData.get(position).getOrderUnitPrice());
+        Glide.with(context).load(listData.get(position).getProductImage()).placeholder(R.drawable.place_holder).into(viewHolder.img_food);
 
 
         return view;

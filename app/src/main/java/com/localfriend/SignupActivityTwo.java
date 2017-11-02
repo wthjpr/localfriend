@@ -88,11 +88,11 @@ public class SignupActivityTwo extends CustomActivity implements CustomActivity.
         setTouchNClick(R.id.tv_btn_signin);
 
 
-        edt_phone_no = (EditText) findViewById(R.id.edt_phone_no);
+        edt_phone_no =  findViewById(R.id.edt_phone_no);
 
-        tv_btn_signin = (TextView) findViewById(R.id.tv_btn_signin);
-        tv_welcome = (TextView) findViewById(R.id.tv_welcome);
-        tv_welcome.setText("Welcome "+UserName+"\nEnter your Mobile Number");
+        tv_btn_signin =  findViewById(R.id.tv_btn_signin);
+        tv_welcome =  findViewById(R.id.tv_welcome);
+        tv_welcome.setText("Welcome " + UserName + "\nEnter your Mobile Number");
 
         Shader textShader = new LinearGradient(0, 0, 0, 50,
                 new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
@@ -105,6 +105,10 @@ public class SignupActivityTwo extends CustomActivity implements CustomActivity.
         if (v.getId() == R.id.tv_btn_signin) {
             if (TextUtils.isEmpty(edt_phone_no.getText().toString())) {
                 edt_phone_no.setError("Enter Your Mobile Number");
+                return;
+            }
+            if (edt_phone_no.getText().toString().length() < 10) {
+                edt_phone_no.setError("Enter a valid mobile number");
                 return;
             }
 

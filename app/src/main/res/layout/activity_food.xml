@@ -26,9 +26,10 @@
         <ImageView
             android:id="@+id/img1"
             android:layout_width="@dimen/dim_80"
-            android:src="@drawable/place_holder"
             android:layout_height="@dimen/dim_75"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/bakery" />
 
         <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/txt1"
@@ -53,8 +54,9 @@
             android:id="@+id/img2"
             android:layout_width="@dimen/dim_80"
             android:layout_height="@dimen/dim_75"
-            android:src="@drawable/place_holder"
-            android:layout_centerHorizontal="true" />
+            android:scaleType="centerInside"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/drinks" />
 
         <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/txt2"
@@ -81,8 +83,9 @@
             android:id="@+id/img4"
             android:layout_width="@dimen/dim_80"
             android:layout_height="@dimen/dim_75"
-            android:src="@drawable/place_holder"
-            android:layout_centerHorizontal="true" />
+            android:scaleType="centerInside"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/south_indian" />
 
         <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/txt4"
@@ -109,8 +112,9 @@
             android:id="@+id/img3"
             android:layout_width="@dimen/dim_80"
             android:layout_height="@dimen/dim_75"
-            android:src="@drawable/place_holder"
-            android:layout_centerHorizontal="true" />
+            android:scaleType="centerInside"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/fast_food" />
 
         <com.localfriend.fonts.CustomFontTextView
             android:id="@+id/txt3"

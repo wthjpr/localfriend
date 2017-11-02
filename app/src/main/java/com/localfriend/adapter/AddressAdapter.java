@@ -120,6 +120,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
                 ((AddressListActivity) c).setEditClick(listdata.get(getLayoutPosition()));
             } else if (v == txt_delete) {
                 ((AddressListActivity) c).setDeleteClick(listdata.get(getLayoutPosition()));
+                listdata.remove(getLayoutPosition());
+                notifyDataSetChanged();
             } else if(v==itemView){
                 ((AddressListActivity) c).setItemClicked(listdata.get(getLayoutPosition()));
             }

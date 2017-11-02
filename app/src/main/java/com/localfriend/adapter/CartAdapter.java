@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.localfriend.R;
 import com.localfriend.fragments.CartFragment;
 import com.localfriend.model.Cartlist;
@@ -57,7 +58,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
         final Cartlist item = listdata.get(position);
         holder.tv_item_name.setText(item.getProductname());
         holder.tv_counter.setText(item.getQuantiy()+"");
-        Picasso.with(c.getContext()).load(item.getProductimage()).placeholder(R.drawable.place_holder).into(holder.img_food);
+        Glide.with(c.getContext()).load(item.getProductimage()).placeholder(R.drawable.place_holder).into(holder.img_food);
         String string = "\u20B9";
         byte[] utf8 = null;
         try {
@@ -66,7 +67,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        holder.tv_item_cost.setText(string + item.getPrice());
+        holder.tv_item_cost.setText(string + item.getSellingprice());
         holder.tv_unit.setText(item.getVarient());
         holder.tv_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,14 +108,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
 
         public DataHolder(final View itemView) {
             super(itemView);
-            tv_unit = (TextView) itemView.findViewById(R.id.tv_unit);
-            tv_item_name = (TextView) itemView.findViewById(R.id.tv_item_name);
-            tv_item_cost = (TextView) itemView.findViewById(R.id.tv_item_cost);
+            tv_unit =  itemView.findViewById(R.id.tv_unit);
+            tv_item_name =  itemView.findViewById(R.id.tv_item_name);
+            tv_item_cost =  itemView.findViewById(R.id.tv_item_cost);
             tv_plus = itemView.findViewById(R.id.tv_plus);
-            tv_counter = (TextView) itemView.findViewById(R.id.tv_counter);
+            tv_counter =  itemView.findViewById(R.id.tv_counter);
             tv_minus = itemView.findViewById(R.id.tv_minus);
             img_btn_close = itemView.findViewById(R.id.img_btn_close);
-            img_food = (ImageView) itemView.findViewById(R.id.img_food);
+            img_food =  itemView.findViewById(R.id.img_food);
 
 
         }

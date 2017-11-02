@@ -90,8 +90,8 @@ public class ReviewFragment extends CustomFragment implements CustomFragment.Res
         setClick(txt_ok);
         try {
             Checkout c = SingleInstance.getInstance().getCheckoutData();
-            txt_subtotal.setText("Rs. " + c.getTotalprice());
-            txt_total.setText("Rs. " + c.getSellingprice());
+            txt_subtotal.setText(MyApp.getRupeeCurrency()+ c.getTotalprice());
+            txt_total.setText(MyApp.getRupeeCurrency()+ c.getSellingprice());
             adapter = new CheckoutAdapter(c.getCheckoutlist(), ReviewFragment.this, true);
 
         } catch (Exception e) {
@@ -168,7 +168,7 @@ public class ReviewFragment extends CustomFragment implements CustomFragment.Res
         super.onClick(v);
         if (v == txt_ok) {
             rl_timestamp.setVisibility(View.GONE);
-            MyApp.showMassage(getContext(), dateString);
+//            MyApp.showMassage(getContext(), dateString);
         } else if (v == tv_make_payment) {
             JSONObject o = new JSONObject();
             try {

@@ -120,7 +120,7 @@ public class HistoryFragment extends CustomFragment implements CustomFragment.Re
                 }
             }
         } else {
-            MyApp.showMassage(getActivity(), o.optString("message"));
+//            MyApp.showMassage(getActivity(), o.optString("message"));
         }
     }
 

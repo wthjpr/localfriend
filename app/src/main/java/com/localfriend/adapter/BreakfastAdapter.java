@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.localfriend.BreakFastActivity;
 import com.localfriend.R;
 import com.localfriend.model.ProductDetails;
@@ -67,7 +68,8 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
             e.printStackTrace();
         }
         holder.tv_breakfast_cost.setText(string + p.getSellingPrice());
-        Picasso.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_break_fast);
+        Glide.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_break_fast);
+        Glide.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_animated);
         holder.tv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,15 +88,17 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
     class DataHolder extends RecyclerView.ViewHolder {
         TextView tv_breakfast_cost, tv_add, tv_breakfast_name;
         ImageView rel_break_fast;
+        ImageView rel_animated;
 
 
         public DataHolder(final View itemView) {
             super(itemView);
-            tv_breakfast_name = (TextView) itemView.findViewById(R.id.tv_breakfast_name);
-            tv_breakfast_cost = (TextView) itemView.findViewById(R.id.tv_breakfast_cost);
-            tv_add = (TextView) itemView.findViewById(R.id.tv_add);
+            tv_breakfast_name =  itemView.findViewById(R.id.tv_breakfast_name);
+            tv_breakfast_cost =  itemView.findViewById(R.id.tv_breakfast_cost);
+            tv_add =  itemView.findViewById(R.id.tv_add);
 
-            rel_break_fast = (ImageView) itemView.findViewById(R.id.rel_break_fast);
+            rel_break_fast =  itemView.findViewById(R.id.rel_break_fast);
+            rel_animated =  itemView.findViewById(R.id.rel_animated);
         }
     }
 }

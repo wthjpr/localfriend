@@ -22,7 +22,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/img_profile"
+                android:id="@+id/img_profile"
             android:layout_width="@dimen/dim_70"
             android:layout_height="@dimen/dim_70"
             android:layout_gravity="center_horizontal"

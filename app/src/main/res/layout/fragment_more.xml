@@ -5,35 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?actionBarSize"
-    android:background="@color/white"
+    android:background="#E9EFEF"
     android:orientation="vertical">
 
-    <com.localfriend.fonts.CustomFontTextView
-        android:id="@+id/txt_about_us"
-        android:layout_width="match_parent"
+    <com.localfriend.fonts.CustomFontPtSansText
+        app:textStyle="@integer/roboto_medium"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="25dp"
-        android:background="?selectableItemBackground"
-        android:drawableLeft="@drawable/more_about"
-        android:drawablePadding="15dp"
-        android:padding="15dp"
-        android:text="About Us"
-        android:textColor="@color/gray_text"
-        android:textSize="18sp"
-        app:textStyle="@integer/roboto_medium" />
+        android:text="MORE OPTIONS" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/gray_tab"></View>
-
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/txt_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
+        android:layout_marginRight="-10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:drawableLeft="@drawable/more_profile"
         android:drawablePadding="15dp"
+        android:drawableRight="@drawable/ic_next"
         android:padding="15dp"
         android:text="Profile"
         android:textColor="@color/gray_text"
@@ -45,13 +37,37 @@
         android:layout_height="1px"
         android:background="@color/gray_tab"></View>
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
+        android:id="@+id/txt_change_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="-10dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/more_change_pasword"
+        android:drawablePadding="15dp"
+        android:drawableRight="@drawable/ic_next"
+        android:padding="15dp"
+        android:text="Change Password"
+        android:textColor="@color/gray_text"
+        android:textSize="18sp"
+        app:textStyle="@integer/roboto_medium" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray_tab"></View>
+
+
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/txt_tc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
+        android:layout_marginRight="-10dp"
+        android:background="@color/white"
         android:drawableLeft="@drawable/more_tc"
         android:drawablePadding="15dp"
+        android:drawableRight="@drawable/ic_next"
         android:padding="15dp"
         android:text="Terms &amp; Conditions"
         android:textColor="@color/gray_text"
@@ -63,15 +79,17 @@
         android:layout_height="1px"
         android:background="@color/gray_tab"></View>
 
-    <com.localfriend.fonts.CustomFontTextView
-        android:id="@+id/txt_change_password"
+    <com.localfriend.fonts.CustomFontPtSansText
+        android:id="@+id/txt_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
-        android:drawableLeft="@drawable/more_change_pasword"
+        android:layout_marginRight="-10dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/more_feedback"
         android:drawablePadding="15dp"
+        android:drawableRight="@drawable/ic_next"
         android:padding="15dp"
-        android:text="Change Password"
+        android:text="Feedback"
         android:textColor="@color/gray_text"
         android:textSize="18sp"
         app:textStyle="@integer/roboto_medium" />
@@ -81,18 +99,21 @@
         android:layout_height="1px"
         android:background="@color/gray_tab"></View>
 
-    <com.localfriend.fonts.CustomFontTextView
-        android:id="@+id/txt_feedback"
+    <com.localfriend.fonts.CustomFontPtSansText
+        android:id="@+id/txt_about_us"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?selectableItemBackground"
-        android:drawableLeft="@drawable/more_feedback"
+        android:layout_marginRight="-10dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/more_about"
         android:drawablePadding="15dp"
+        android:drawableRight="@drawable/ic_next"
         android:padding="15dp"
-        android:text="Feedback"
+        android:text="About Us"
         android:textColor="@color/gray_text"
         android:textSize="18sp"
         app:textStyle="@integer/roboto_medium" />
+
 
     <View
         android:layout_width="match_parent"

@@ -26,11 +26,12 @@ public class SignupActivityOne extends CustomActivity {
     private EditText edt_cust_name;
     private TextView tv_btn_next;
     private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_one);
-        toolbar =  findViewById(R.id.toolbar_common);
+        toolbar = findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -67,7 +68,6 @@ public class SignupActivityOne extends CustomActivity {
         setTouchNClick(R.id.tv_btn_next);
 
 
-
         edt_cust_name = findViewById(R.id.edt_cust_name);
 
         tv_btn_next = findViewById(R.id.tv_btn_next);
@@ -83,6 +83,11 @@ public class SignupActivityOne extends CustomActivity {
         if (v.getId() == R.id.tv_btn_next) {
             if (TextUtils.isEmpty(edt_cust_name.getText().toString())) {
                 edt_cust_name.setError("Enter Your Name");
+                return;
+            }
+
+            if (edt_cust_name.getText().toString().length() < 5) {
+                edt_cust_name.setError("Name should have atleast 5 characters");
                 return;
             }
 

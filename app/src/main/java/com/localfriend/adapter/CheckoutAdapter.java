@@ -54,7 +54,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHo
     public void onBindViewHolder(DataHolder holder, int position) {
         Checkout.CheckoutListData a = listdata.get(position);
         holder.txt_category.setText(a.getCategoryname());
-        holder.txt_price.setText("Total Price :- " + a.getPayamount());
+        holder.txt_price.setText("Total Price :- "+ MyApp.getRupeeCurrency() + a.getPayamount());
         try {
             holder.select_time.setText(MyApp.parseDateToddMMMyyyy(a.getTimestemp().get(a.getSelection()).getTimedate())
                     + "      " + a.getTimestemp().get(a.getSelection()).getTimestemp());

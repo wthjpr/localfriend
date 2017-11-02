@@ -110,7 +110,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         dismissDialog();
-        MyApp.showMassage(getContext(), o.optString("message"));
+//        MyApp.showMassage(getContext(), o.optString("message"));
     }
 
     @Override

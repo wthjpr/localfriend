@@ -10,25 +10,27 @@
         android:layout_height="match_parent">
 
         <com.localfriend.fonts.CustomFontTextView
-            android:id="@+id/tv_cost_old"
+            android:id="@+id/tv_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:padding="@dimen/dim_5"
-            android:textColor="@color/gray_text"
-            android:textSize="14sp"
+            android:paddingLeft="@dimen/dim_5"
+            android:paddingTop="@dimen/dim_5"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             app:textStyle="@integer/roboto_medium" />
 
         <com.localfriend.fonts.CustomFontTextView
-            android:id="@+id/tv_cost"
+            android:id="@+id/tv_cost_old"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/tv_cost_old"
-            android:padding="@dimen/dim_3"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_cost"
+            android:paddingTop="@dimen/dim_3"
             android:textColor="@color/gray_text"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:textStyle="@integer/roboto_medium" />
 
         <ImageView
@@ -57,7 +59,9 @@
 
             <com.localfriend.fonts.CustomFontTextView
                 android:id="@+id/tv_veg_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/img_veg"
                 android:layout_centerHorizontal="true"

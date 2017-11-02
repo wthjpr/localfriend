@@ -26,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -46,6 +47,8 @@ import com.localfriend.utils.AppConstant;
 import com.localfriend.utils.CircleAnimationUtil;
 import com.localfriend.utils.DrawerItem;
 import com.localfriend.utils.SimpleItem;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
@@ -61,6 +64,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static java.sql.Types.NULL;
 
 public class MainActivity extends CustomActivity implements DrawerAdapter.OnItemSelectedListener, CustomActivity.ResponseCallback {
@@ -69,7 +74,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     private static final int WISH_LIST = 2;
     private static final int ADDRESS = 3;
     private static final int NEED_HELP = 4;
-//    private static final int LOGOUT = 5;
+    //    private static final int LOGOUT = 5;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     private Toolbar toolbar;
@@ -87,6 +92,11 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getIntent().getBooleanExtra("isOrder", false)) {
+            startActivity(new Intent(getContext(), OrderActivity.class));
+        }
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -163,8 +173,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
 
-        TextView txt_user_name = findViewById(R.id.txt_user_name);
-        txt_user_name.setText(MyApp.getApplication().readUser().getUserInfo().getFullName());
+
         setupUiElements();
 
         getCall(AppConstants.BASE_URL + "Category/3", "", 1);
@@ -302,34 +311,35 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     @Override
     public void onItemSelected(int position) {
         if (position == 0) {
-           try{
-               mTitle.setText("Local Friend");
-               img_home.setSelected(true);
-               img_tiffin.setSelected(false);
-               img_cart.setSelected(false);
-               img_more.setSelected(false);
+            try {
+                mTitle.setText("Local Friend");
+                img_home.setSelected(true);
+                img_tiffin.setSelected(false);
+                img_cart.setSelected(false);
+                img_more.setSelected(false);
 
-               tv_home.setSelected(true);
-               tv_tiffin.setSelected(false);
-               tv_cart.setSelected(false);
-               tv_more.setSelected(false);
+                tv_home.setSelected(true);
+                tv_tiffin.setSelected(false);
+                tv_cart.setSelected(false);
+                tv_more.setSelected(false);
 
-               tv_home.setTextColor(Color.parseColor("#275B89"));
-               tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
-               tv_cart.setTextColor(Color.parseColor("#888F8C"));
-               tv_more.setTextColor(Color.parseColor("#888F8C"));
+                tv_home.setTextColor(Color.parseColor("#275B89"));
+                tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
+                tv_cart.setTextColor(Color.parseColor("#888F8C"));
+                tv_more.setTextColor(Color.parseColor("#888F8C"));
 
-               img_home.setImageResource(R.drawable.ic_home_active);
-               img_tiffin.setImageResource(R.drawable.ic_tifin);
-               img_cart.setImageResource(R.drawable.ic_cart);
-               img_more.setImageResource(R.drawable.ic_more);
+                img_home.setImageResource(R.drawable.ic_home_active);
+                img_tiffin.setImageResource(R.drawable.ic_tifin);
+                img_cart.setImageResource(R.drawable.ic_cart);
+                img_more.setImageResource(R.drawable.ic_more);
 
-               toolbar.setBackgroundResource(NULL);
+                toolbar.setBackgroundResource(NULL);
 
-               mFragmentManager = getSupportFragmentManager();
-               mFragmentTransaction = mFragmentManager.beginTransaction();
-               mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
-           }catch (Exception e){}
+                mFragmentManager = getSupportFragmentManager();
+                mFragmentTransaction = mFragmentManager.beginTransaction();
+                mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
+            } catch (Exception e) {
+            }
         } else if (position == 1) {
             startActivity(new Intent(getContext(), OrderActivity.class));
         } else if (position == 2) {
@@ -429,6 +439,8 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         if (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) > 0) {
             txt_cart_count.setVisibility(View.VISIBLE);
             txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
+        } else {
+            txt_cart_count.setVisibility(View.GONE);
         }
 
         setClick(R.id.rl_tab_1);
@@ -563,6 +575,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getCartlist().size() > 0) {
                     txt_cart_count.setVisibility(View.VISIBLE);
+                    txt_cart_count.setText(c.getCartlist().size() + "");
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
                     HashMap<String, String> map = MyApp.getApplication().readType();
                     for (int i = 0; i < c.getCartlist().size(); i++) {
@@ -591,7 +604,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 if (catList.size() == 0) {
 //                MyApp.popMessage("Local Friend", "No data available for this category", getContext());
                 } else {
-                    SingleInstance.getInstance().setCatList(catList);
+                    SingleInstance.getInstance().setTiffinCatList(catList);
 //                startActivity(new Intent(getContext(), FoodActivity.class));
                 }
             } catch (JSONException e) {
@@ -613,6 +626,16 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
     @Override
     public void onErrorReceived(String error) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TextView txt_user_name = findViewById(R.id.txt_user_name);
+        txt_user_name.setText(MyApp.getApplication().readUser().getUserInfo().getFullName());
+        CircleImageView img_profile = findViewById(R.id.img_profile);
+        Glide.with(this).load(MyApp.getApplication().readUser().getData().getProfileImageURL()).centerCrop().placeholder(R.drawable.default_pic).into(img_profile);
 
     }
 

@@ -97,15 +97,15 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         setClick(txt_ok);
         try {
             Checkout c = SingleInstance.getInstance().getCheckoutData();
-            txt_subtotal.setText("Rs. " + c.getTotalprice());
-            txt_total.setText("Rs. " + c.getSellingprice());
+            txt_subtotal.setText(MyApp.getRupeeCurrency() + c.getTotalprice());
+            txt_total.setText(MyApp.getRupeeCurrency() + c.getSellingprice());
             adapter = new CheckoutAdapter(c.getCheckoutlist(), ScheduleFragment.this, false);
 
             for (int i = 0; i < c.getCheckoutlist().size(); i++) {
                 HashMap<String, String> m = new HashMap<>();
                 m.put("catId", c.getCheckoutlist().get(i).getCategoryid());
                 m.put("stampId", c.getCheckoutlist().get(i).getTimestemp().get(0).getId());
-                m.put("deliverydate", c.getCheckoutlist().get(i).getTimestemp().get(0).getTimestemp());
+                m.put("deliverydate", c.getCheckoutlist().get(i).getTimestemp().get(0).getTimedate());
                 mapList.add(m);
             }
         } catch (Exception e) {
@@ -134,6 +134,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                 HashMap<String, String> reMap = new HashMap<>();
                 reMap.put("catId", catId);
                 reMap.put("stampId", tList.get(pos).getId());
+                reMap.put("deliverydate", tList.get(pos).getTimedate());
                 mapList.set(pos, reMap);
                 positionForTime = position;
             }
@@ -209,6 +210,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                         JSONObject oo = new JSONObject();
                         oo.put("categoryId", mapList.get(i).get("catId"));
                         oo.put("timestempId", mapList.get(i).get("stampId"));
+                        oo.put("deliverydate", mapList.get(i).get("deliverydate"));
                         arr.put(oo);
                     }
 
@@ -317,7 +319,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
             SingleInstance.getInstance().setPayAmount(txt_total.getText().toString());
             ((CheckOutActivity) getActivity()).changeFragmentPosition(1);
         } else {
-            MyApp.showMassage(getContext(), o.optString("message"));
+//            MyApp.showMassage(getContext(), o.optString("message"));
         }
 //
     }

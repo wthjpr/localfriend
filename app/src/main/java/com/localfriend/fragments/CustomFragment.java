@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.localfriend.CustomActivity;
@@ -95,7 +96,7 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
         AsyncHttpClient client = new AsyncHttpClient();
-        client.addHeader("Authorization","bearer "+MyApp.getApplication().readUser().getData().getAccess_token());
+        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
         client.setTimeout(30000);
         client.post(c, url, entity, "application/json", new JsonHttpResponseHandler() {
 
@@ -212,7 +213,7 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
         Log.d("URl:", url);
 //        Log.d("Request:", p.toString());
         AsyncHttpClient client = new AsyncHttpClient();
-        client.addHeader("Authorization","bearer "+MyApp.getApplication().readUser().getData().getAccess_token());
+        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
         client.setTimeout(30000);
         client.get(url, new JsonHttpResponseHandler() {
 
@@ -223,7 +224,11 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
                 try {
                     responseCallback.onJsonObjectResponseReceived(response, callNumber);
                 } catch (Exception e) {
-                    responseCallback.onErrorReceived(getString(R.string.no_data_avail));
+                    try {
+                        responseCallback.onErrorReceived(getString(R.string.no_data_avail));
+                    } catch (IllegalStateException ee) {
+                    } catch (Exception ee) {
+                    }
                 }
 
             }
@@ -329,7 +334,7 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_loader);
 
-        TextView txt_load_message =  dialog.findViewById(R.id.txt_load_message);
+        TextView txt_load_message = dialog.findViewById(R.id.txt_load_message);
         txt_load_message.setText(message);
 
 //        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
@@ -340,6 +345,28 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
 //            }
 //        });
 
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = -1;
+        lp.height = -1;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
+
+    public void showComingSoon() {
+        dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_coming_soon);
+        ImageView img_close = dialog.findViewById(R.id.img_close);
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         dialog.show();
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());

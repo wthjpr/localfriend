@@ -94,7 +94,7 @@ public class ForgotPasswordActivity extends CustomActivity implements CustomActi
             startActivity(new Intent(ForgotPasswordActivity.this, SigninActivityOne.class));
             finishAffinity();
         } else {
-            MyApp.popMessage("Local Friend", o.optString("message"), ForgotPasswordActivity.this);
+//            MyApp.popMessage("Local Friend", o.optString("message"), ForgotPasswordActivity.this);
         }
     }
 

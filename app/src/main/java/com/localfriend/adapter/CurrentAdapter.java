@@ -66,7 +66,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.DataHold
         History a = listdata.get(position);
         holder.txt_order_id.setText("Order ID : LF_ " + a.getOrder_Id());
         holder.txt_date.setText(a.getOrder_date());
-        String string = "";
+        String string = "\u20B9";
         byte[] utf8 = null;
         try {
             utf8 = string.getBytes("UTF-8");

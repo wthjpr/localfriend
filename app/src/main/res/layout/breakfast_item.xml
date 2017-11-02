@@ -17,12 +17,12 @@
         <android.support.v7.widget.CardView
             android:id="@+id/card_item"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            app:cardCornerRadius="15dp"
+            android:layout_height="420dp"
+            app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true"
             android:layout_marginTop="-5dp"
             app:cardBackgroundColor="@color/white"
-            app:cardElevation="10dp">
+            app:cardElevation="5dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -34,6 +34,13 @@
 
             <ImageView
                 android:id="@+id/rel_break_fast"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/rel_animated"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
@@ -53,8 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/frame_breakfast"
-        android:layout_marginLeft="34dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/tv_trans_bg"
         android:gravity="center"
         android:paddingTop="8dp"
@@ -70,8 +77,8 @@
         android:id="@+id/tv_breakfast_cost"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="35dp"
         android:background="@drawable/tv_gradient_bg"
         android:gravity="center"
         android:padding="5dp"
@@ -86,7 +93,7 @@
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="380dp"
         android:background="@drawable/gradient_circle_bg"
         android:gravity="center"
         android:text="+"

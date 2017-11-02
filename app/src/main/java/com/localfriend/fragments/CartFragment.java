@@ -163,7 +163,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             }
 
         } else {
-            MyApp.showMassage(getContext(), o.optString("message"));
+//            MyApp.showMassage(getContext(), o.optString("message"));
 //            showLoadingDialog("");
             getCallWithHeader(AppConstant.BASE_URL + "Cart", 1);
         }

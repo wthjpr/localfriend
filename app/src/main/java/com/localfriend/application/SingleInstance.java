@@ -27,6 +27,16 @@ public class SingleInstance {
 
     private List<Slider> sliderList = new ArrayList();
     private List<CategoryDetails> catList = new ArrayList<>();
+    private List<CategoryDetails> tiffinCatList = new ArrayList<>();
+
+    public List<CategoryDetails> getTiffinCatList() {
+        return tiffinCatList;
+    }
+
+    public void setTiffinCatList(List<CategoryDetails> tiffinCatList) {
+        this.tiffinCatList = tiffinCatList;
+    }
+
     private ProductData productData = new ProductData();
     private ProductDetails selectedProduct;
     private boolean isUpdateDone;

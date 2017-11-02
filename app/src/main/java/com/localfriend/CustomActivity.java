@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.localfriend.application.MyApp;
@@ -209,6 +210,40 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                responseCallback.onErrorReceived(getString(R.string.something_wrong));
+            }
+        });
+    }
+
+    public void postCall(Context c, String url, RequestParams p, String loadingMsg, final int callNumber) {
+        if (!TextUtils.isEmpty(loadingMsg))
+            MyApp.spinnerStart(c, loadingMsg);
+        Log.d("URl:", url);
+        Log.d("Request:", p.toString());
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setTimeout(60000);
+        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
+        client.post(c, url, p, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
+                MyApp.spinnerStop();
+                responseCallback.onJsonObjectResponseReceived(response, callNumber);
+                Log.d("Response:", response.toString());
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                MyApp.spinnerStop();
+                Log.d("error message:", throwable.getMessage());
+                responseCallback.onErrorReceived(getString(R.string.something_wrong));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                MyApp.spinnerStop();
+                Log.d("error message:", throwable.getMessage());
                 responseCallback.onErrorReceived(getString(R.string.something_wrong));
             }
         });
@@ -529,9 +564,31 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_loader);
 
-        TextView txt_load_message =  dialog.findViewById(R.id.txt_load_message);
+        TextView txt_load_message = dialog.findViewById(R.id.txt_load_message);
         txt_load_message.setText(message);
 
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = -1;
+        lp.height = -1;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
+
+    public void showComingSoon() {
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_coming_soon);
+        ImageView img_close = dialog.findViewById(R.id.img_close);
+        img_close.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         dialog.show();
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());

@@ -11,7 +11,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.localfriend.R;
+import com.localfriend.application.MyApp;
 import com.localfriend.model.Checkout;
 import com.squareup.picasso.Picasso;
 
@@ -59,9 +61,9 @@ public class ViewItemsAdapter extends BaseAdapter {
 
             viewHolder = new ViewHolder();
 
-            viewHolder.tv_item_name =  view.findViewById(R.id.tv_item_name);
-            viewHolder.tv_unit =  view.findViewById(R.id.tv_unit);
-            viewHolder.tv_item_cost =  view.findViewById(R.id.tv_item_cost);
+            viewHolder.tv_item_name = view.findViewById(R.id.tv_item_name);
+            viewHolder.tv_unit = view.findViewById(R.id.tv_unit);
+            viewHolder.tv_item_cost = view.findViewById(R.id.tv_item_cost);
             Shader textShader = new LinearGradient(0, 0, 0, 50,
                     new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
                     new float[]{0, 1}, Shader.TileMode.CLAMP);
@@ -77,8 +79,8 @@ public class ViewItemsAdapter extends BaseAdapter {
 
         viewHolder.tv_item_name.setText(listData.get(position).getProductname());
         viewHolder.tv_unit.setText(listData.get(position).getVarient());
-        viewHolder.tv_item_cost.setText("Rs. "+listData.get(position).getSellingprice());
-        Picasso.with(context).load(listData.get(position).getProductimage()).placeholder(R.drawable.place_holder).into(viewHolder.img_food);
+        viewHolder.tv_item_cost.setText(MyApp.getRupeeCurrency() + listData.get(position).getSellingprice());
+        Glide.with(context).load(listData.get(position).getProductimage()).placeholder(R.drawable.place_holder).into(viewHolder.img_food);
 
 
         return view;

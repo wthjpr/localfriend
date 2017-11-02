@@ -101,9 +101,10 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
             }
 
         } else {
+            dismissDialog();
 //            if (adapter.getItemCount() <= 1)
 //                img_empty.setVisibility(View.VISIBLE);
-            MyApp.showMassage(getContext(), o.optString("message"));
+//            MyApp.showMassage(getContext(), o.optString("message"));
             getCallWithHeader(AppConstant.BASE_URL + "WishList", 1);
         }
     }
@@ -129,7 +130,7 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
         try {
             o.put("oprationid", 3);
             o.put("pDetailsId", item.getProductid());
-            showLoadingDialog("");
+
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -142,7 +143,7 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
         try {
             o.put("oprationid", 4);
             o.put("pDetailsId", p.getProductid());
-            showLoadingDialog("");
+
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "WishList", o, "");
         } catch (JSONException e) {
             e.printStackTrace();

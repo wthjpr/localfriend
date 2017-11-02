@@ -9,13 +9,19 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.aigestudio.wheelpicker.WheelPicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
+import com.localfriend.model.TimeStamp;
 import com.localfriend.model.User;
 import com.localfriend.utils.AppConstant;
 
@@ -24,17 +30,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AddressActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     private Toolbar toolbar;
     private RadioButton rd_btn_home, rd_btn_office, rd_btn_other;
-    private EditText edt_full_name, edt_city, edt_area, edt_colony, edt_flat_no, edt_phone_no, edt_pin_no;
+    private EditText edt_full_name, edt_flat_no, edt_phone_no, edt_pin_no;
     private TextView txt_update;
+    private TextView txt_ok;
+    private TextView edt_city, edt_area, edt_colony;
     private String type = "Home";
     private User user;
     private boolean isUpdate = false;
     private com.localfriend.model.Address updatingAddress = null;
+    private WheelPicker mainWheel;
 
 
     @Override
@@ -55,6 +66,12 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
         isUpdate = getIntent().getBooleanExtra(AppConstant.EXTRA_1, false);
         updatingAddress = SingleInstance.getInstance().getUpdatingAddress();
         setupUiElements();
+
+
+        getCall(AppConstant.BASE_URL + "City", "", 3);
+        getCall(AppConstant.BASE_URL + "Area", "", 4);
+        getCall(AppConstant.BASE_URL + "SubArea", "", 5);
+
     }
 
     private void setupUiElements() {
@@ -69,6 +86,9 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
         edt_pin_no = findViewById(R.id.edt_pin_no);
         edt_full_name = findViewById(R.id.edt_full_name);
         txt_update = findViewById(R.id.txt_update);
+        rl_timestamp = findViewById(R.id.rl_timestamp);
+        txt_ok = findViewById(R.id.txt_ok);
+        mainWheel = findViewById(R.id.main_wheel);
 
         edt_full_name.setText(user.getUserInfo().getFullName());
         edt_phone_no.setText(user.getUserInfo().getMobileNumber());
@@ -84,6 +104,10 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
         setTouchNClick(R.id.rd_btn_office);
         setTouchNClick(R.id.rd_btn_other);
         setTouchNClick(R.id.txt_update);
+        setTouchNClick(R.id.edt_city);
+        setTouchNClick(R.id.edt_area);
+        setTouchNClick(R.id.edt_colony);
+        setTouchNClick(R.id.txt_ok);
 
         if (isUpdate) {
             edt_full_name.setText(updatingAddress.getAddName());
@@ -94,12 +118,18 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
             edt_flat_no.setText(updatingAddress.getAddDetails());
             edt_pin_no.setText(updatingAddress.getAddZipCode());
         }
+
+
     }
 
 
     public void onClick(View v) {
         super.onClick(v);
-        if (v.getId() == R.id.rd_btn_home) {
+        if (v == txt_ok) {
+            rl_timestamp.setVisibility(View.GONE);
+
+//            MyApp.showMassage(getContext(), dateString);
+        } else if (v.getId() == R.id.rd_btn_home) {
             type = "Home";
             rd_btn_home.setChecked(true);
             rd_btn_home.setTextColor(getResources().getColor(R.color.blue_text));
@@ -189,13 +219,52 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
 //                if (isUpdate) {
 //                    putCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Address", o, 2);
 //                } else {
-                    postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Address", o, 1);
+                postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Address", o, 1);
 //                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        } else if (v == edt_city) {
+            initWheel(cityArray, CITY);
+            currentSelection = CITY;
+        } else if (v == edt_area) {
+            initWheel(areaArray, AREA);
+            currentSelection = AREA;
+        } else if (v == edt_colony) {
+            initWheel(colonyArray, COLONY);
+            currentSelection = COLONY;
         }
+    }
+
+    private static final int CITY = 1;
+    private static final int AREA = 2;
+    private static final int COLONY = 3;
+    private int currentSelection = 1;
+
+    private List<String> cityArray = new ArrayList<>();
+    private List<String> areaArray = new ArrayList<>();
+    private List<String> colonyArray = new ArrayList<>();
+
+    private RelativeLayout rl_timestamp;
+
+    private void initWheel(final List<String> oData, final int textView) {
+        rl_timestamp.setVisibility(View.VISIBLE);
+        mainWheel.setCurved(false);
+        mainWheel.setData(oData);
+        mainWheel.setItemTextSize(50);
+        mainWheel.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(WheelPicker picker, Object data, int position) {
+                String value = String.valueOf(data);
+                if (textView == 1)
+                    edt_city.setText(value);
+                else if (textView == 2)
+                    edt_area.setText(value);
+                else
+                    edt_colony.setText(value);
+            }
+        });
     }
 
     private Context getContext() {
@@ -214,14 +283,14 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
             if (address == null) {
                 return null;
             }
-          try{
-              Address location = address.get(0);
-              location.getLatitude();
-              location.getLongitude();
-              p1 = new LatLng(location.getLatitude(), location.getLongitude());
-          }catch (Exception e){
-              p1 = new LatLng(0.0, 0.0);
-          }
+            try {
+                Address location = address.get(0);
+                location.getLatitude();
+                location.getLongitude();
+                p1 = new LatLng(location.getLatitude(), location.getLongitude());
+            } catch (Exception e) {
+                p1 = new LatLng(0.0, 0.0);
+            }
 
         } catch (IOException ex) {
             p1 = new LatLng(0.0, 0.0);
@@ -235,13 +304,50 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         dismissDialog();
         if (callNumber == 2) {
-            MyApp.showMassage(getContext(), o.optString("message"));
+//            MyApp.showMassage(getContext(), o.optString("message"));
             SingleInstance.getInstance().setUpdateDone(true);
             finish();
             return;
+        } else if (callNumber == 3) {
+            try {
+                JSONArray arr = o.getJSONArray("data");
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject oo = arr.getJSONObject(i);
+                    cityArray.add(oo.optString("City"));
+                    edt_city.setText(arr.getJSONObject(i).optString("City"));
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return;
+        } else if (callNumber == 4) {
+            try {
+                JSONArray arr = o.getJSONArray("data");
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject oo = arr.getJSONObject(i);
+                    areaArray.add(oo.optString("Area"));
+                    edt_area.setText(arr.getJSONObject(i).optString("Area"));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return;
+        } else if (callNumber == 5) {
+            try {
+                JSONArray arr = o.getJSONArray("data");
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject oo = arr.getJSONObject(i);
+                    colonyArray.add(oo.optString("SubArea"));
+                    edt_colony.setText(arr.getJSONObject(i).optString("SubArea"));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return;
         }
 
-        MyApp.showMassage(getContext(), o.optString("message"));
+//        MyApp.showMassage(getContext(), o.optString("message"));
         if (o.optString("status").equals("success")) {
             SingleInstance.getInstance().setUpdateDone(true);
             finish();

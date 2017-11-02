@@ -41,7 +41,7 @@ public class LoginSignupActivity extends CustomActivity implements
         super.onCreate(savedInstanceState);
 
         if (MyApp.getStatus(AppConstant.IS_LOGIN)) {
-            startActivity(new Intent(LoginSignupActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginSignupActivity.this, SplashActivity.class));
             finish();
             return;
         }

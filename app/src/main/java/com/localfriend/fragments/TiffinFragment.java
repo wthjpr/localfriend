@@ -25,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.localfriend.AllActivity;
 import com.localfriend.BreakFastActivity;
 import com.localfriend.R;
@@ -48,6 +50,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +69,7 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        catList = SingleInstance.getInstance().getCatList();
+        catList = SingleInstance.getInstance().getTiffinCatList();
     }
 
     @Override
@@ -79,15 +82,15 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
         card_lunch = myView.findViewById(R.id.card_lunch);
         card_dinner = myView.findViewById(R.id.card_dinner);
         card_snacks = myView.findViewById(R.id.card_snacks);
-        img_breakfast = (ImageView) myView.findViewById(R.id.img_breakfast);
-        img_lunch = (ImageView) myView.findViewById(R.id.img_lunch);
-        img_dinner = (ImageView) myView.findViewById(R.id.img_dinner);
-        img_snacks = (ImageView) myView.findViewById(R.id.img_snacks);
+        img_breakfast = myView.findViewById(R.id.img_breakfast);
+        img_lunch = myView.findViewById(R.id.img_lunch);
+        img_dinner = myView.findViewById(R.id.img_dinner);
+        img_snacks = myView.findViewById(R.id.img_snacks);
 
-        tv_breakfast = (TextView) myView.findViewById(R.id.tv_breakfast);
-        tv_lunch = (TextView) myView.findViewById(R.id.tv_lunch);
-        tv_dinner = (TextView) myView.findViewById(R.id.tv_dinner);
-        tv_snacks = (TextView) myView.findViewById(R.id.tv_snacks);
+        tv_breakfast = myView.findViewById(R.id.tv_breakfast);
+        tv_lunch = myView.findViewById(R.id.tv_lunch);
+        tv_dinner = myView.findViewById(R.id.tv_dinner);
+        tv_snacks = myView.findViewById(R.id.tv_snacks);
         hidenView();
         showView();
         card_breakfast.setOnClickListener(this);
@@ -149,7 +152,13 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        if (catList.size() == 0) {
+            showLoadingDialog("");
+            getCall(AppConstants.BASE_URL + "Category/3", "", 11);
+            return;
+        }
         switch (v.getId()) {
+
             case R.id.card_breakfast: {
                 titleSend = "Breakfast";
                 currentStoreList = catList.get(0).getStorelist();
@@ -205,23 +214,25 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 break;
             }
             case R.id.card_snacks: {
-                titleSend = "Snacks";
-                currentStoreList = catList.get(3).getStorelist();
-                catId = "18";
-                List<String> listStore = new ArrayList<>();
-                for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
-                    listStore.add(catList.get(0).getStorelist().get(i).getsName());
-                }
-                if (listStore.size() == 1) {
-                    getProducts("18", catList.get(0).getStorelist().get(0).getsID());
-                    return;
-                }
-                currentStoreList = catList.get(0).getStorelist();
-                SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
-                showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                        true);
-
-                break;
+                showComingSoon();
+//
+//                titleSend = "Snacks";
+//                currentStoreList = catList.get(3).getStorelist();
+//                catId = "18";
+//                List<String> listStore = new ArrayList<>();
+//                for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
+//                    listStore.add(catList.get(0).getStorelist().get(i).getsName());
+//                }
+//                if (listStore.size() == 1) {
+//                    getProducts("18", catList.get(0).getStorelist().get(0).getsID());
+//                    return;
+//                }
+//                currentStoreList = catList.get(0).getStorelist();
+//                SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+//                showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
+//                        true);
+//
+//                break;
             }
         }
     }
@@ -245,7 +256,7 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
     OnItemClickListener itemClickListener = new OnItemClickListener() {
         @Override
         public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
-//            TextView textView = (TextView) view.findViewById(R.id.text_view);
+//            TextView textView =  view.findViewById(R.id.text_view);
 //            String clickedAppName = textView.getText().toString();
 //            getProducts(catId, catList.get(position).getStorelist().get(0).getsID());
         }
@@ -270,13 +281,29 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                         public void run() {
                             dismissDialog();
                         }
-                    },1000);
+                    }, 1000);
                 } else {
                     dismissDialog();
-                    MyApp.popMessage("Local Friend", "We are not able to find any product related to selected category & store," +
-                            " Please come back later.\nThank you.", getContext());
+                    showComingSoon();
                 }
 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if (callNumber == 11) {
+            dismissDialog();
+            Type listType = new TypeToken<ArrayList<CategoryDetails>>() {
+            }.getType();
+            try {
+                List<CategoryDetails> catList =
+                        new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
+                if (catList.size() == 0) {
+//                MyApp.popMessage("Local Friend", "No data available for this category", getContext());
+                } else {
+                    SingleInstance.getInstance().setTiffinCatList(catList);
+                    this.catList = catList;
+//                startActivity(new Intent(getContext(), FoodActivity.class));
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

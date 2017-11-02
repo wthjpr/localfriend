@@ -52,12 +52,12 @@
                 android:checked="true"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dim_5"
-                android:paddingLeft="@dimen/dim_10"
-                android:paddingRight="@dimen/dim_10"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:paddingTop="@dimen/dim_5"
                 android:text="1 KG"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_16" />
+                android:textSize="15sp" />
 
             <RadioButton
                 android:id="@+id/tv_two_kg"
@@ -66,12 +66,12 @@
                 android:layout_marginLeft="15dp"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dim_5"
-                android:paddingLeft="@dimen/dim_10"
-                android:paddingRight="@dimen/dim_10"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:paddingTop="@dimen/dim_5"
                 android:text="2 KG"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_16"
+                android:textSize="15sp"
                 android:visibility="gone" />
 
             <RadioButton
@@ -81,12 +81,12 @@
                 android:layout_marginLeft="15dp"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dim_5"
-                android:paddingLeft="@dimen/dim_10"
-                android:paddingRight="@dimen/dim_10"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:paddingTop="@dimen/dim_5"
                 android:text="3 KG"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_16"
+                android:textSize="15sp"
                 android:visibility="gone" />
 
             <com.localfriend.fonts.CustomFontTextView
@@ -103,7 +103,7 @@
                 android:paddingTop="@dimen/dim_5"
                 android:text="4 KG"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_16"
+                android:textSize="15sp"
                 android:visibility="gone"
                 app:textStyle="@integer/roboto_medium" />
 
@@ -121,7 +121,7 @@
                 android:paddingTop="@dimen/dim_5"
                 android:text="5 KG"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dim_16"
+                android:textSize="15sp"
                 android:visibility="gone"
                 app:textStyle="@integer/roboto_medium" />
         </LinearLayout>

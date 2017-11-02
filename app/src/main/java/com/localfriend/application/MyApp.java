@@ -42,6 +42,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OptionalDataException;
 import java.io.StreamCorruptedException;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -349,6 +350,19 @@ public class MyApp extends Application {
                 bitmap.getHeight(), matrix, true);
 
         return bitmap;
+    }
+
+
+    public static String getRupeeCurrency(){
+        String string = "\u20B9";
+        byte[] utf8 = null;
+        try {
+            utf8 = string.getBytes("UTF-8");
+            string = new String(utf8, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return string;
     }
 
     private static Bitmap decodeFile(File F) {

@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -65,7 +66,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         productId = productDetails.getId();
         img_product = findViewById(R.id.img_product);
         try {
-            Picasso.with(getContext()).load(getIntent().getStringExtra(AppConstant.EXTRA_1)).placeholder(R.drawable.place_holder)
+            Glide.with(getContext()).load(getIntent().getStringExtra(AppConstant.EXTRA_1)).placeholder(R.drawable.place_holder)
                     .into(img_product);
         } catch (Exception e) {
         }
@@ -110,7 +111,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
 
         tv_description = findViewById(R.id.tv_description);
         tv_description.setText(productDetails.getuDescription());
-        tv_cost.setText("Rs. " + productDetails.getSellingPrice());
+        tv_cost.setText(MyApp.getRupeeCurrency() + productDetails.getSellingPrice());
         tv_one_kg = findViewById(R.id.tv_one_kg);
         tv_two_kg = findViewById(R.id.tv_two_kg);
         tv_three_kg = findViewById(R.id.tv_three_kg);
@@ -152,21 +153,21 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
 
         } else if (v.getId() == R.id.tv_one_kg) {
             tv_description.setText(productDetails.getuDescription());
-            tv_cost.setText("Rs. " + productDetails.getSellingPrice());
+            tv_cost.setText(MyApp.getRupeeCurrency() + productDetails.getSellingPrice());
             productId = productDetails.getId();
             tv_one_kg.setChecked(true);
             tv_two_kg.setChecked(false);
             tv_three_kg.setChecked(false);
         } else if (v.getId() == R.id.tv_two_kg) {
             tv_description.setText(productDetails.getMyList().get(1).getuDescription());
-            tv_cost.setText("Rs. " + productDetails.getMyList().get(1).getSellingPrice());
+            tv_cost.setText(MyApp.getRupeeCurrency() + productDetails.getMyList().get(1).getSellingPrice());
             productId = productDetails.getMyList().get(1).getId();
             tv_one_kg.setChecked(false);
             tv_two_kg.setChecked(true);
             tv_three_kg.setChecked(false);
         } else if (v.getId() == R.id.tv_three_kg) {
             tv_description.setText(productDetails.getMyList().get(2).getuDescription());
-            tv_cost.setText("Rs. " + productDetails.getMyList().get(2).getSellingPrice());
+            tv_cost.setText(MyApp.getRupeeCurrency() + productDetails.getMyList().get(2).getSellingPrice());
             productId = productDetails.getMyList().get(2).getId();
             tv_one_kg.setChecked(false);
             tv_two_kg.setChecked(false);
@@ -276,7 +277,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         if (callNumber == 1) {
             dismissDialog();
-            MyApp.showMassage(getContext(), o.optString("message"));
+//            MyApp.showMassage(getContext(), o.optString("message"));
         }
 
     }

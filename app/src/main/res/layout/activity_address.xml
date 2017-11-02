@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:aigestudio="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context="com.localfriend.AddressActivity">
 
@@ -76,12 +77,14 @@
                 android:layout_height="1dp"
                 android:background="@color/gray_tab"></View>
 
-            <EditText
+            <com.localfriend.fonts.CustomFontTextView
+                app:textStyle="@integer/roboto_regular"
                 android:id="@+id/edt_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
+                android:textSize="16sp"
                 android:drawableLeft="@drawable/checkout_address"
                 android:drawablePadding="@dimen/dim_10"
                 android:hint="City"
@@ -96,13 +99,13 @@
                 android:layout_height="1dp"
                 android:background="@color/gray_tab"></View>
 
-            <EditText
+            <com.localfriend.fonts.CustomFontTextView
                 android:id="@+id/edt_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
-                android:layout_marginLeft="25dp"
                 android:drawablePadding="@dimen/dim_10"
                 android:hint="Area"
                 android:imeOptions="actionUnspecified"
@@ -110,7 +113,9 @@
                 android:maxLines="1"
                 android:padding="@dimen/dim_10"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray_tab" />
+                android:textColorHint="@color/gray_tab"
+                android:textSize="16sp"
+                app:textStyle="@integer/roboto_regular" />
 
             <View
                 android:layout_width="match_parent"
@@ -125,13 +130,13 @@
             <!--android:layout_marginTop="@dimen/dim_5"-->
             <!--android:theme="@style/MyTextInputLayout">-->
 
-            <EditText
+            <com.localfriend.fonts.CustomFontTextView
                 android:id="@+id/edt_colony"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
-                android:layout_marginLeft="25dp"
                 android:drawablePadding="@dimen/dim_10"
                 android:hint="Colony"
                 android:imeOptions="actionUnspecified"
@@ -139,7 +144,9 @@
                 android:maxLines="1"
                 android:padding="@dimen/dim_10"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray_tab" />
+                android:textColorHint="@color/gray_tab"
+                android:textSize="16sp"
+                app:textStyle="@integer/roboto_regular" />
 
             <View
                 android:layout_width="match_parent"
@@ -150,9 +157,9 @@
                 android:id="@+id/edt_flat_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
-                android:layout_marginLeft="25dp"
                 android:drawablePadding="@dimen/dim_10"
                 android:hint="Flat/House/Office No."
                 android:imeOptions="actionUnspecified"
@@ -171,9 +178,9 @@
                 android:id="@+id/edt_pin_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
-                android:layout_marginLeft="25dp"
                 android:drawablePadding="@dimen/dim_10"
                 android:hint="Pin Code"
                 android:imeOptions="actionUnspecified"
@@ -214,5 +221,43 @@
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_timestamp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="#88555555"
+        android:elevation="10dp"
+        android:visibility="gone">
 
+        <com.aigestudio.wheelpicker.WheelPicker
+            android:id="@+id/main_wheel"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:visibility="visible"
+            aigestudio:wheel_atmospheric="true"
+            aigestudio:wheel_curved="true"
+            aigestudio:wheel_cyclic="false"
+            aigestudio:wheel_item_align="center"
+            aigestudio:wheel_item_text_color="@color/black"
+            aigestudio:wheel_item_text_size="20sp"
+            aigestudio:wheel_selected_item_text_color="@color/colorPrimary" />
+
+        <com.localfriend.fonts.CustomFontTextView
+            android:id="@+id/txt_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/main_wheel"
+            android:layout_alignParentRight="true"
+            android:background="@color/white"
+            android:gravity="right"
+            android:padding="10dp"
+            android:text="OK     "
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:textStyle="@integer/roboto_bold" />
+    </RelativeLayout>
 </RelativeLayout>

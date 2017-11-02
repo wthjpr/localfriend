@@ -45,13 +45,13 @@ public class VegetableActivity extends CustomActivity {
         super.onCreate(savedInstanceState);
         productData = SingleInstance.getInstance().getProductData();
         setContentView(R.layout.activity_vegetable);
-        toolbar =  findViewById(R.id.toolbar_common);
+        toolbar = findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        TextView mTitle =  toolbar.findViewById(R.id.toolbar_title_common);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title_common);
         rl_main = findViewById(R.id.rl_main);
         mTitle.setText("Vegetable");
         String title = getIntent().getStringExtra(AppConstant.EXTRA_1);
@@ -64,7 +64,9 @@ public class VegetableActivity extends CustomActivity {
             } else if (title.equals("Fruits")) {
                 rl_main.setBackgroundResource(R.drawable.bg_fruits);
             } else if (title.equals("Vegetable")) {
-                rl_main.setBackgroundResource(R.drawable.bg_fruits);
+                rl_main.setBackgroundResource(R.drawable.bg_vegetables);
+            } else if (title.equals("Morning Meals")) {
+                rl_main.setBackgroundResource(R.drawable.morning_need_bg);
             } else {
                 rl_main.setBackgroundResource(R.drawable.bg_cart);
             }
@@ -215,7 +217,7 @@ public class VegetableActivity extends CustomActivity {
 //            for (int j = 0; j < productData.getProduct().get(i).getpDetailsList().size(); j++) {
             ProductDetails d = productData.getProduct().get(i).getpDetailsList().get(0);
             d.setpGalleryFileList(productData.getProduct().get(i).getpGalleryFileList());
-            d.setName(productData.getProduct().get(i).getpName());
+            d.setName(productData.getProduct().get(i).getpTitle());
             d.setCategoryId(productData.getProduct().get(i).getCategoryID());
             List<ProductDetails> myList = new ArrayList<>();
             for (int j = 0; j < productData.getProduct().get(i).getpDetailsList().size(); j++) {

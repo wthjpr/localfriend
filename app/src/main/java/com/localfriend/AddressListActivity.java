@@ -13,12 +13,9 @@ import android.widget.TextView;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.adapter.AddressAdapter;
-import com.localfriend.adapter.DummyCartData;
-import com.localfriend.adapter.DummyCartItem;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.model.Address;
-import com.localfriend.model.CategoryDetails;
 import com.localfriend.utils.AppConstant;
 import com.loopj.android.http.RequestParams;
 
@@ -60,7 +57,7 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
     protected void onResume() {
         super.onResume();
         if (SingleInstance.getInstance().isUpdateDone()) {
-            showLoadingDialog("");
+//            showLoadingDialog("");
             SingleInstance.getInstance().setUpdateDone(false);
             getCallWithHeader(AppConstant.BASE_URL + "Address", 1);
         }
@@ -109,9 +106,9 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
 
         if (callNumber == 2) {
             dismissDialog();
-            MyApp.showMassage(getContext(), o.optString("message"));
+//            MyApp.showMassage(getContext(), o.optString("message"));
         }else if(callNumber==3){
-            MyApp.showMassage(getContext(), o.optString("message"));
+//            MyApp.showMassage(getContext(), o.optString("message"));
             getCallWithHeader(AppConstant.BASE_URL + "Address", 1);
             return;
         }

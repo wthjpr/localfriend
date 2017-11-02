@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.localfriend.R;
 import com.localfriend.application.MyApp;
 import com.localfriend.fragments.VegetableFragment;
@@ -72,10 +73,12 @@ public class VegetableAdapter extends BaseAdapter {
             listViewHolder = (ViewHolder) convertView.getTag();
         }
         try {
-            Picasso.with(context.getContext()).load(productList.get(position).getpGalleryFileList().get(0))
-                    .placeholder(R.drawable.place_holder).into(listViewHolder.img_veg);
+
+            Glide.with(context.getContext()).load(productList.get(position).getpGalleryFileList().get(0))
+                    .placeholder(R.drawable.place_holder)
+                    .into(listViewHolder.img_veg);
         } catch (Exception e) {
-            listViewHolder.img_veg.setImageResource(R.drawable.apple);
+//            listViewHolder.img_veg.setImageResource(R.drawable.apple);
         }
         String string = "\u20B9";
         byte[] utf8 = null;
@@ -112,6 +115,12 @@ public class VegetableAdapter extends BaseAdapter {
                 notifyDataSetChanged();
             }
         });
+
+        if (productList.get(position).getPrice().equals(productList.get(position).getSellingPrice())) {
+            listViewHolder.tv_cost_old.setVisibility(View.GONE);
+        }else{
+            listViewHolder.tv_cost_old.setVisibility(View.VISIBLE);
+        }
         listViewHolder.tv_cost_old.setText(string + " " + productList.get(position).getPrice());
         MyApp.strikeThroughText(listViewHolder.tv_cost_old);
         listViewHolder.tv_cost.setText(string + " " + productList.get(position).getSellingPrice());

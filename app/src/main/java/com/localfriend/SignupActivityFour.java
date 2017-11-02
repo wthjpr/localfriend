@@ -45,13 +45,13 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_four);
         setResponseListener(this);
-        toolbar =  findViewById(R.id.toolbar_common);
+        toolbar = findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        TextView mTitle =  toolbar.findViewById(R.id.toolbar_title_common);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title_common);
         mTitle.setText("SIGN UP");
         actionBar.setTitle("");
         toolbar.setBackgroundResource(NULL);
@@ -84,9 +84,9 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
 
         setTouchNClick(R.id.tv_btn_signup);
 
-        signup_edt_password =  findViewById(R.id.signup_edt_password);
+        signup_edt_password = findViewById(R.id.signup_edt_password);
 
-        tv_btn_signup =  findViewById(R.id.tv_btn_signup);
+        tv_btn_signup = findViewById(R.id.tv_btn_signup);
         Shader textShader = new LinearGradient(0, 0, 0, 50,
                 new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
                 new float[]{0, 1}, Shader.TileMode.CLAMP);
@@ -99,6 +99,10 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
         if (v.getId() == R.id.tv_btn_signup) {
             if (TextUtils.isEmpty(signup_edt_password.getText().toString())) {
                 signup_edt_password.setError("Enter Your Password");
+                return;
+            }
+            if (signup_edt_password.getText().toString().length() <= 5) {
+                MyApp.popMessage("Local Friend","Password should contains at least 6 characters.",getContext());
                 return;
             }
             registerUser();
@@ -156,20 +160,22 @@ public class SignupActivityFour extends CustomActivity implements CustomActivity
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         if (callNumber == 1) {
-            dismissDialog();
+
             if (o.optString("status").equals("success")) {
                 try {
 //                    phVerification();
                     userLogin();
                 } catch (JsonSyntaxException ee) {
-
+                    dismissDialog();
                 }
             } else {
+                dismissDialog();
                 MyApp.popFinishableMessage("Alert!", o.optString("message"), SignupActivityFour.this);
                 return;
             }
 
-        } else if(callNumber == 2){
+        } else if (callNumber == 2) {
+            dismissDialog();
             if (o.optString("status").equals("Success")) {
                 try {
                     MyApp.setStatus(AppConstant.IS_LOGIN, true);
