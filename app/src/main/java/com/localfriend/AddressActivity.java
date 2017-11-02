@@ -327,7 +327,7 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject oo = arr.getJSONObject(i);
                     areaArray.add(oo.optString("Area"));
-                    edt_area.setText(arr.getJSONObject(i).optString("Area"));
+//                    edt_area.setText(arr.getJSONObject(i).optString("Area"));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -339,7 +339,7 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject oo = arr.getJSONObject(i);
                     colonyArray.add(oo.optString("SubArea"));
-                    edt_colony.setText(arr.getJSONObject(i).optString("SubArea"));
+//                    edt_colony.setText(arr.getJSONObject(i).optString("SubArea"));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

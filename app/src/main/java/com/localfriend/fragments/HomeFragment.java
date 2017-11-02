@@ -89,9 +89,9 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
 
         List<Banner> banners = new ArrayList<>();
         List<Slider> sliderList = SingleInstance.getInstance().getSliderList();
-        if (sliderList.size() == 0) {
-            getCall(AppConstants.BASE_URL + AppConstants.SLIDER, "", 1);
-        }
+//        if (sliderList.size() == 0) {
+//            getCall(AppConstants.BASE_URL + AppConstants.SLIDER, "", 1);
+//        }
 
         for (int i = 0; i < sliderList.size(); i++) {
             String url = sliderList.get(i).getThumbImage();
@@ -106,6 +106,12 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         });
 
         return myView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getCall(AppConstants.BASE_URL + AppConstants.SLIDER, "", 1);
     }
 
     private String title;
@@ -164,8 +170,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 for (Slider s : sliderList) {
                     banners.add(new RemoteBanner(s.getThumbImage()));
                 }
-
-
+                bannerSlider.removeAllBanners();
                 bannerSlider.setBanners(banners);
                 bannerSlider.setOnBannerClickListener(new OnBannerClickListener() {
                     @Override
