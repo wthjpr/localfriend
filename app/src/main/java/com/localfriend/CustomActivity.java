@@ -576,6 +576,26 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         dialog.show();
     }
 
+    public void showLoadingShadowDialog(String message) {
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#44888888")));
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialog_loader);
+
+        TextView txt_load_message = dialog.findViewById(R.id.txt_load_message);
+        txt_load_message.setText(message);
+
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width =MyApp.getDisplayWidth();
+        lp.height = MyApp.getDisplayHeight();
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
+
     public void showComingSoon() {
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

@@ -10,7 +10,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.localfriend.CheckOutActivity;
+import com.localfriend.MainActivity;
 import com.localfriend.R;
+import com.localfriend.application.SingleInstance;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +38,9 @@ public class PaymentFragment extends CustomFragment {
         setTouchNClick(rl_cod);
         setTouchNClick(rl_paytm);
         setTouchNClick(tv_review_order);
+//        if(SingleInstance.getInstance().getShippingID()==null){
+//            ((MainActivity)getActivity()).changeTab(0);
+//        }
         return v;
     }
 

@@ -5,6 +5,7 @@ package com.localfriend.adapter;
  */
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
 import com.localfriend.R;
 import com.localfriend.application.MyApp;
 import com.localfriend.fragments.VegetableFragment;
@@ -75,7 +78,8 @@ public class VegetableAdapter extends BaseAdapter {
         try {
 
             Glide.with(context.getContext()).load(productList.get(position).getpGalleryFileList().get(0))
-                    .placeholder(R.drawable.place_holder)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.place_holder).crossFade()
                     .into(listViewHolder.img_veg);
         } catch (Exception e) {
 //            listViewHolder.img_veg.setImageResource(R.drawable.apple);
@@ -118,7 +122,7 @@ public class VegetableAdapter extends BaseAdapter {
 
         if (productList.get(position).getPrice().equals(productList.get(position).getSellingPrice())) {
             listViewHolder.tv_cost_old.setVisibility(View.GONE);
-        }else{
+        } else {
             listViewHolder.tv_cost_old.setVisibility(View.VISIBLE);
         }
         listViewHolder.tv_cost_old.setText(string + " " + productList.get(position).getPrice());

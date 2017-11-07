@@ -11,7 +11,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -22,6 +24,7 @@ import com.localfriend.fragments.ReviewFragment;
 import com.localfriend.fragments.ScheduleFragment;
 import com.localfriend.model.Checkout;
 import com.localfriend.utils.AppConstant;
+import com.localfriend.utils.CustomViewPager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +35,7 @@ import java.util.List;
 
 public class CheckOutActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     private Toolbar toolbar;
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
     private TabLayout tabLayout;
 
 
@@ -51,7 +54,8 @@ public class CheckOutActivity extends CustomActivity implements CustomActivity.R
         mTitle.setText("Checkout");
         actionBar.setTitle("");
         viewPager = findViewById(R.id.viewpager);
-
+        viewPager.setPagingEnabled(false);
+        SingleInstance.getInstance().setShippingID(null);
 
         tabLayout = findViewById(R.id.tabs);
 
@@ -62,7 +66,6 @@ public class CheckOutActivity extends CustomActivity implements CustomActivity.R
     @Override
     public void onClick(View v) {
         super.onClick(v);
-
     }
 
 
@@ -125,6 +128,16 @@ public class CheckOutActivity extends CustomActivity implements CustomActivity.R
 
             }
         });
+
+        LinearLayout tabStrip = ((LinearLayout)tabLayout.getChildAt(0));
+        for(int i = 0; i < tabStrip.getChildCount(); i++) {
+            tabStrip.getChildAt(i).setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return true;
+                }
+            });
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -152,7 +165,7 @@ public class CheckOutActivity extends CustomActivity implements CustomActivity.R
         }
     }
 
-     public void changeFragmentPosition(int position){
+    public void changeFragmentPosition(int position) {
         TabLayout.Tab tab = tabLayout.getTabAt(position);
         tab.select();
     }

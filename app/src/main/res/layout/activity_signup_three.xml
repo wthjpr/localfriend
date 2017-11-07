@@ -77,23 +77,23 @@
         android:layout_below="@+id/lnr_verification"
         android:layout_centerHorizontal="true">
 
-        <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
-            android:id="@+id/timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Resend Code in"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dim_15" />
+        <!--<com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"-->
+            <!--android:id="@+id/timer"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Resend Code in"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="@dimen/dim_15" />-->
 
-        <com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"
-            android:id="@+id/txt_counter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dim_5"
-            android:layout_toRightOf="@+id/timer"
-            android:text="00 : 60"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dim_15" />
+        <!--<com.localfriend.fonts.CustomFontTextView                     app:textStyle="@integer/roboto_medium"-->
+            <!--android:id="@+id/txt_counter"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/dim_5"-->
+            <!--android:layout_toRightOf="@+id/timer"-->
+            <!--android:text="00 : 60"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="@dimen/dim_15" />-->
     </RelativeLayout>
 
     <ImageView

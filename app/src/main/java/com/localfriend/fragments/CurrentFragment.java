@@ -195,7 +195,7 @@ public class CurrentFragment extends CustomFragment implements CustomFragment.Re
                 .setHeader(R.layout.header_view_item)
                 .setContentBackgroundResource(R.drawable.bg_cart)
                 .setFooter(R.layout.footer)
-                .setCancelable(true)
+//                .setCancelable(true)
                 .setExpanded(true)
                 .setExpanded(true, ViewGroup.LayoutParams.MATCH_PARENT)
                 .setGravity(gravity)

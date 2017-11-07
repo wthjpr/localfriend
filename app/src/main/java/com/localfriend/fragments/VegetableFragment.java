@@ -48,17 +48,24 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
         // Inflate the layout for this fragment
         setResponseListener(this);
         View myView = inflater.inflate(R.layout.fragment_vegetable, container, false);
-        GridView gridview =  myView.findViewById(R.id.all_frag_gridview);
+        GridView gridview = myView.findViewById(R.id.all_frag_gridview);
 
         VegetableAdapter customAdapter = new VegetableAdapter(VegetableFragment.this, allProducts);
         gridview.setAdapter(customAdapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String imgUrl = allProducts.get(position).getpGalleryFileList().get(0);
-                SingleInstance.getInstance().setSelectedProduct(allProducts.get(position));
-                startActivity(new Intent(getContext(), ItemDetailActivity.class)
-                        .putExtra(AppConstant.EXTRA_1, imgUrl));
+                try {
+                    String imgUrl = allProducts.get(position).getpGalleryFileList().get(0);
+                    SingleInstance.getInstance().setSelectedProduct(allProducts.get(position));
+                    startActivity(new Intent(getContext(), ItemDetailActivity.class)
+                            .putExtra(AppConstant.EXTRA_1, imgUrl));
+                } catch (Exception e) {
+                    String imgUrl = "";
+                    SingleInstance.getInstance().setSelectedProduct(allProducts.get(position));
+                    startActivity(new Intent(getContext(), ItemDetailActivity.class)
+                            .putExtra(AppConstant.EXTRA_1, imgUrl));
+                }
             }
         });
         return myView;
@@ -79,8 +86,8 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
         }
     }
 
-    public void addToWish(ProductDetails p,boolean isWish) {
-        if(isWish){
+    public void addToWish(ProductDetails p, boolean isWish) {
+        if (isWish) {
             JSONObject o = new JSONObject();
 
             try {
@@ -92,7 +99,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             JSONObject o = new JSONObject();
             try {
                 o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());

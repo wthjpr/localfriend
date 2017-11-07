@@ -68,6 +68,7 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
         setupUiElements();
 
 
+        showLoadingShadowDialog("");
         getCall(AppConstant.BASE_URL + "City", "", 3);
         getCall(AppConstant.BASE_URL + "Area", "", 4);
         getCall(AppConstant.BASE_URL + "SubArea", "", 5);
@@ -180,6 +181,30 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 }).create().show();
                 return;
             }
+
+            if (edt_area.getText().toString().isEmpty()) {
+                MyApp.popMessage("Local Friend", "Please select area", getContext());
+                return;
+            }
+
+            if (edt_colony.getText().toString().isEmpty()) {
+                MyApp.popMessage("Local Friend", "Please select colony", getContext());
+                return;
+            }
+
+            if (edt_flat_no.getText().toString().isEmpty()) {
+                MyApp.popMessage("Local Friend", "Please enter flat number", getContext());
+                return;
+            }
+            if (edt_pin_no.getText().toString().isEmpty()) {
+                MyApp.popMessage("Local Friend", "Please enter zip code", getContext());
+                return;
+            }
+
+            if (edt_pin_no.getText().toString().length() < 6) {
+                edt_pin_no.setError("Zip code is not valid");
+                return;
+            }
             JSONObject o = new JSONObject();
             try {
                 o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
@@ -226,14 +251,25 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 e.printStackTrace();
             }
         } else if (v == edt_city) {
-            initWheel(cityArray, CITY);
-            currentSelection = CITY;
+            try {
+                initWheel(cityArray, CITY);
+                currentSelection = CITY;
+            } catch (Exception e) {
+            }
         } else if (v == edt_area) {
-            initWheel(areaArray, AREA);
-            currentSelection = AREA;
+            try {
+                edt_area.setText(areaArray.get(0));
+                initWheel(areaArray, AREA);
+                currentSelection = AREA;
+            } catch (Exception e) {
+            }
         } else if (v == edt_colony) {
-            initWheel(colonyArray, COLONY);
-            currentSelection = COLONY;
+            try {
+                edt_colony.setText(colonyArray.get(0));
+                initWheel(colonyArray, COLONY);
+                currentSelection = COLONY;
+            } catch (Exception e) {
+            }
         }
     }
 

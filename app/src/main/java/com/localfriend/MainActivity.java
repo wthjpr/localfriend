@@ -632,6 +632,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     @Override
     protected void onResume() {
         super.onResume();
+        SingleInstance.getInstance().setSelectedAddress(null);
         TextView txt_user_name = findViewById(R.id.txt_user_name);
         txt_user_name.setText(MyApp.getApplication().readUser().getUserInfo().getFullName());
         CircleImageView img_profile = findViewById(R.id.img_profile);

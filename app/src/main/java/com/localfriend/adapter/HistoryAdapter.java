@@ -77,6 +77,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.DataHold
 //        holder.txt_items_count.setText("No. of items: " + a.getOrder_TotalProduct());
         holder.txt_items_count.setText(a.getOrder_Status());
 
+        try{
+            if(!holder.txt_items_count.getText().toString().equals("Cancelled")){
+                holder.txt_items_count.setTextColor(Color.parseColor("#3CBEA3"));
+            }
+        }catch (Exception e){}
+
     }
 
     @Override

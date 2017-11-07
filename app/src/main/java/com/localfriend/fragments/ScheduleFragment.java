@@ -95,12 +95,12 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         txt_address_type = myView.findViewById(R.id.txt_address_type);
         setTouchNClick(txt_add_address);
         setClick(txt_ok);
+
         try {
             Checkout c = SingleInstance.getInstance().getCheckoutData();
             txt_subtotal.setText(MyApp.getRupeeCurrency() + c.getTotalprice());
             txt_total.setText(MyApp.getRupeeCurrency() + c.getSellingprice());
             adapter = new CheckoutAdapter(c.getCheckoutlist(), ScheduleFragment.this, false);
-
             for (int i = 0; i < c.getCheckoutlist().size(); i++) {
                 HashMap<String, String> m = new HashMap<>();
                 m.put("catId", c.getCheckoutlist().get(i).getCategoryid());
@@ -125,18 +125,21 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         rl_timestamp.setVisibility(View.VISIBLE);
         mainWheel.setCurved(false);
         mainWheel.setData(oData);
-        mainWheel.setItemTextSize(32);
+        mainWheel.setItemTextSize(36);
         mainWheel.setSelectedItemPosition(3);
         mainWheel.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
+                positionForTime = position;
+                adapter.listdata.get(selectedItemPosition).setSelection(positionForTime);
+                adapter.notifyDataSetChanged();
                 dateString = String.valueOf(data);
                 HashMap<String, String> reMap = new HashMap<>();
                 reMap.put("catId", catId);
-                reMap.put("stampId", tList.get(pos).getId());
-                reMap.put("deliverydate", tList.get(pos).getTimedate());
+                reMap.put("stampId",  tList.get(adapter.listdata.get(pos).getSelection()).getId());
+                reMap.put("deliverydate", tList.get(adapter.listdata.get(pos).getSelection()).getTimedate());
                 mapList.set(pos, reMap);
-                positionForTime = position;
+
             }
         });
 
@@ -196,8 +199,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         super.onClick(v);
         if (v == txt_ok) {
             rl_timestamp.setVisibility(View.GONE);
-            adapter.listdata.get(selectedItemPosition).setSelection(positionForTime);
-            adapter.notifyDataSetChanged();
+
 //            MyApp.showMassage(getContext(), dateString);
         } else if (v == tv_make_payment) {
             if (isAddressSelected) {
@@ -283,7 +285,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                 .setContentHolder(holder)
                 .setHeader(R.layout.header_view_item)
                 .setContentBackgroundResource(R.drawable.bg_cart)
-                .setFooter(R.layout.footer)
+//                .setFooter(R.layout.footer)
                 .setCancelable(true)
                 .setExpanded(true)
                 .setExpanded(true, ViewGroup.LayoutParams.MATCH_PARENT)

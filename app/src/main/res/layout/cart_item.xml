@@ -37,8 +37,8 @@
                 android:layout_height="60dp"
                 android:layout_centerVertical="true"
                 android:background="@null"
-                android:src="@drawable/place_holder"
-                android:scaleType="centerInside" />
+                android:scaleType="centerInside"
+                android:src="@drawable/place_holder" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -72,21 +72,40 @@
                     android:textSize="14sp"
                     app:textStyle="@integer/roboto_medium" />
 
-                <com.localfriend.fonts.CustomFontTextView
-                    android:id="@+id/tv_item_cost"
+                <RelativeLayout
+                    android:id="@+id/rl_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_unit"
-                    android:layout_marginTop="5dp"
-                    android:text="Rs 100"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:textStyle="@integer/roboto_medium" />
+                    android:layout_below="@+id/tv_unit">
+
+                    <com.localfriend.fonts.CustomFontTextView
+                        android:id="@+id/tv_item_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Rs 100"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:textStyle="@integer/roboto_medium" />
+
+                    <com.localfriend.fonts.CustomFontTextView
+                        android:id="@+id/tv_item_cost_old"
+                        android:layout_toRightOf="@+id/tv_item_cost"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Rs 100"
+                        android:textColor="@color/gray_tab"
+                        android:textSize="14sp"
+                        app:textStyle="@integer/roboto_medium" />
+                </RelativeLayout>
+
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/tv_item_cost"
+                    android:layout_alignBottom="@+id/rl_price"
                     android:layout_marginTop="5dp">
 
                     <ImageView

@@ -25,12 +25,13 @@
             android:layout_width="@dimen/dim_12"
             android:layout_height="wrap_content" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dim_16"
             android:layout_marginRight="@dimen/dim_16"
+            android:textSize="14sp"
             android:textColor="@color/white"
             app:textStyle="@integer/roboto_medium" />
 

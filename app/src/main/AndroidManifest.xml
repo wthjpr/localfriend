@@ -97,6 +97,7 @@
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".SignupActivityThree"
+            android:windowSoftInputMode="stateVisible"
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".SignupActivityFour"
@@ -134,6 +135,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <meta-data android:name="com.localfriend.GlideConfiguration"
+            android:value="GlideModule"/>
     </application>
 
 </manifest>

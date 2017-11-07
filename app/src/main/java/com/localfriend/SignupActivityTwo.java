@@ -147,7 +147,7 @@ public class SignupActivityTwo extends CustomActivity implements CustomActivity.
 
                 }
             } else {
-                MyApp.popFinishableMessage("Alert!", o.optString("message"), SignupActivityTwo.this);
+                MyApp.popMessage("Alert!", o.optString("message"), SignupActivityTwo.this);
                 return;
             }
             /*Intent intent = new Intent(PhoneVerificationActivity.this, SucessfullLoginActivity.class);

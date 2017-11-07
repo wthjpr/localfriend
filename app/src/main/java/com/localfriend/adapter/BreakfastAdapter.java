@@ -68,8 +68,10 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
             e.printStackTrace();
         }
         holder.tv_breakfast_cost.setText(string + p.getSellingPrice());
-        Glide.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_break_fast);
-        Glide.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_animated);
+        try{
+            Glide.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_break_fast);
+            Glide.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_animated);
+        }catch (Exception e){}
         holder.tv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -20,6 +20,7 @@ import com.aigestudio.wheelpicker.WheelPicker;
 import com.google.gson.JsonObject;
 import com.localfriend.AddressListActivity;
 import com.localfriend.CheckOutActivity;
+import com.localfriend.MainActivity;
 import com.localfriend.OrderPlacedActivity;
 import com.localfriend.R;
 import com.localfriend.adapter.CheckoutAdapter;
@@ -90,17 +91,18 @@ public class ReviewFragment extends CustomFragment implements CustomFragment.Res
         setClick(txt_ok);
         try {
             Checkout c = SingleInstance.getInstance().getCheckoutData();
-            txt_subtotal.setText(MyApp.getRupeeCurrency()+ c.getTotalprice());
-            txt_total.setText(MyApp.getRupeeCurrency()+ c.getSellingprice());
+            txt_subtotal.setText(MyApp.getRupeeCurrency() + c.getTotalprice());
+            txt_total.setText(MyApp.getRupeeCurrency() + c.getSellingprice());
             adapter = new CheckoutAdapter(c.getCheckoutlist(), ReviewFragment.this, true);
-
         } catch (Exception e) {
         }
 
         rv_items.setAdapter(adapter);
-        rv_items.setNestedScrollingEnabled(false);
+        rv_items.setNestedScrollingEnabled(true);
         setTouchNClick(tv_make_payment);
-
+//        if (SingleInstance.getInstance().getShippingID() == null) {
+//            ((CheckOutActivity) getActivity()).changeFragmentPosition(0);
+//        }
         return myView;
 
     }

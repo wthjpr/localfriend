@@ -5,14 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.localfriend.fonts.CustomFontTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginTop="@dimen/dim_15"
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="right"
+        android:src="@drawable/close"
         android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
         android:text=""
         android:textColor="@color/black"
         android:textSize="@dimen/dim_16"
-        app:textStyle="@integer/roboto_bold" />
+         />
 </LinearLayout>

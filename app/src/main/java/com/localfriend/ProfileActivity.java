@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
@@ -63,11 +64,12 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
     private TextView txt_update;
     private TextView txt_logout;
     private EditText edt_name;
-    private EditText edt_i_am;
+    //    private EditText edt_i_am;
     private EditText edt_mail;
-    private EditText edt_phone;
+    private TextView edt_phone;
     private EditText edt_address;
     private Spinner spinner_gender;
+    private Spinner spinner_im;
     private CircleImageView img_profile;
 
 
@@ -103,6 +105,12 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.expandedappbar);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        setImagePath("profile_pic");
+    }
+
     private void setContentElements() {
         txt_date = findViewById(R.id.txt_date);
         txt_logout = findViewById(R.id.txt_logout);
@@ -111,9 +119,10 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
         edt_phone = findViewById(R.id.edt_phone);
         edt_address = findViewById(R.id.edt_address);
         spinner_gender = findViewById(R.id.spinner_gender);
+        spinner_im = findViewById(R.id.spinner_im);
         img_profile = findViewById(R.id.img_profile);
         txt_update = findViewById(R.id.txt_update);
-        edt_i_am = findViewById(R.id.edt_i_am);
+//        edt_i_am = findViewById(R.id.edt_i_am);
 
         setTouchNClick(R.id.txt_date);
         setTouchNClick(R.id.txt_logout);
@@ -125,7 +134,7 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
         edt_mail.setText(u.getUserInfo().getEmail());
         edt_phone.setText(u.getUserInfo().getMobileNumber());
         edt_address.setText(u.getData().getAddress());
-        edt_i_am.setText(u.getData().getExtra2());
+//        edt_i_am.setText(u.getData().getExtra2());
 
         Glide.with(this).load(MyApp.getApplication().readUser().getData().getProfileImageURL()).placeholder(R.drawable.default_pic).centerCrop().into(img_profile);
         String gender_arraylist[] = {"Male", "Female"};
@@ -146,10 +155,37 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
                 return v;
             }
         };
+
+        String im_list[] = {"Student", "Employee"};
+        ArrayAdapter adapter_im = new ArrayAdapter<String>(ProfileActivity.this,
+                R.layout.custom_spinner, im_list) {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                return v;
+            }
+
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View v = super.getDropDownView(position, convertView, parent);
+                //change height and width or text size and colour here
+
+                return v;
+            }
+        };
         spinner_gender.setAdapter(adapter);
+        spinner_im.setAdapter(adapter_im);
         try {
             if (u.getData().getGender().equals("Female")) {
                 spinner_gender.setSelection(1);
+            }
+        } catch (Exception e) {
+        }
+
+        try {
+            if (u.getData().getExtra2().equals("Employee")) {
+                spinner_im.setSelection(1);
             }
         } catch (Exception e) {
         }
@@ -171,9 +207,11 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
             datePickerDialog.show();
 
         } else if (v == txt_logout) {
-            MyApp.setStatus(AppConstant.IS_LOGIN, false);
-            startActivity(new Intent(getContext(), LoginSignupActivity.class));
-            finishAffinity();
+            JSONObject o = new JSONObject();
+            MyApp.spinnerStart(getContext(), "Logging you out...");
+            postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Account/Logout", o, 5);
+
+
         } else if (v == img_profile) {
             if (Build.VERSION.SDK_INT >= 23) {
                 if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -181,7 +219,7 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
                     ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE}, 11);
                     if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
-                    }else{
+                    } else {
                         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 11);
                         return;
                     }
@@ -239,7 +277,7 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
                 o.put("altMobileNo", edt_phone.getText().toString());
                 o.put("profileImageURL", MyApp.getApplication().readUser().getData().getProfileImageURL() + "");
                 o.put("address", edt_address.getText().toString());
-                o.put("extra2", edt_i_am.getText().toString());
+                o.put("extra2", spinner_im.getSelectedItem().toString());
                 showLoadingDialog("");
                 postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Account/UserProfile", o, 3);
             } catch (JSONException e) {
@@ -268,7 +306,7 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
                 u.getData().setGender(data.getGender());
                 u.getData().setProfileImageURL(data.getProfileImageURL());
                 u.getData().setExtra2(data.getExtra2());
-                edt_i_am.setText(u.getData().getExtra2());
+//                edt_i_am.setText(u.getData().getExtra2());
                 edt_mail.setText(u.getData().getEmail());
                 edt_address.setText(u.getData().getAddress());
                 txt_date.setText(u.getData().getdOB());
@@ -284,6 +322,18 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
         } else if (callNumber == 3) {
 //            MyApp.showMassage(getContext(), o.optString("message"));
             getCallWithHeader(AppConstant.BASE_URL + "Account/UserProfile", 1);
+        } else if (callNumber == 5) {
+            MyApp.spinnerStop();
+//            {"status":"Success","message":"Your Account Logout"}
+            if (o.optString("status").equals("Success")) {
+//                MyApp.showMassage(getContext(), o.optString("message"));
+                MyApp.setStatus(AppConstant.IS_LOGIN, false);
+                startActivity(new Intent(getContext(), LoginSignupActivity.class));
+                finishAffinity();
+            } else {
+                MyApp.popMessage("Local Friend", o.optString("message"), getContext());
+            }
+
         }
 
     }

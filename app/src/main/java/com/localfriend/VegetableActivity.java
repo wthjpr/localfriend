@@ -84,6 +84,8 @@ public class VegetableActivity extends CustomActivity {
         if (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) > 0) {
             txt_cart_count.setVisibility(View.VISIBLE);
             txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
+        } else {
+            txt_cart_count.setVisibility(View.GONE);
         }
 
         setupUiElements();

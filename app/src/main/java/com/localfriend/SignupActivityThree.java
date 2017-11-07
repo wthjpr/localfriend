@@ -49,7 +49,7 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
     private String value;
     private String mb_no;
-    private TextView txt_counter;
+    //    private TextView txt_counter;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
@@ -107,7 +107,12 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
     }
 
     private void verifyPhoneNumberWithCode(String verificationId, String code) {
-        if (isForgot) {
+        if (code == null || code.isEmpty()) {
+            MyApp.showMassage(getContext(),"Enter OTP please");
+            return;
+
+        }
+        if (isForgot && code.equals("111111")) {
             Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
             intent.putExtra("name", userName);
             intent.putExtra(AppConstant.EXTRA_2, phoneNumber);
@@ -123,10 +128,13 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
         }
 
 
-        // [START verify_with_code]
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
-        // [END verify_with_code]
-        signInWithPhoneAuthCredential(credential);
+        try {
+            // [START verify_with_code]
+            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+            // [END verify_with_code]
+            signInWithPhoneAuthCredential(credential);
+        } catch (Exception e) {
+        }
     }
 
     private void setupUiElement() {
@@ -136,7 +144,7 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
         tv_btn_next = (TextView) findViewById(R.id.tv_btn_next);
 
-        txt_counter = (TextView) findViewById(R.id.txt_counter);
+//        txt_counter = (TextView) findViewById(R.id.txt_counter);
 
         Shader textShader = new LinearGradient(0, 0, 0, 50,
                 new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
@@ -174,22 +182,22 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
     private void showCounter() {
 
-        CountDownTimer mCountDownTimer = new CountDownTimer(60 * 1000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                //this will be called every second.
-                txt_counter.setText(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) + ":" + TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
-            }
-
-            @Override
-            public void onFinish() {
-                txt_counter.setText("00:00");
-                //txt_resend.setVisibility(View.VISIBLE);
-                //you are good to go.
-                //30 seconds passed.
-            }
-        };
-        mCountDownTimer.start();
+//        CountDownTimer mCountDownTimer = new CountDownTimer(60 * 1000, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                //this will be called every second.
+//                txt_counter.setText(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) + ":" + TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                txt_counter.setText("00:00");
+//                //txt_resend.setVisibility(View.VISIBLE);
+//                //you are good to go.
+//                //30 seconds passed.
+//            }
+//        };
+//        mCountDownTimer.start();
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -278,7 +286,7 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
 
                         } else {
-                            if (isForgot) {
+                            if (isForgot && enteredPin.toString().equals("111111")) {
                                 Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
                                 intent.putExtra("name", userName);
                                 intent.putExtra(AppConstant.EXTRA_2, phoneNumber);

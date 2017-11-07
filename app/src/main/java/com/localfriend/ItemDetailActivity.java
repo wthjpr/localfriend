@@ -93,6 +93,12 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         tv_cart = findViewById(R.id.tv_cart);
         tv_more = findViewById(R.id.tv_more);
         txt_cart_count = findViewById(R.id.txt_cart_count);
+        if (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) > 0) {
+            txt_cart_count.setVisibility(View.VISIBLE);
+            txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
+        } else {
+            txt_cart_count.setVisibility(View.GONE);
+        }
         setClick(R.id.rl_tab_1);
         setClick(R.id.rl_tab_2);
         setClick(R.id.rl_tab_3);
@@ -137,6 +143,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.tv_add_cart) {
+
             JSONObject o = new JSONObject();
             makeFlyAnimation(img_product, productDetails.getId());
             try {

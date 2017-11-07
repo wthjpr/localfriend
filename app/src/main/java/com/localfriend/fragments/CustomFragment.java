@@ -109,7 +109,11 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject jsonObject) {
                 MyApp.spinnerStop();
-                responseCallback.onErrorReceived(getString(R.string.something_wrong));
+                try {
+                    responseCallback.onErrorReceived(getString(R.string.something_wrong));
+                } catch (Exception e) {
+                }
+
             }
 
             @Override
@@ -220,8 +224,9 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
                 MyApp.spinnerStop();
-                Log.d("Response:", response.toString());
+
                 try {
+                    Log.d("Response:", response.toString());
                     responseCallback.onJsonObjectResponseReceived(response, callNumber);
                 } catch (Exception e) {
                     try {
@@ -337,19 +342,31 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
         TextView txt_load_message = dialog.findViewById(R.id.txt_load_message);
         txt_load_message.setText(message);
 
-//        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
-//        dialogButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
-
         dialog.show();
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = -1;
         lp.height = -1;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
+
+    public void showLoadingShadowDialog(String message) {
+        dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#44888888")));
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialog_loader);
+
+        TextView txt_load_message = dialog.findViewById(R.id.txt_load_message);
+        txt_load_message.setText(message);
+
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width =MyApp.getDisplayWidth();
+        lp.height = MyApp.getDisplayHeight();
         dialog.getWindow().setAttributes(lp);
         dialog.show();
     }

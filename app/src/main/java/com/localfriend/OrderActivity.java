@@ -91,6 +91,9 @@ public class OrderActivity extends CustomActivity {
         });
     }
 
+//    private CurrentFragment currentFragment;
+//    private CurrentFragment HistoryFragment;
+
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new CurrentFragment(), "Current");

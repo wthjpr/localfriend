@@ -55,6 +55,17 @@ public class HistoryFragment extends CustomFragment implements CustomFragment.Re
         // Required empty public constructor
     }
 
+    @Override
+    public boolean getUserVisibleHint() {
+        return super.getUserVisibleHint();
+
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        getCallWithHeader(AppConstant.BASE_URL + "Order/History", 1);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,7 +78,7 @@ public class HistoryFragment extends CustomFragment implements CustomFragment.Re
         setTouchNClick(tv_start_shopping);
 
         setResponseListener(this);
-        getCallWithHeader(AppConstant.BASE_URL + "Order/History", 1);
+
         return v;
     }
 
@@ -179,7 +190,7 @@ public class HistoryFragment extends CustomFragment implements CustomFragment.Re
                 .setContentHolder(holder)
                 .setHeader(R.layout.header_view_item)
                 .setContentBackgroundResource(R.drawable.bg_cart)
-                .setFooter(R.layout.footer)
+//                .setFooter(R.layout.footer)
                 .setCancelable(true)
                 .setExpanded(true)
                 .setExpanded(true, ViewGroup.LayoutParams.MATCH_PARENT)

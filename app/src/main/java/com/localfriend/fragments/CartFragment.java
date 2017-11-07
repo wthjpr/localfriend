@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,6 +54,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
     private ImageView img_empty_cart;
     private CardView card_price;
     private RelativeLayout rl_main;
+    private List<Cartlist> cartData = new ArrayList<>();
 
     public CartFragment() {
 
@@ -79,7 +81,8 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
 
         recy_cart = (RecyclerView) myView.findViewById(R.id.recy_cart);
         recy_cart.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        adapter = new CartAdapter(cartData, CartFragment.this);
+        recy_cart.setAdapter(adapter);
         tv_checkout = myView.findViewById(R.id.tv_checkout);
         txt_total = myView.findViewById(R.id.txt_total);
         txt_subtotal = myView.findViewById(R.id.txt_subtotal);
@@ -89,7 +92,10 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
         tv_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), CheckOutActivity.class));
+                if (price < 49)
+                    MyApp.popMessage("Local Friend","You must have an order with a minimum of Rs.50 to place your order.",getActivity());
+                    else
+                    startActivity(new Intent(getActivity(), CheckOutActivity.class));
             }
         });
         tv_start_shopping.setOnClickListener(new View.OnClickListener() {
@@ -110,21 +116,31 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
         return myView;
     }
 
+    private boolean isOnceDismiss = false;
+    private int price = 51;
+
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
-        dismissDialog();
+
 //        {"status":"success","data":{"totalprice":0,"sellingprice":0,"saveprice":0,"totalitem":0,"cartlist":[]}}
         if (o.optString("status").equals("success") && callNumber == 1) {
+            dismissDialog();
+
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getCartlist().size() > 0) {
+                    try {
+                        price = Integer.parseInt(c.getSellingprice());
+                    } catch (Exception e) {
+                    }
                     rl_main.setBackgroundResource(R.drawable.bg_cart);
                     recy_cart.setVisibility(View.VISIBLE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
                     ((MainActivity) getActivity()).txt_cart_count.setText("" + c.getCartlist().size());
                     ((MainActivity) getActivity()).txt_cart_count.setVisibility(View.VISIBLE);
-                    adapter = new CartAdapter(c.getCartlist(), CartFragment.this);
-                    recy_cart.setAdapter(adapter);
+                    cartData.removeAll(cartData);
+                    cartData.addAll(c.getCartlist());
+                    adapter.notifyDataSetChanged();
                     tv_checkout.setVisibility(View.VISIBLE);
                     recy_cart.setVisibility(View.VISIBLE);
                     card_price.setVisibility(View.VISIBLE);
@@ -163,6 +179,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             }
 
         } else {
+//            dismissDialog();
 //            MyApp.showMassage(getContext(), o.optString("message"));
 //            showLoadingDialog("");
             getCallWithHeader(AppConstant.BASE_URL + "Cart", 1);
@@ -192,7 +209,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             o.put("oprationid", 1);
             o.put("pDetailsId", item.getProductid());
             o.put("pQuantity", 1);
-//            showLoadingDialog("");
+            showLoadingShadowDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -200,14 +217,14 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
     }
 
     public void decreaseCount(Cartlist item) {
-        JSONObject o = new JSONObject();
 
+        JSONObject o = new JSONObject();
         try {
             o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
             o.put("oprationid", 2);
             o.put("pDetailsId", item.getProductid());
             o.put("pQuantity", 1);
-//            showLoadingDialog("");
+            showLoadingShadowDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -222,7 +239,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             o.put("oprationid", 3);
             o.put("pDetailsId", item.getProductid());
             o.put("pQuantity", 1);
-//            showLoadingDialog("");
+            showLoadingShadowDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();

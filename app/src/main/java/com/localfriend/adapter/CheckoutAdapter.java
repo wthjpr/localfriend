@@ -54,7 +54,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHo
     public void onBindViewHolder(DataHolder holder, int position) {
         Checkout.CheckoutListData a = listdata.get(position);
         holder.txt_category.setText(a.getCategoryname());
-        holder.txt_price.setText("Total Price :- "+ MyApp.getRupeeCurrency() + a.getPayamount());
+        holder.txt_price.setText("Total Price - " + MyApp.getRupeeCurrency() + a.getPayamount());
         try {
             holder.select_time.setText(MyApp.parseDateToddMMMyyyy(a.getTimestemp().get(a.getSelection()).getTimedate())
                     + "      " + a.getTimestemp().get(a.getSelection()).getTimestemp());
@@ -67,7 +67,6 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHo
     public int getItemCount() {
         return listdata.size();
     }
-
 
 
     class DataHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -92,6 +91,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHo
             if (isReview)
                 img_select_time.setVisibility(View.GONE);
             img_select_time.setOnClickListener(this);
+            select_time.setOnClickListener(this);
 //            select_time.setOnClickListener(this);
             txt_view_items.setOnClickListener(this);
             img_view_items.setOnClickListener(this);
@@ -110,8 +110,19 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.DataHo
                 else
                     ((ScheduleFragment) c).viewItemsClick(listdata.get(getLayoutPosition()));
             } else if (v == img_select_time) {
-                ((ScheduleFragment) c).setTimingsClick(listdata.get(getLayoutPosition()), getLayoutPosition(),
-                        listdata.get(getLayoutPosition()).getCategoryid());
+                try {
+                    ((ScheduleFragment) c).setTimingsClick(listdata.get(getLayoutPosition()), getLayoutPosition(),
+                            listdata.get(getLayoutPosition()).getCategoryid());
+                } catch (Exception e) {
+                }
+            } else if (v == select_time) {
+                try {
+                    ((ScheduleFragment) c).setTimingsClick(listdata.get(getLayoutPosition()), getLayoutPosition(),
+                            listdata.get(getLayoutPosition()).getCategoryid());
+                } catch (Exception e) {
+                }
+
+
             }
         }
     }
