@@ -1,9 +1,15 @@
 package com.localfriend.fragments;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -113,7 +119,6 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
                     responseCallback.onErrorReceived(getString(R.string.something_wrong));
                 } catch (Exception e) {
                 }
-
             }
 
             @Override
@@ -365,7 +370,7 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
         dialog.show();
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width =MyApp.getDisplayWidth();
+        lp.width = MyApp.getDisplayWidth();
         lp.height = MyApp.getDisplayHeight();
         dialog.getWindow().setAttributes(lp);
         dialog.show();
@@ -392,4 +397,47 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
         dialog.getWindow().setAttributes(lp);
         dialog.show();
     }
+
+    public void showTiffinPopup() {
+        dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_tiffin_popup);
+        ImageView img_close = dialog.findViewById(R.id.img_close);
+        ImageView img_call = dialog.findViewById(R.id.img_call);
+        img_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ((TiffinFragment)getActivity()).checkPermissionCall();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (getActivity().checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "9667536664"));
+                        startActivity(intent);
+                    } else {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, 11);
+                        return;
+                    }
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "9667536664"));
+                    startActivity(intent);
+                }
+            }
+        });
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = -1;
+        lp.height = -1;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
+
+
 }

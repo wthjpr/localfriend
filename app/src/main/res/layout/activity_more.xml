@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 android:textSize="20sp"
                 app:textStyle="@integer/roboto_medium" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_first_para"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
                 android:textSize="16sp"
                 app:textStyle="@integer/roboto_medium" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_para_title1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 android:textSize="22sp"
                 app:textStyle="@integer/roboto_medium" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_second_para"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                 android:textSize="16sp"
                 app:textStyle="@integer/roboto_medium" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_para_title2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                 android:textSize="22sp"
                 app:textStyle="@integer/roboto_medium" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_third_para"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

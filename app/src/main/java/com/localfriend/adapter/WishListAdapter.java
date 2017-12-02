@@ -56,14 +56,14 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.DataHo
         final Cartlist item = listdata.get(position);
         holder.tv_item_name.setText(item.getProductname());
         Glide.with(c.getContext()).load(item.getProductimage()).placeholder(R.drawable.place_holder).into(holder.img_food);
-        String string = "\u20B9";
-        byte[] utf8 = null;
-        try {
-            utf8 = string.getBytes("UTF-8");
-            string = new String(utf8, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        String string = "Rs. ";
+//        byte[] utf8 = null;
+//        try {
+//            utf8 = string.getBytes("UTF-8");
+//            string = new String(utf8, "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
         holder.tv_item_cost.setText(string + item.getSellingprice());
         holder.tv_unit.setText(item.getVarient());
 

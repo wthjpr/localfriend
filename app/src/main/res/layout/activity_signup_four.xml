@@ -20,7 +20,7 @@
         android:orientation="vertical"
         android:padding="@dimen/dim_10">
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter your password"
@@ -30,7 +30,7 @@
             app:textStyle="@integer/roboto_medium" />
 
 
-        <EditText
+        <com.localfriend.fonts.CustomFontPtSansEditText                app:textStyle="@integer/roboto_medium"
             android:id="@+id/signup_edt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         android:layout_marginBottom="@dimen/dim_15"
         android:padding="@dimen/dim_10">
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -70,7 +70,7 @@
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_btn_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

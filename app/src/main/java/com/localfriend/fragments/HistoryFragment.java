@@ -1,6 +1,7 @@
 package com.localfriend.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.CheckOutActivity;
+import com.localfriend.MainActivity;
 import com.localfriend.R;
 import com.localfriend.adapter.CurrentAdapter;
 import com.localfriend.adapter.HistoryAdapter;
@@ -50,6 +53,7 @@ public class HistoryFragment extends CustomFragment implements CustomFragment.Re
     private RecyclerView rv_history;
     private TextView tv_start_shopping;
     private HistoryAdapter adapter;
+    private ImageView empty_no_order;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -72,9 +76,10 @@ public class HistoryFragment extends CustomFragment implements CustomFragment.Re
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_current, container, false);
         rl_empty = v.findViewById(R.id.rl_empty);
+        empty_no_order = v.findViewById(R.id.img_bag);
         rv_history = v.findViewById(R.id.rv_history);
         tv_start_shopping = v.findViewById(R.id.tv_start_shopping);
-
+        empty_no_order.setImageResource(R.drawable.empty_no_order);
         setTouchNClick(tv_start_shopping);
 
         setResponseListener(this);
@@ -91,7 +96,8 @@ public class HistoryFragment extends CustomFragment implements CustomFragment.Re
     public void onClick(View v) {
         super.onClick(v);
         if (v == tv_start_shopping) {
-            getActivity().finish();
+            startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finishAffinity();
         }
     }
 
@@ -125,7 +131,7 @@ public class HistoryFragment extends CustomFragment implements CustomFragment.Re
                     ViewHistoryItemsAdapter adapter = new ViewHistoryItemsAdapter(getActivity(), false, h.getOrderItemlist());
                     showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener,
                             dismissListener, cancelListener,
-                            true);
+                            false);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

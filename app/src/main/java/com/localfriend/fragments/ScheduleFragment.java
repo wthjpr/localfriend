@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -125,7 +126,33 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         rl_timestamp.setVisibility(View.VISIBLE);
         mainWheel.setCurved(false);
         mainWheel.setData(oData);
-        mainWheel.setItemTextSize(36);
+
+        switch (getResources().getDisplayMetrics().densityDpi) {
+
+            case DisplayMetrics.DENSITY_MEDIUM:
+                mainWheel.setItemTextSize(18);
+                break;
+            case DisplayMetrics.DENSITY_HIGH:
+                mainWheel.setItemTextSize(22);
+                break;
+            case DisplayMetrics.DENSITY_XHIGH:
+                mainWheel.setItemTextSize(36);
+                break;
+            case DisplayMetrics.DENSITY_XXHIGH:
+                mainWheel.setItemTextSize(40);
+                break;
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                mainWheel.setItemTextSize(50);
+                break;
+            case DisplayMetrics.DENSITY_400:
+                mainWheel.setItemTextSize(25);
+                break;
+            default:
+                mainWheel.setItemTextSize(22);
+                break;
+        }
+
+
         mainWheel.setSelectedItemPosition(3);
         mainWheel.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
@@ -136,7 +163,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                 dateString = String.valueOf(data);
                 HashMap<String, String> reMap = new HashMap<>();
                 reMap.put("catId", catId);
-                reMap.put("stampId",  tList.get(adapter.listdata.get(pos).getSelection()).getId());
+                reMap.put("stampId", tList.get(adapter.listdata.get(pos).getSelection()).getId());
                 reMap.put("deliverydate", tList.get(adapter.listdata.get(pos).getSelection()).getTimedate());
                 mapList.set(pos, reMap);
 
@@ -150,25 +177,40 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
     @Override
     public void onResume() {
         super.onResume();
+        addressChanges();
+    }
+
+    private void addressChanges() {
         try {
             Address a = SingleInstance.getInstance().getSelectedAddress();
             if (a != null) {
                 isAddressSelected = true;
                 String address = "";
-                if (a.getAddDetails().length() > 0) {
-                    address += a.getAddDetails() + ", ";
-                }
-                if (a.getAddDetails1().length() > 0) {
-                    address += a.getAddDetails1() + ", ";
-                }
-                if (a.getAddDetails2().length() > 0) {
-                    address += a.getAddDetails2() + ", ";
-                }
-                if (a.getAddZipCode().length() > 0) {
-                    address += "(" + a.getAddZipCode() + ")\n";
-                }
-                if (a.getAddSatate().length() > 0) {
-                    address += a.getAddSatate() + "";
+                try {
+                    if (a.getAddDetails().length() > 0) {
+                        address += a.getAddDetails() + ", ";
+                    }
+                    try {
+                        if (a.getAddDetails1().length() > 0) {
+                            address += a.getAddDetails1() + ", ";
+                        }
+                    } catch (Exception e) {
+                    }
+                    if (a.getAddDetails2().length() > 0) {
+                        address += a.getAddDetails2() + ", ";
+                    }
+                    try {
+                        if (a.getAddDetails3().length() > 0) {
+                            address += a.getAddDetails3() + ", ";
+                        }
+                    } catch (Exception e) {
+                    }
+
+                    if (a.getAddCity().length() > 0) {
+                        address += a.getAddCity() + "";
+                    }
+
+                } catch (Exception e) {
                 }
 
                 txt_add_address.setVisibility(View.GONE);
@@ -212,7 +254,8 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                         JSONObject oo = new JSONObject();
                         oo.put("categoryId", mapList.get(i).get("catId"));
                         oo.put("timestempId", mapList.get(i).get("stampId"));
-                        oo.put("deliverydate", mapList.get(i).get("deliverydate"));
+                        String dateString = MyApp.changeDateToddMMyyyy(mapList.get(i).get("deliverydate"));
+                        oo.put("deliverydate", dateString);
                         arr.put(oo);
                     }
 
@@ -236,7 +279,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
     public void setTimingsClick(Checkout.CheckoutListData checkoutListData, int position, String catId) {
         List<String> dateTimeData = new ArrayList<>();
         for (int i = 0; i < checkoutListData.getTimestemp().size(); i++) {
-            dateTimeData.add(checkoutListData.getTimestemp().get(i).getTimedate() + "         " +
+            dateTimeData.add(MyApp.parseDateToddMMMyyyy(checkoutListData.getTimestemp().get(i).getTimedate()) + "        " +
                     checkoutListData.getTimestemp().get(i).getTimestemp());
         }
         initWheel(dateTimeData, position, checkoutListData.getTimestemp(), catId);
@@ -246,7 +289,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
         ViewItemsAdapter adapter = new ViewItemsAdapter(getActivity(), false, checkoutListData.getItem());
         showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener,
                 dismissListener, cancelListener,
-                true);
+                false);
     }
 
     OnClickListener clickListener = new OnClickListener() {
@@ -287,7 +330,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
                 .setContentBackgroundResource(R.drawable.bg_cart)
 //                .setFooter(R.layout.footer)
                 .setCancelable(true)
-                .setExpanded(true)
+                .setExpanded(false)
                 .setExpanded(true, ViewGroup.LayoutParams.MATCH_PARENT)
                 .setGravity(gravity)
                 .setAdapter(adapter)
@@ -339,7 +382,7 @@ public class ScheduleFragment extends CustomFragment implements CustomFragment.R
 
     @Override
     public void onErrorReceived(String error) {
-        MyApp.popMessage("Alert!", error, getActivity());
+        MyApp.popMessage("Alert!", "\"Sorry for your inconvenience. Your order is not submitting, Please try again after sometime.", getActivity());
         dismissDialog();
     }
 }

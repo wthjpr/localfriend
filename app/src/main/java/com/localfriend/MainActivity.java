@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -11,13 +12,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -63,6 +68,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -186,6 +192,8 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             changeTab(tabNumber);
 
         getCallWithHeader(AppConstant.BASE_URL + "Cart", 10);
+
+        updateDeviceToken();
     }
 
     public void changeTab(int tabNumber) {
@@ -656,5 +664,52 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             public void onAnimationRepeat(Animator animation) {
             }
         }).startAnimation();
+    }
+
+    private void updateDeviceToken() {
+        JSONObject o = new JSONObject();
+        try {
+            if (getHardwareId().isEmpty()) {
+
+            }else{
+                o.put("HardwareID", getHardwareId());
+                o.put("DeviceType", "Android");
+                o.put("DeviceID", MyApp.getSharedPrefString(AppConstant.DEVICE_TOKEN));
+                postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Account/TokenUpdate", o, 41);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 121) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+            }
+        }
+    }
+
+    public String getHardwareId() {
+        final TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+
+        final String tmDevice, tmSerial, tmPhone, androidId;
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_PHONE_STATE},
+                    121);
+            return "";
+        }
+        tmDevice = "" + tm.getDeviceId();
+        tmSerial = "" + tm.getSimSerialNumber();
+        androidId = "" + android.provider.Settings.Secure.getString(getApplication().getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+
+        UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
+        String deviceId = deviceUuid.toString();
+        return deviceId;
     }
 }

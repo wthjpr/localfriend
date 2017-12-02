@@ -246,7 +246,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                     currentStoreList = catList.get(3).getStorelist();
                     SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
                     showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                            true);
+                            false);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -273,7 +273,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                     currentStoreList = catList.get(4).getStorelist();
                     SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
                     showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                            true);
+                            false);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -342,7 +342,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                     currentStoreList = catList.get(3).getStorelist();
                     SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
                     showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                            true);
+                            false);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -411,6 +411,8 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                        if (position == -1) return;
+                        if (position == (currentStoreList.size())) dialog.dismiss();
                         getProducts("5", currentStoreList.get(position).getsID(), true);
                         Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
                                 item + "], position = [" + position + "]");

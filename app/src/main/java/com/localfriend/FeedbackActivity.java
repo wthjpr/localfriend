@@ -82,7 +82,8 @@ public class FeedbackActivity extends CustomActivity implements CustomActivity.R
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         dismissDialog();
-        MyApp.popMessage("Local Friend", o.optString("message"), getContext());
+        MyApp.showMassage(getContext(), o.optString("message"));
+        finish();
     }
 
     @Override

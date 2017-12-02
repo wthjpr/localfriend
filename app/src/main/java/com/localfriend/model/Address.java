@@ -23,11 +23,30 @@ public class Address implements Serializable{
     private String addDetails;
     private String addDetails1;
     private String addDetails2;
+    private int selectedPosition = -1;
+
+    public int getSelectedPosition() {
+        return selectedPosition;
+    }
+
+    public void setSelectedPosition(int selectedPosition) {
+        this.selectedPosition = selectedPosition;
+    }
+
+    public String getAddDetails3() {
+        return addDetails3;
+    }
+
+    public void setAddDetails3(String addDetails3) {
+        this.addDetails3 = addDetails3;
+    }
+
+    private String addDetails3;
     private String addType;
     private String addUserID;
     private String addLatitude;
     private String addLongitude;
-    private String addIsActive;
+    private boolean addIsActive;
     private String addCreationTime;
     private String addModifiedTime;
 
@@ -167,11 +186,11 @@ public class Address implements Serializable{
         this.addLongitude = addLongitude;
     }
 
-    public String getAddIsActive() {
+    public boolean getAddIsActive() {
         return addIsActive;
     }
 
-    public void setAddIsActive(String addIsActive) {
+    public void setAddIsActive(boolean addIsActive) {
         this.addIsActive = addIsActive;
     }
 

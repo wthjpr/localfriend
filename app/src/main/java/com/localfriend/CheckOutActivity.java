@@ -154,9 +154,9 @@ public class CheckOutActivity extends CustomActivity implements CustomActivity.R
         if (callNumber == 1) {
             try {
                 Checkout checkoutData = new Gson().fromJson(o.getJSONObject("data").toString(), Checkout.class);
+                SingleInstance.getInstance().setSelectedAddress(checkoutData.getDefoultaddress());
                 SingleInstance.getInstance().setCheckoutData(checkoutData);
                 setupViewPager(viewPager);
-
                 tabLayout.setupWithViewPager(viewPager);
                 createTabIcons();
             } catch (JSONException e) {

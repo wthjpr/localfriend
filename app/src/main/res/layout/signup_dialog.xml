@@ -13,7 +13,7 @@
         android:paddingBottom="@dimen/dim_10"
         android:paddingTop="@dimen/dim_10">
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -23,7 +23,7 @@
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -40,7 +40,7 @@
             android:layout_marginTop="@dimen/dim_10"
             android:background="@color/green_bg" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

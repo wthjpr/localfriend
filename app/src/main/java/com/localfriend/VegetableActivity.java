@@ -39,6 +39,7 @@ public class VegetableActivity extends CustomActivity {
     private List<ProductDetails> allProducts = new ArrayList<>();
     private RelativeLayout rl_main;
     private TextView txt_cart_count;
+    private String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class VegetableActivity extends CustomActivity {
         TextView mTitle = toolbar.findViewById(R.id.toolbar_title_common);
         rl_main = findViewById(R.id.rl_main);
         mTitle.setText("Vegetable");
-        String title = getIntent().getStringExtra(AppConstant.EXTRA_1);
+        title = getIntent().getStringExtra(AppConstant.EXTRA_1);
         if (title != null) {
             mTitle.setText(title);
         }
@@ -231,7 +232,12 @@ public class VegetableActivity extends CustomActivity {
         }
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new VegetableFragment(allProducts), "All");
+        if (title.equals("Morning Meals")) {
+            adapter.addFrag(new VegetableFragment(allProducts), "Morning Meals");
+        } else {
+            adapter.addFrag(new VegetableFragment(allProducts), "All");
+        }
+
         if (productData.getCategory().size() > 0) {
 
             for (int i = 0; i < productData.getCategory().size(); i++) {
@@ -245,8 +251,6 @@ public class VegetableActivity extends CustomActivity {
             }
 
         }
-
-
         viewPager.setAdapter(adapter);
     }
 

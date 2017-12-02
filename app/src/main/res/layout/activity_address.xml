@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aigestudio="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:aigestudio="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context="com.localfriend.AddressActivity">
 
@@ -38,68 +38,72 @@
             <!--android:layout_marginTop="@dimen/dim_10"-->
             <!--android:theme="@style/MyTextInputLayout">-->
 
-            <EditText
+            <com.localfriend.fonts.CustomFontPtSansEditText
                 android:id="@+id/edt_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:drawableLeft="@drawable/checkout_person"
-                android:drawablePadding="@dimen/dim_10"
+                android:drawablePadding="10dp"
                 android:hint="Name"
                 android:inputType="textPersonName"
                 android:maxLines="1"
-                android:padding="@dimen/dim_10"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray_tab" />
+                android:textColorHint="@color/gray_tab"
+                android:textSize="14sp"
+                app:textStyle="@integer/roboto_medium" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:background="@color/gray_tab"></View>
 
-            <EditText
+            <com.localfriend.fonts.CustomFontPtSansEditText
                 android:id="@+id/edt_phone_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
                 android:drawableLeft="@drawable/checkout_call"
-                android:drawablePadding="@dimen/dim_10"
+                android:drawablePadding="10dp"
                 android:hint="Phone No"
                 android:inputType="phone"
                 android:maxLines="1"
-                android:padding="@dimen/dim_10"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray_tab" />
+                android:textColorHint="@color/gray_tab"
+                android:textSize="14sp"
+                app:textStyle="@integer/roboto_medium" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:background="@color/gray_tab"></View>
 
-            <com.localfriend.fonts.CustomFontTextView
-                app:textStyle="@integer/roboto_regular"
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/edt_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
-                android:textSize="16sp"
                 android:drawableLeft="@drawable/checkout_address"
-                android:drawablePadding="@dimen/dim_10"
+                android:drawablePadding="10dp"
                 android:hint="City"
                 android:inputType="textCapWords"
                 android:maxLines="1"
-                android:padding="@dimen/dim_10"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray_tab" />
+                android:textColorHint="@color/gray_tab"
+                android:textSize="14sp"
+                app:textStyle="@integer/roboto_regular" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:background="@color/gray_tab"></View>
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/edt_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,15 +115,15 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textCapWords"
                 android:maxLines="1"
-                android:padding="@dimen/dim_10"
+                android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_tab"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:textStyle="@integer/roboto_regular" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:background="@color/gray_tab"></View>
 
             <!--</android.support.design.widget.TextInputLayout>-->
@@ -130,70 +134,73 @@
             <!--android:layout_marginTop="@dimen/dim_5"-->
             <!--android:theme="@style/MyTextInputLayout">-->
 
-            <com.localfriend.fonts.CustomFontTextView
-                android:id="@+id/edt_colony"
+            <com.localfriend.fonts.CustomFontPtSansAutoCompleteTextView
+                android:id="@+id/auto_colony"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
-                android:drawablePadding="@dimen/dim_10"
+                android:drawablePadding="10dp"
                 android:hint="Colony"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textCapWords"
                 android:maxLines="1"
-                android:padding="@dimen/dim_10"
+                android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray_tab"
-                android:textSize="16sp"
-                app:textStyle="@integer/roboto_regular" />
+                android:textSize="14sp"
+                app:textStyle="@integer/roboto_medium" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:background="@color/gray_tab"></View>
 
-            <EditText
+            <com.localfriend.fonts.CustomFontPtSansEditText
                 android:id="@+id/edt_flat_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
-                android:drawablePadding="@dimen/dim_10"
+                android:drawablePadding="10dp"
                 android:hint="Flat/House/Office No."
                 android:imeOptions="actionUnspecified"
                 android:inputType="textCapWords"
                 android:maxLines="1"
-                android:padding="@dimen/dim_10"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray_tab" />
+                android:textColorHint="@color/gray_tab"
+                android:textSize="14sp"
+                app:textStyle="@integer/roboto_medium" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:background="@color/gray_tab"></View>
 
-            <EditText
+            <com.localfriend.fonts.CustomFontPtSansEditText
                 android:id="@+id/edt_pin_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="@dimen/dim_5"
                 android:background="@null"
-                android:drawablePadding="@dimen/dim_10"
-                android:hint="Pin Code"
+                android:drawablePadding="10dp"
+                android:hint="Landmark (Optional)"
                 android:imeOptions="actionUnspecified"
-                android:inputType="number"
-                android:maxLength="6"
+                android:inputType="text"
                 android:maxLines="1"
-                android:padding="@dimen/dim_10"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray_tab" />
+                android:textColorHint="@color/gray_tab"
+                android:textSize="14sp"
+                app:textStyle="@integer/roboto_medium" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:background="@color/gray_tab"></View>
             <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -207,18 +214,20 @@
             <!--</android.support.design.widget.TextInputLayout>-->
         </LinearLayout>
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/txt_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/dim_10"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/curvy_gradient_white_bg"
             android:gravity="center"
-            android:padding="@dimen/dim_10"
+            android:padding="10dp"
             android:text="Update"
             android:textColor="@color/white"
-            android:textSize="@dimen/dim_18"
+            android:textSize="16sp"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 
@@ -246,7 +255,7 @@
             aigestudio:wheel_item_text_size="20sp"
             aigestudio:wheel_selected_item_text_color="@color/colorPrimary" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/txt_ok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

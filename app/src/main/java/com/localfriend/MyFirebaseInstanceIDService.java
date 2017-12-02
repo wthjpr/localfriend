@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.localfriend.application.MyApp;
+import com.localfriend.utils.AppConstant;
 
 /**
  * Created by SONI on 10/3/2017.
@@ -20,5 +22,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
 //        sendRegistrationToServer(refreshedToken);
+        MyApp.setSharedPrefString(AppConstant.DEVICE_TOKEN, refreshedToken);
     }
 }

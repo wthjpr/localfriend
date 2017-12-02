@@ -59,14 +59,14 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
     public void onBindViewHolder(final DataHolder holder, int position) {
         final ProductDetails p = allProducts.get(position);
         holder.tv_breakfast_name.setText(p.getName());
-        String string = "\u20B9";
-        byte[] utf8 = null;
-        try {
-            utf8 = string.getBytes("UTF-8");
-            string = new String(utf8, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        String string = "Rs. ";
+//        byte[] utf8 = null;
+//        try {
+//            utf8 = string.getBytes("UTF-8");
+//            string = new String(utf8, "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
         holder.tv_breakfast_cost.setText(string + p.getSellingPrice());
         try{
             Glide.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_break_fast);

@@ -45,7 +45,7 @@
                 android:orientation="vertical"
                 android:paddingBottom="5dp">
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/txt_subtotal_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                     android:textSize="14sp"
                     app:textStyle="@integer/roboto_regular" />
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/txt_subtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                 android:orientation="vertical"
                  >
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/txt_total_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                     android:textSize="14sp"
                     app:textStyle="@integer/roboto_regular" />
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/txt_total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,17 +108,17 @@
     </android.support.v7.widget.CardView>
 
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dim_5"
-        android:layout_marginLeft="@dimen/dim_20"
-        android:layout_marginRight="@dimen/dim_20"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/curvy_gradient_white_bg"
         android:gravity="center"
-        android:padding="@dimen/dim_9"
+        android:padding="10dp"
         android:text="Checkout"
         android:textColor="@color/white"
         android:textSize="@dimen/dim_18"
@@ -134,17 +134,17 @@
         android:src="@drawable/empty_cart"
         android:visibility="gone" />
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_start_shopping"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dim_5"
-        android:layout_marginLeft="@dimen/dim_20"
-        android:layout_marginRight="@dimen/dim_20"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/curvy_gradient_white_bg"
         android:gravity="center"
-        android:padding="@dimen/dim_8"
+        android:padding="10dp"
         android:text="Start Shopping"
         android:textColor="@color/white"
         android:textSize="@dimen/dim_18"

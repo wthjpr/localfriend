@@ -1,9 +1,11 @@
 package com.localfriend.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -174,7 +176,7 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 currentStoreList = catList.get(0).getStorelist();
                 SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
                 showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                        true);
+                        false);
                 break;
             }
             case R.id.card_lunch: {
@@ -192,7 +194,7 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 currentStoreList = catList.get(0).getStorelist();
                 SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
                 showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                        true);
+                        false);
                 break;
             }
             case R.id.card_dinner: {
@@ -210,11 +212,11 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 currentStoreList = catList.get(0).getStorelist();
                 SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
                 showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-                        true);
+                        false);
                 break;
             }
             case R.id.card_snacks: {
-                showComingSoon();
+                showTiffinPopup();
 //
 //                titleSend = "Snacks";
 //                currentStoreList = catList.get(3).getStorelist();
@@ -266,6 +268,13 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
         showLoadingDialog("");
         getCallWithHeader(AppConstants.BASE_URL + "product?categoryid=" + catId + "&storeid=" + storeId, 1);
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "9667536664"));
+        startActivity(intent);
     }
 
     @Override
@@ -347,6 +356,8 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                        if (position == -1) return;
+                        if (position == (currentStoreList.size()-1)){ dialog.dismiss(); return;}
                         getProducts(catId, currentStoreList.get(position).getsID());
                         Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
                                 item + "], position = [" + position + "]");

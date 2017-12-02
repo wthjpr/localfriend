@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -33,6 +34,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.localfriend.application.MyApp;
 import com.localfriend.model.User;
@@ -207,6 +209,25 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
             datePickerDialog.show();
 
         } else if (v == txt_logout) {
+
+
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                    try {
+                        FirebaseInstanceId.getInstance().deleteInstanceId();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void result) {
+                }
+            }.execute();
+
+
             JSONObject o = new JSONObject();
             MyApp.spinnerStart(getContext(), "Logging you out...");
             postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Account/Logout", o, 5);
@@ -306,7 +327,9 @@ public class ProfileActivity extends CustomActivity implements CustomActivity.Re
                 u.getData().setGender(data.getGender());
                 u.getData().setProfileImageURL(data.getProfileImageURL());
                 u.getData().setExtra2(data.getExtra2());
+                u.getData().setFullName(data.getFullName());
 //                edt_i_am.setText(u.getData().getExtra2());
+                edt_name.setText(u.getData().getFullName());
                 edt_mail.setText(u.getData().getEmail());
                 edt_address.setText(u.getData().getAddress());
                 txt_date.setText(u.getData().getdOB());

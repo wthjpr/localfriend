@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginLeft="60dp"
@@ -17,7 +16,7 @@
         <android.support.v7.widget.CardView
             android:id="@+id/card_item"
             android:layout_width="match_parent"
-            android:layout_height="420dp"
+            android:layout_height="@dimen/dim_400"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true"
             android:layout_marginTop="-5dp"
@@ -55,7 +54,7 @@
         </android.support.v7.widget.CardView>
     </RelativeLayout>
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_breakfast_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +72,7 @@
         android:textSize="14sp"
         app:textStyle="@integer/roboto_medium" />
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_breakfast_cost"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -87,13 +86,13 @@
         android:textSize="16sp"
         app:textStyle="@integer/roboto_medium" />
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_add"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="@dimen/dim_360"
         android:background="@drawable/gradient_circle_bg"
         android:gravity="center"
         android:text="+"

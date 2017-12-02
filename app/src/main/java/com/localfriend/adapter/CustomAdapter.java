@@ -81,14 +81,14 @@ public class CustomAdapter extends BaseAdapter {
         } catch (Exception e) {
             listViewHolder.img_item.setImageResource(R.drawable.bakery);
         }
-        String string = "\u20B9";
-        byte[] utf8 = null;
-        try {
-            utf8 = string.getBytes("UTF-8");
-            string = new String(utf8, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        String string = "Rs. ";
+//        byte[] utf8 = null;
+//        try {
+//            utf8 = string.getBytes("UTF-8");
+//            string = new String(utf8, "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
 
         listViewHolder.tv_item_cost.setText(string + " " + productList.get(position).getSellingPrice());
         listViewHolder.tv_item_name.setText(productList.get(position).getName());

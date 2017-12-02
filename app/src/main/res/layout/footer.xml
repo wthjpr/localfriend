@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/txt_close"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,6 +12,7 @@
         android:background="@drawable/rounded_gredient"
         android:gravity="center"
         android:padding="10dp"
+        android:visibility="gone"
         android:text="CLOSE"
         android:textColor="@color/white"
         android:textSize="18sp" />

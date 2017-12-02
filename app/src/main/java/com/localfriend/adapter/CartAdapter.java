@@ -65,14 +65,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
 //            notifyDataSetChanged();
 //        }
         Glide.with(c.getContext()).load(item.getProductimage()).placeholder(R.drawable.place_holder).into(holder.img_food);
-        String string = "\u20B9";
-        byte[] utf8 = null;
-        try {
-            utf8 = string.getBytes("UTF-8");
-            string = new String(utf8, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        String string = "Rs. ";
+//        byte[] utf8 = null;
+//        try {
+//            utf8 = string.getBytes("UTF-8");
+//            string = new String(utf8, "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
         holder.tv_item_cost.setText(string + item.getSellingprice());
         holder.tv_item_cost_old.setText(string + item.getPrice());
 

@@ -9,29 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:paddingLeft="@dimen/dim_5"
-            android:paddingTop="@dimen/dim_5"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            app:textStyle="@integer/roboto_medium" />
+            android:textSize="15sp"
+            app:textStyle="@integer/roboto_regular" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_cost_old"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/tv_cost"
-            android:paddingTop="@dimen/dim_3"
+            android:paddingTop="3dp"
             android:textColor="@color/gray_text"
-            android:textSize="14sp"
-            app:textStyle="@integer/roboto_medium" />
+            android:textSize="13sp"
+            app:textStyle="@integer/roboto_regular" />
 
         <ImageView
             android:id="@+id/img_wish"

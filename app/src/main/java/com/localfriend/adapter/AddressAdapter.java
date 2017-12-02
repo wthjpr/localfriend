@@ -33,7 +33,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
         void onItemClick(int p);
 
         void onSecondaryIconClick(int p);
-
     }
 
 
@@ -41,9 +40,12 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
         this.itemclickcallback = itemClickCallback;
     }
 
-    public AddressAdapter(List<Address> listdata, Context c) {
+    private boolean isCheckShow;
+
+    public AddressAdapter(List<Address> listdata, Context c, boolean isCheckShow) {
         this.inflater = LayoutInflater.from(c);
         this.listdata = listdata;
+        this.isCheckShow = isCheckShow;
         this.c = c;
     }
 
@@ -63,26 +65,35 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
         holder.txt_address_type.setText(a.getAddType());
         holder.txt_name.setText(a.getAddName());
         String address = "";
-       try{
-           if (a.getAddDetails().length() > 0) {
-               address += a.getAddDetails() + ", ";
-           }
-           if (a.getAddDetails1().length() > 0) {
-               address += a.getAddDetails1() + ", ";
-           }
-           if (a.getAddDetails2().length() > 0) {
-               address += a.getAddDetails2() + ", ";
-           }
-           if (a.getAddZipCode().length() > 0) {
-               address += "(" + a.getAddZipCode() + ")\n";
-           }
-           if (a.getAddSatate().length() > 0) {
-               address += a.getAddSatate() + "";
-           }
+        try {
+            if (a.getAddDetails().length() > 0) {
+                address += a.getAddDetails() + ", ";
+            }
+            try {
+                if (a.getAddDetails1().length() > 0) {
+                    address += a.getAddDetails1() + ", ";
+                }
+            } catch (Exception e) {
+            }
+            if (a.getAddDetails2().length() > 0) {
+                address += a.getAddDetails2() + ", ";
+            }
+            if (a.getAddDetails3().length() > 0) {
+                address += a.getAddDetails3() + ", ";
+            }
+            if (a.getAddCity().length() > 0) {
+                address += a.getAddCity() + "";
+            }
 
-       }catch (Exception e){}
+        } catch (Exception e) {
+        }
         holder.txt_address.setText(address);
 
+        if (a.getAddIsActive()) {
+            holder.img_check.setImageResource(R.drawable.checkmark_icon);
+        } else {
+            holder.img_check.setImageResource(R.drawable.checkmark_unfilled);
+        }
     }
 
     @Override
@@ -93,7 +104,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
 
     class DataHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView txt_edit, txt_delete, txt_address_type, txt_name, txt_address;
-
+        ImageView img_check;
 
         public DataHolder(final View itemView) {
             super(itemView);
@@ -101,7 +112,12 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
             txt_delete = itemView.findViewById(R.id.txt_delete);
             txt_name = itemView.findViewById(R.id.txt_name);
             txt_address = itemView.findViewById(R.id.txt_address);
+            img_check = itemView.findViewById(R.id.img_check);
 
+//            if (isCheckShow) {
+            img_check.setVisibility(View.VISIBLE);
+//            } else
+//                img_check.setVisibility(View.GONE);
             txt_address_type = itemView.findViewById(R.id.txt_address_type);
 
             Shader textShader = new LinearGradient(0, 0, 0, 50,
@@ -111,7 +127,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
 
             txt_edit.setOnClickListener(this);
             txt_delete.setOnClickListener(this);
-            itemView.setOnClickListener(this);
+            img_check.setOnClickListener(this);
         }
 
         @Override
@@ -122,7 +138,10 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
                 ((AddressListActivity) c).setDeleteClick(listdata.get(getLayoutPosition()));
                 listdata.remove(getLayoutPosition());
                 notifyDataSetChanged();
-            } else if(v==itemView){
+            } else if (v == img_check) {
+                listdata.get(getLayoutPosition()).setAddIsActive(true);
+                notifyDataSetChanged();
+                listdata.get(getLayoutPosition()).setSelectedPosition(1);
                 ((AddressListActivity) c).setItemClicked(listdata.get(getLayoutPosition()));
             }
 

@@ -15,25 +15,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/dim_20">
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:background="@null"
                 android:scaleType="centerInside"
                 android:src="@drawable/payment_new" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="50dp"
                 android:text="Please Choose Your Payment Method"
-                android:textColor="@color/gray_text_light"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 app:textStyle="@integer/roboto_medium" />
 
@@ -49,7 +49,7 @@
                     android:background="@color/white"
                     android:padding="8dp">
 
-                    <com.localfriend.fonts.CustomFontTextView
+                    <com.localfriend.fonts.CustomFontPtSansText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -81,9 +81,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:padding="@dimen/dim_10">
+                    >
 
-                    <com.localfriend.fonts.CustomFontTextView
+                    <com.localfriend.fonts.CustomFontPtSansText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -107,7 +107,7 @@
     </ScrollView>
 
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_review_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
         android:layout_marginRight="15dp"
         android:background="@drawable/curvy_gradient_white_bg"
         android:gravity="center"
-        android:padding="@dimen/dim_10"
+        android:padding="10dp"
         android:text="Review Order"
         android:textColor="@color/white"
         android:textSize="16sp"

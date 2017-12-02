@@ -3,14 +3,12 @@
     <gradient
         android:angle="225"
         android:centerColor="#1D6D9E"
+        android:centerX="1"
         android:endColor="#1D6D9E"
         android:startColor="#3CBEA3"
-        android:centerX="1"
-        android:type="linear"
-        />
-    <corners
-        android:radius="@dimen/dim_20"/>
-    <stroke
-        android:color="@color/white"
-        android:width="@dimen/dim_2"/>
+        android:type="linear" />
+    <corners android:radius="30dp" />
+    <!--<stroke-->
+    <!--android:color="@color/white"-->
+    <!--android:width="@dimen/dim_2"/>-->
 </shape>

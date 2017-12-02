@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.localfriend.fonts.CustomFontTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.localfriend.fonts.CustomFontPtSansText xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/text1"
     style="?android:attr/spinnerItemStyle"

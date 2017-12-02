@@ -162,7 +162,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
             SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
             showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener,
                     dismissListener, cancelListener,
-                    true);
+                    false);
         } else if (v.getId() == R.id.rl_cat2) {
             showComingSoon();
 //            title = catList.get(1).getName();
@@ -310,6 +310,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
     OnClickListener clickListener = new OnClickListener() {
         @Override
         public void onClick(DialogPlus dialog, View view) {
+            dialog.dismiss();
         }
     };
     OnDismissListener dismissListener = new OnDismissListener() {
@@ -349,6 +350,11 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                        if (position == -1) return;
+                        if (position == (currentStoreList.size())) {
+                            dialog.dismiss();
+                            return;
+                        }
                         getProducts(catId, currentStoreList.get(position).getsID());
                         Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
                                 item + "], position = [" + position + "]");
@@ -406,7 +412,7 @@ public class FoodActivity extends CustomActivity implements CustomActivity.Respo
                 public void run() {
                     dismissDialog();
                 }
-            },1000);
+            }, 1000);
         }
     }
 

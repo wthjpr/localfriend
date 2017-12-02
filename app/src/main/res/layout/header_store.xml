@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -14,5 +14,5 @@
         android:text="Let us know your favourite shop."
         android:textColor="@color/black"
         android:textSize="@dimen/dim_16"
-        app:textStyle="@integer/roboto_bold" />
+        app:textStyle="@integer/roboto_medium" />
 </LinearLayout>

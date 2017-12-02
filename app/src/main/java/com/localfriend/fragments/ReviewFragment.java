@@ -132,20 +132,27 @@ public class ReviewFragment extends CustomFragment implements CustomFragment.Res
             if (a != null) {
                 isAddressSelected = true;
                 String address = "";
-                if (a.getAddDetails().length() > 0) {
-                    address += a.getAddDetails() + ", ";
-                }
-                if (a.getAddDetails1().length() > 0) {
-                    address += a.getAddDetails1() + ", ";
-                }
-                if (a.getAddDetails2().length() > 0) {
-                    address += a.getAddDetails2() + ", ";
-                }
-                if (a.getAddZipCode().length() > 0) {
-                    address += "(" + a.getAddZipCode() + ")\n";
-                }
-                if (a.getAddSatate().length() > 0) {
-                    address += a.getAddSatate() + "";
+                try {
+                    if (a.getAddDetails().length() > 0) {
+                        address += a.getAddDetails() + ", ";
+                    }
+                    try {
+                        if (a.getAddDetails1().length() > 0) {
+                            address += a.getAddDetails1() + ", ";
+                        }
+                    } catch (Exception e) {
+                    }
+                    if (a.getAddDetails2().length() > 0) {
+                        address += a.getAddDetails2() + ", ";
+                    }
+                    if (a.getAddDetails3().length() > 0) {
+                        address += a.getAddDetails3() + ", ";
+                    }
+                    if (a.getAddCity().length() > 0) {
+                        address += a.getAddCity() + "";
+                    }
+
+                } catch (Exception e) {
                 }
 
                 txt_address.setText(address);
@@ -213,7 +220,7 @@ public class ReviewFragment extends CustomFragment implements CustomFragment.Res
         ViewItemsAdapter adapter = new ViewItemsAdapter(getActivity(), false, checkoutListData.getItem());
         showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener,
                 dismissListener, cancelListener,
-                true);
+                false);
     }
 
     OnClickListener clickListener = new OnClickListener() {
@@ -284,6 +291,9 @@ public class ReviewFragment extends CustomFragment implements CustomFragment.Res
         dismissDialog();
         if (o.optString("status").equals("success")) {
             startActivity(new Intent(getActivity(), OrderPlacedActivity.class));
+        } else {
+            MyApp.popMessage("Local Friend", "Sorry for your inconvenience. Your order is" +
+                    " not submitting, Please try again after sometime.", getActivity());
         }
     }
 

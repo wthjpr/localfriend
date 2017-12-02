@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
@@ -40,12 +42,14 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
     private EditText edt_full_name, edt_flat_no, edt_phone_no, edt_pin_no;
     private TextView txt_update;
     private TextView txt_ok;
-    private TextView edt_city, edt_area, edt_colony;
+    private TextView edt_city, edt_area;
+    private AutoCompleteTextView auto_colony;
     private String type = "Home";
     private User user;
     private boolean isUpdate = false;
     private com.localfriend.model.Address updatingAddress = null;
     private WheelPicker mainWheel;
+    private boolean isActivate = false;
 
 
     @Override
@@ -81,7 +85,7 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
         rd_btn_other = findViewById(R.id.rd_btn_other);
         edt_phone_no = findViewById(R.id.edt_phone_no);
         edt_flat_no = findViewById(R.id.edt_flat_no);
-        edt_colony = findViewById(R.id.edt_colony);
+        auto_colony = findViewById(R.id.auto_colony);
         edt_area = findViewById(R.id.edt_area);
         edt_city = findViewById(R.id.edt_city);
         edt_pin_no = findViewById(R.id.edt_pin_no);
@@ -107,20 +111,44 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
         setTouchNClick(R.id.txt_update);
         setTouchNClick(R.id.edt_city);
         setTouchNClick(R.id.edt_area);
-        setTouchNClick(R.id.edt_colony);
         setTouchNClick(R.id.txt_ok);
 
         if (isUpdate) {
             edt_full_name.setText(updatingAddress.getAddName());
             edt_phone_no.setText(updatingAddress.getAddContactNo());
             edt_city.setText(updatingAddress.getAddCity());
-            edt_area.setText(updatingAddress.getAddDetails2());
-            edt_colony.setText(updatingAddress.getAddDetails1());
+            edt_area.setText(updatingAddress.getAddDetails3());
+            edt_pin_no.setText(updatingAddress.getAddDetails1());
             edt_flat_no.setText(updatingAddress.getAddDetails());
-            edt_pin_no.setText(updatingAddress.getAddZipCode());
+            auto_colony.setText(updatingAddress.getAddDetails2());
+            isActivate = updatingAddress.getAddIsActive();
+
+            if (updatingAddress.getAddType().equals("Home")) {
+                type = "Home";
+                rd_btn_home.setChecked(true);
+                rd_btn_home.setTextColor(getResources().getColor(R.color.blue_text));
+                rd_btn_office.setChecked(false);
+                rd_btn_home.setTextColor(getResources().getColor(R.color.black));
+                rd_btn_other.setChecked(false);
+                rd_btn_other.setTextColor(getResources().getColor(R.color.black));
+            } else if (updatingAddress.getAddType().equals("Office")) {
+                type = "Office";
+                rd_btn_home.setChecked(false);
+                rd_btn_home.setTextColor(getResources().getColor(R.color.black));
+                rd_btn_office.setChecked(true);
+                rd_btn_office.setTextColor(getResources().getColor(R.color.blue_text));
+                rd_btn_other.setChecked(false);
+                rd_btn_other.setTextColor(getResources().getColor(R.color.black));
+            } else {
+                type = "Other";
+                rd_btn_home.setChecked(false);
+                rd_btn_home.setTextColor(getResources().getColor(R.color.black));
+                rd_btn_office.setChecked(false);
+                rd_btn_office.setTextColor(getResources().getColor(R.color.black));
+                rd_btn_other.setChecked(true);
+                rd_btn_other.setTextColor(getResources().getColor(R.color.blue_text));
+            }
         }
-
-
     }
 
 
@@ -128,7 +156,6 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
         super.onClick(v);
         if (v == txt_ok) {
             rl_timestamp.setVisibility(View.GONE);
-
 //            MyApp.showMassage(getContext(), dateString);
         } else if (v.getId() == R.id.rd_btn_home) {
             type = "Home";
@@ -187,7 +214,7 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 return;
             }
 
-            if (edt_colony.getText().toString().isEmpty()) {
+            if (auto_colony.getText().toString().isEmpty()) {
                 MyApp.popMessage("Local Friend", "Please select colony", getContext());
                 return;
             }
@@ -196,15 +223,15 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 MyApp.popMessage("Local Friend", "Please enter flat number", getContext());
                 return;
             }
-            if (edt_pin_no.getText().toString().isEmpty()) {
-                MyApp.popMessage("Local Friend", "Please enter zip code", getContext());
-                return;
-            }
+//            if (edt_pin_no.getText().toString().isEmpty()) {
+//                MyApp.popMessage("Local Friend", "Please enter zip code", getContext());
+//                return;
+//            }
 
-            if (edt_pin_no.getText().toString().length() < 6) {
-                edt_pin_no.setError("Zip code is not valid");
-                return;
-            }
+//            if (edt_pin_no.getText().toString().length() < 6) {
+//                edt_pin_no.setError("Zip code is not valid");
+//                return;
+//            }
             JSONObject o = new JSONObject();
             try {
                 o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
@@ -212,21 +239,22 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 o.put("addName", edt_full_name.getText().toString());
                 o.put("addContactNo", edt_phone_no.getText().toString());
                 o.put("addDetails", edt_flat_no.getText().toString());
-                o.put("addDetails1", edt_colony.getText().toString());
-                o.put("addDetails2", edt_area.getText().toString());
-                o.put("addZipCode", edt_pin_no.getText().toString());
+                o.put("addDetails1  ", edt_pin_no.getText().toString());
+                o.put("addDetails2", auto_colony.getText().toString());
+                o.put("addDetails3", edt_area.getText().toString());
+                o.put("addZipCode", "302025");
                 o.put("addCity", edt_city.getText().toString());
                 o.put("addSatate", "Rajasthan");
                 o.put("addCountry", "India");
                 String address = edt_flat_no.getText().toString() + " "
-                        + edt_colony.getText().toString() + " "
+                        + auto_colony.getText().toString() + " "
                         + edt_area.getText().toString() + " "
-                        + edt_pin_no.getText().toString() + " "
+//                        + edt_pin_no.getText().toString() + " "
                         + edt_city.getText().toString() + " ";
                 LatLng latlng = getLocationFromAddress(getContext(), address);
                 o.put("addLatitude", latlng.latitude + "");
                 o.put("addLongitude", latlng.longitude + "");
-                o.put("addIsActive", "1");
+                o.put("addIsActive", isActivate);
                 o.put("addCreationTime", "");
                 o.put("addEmailID", "");
                 if (isUpdate) {
@@ -263,14 +291,15 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                 currentSelection = AREA;
             } catch (Exception e) {
             }
-        } else if (v == edt_colony) {
-            try {
-                edt_colony.setText(colonyArray.get(0));
-                initWheel(colonyArray, COLONY);
-                currentSelection = COLONY;
-            } catch (Exception e) {
-            }
         }
+//        else if (v == edt_colony) {
+//            try {
+//                edt_colony.setText(colonyArray.get(0));
+//                initWheel(colonyArray, COLONY);
+//                currentSelection = COLONY;
+//            } catch (Exception e) {
+//            }
+//        }
     }
 
     private static final int CITY = 1;
@@ -288,7 +317,30 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
         rl_timestamp.setVisibility(View.VISIBLE);
         mainWheel.setCurved(false);
         mainWheel.setData(oData);
-        mainWheel.setItemTextSize(50);
+        switch (getResources().getDisplayMetrics().densityDpi) {
+
+            case DisplayMetrics.DENSITY_MEDIUM:
+                mainWheel.setItemTextSize(18);
+                break;
+            case DisplayMetrics.DENSITY_HIGH:
+                mainWheel.setItemTextSize(22);
+                break;
+            case DisplayMetrics.DENSITY_XHIGH:
+                mainWheel.setItemTextSize(36);
+                break;
+            case DisplayMetrics.DENSITY_XXHIGH:
+                mainWheel.setItemTextSize(40);
+                break;
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                mainWheel.setItemTextSize(50);
+                break;
+            case DisplayMetrics.DENSITY_400:
+                mainWheel.setItemTextSize(25);
+                break;
+            default:
+                mainWheel.setItemTextSize(22);
+                break;
+        }
         mainWheel.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
             @Override
             public void onItemSelected(WheelPicker picker, Object data, int position) {
@@ -297,8 +349,8 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                     edt_city.setText(value);
                 else if (textView == 2)
                     edt_area.setText(value);
-                else
-                    edt_colony.setText(value);
+//                else
+//                    edt_colony.setText(value);
             }
         });
     }
@@ -377,6 +429,12 @@ public class AddressActivity extends CustomActivity implements CustomActivity.Re
                     colonyArray.add(oo.optString("SubArea"));
 //                    edt_colony.setText(arr.getJSONObject(i).optString("SubArea"));
                 }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddressActivity.this,
+                        R.layout.custom_spinner, colonyArray);
+
+                auto_colony.setThreshold(0);
+                auto_colony.setAdapter(adapter);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

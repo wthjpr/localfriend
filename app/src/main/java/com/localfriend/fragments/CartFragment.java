@@ -92,9 +92,9 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
         tv_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (price < 49)
-                    MyApp.popMessage("Local Friend","You must have an order with a minimum of Rs.50 to place your order.",getActivity());
-                    else
+//                if (price < 49)
+//                    MyApp.popMessage("Local Friend","You must have an order with a minimum of Rs.49 to place your order.",getActivity());
+//                    else
                     startActivity(new Intent(getActivity(), CheckOutActivity.class));
             }
         });
@@ -117,7 +117,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
     }
 
     private boolean isOnceDismiss = false;
-    private int price = 51;
+//    private int price = 51;
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
@@ -129,10 +129,10 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getCartlist().size() > 0) {
-                    try {
-                        price = Integer.parseInt(c.getSellingprice());
-                    } catch (Exception e) {
-                    }
+//                    try {
+//                        price = Integer.parseInt(c.getSellingprice());
+//                    } catch (Exception e) {
+//                    }
                     rl_main.setBackgroundResource(R.drawable.bg_cart);
                     recy_cart.setVisibility(View.VISIBLE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
@@ -144,14 +144,14 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
                     tv_checkout.setVisibility(View.VISIBLE);
                     recy_cart.setVisibility(View.VISIBLE);
                     card_price.setVisibility(View.VISIBLE);
-                    String string = "\u20B9";
-                    byte[] utf8 = null;
-                    try {
-                        utf8 = string.getBytes("UTF-8");
-                        string = new String(utf8, "UTF-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
+                    String string = "Rs. ";
+//                    byte[] utf8 = null;
+//                    try {
+//                        utf8 = string.getBytes("UTF-8");
+//                        string = new String(utf8, "UTF-8");
+//                    } catch (UnsupportedEncodingException e) {
+//                        e.printStackTrace();
+//                    }
                     txt_total.setText(string + " " + c.getSellingprice());
                     txt_subtotal.setText(string + " " + c.getTotalprice());
 

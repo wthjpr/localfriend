@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_order_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,10 +31,10 @@
                 android:padding="@dimen/dim_5"
                 android:text="Orderid"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:textStyle="@integer/roboto_regular" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:textSize="14sp"
                 app:textStyle="@integer/roboto_regular" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_items_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                 android:textSize="14sp"
                 app:textStyle="@integer/roboto_regular" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:padding="@dimen/dim_5"
                 android:text="No of items"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:textStyle="@integer/roboto_regular" />
 
             <RelativeLayout
@@ -82,46 +82,48 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="10dp">
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/txt_track"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/rounded_corner_green"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="12sp"
                     android:textColor="@color/colorPrimaryDark"
                     android:paddingTop="5dp"
                     android:text="Track"
                     app:textStyle="@integer/roboto_regular" />
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/txt_view_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/txt_track"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:textSize="12sp"
                     android:background="@drawable/rounded_corner_green"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:paddingTop="5dp"
-                    android:text="View Details"
+                    android:text="Details"
                     app:textStyle="@integer/roboto_regular" />
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/txt_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:layout_toLeftOf="@+id/txt_track"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="12sp"
                     android:background="@drawable/rounded_corner_green"
                     android:paddingBottom="5dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:paddingTop="5dp"
                     android:text="Cancel"
                     app:textStyle="@integer/roboto_regular" />

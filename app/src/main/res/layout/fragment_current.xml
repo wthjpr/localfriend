@@ -28,18 +28,18 @@
             android:src="@drawable/no_order_yet" />
 
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_start_shopping"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/dim_16"
-            android:background="@drawable/curvy_gradient_bg"
+            android:background="@drawable/curvy_gradient_white_bg"
             android:gravity="center"
-            android:padding="@dimen/dim_10"
+            android:padding="10dp"
             android:text="Start Shopping"
             android:textColor="@color/white"
-            android:textSize="@dimen/dim_18"
+            android:textSize="16sp"
             app:textStyle="@integer/roboto_medium" />
     </RelativeLayout>
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.GsonBuilder;
@@ -32,6 +33,7 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
     private RecyclerView rv_addresses;
     private AddressAdapter adapter;
     private TextView txt_add_new;
+    private RelativeLayout rl_no_address;
 
 
     @Override
@@ -40,6 +42,7 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
         setResponseListener(this);
         setContentView(R.layout.activity_list_activity);
         toolbar = findViewById(R.id.toolbar_common);
+        rl_no_address = findViewById(R.id.rl_no_address);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -90,15 +93,9 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
 
     public void setDeleteClick(Address address) {
         showLoadingDialog("");
-//        JSONObject o = new JSONObject();
-//        try {
-//            o.put("addID", address.getAddID());
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
         RequestParams p = new RequestParams();
-        p.put("addressid",address.getAddID());
-        postCall10Sec(getContext(), AppConstant.BASE_URL + "Address/Delete", p,"", 3);
+        p.put("addressid", address.getAddID());
+        postCall10Sec(getContext(), AppConstant.BASE_URL + "Address/Delete", p, "", 3);
     }
 
     @Override
@@ -107,7 +104,7 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
         if (callNumber == 2) {
             dismissDialog();
 //            MyApp.showMassage(getContext(), o.optString("message"));
-        }else if(callNumber==3){
+        } else if (callNumber == 3) {
 //            MyApp.showMassage(getContext(), o.optString("message"));
             getCallWithHeader(AppConstant.BASE_URL + "Address", 1);
             return;
@@ -119,9 +116,10 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
             List<Address> addressList =
                     new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
             if (addressList.size() == 0) {
-                MyApp.popMessage("Local Friend", "No address found, please add a new address.\nThank you", getContext());
+                rl_no_address.setVisibility(View.VISIBLE);
             } else {
-                adapter = new AddressAdapter(addressList, getContext());
+                rl_no_address.setVisibility(View.GONE);
+                adapter = new AddressAdapter(addressList, getContext(), getIntent().getBooleanExtra(AppConstant.EXTRA_1, false));
                 rv_addresses.setAdapter(adapter);
             }
         } catch (JSONException e) {
@@ -148,8 +146,20 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
 
 
     public void setItemClicked(Address address) {
+
         SingleInstance.getInstance().setSelectedAddress(address);
-        if (getIntent().getBooleanExtra(AppConstant.EXTRA_1, false))
+        if (getIntent().getBooleanExtra(AppConstant.EXTRA_1, false)) {
+            RequestParams p = new RequestParams();
+            p.put("addressid", address.getAddID());
+            postCall10Sec(getContext(), AppConstant.BASE_URL + "Address/SetDefault", p, "", 3);
             finish();
+
+            return;
+        }
+
+        showLoadingDialog("");
+        RequestParams p = new RequestParams();
+        p.put("addressid", address.getAddID());
+        postCall10Sec(getContext(), AppConstant.BASE_URL + "Address/SetDefault", p, "", 3);
     }
 }

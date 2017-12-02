@@ -117,7 +117,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
 
         tv_description = findViewById(R.id.tv_description);
         tv_description.setText(productDetails.getuDescription());
-        tv_cost.setText(MyApp.getRupeeCurrency() + productDetails.getSellingPrice());
+        tv_cost.setText("Cost : "+MyApp.getRupeeCurrency() + productDetails.getSellingPrice());
         tv_one_kg = findViewById(R.id.tv_one_kg);
         tv_two_kg = findViewById(R.id.tv_two_kg);
         tv_three_kg = findViewById(R.id.tv_three_kg);

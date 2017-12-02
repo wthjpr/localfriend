@@ -84,14 +84,14 @@ public class VegetableAdapter extends BaseAdapter {
         } catch (Exception e) {
 //            listViewHolder.img_veg.setImageResource(R.drawable.apple);
         }
-        String string = "\u20B9";
-        byte[] utf8 = null;
-        try {
-            utf8 = string.getBytes("UTF-8");
-            string = new String(utf8, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        String string = "Rs. ";
+//        byte[] utf8 = null;
+//        try {
+//            utf8 = string.getBytes("UTF-8");
+//            string = new String(utf8, "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
 
         if (productList.get(position).isInWishlist()) {
             listViewHolder.img_wish.setImageResource(R.drawable.wish_active);
@@ -125,7 +125,7 @@ public class VegetableAdapter extends BaseAdapter {
         } else {
             listViewHolder.tv_cost_old.setVisibility(View.VISIBLE);
         }
-        listViewHolder.tv_cost_old.setText(string + " " + productList.get(position).getPrice());
+        listViewHolder.tv_cost_old.setText(string + productList.get(position).getPrice());
         MyApp.strikeThroughText(listViewHolder.tv_cost_old);
         listViewHolder.tv_cost.setText(string + " " + productList.get(position).getSellingPrice());
         listViewHolder.tv_veg_name.setText(productList.get(position).getName() + "");

@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.Display;
 import android.view.Window;
@@ -49,6 +50,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -353,7 +355,7 @@ public class MyApp extends Application {
     }
 
 
-    public static String getRupeeCurrency(){
+    public static String getRupeeCurrency() {
         String string = "\u20B9";
         byte[] utf8 = null;
         try {
@@ -362,7 +364,7 @@ public class MyApp extends Application {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return string;
+        return "Rs. ";
     }
 
     private static Bitmap decodeFile(File F) {
@@ -534,6 +536,8 @@ public class MyApp extends Application {
         return str;
     }
 
+
+
     public static String getDateOrTimeFromMillis(String x) {
         DateFormat formatter = new SimpleDateFormat("dd/MM/yy - hh:mm a");
 
@@ -572,8 +576,27 @@ public class MyApp extends Application {
     }
 
     public static String parseDateToddMMMyyyy(String time) {
-        String inputPattern = "MM/dd/yyyy";// HH:mm:ss
+        String inputPattern = "dd/MM/yyyy";// HH:mm:ss
         String outputPattern = "dd-MMM-yyyy";// h:mm a
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
+
+    public static String changeDateToddMMyyyy(String time) {
+        String inputPattern = "dd/MM/yyyy";// HH:mm:ss
+        String outputPattern = "MM/dd/yyyy";// h:mm a
         SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
         SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
 

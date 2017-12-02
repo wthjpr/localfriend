@@ -11,7 +11,7 @@
     <include layout="@layout/toolbar_common"></include>
 
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/txt_leave_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:textSize="16sp"
         app:textStyle="@integer/roboto_regular" />
 
-    <EditText
+    <com.localfriend.fonts.CustomFontPtSansEditText                app:textStyle="@integer/roboto_medium"
         android:id="@+id/edt_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:padding="10dp"
         android:textSize="16sp" />
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/txt_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

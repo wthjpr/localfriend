@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@null"
     android:orientation="horizontal">
 
@@ -11,10 +12,11 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <RadioButton
+        <com.localfriend.fonts.CustomFontPtSansRadioButton
             android:id="@+id/rd_btn_home"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            app:textStyle="@integer/roboto_regular"
             android:layout_centerInParent="true"
             android:checked="true"
             android:padding="@dimen/dim_10"
@@ -28,7 +30,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <RadioButton
+        <com.localfriend.fonts.CustomFontPtSansRadioButton
+            app:textStyle="@integer/roboto_regular"
             android:id="@+id/rd_btn_office"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -45,13 +48,14 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <RadioButton
+        <com.localfriend.fonts.CustomFontPtSansRadioButton
             android:id="@+id/rd_btn_other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:padding="@dimen/dim_10"
             android:text="Other"
+            app:textStyle="@integer/roboto_regular"
             android:textColor="#19598C"
             android:textSize="@dimen/dim_18" />
     </RelativeLayout>

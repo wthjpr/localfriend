@@ -7,7 +7,7 @@
     android:layout_marginRight="@dimen/dim_40"
     android:orientation="vertical">
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         app:textStyle="@integer/roboto_medium"
         android:id="@+id/text_view"
         android:layout_width="match_parent"

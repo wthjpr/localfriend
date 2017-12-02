@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground">
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_address"
             app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
         android:background="?attr/selectableItemBackground">
 
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_payment"
             app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
         android:background="?attr/selectableItemBackground">
 
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_review"
             app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"

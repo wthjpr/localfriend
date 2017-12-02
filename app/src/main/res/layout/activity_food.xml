@@ -31,7 +31,7 @@
             android:scaleType="centerInside"
             android:src="@drawable/bakery" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/txt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/drinks" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/txt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,18 +76,19 @@
         android:layout_below="@+id/center_view"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/dim_50"
-        android:layout_marginTop="@dimen/dim_75"
+        android:layout_marginTop="65dp"
         android:layout_toRightOf="@+id/center_view">
 
         <ImageView
             android:id="@+id/img4"
             android:layout_width="@dimen/dim_80"
             android:layout_height="@dimen/dim_75"
-            android:scaleType="centerInside"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:scaleType="centerInside"
             android:src="@drawable/south_indian" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/txt4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,7 +106,7 @@
         android:layout_below="@+id/center_view"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dim_50"
-        android:layout_marginTop="@dimen/dim_75"
+        android:layout_marginTop="65dp"
         android:layout_toLeftOf="@+id/center_view">
 
         <ImageView
@@ -116,7 +117,7 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/fast_food" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/txt3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

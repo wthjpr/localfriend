@@ -17,7 +17,7 @@
         android:layout_marginBottom="120dp"
         android:src="@drawable/balloon_success" />
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:textStyle="@integer/roboto_bold" />
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/txt_go_shopping"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,28 +34,28 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:padding="9dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/rounded_gray_solid"
             android:textColor="@color/colorAccent"
             android:text="Keep shopping"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:textStyle="@integer/roboto_medium" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/txt_track_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_above="@+id/txt_go_shopping"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/curvy_gradient_white_bg"
             android:gravity="center"
             android:padding="10dp"
             android:text="Track your order"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:textStyle="@integer/roboto_medium" />
 
         <com.localfriend.fonts.CustomFontPtSansText

@@ -51,7 +51,7 @@
                 android:paddingLeft="@dimen/dim_10"
                 android:paddingRight="@dimen/dim_10">
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/tv_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                     android:textStyle="bold"
                     app:textStyle="@integer/roboto_medium" />
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/tv_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_unit">
 
-                    <com.localfriend.fonts.CustomFontTextView
+                    <com.localfriend.fonts.CustomFontPtSansText
                         android:id="@+id/tv_item_cost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                         android:textSize="14sp"
                         app:textStyle="@integer/roboto_medium" />
 
-                    <com.localfriend.fonts.CustomFontTextView
+                    <com.localfriend.fonts.CustomFontPtSansText
                         android:id="@+id/tv_item_cost_old"
                         android:layout_toRightOf="@+id/tv_item_cost"
                         android:layout_marginLeft="10dp"
@@ -118,7 +118,7 @@
                         android:padding="3dp"
                         android:src="@drawable/btn_plus" />
 
-                    <com.localfriend.fonts.CustomFontTextView
+                    <com.localfriend.fonts.CustomFontPtSansText
                         android:id="@+id/tv_counter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

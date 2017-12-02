@@ -64,14 +64,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.DataHold
         History a = listdata.get(position);
         holder.txt_order_id.setText("Order ID : LF_ " + a.getOrder_Id());
         holder.txt_date.setText(a.getOrder_date());
-        String string = "\u20B9";
-        byte[] utf8 = null;
-        try {
-            utf8 = string.getBytes("UTF-8");
-            string = new String(utf8, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        String string = "Rs. ";
+//        byte[] utf8 = null;
+//        try {
+//            utf8 = string.getBytes("UTF-8");
+//            string = new String(utf8, "UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
 
         holder.txt_price.setText(string + a.getOrder_SubTotal());
 //        holder.txt_items_count.setText("No. of items: " + a.getOrder_TotalProduct());

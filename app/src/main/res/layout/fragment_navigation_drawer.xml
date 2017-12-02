@@ -23,7 +23,7 @@
             app:civ_border_color="#FF000000"
             app:civ_border_width="1dp" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/profile_name"
             app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
             android:textSize="@dimen/dim_16"
             android:textStyle="bold" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/txt_logout"
             app:textStyle="@integer/roboto_medium"
             android:layout_width="wrap_content"
@@ -75,13 +75,12 @@
                     android:background="@null"
                     android:orientation="vertical">
 
-                    <com.localfriend.fonts.CustomFontTextView
+                    <com.localfriend.fonts.CustomFontPtSansText
                         android:id="@+id/nav_item_service_request"
                         app:textStyle="@integer/roboto_medium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="?selectableItemBackground"
-
                         android:drawablePadding="@dimen/dim_10"
                         android:gravity="center_vertical"
                         android:padding="@dimen/dim_10"
@@ -89,7 +88,7 @@
                         android:textColor="@color/blue_text"
                         android:textSize="@dimen/dim_18" />
 
-                    <com.localfriend.fonts.CustomFontTextView
+                    <com.localfriend.fonts.CustomFontPtSansText
                         android:id="@+id/nav_item_scheduled"
                         app:textStyle="@integer/roboto_medium"
                         android:layout_width="match_parent"
@@ -111,20 +110,18 @@
                         android:background="?selectableItemBackground"
                         android:padding="@dimen/dim_10">
 
-                        <com.localfriend.fonts.CustomFontTextView
+                        <com.localfriend.fonts.CustomFontPtSansText
                             app:textStyle="@integer/roboto_medium"
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-
                             android:drawablePadding="@dimen/dim_10"
                             android:gravity="center_vertical"
                             android:text="Chats"
                             android:textColor="@color/blue_text"
                             android:textSize="@dimen/dim_18" />
 
-                        <com.localfriend.fonts.CustomFontTextView
+                        <com.localfriend.fonts.CustomFontPtSansText
                             android:id="@+id/count_chat"
                             app:textStyle="@integer/roboto_medium"
                             android:layout_width="wrap_content"
@@ -148,13 +145,11 @@
                         android:background="?selectableItemBackground"
                         android:padding="@dimen/dim_10">
 
-                        <com.localfriend.fonts.CustomFontTextView
+                        <com.localfriend.fonts.CustomFontPtSansText
                             app:textStyle="@integer/roboto_medium"
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-
                             android:drawablePadding="@dimen/dim_10"
                             android:gravity="center_vertical"
                             android:text="History"
@@ -184,22 +179,18 @@
                         android:background="?selectableItemBackground"
                         android:padding="@dimen/dim_10">
 
-                        <com.localfriend.fonts.CustomFontTextView
+                        <com.localfriend.fonts.CustomFontPtSansText
                             app:textStyle="@integer/roboto_medium"
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
                             android:layout_centerVertical="true"
-
                             android:drawablePadding="@dimen/dim_10"
-
                             android:gravity="center_vertical"
                             android:text="Wallet"
                             android:textColor="@color/blue_text"
                             android:textSize="@dimen/dim_18" />
 
-                        <com.localfriend.fonts.CustomFontTextView
+                        <com.localfriend.fonts.CustomFontPtSansText
                             android:id="@+id/nav_wallet_amt"
                             app:textStyle="@integer/roboto_medium"
                             android:layout_width="wrap_content"
@@ -286,7 +277,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?selectableItemBackground"
-
                 android:drawablePadding="@dimen/dim_10"
                 android:gravity="center_vertical"
                 android:padding="@dimen/dim_10"

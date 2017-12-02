@@ -89,7 +89,7 @@
                 android:textSize="15sp"
                 android:visibility="gone" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/tv_four_kg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                 android:visibility="gone"
                 app:textStyle="@integer/roboto_medium" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/tv_five_kg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                 app:textStyle="@integer/roboto_medium" />
         </LinearLayout>
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
             android:textSize="@dimen/dim_18"
             app:textStyle="@integer/roboto_medium" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -148,18 +148,18 @@
             app:textStyle="@integer/roboto_medium" />
     </LinearLayout>
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_add_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/ll_bottom"
         android:layout_margin="@dimen/dim_16"
-        android:background="@drawable/curvy_gradient_bg"
+        android:background="@drawable/curvy_gradient_white_bg"
         android:gravity="center"
-        android:padding="@dimen/dim_10"
+        android:padding="10dp"
         android:text="Add to cart"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_18"
+        android:textSize="16sp"
         app:textStyle="@integer/roboto_medium" />
 
     <include layout="@layout/bottom"></include>

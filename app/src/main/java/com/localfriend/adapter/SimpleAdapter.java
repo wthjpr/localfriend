@@ -29,6 +29,7 @@ public class SimpleAdapter extends BaseAdapter {
         layoutInflater = LayoutInflater.from(context);
         this.isGrid = isGrid;
         this.listData = listData;
+        listData.add("Cancel");
     }
 
     @Override

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/light_bg"
+    android:background="@color/white"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -17,12 +17,22 @@
         android:src="@drawable/loader" />
 
     <com.localfriend.fonts.CustomFontPtSansText
+        android:id="@+id/txt_coming_soon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:layout_above="@+id/gif_loader"
+        android:textSize="18sp"
+        android:layout_below="@+id/gif_loader"
         android:gravity="center"
-        android:padding="40dp"
+        android:padding="10dp"
         app:textStyle="@integer/roboto_regular"
         android:text="Coming soon..."/>
+
+    <com.localfriend.fonts.CustomFontPtSansText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_below="@+id/txt_coming_soon"
+        android:gravity="center"
+        app:textStyle="@integer/roboto_regular"
+        android:text="Your order will be deliver to you in 30 minutes."/>
 </RelativeLayout>

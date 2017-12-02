@@ -52,17 +52,17 @@
                 android:paddingLeft="@dimen/dim_10"
                 android:paddingRight="@dimen/dim_10">
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/tv_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Veggie Burger"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:textStyle="@integer/roboto_medium" />
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/tv_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,10 +70,10 @@
                     android:layout_marginTop="5dp"
                     android:text="Rs 100"
                     android:textColor="@color/gray_tab"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     app:textStyle="@integer/roboto_medium" />
 
-                <com.localfriend.fonts.CustomFontTextView
+                <com.localfriend.fonts.CustomFontPtSansText
                     android:id="@+id/tv_item_cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                     android:layout_marginTop="5dp"
                     android:text="Rs 100"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     app:textStyle="@integer/roboto_medium" />
 
                 <RelativeLayout
@@ -90,7 +90,7 @@
                     android:layout_alignBottom="@+id/tv_item_cost"
                     android:layout_marginTop="5dp">
 
-                    <com.localfriend.fonts.CustomFontTextView
+                    <com.localfriend.fonts.CustomFontPtSansText
                         android:id="@+id/tv_move_to_cart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -98,11 +98,11 @@
                         android:layout_centerVertical="true"
                         android:background="@drawable/rounded_corner_green"
                         android:gravity="center"
-                        android:paddingTop="7dp"
-                        android:paddingBottom="7dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:text="Move to cart"
+                        android:text="Move To Cart"
                         android:textSize="14sp"
                         app:textStyle="@integer/roboto_medium" />
 

@@ -26,28 +26,37 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:id="@+id/txt_contact_us"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="5dp"
                 android:text="Contact Us"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:textStyle="@integer/roboto_medium" />
 
-            <!--<com.localfriend.fonts.CustomFontTextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="10dp"-->
-                <!--android:text="Contact Person : Digvijay Singh"-->
-                <!--android:textColor="@color/gray_tab"-->
-                <!--android:textSize="15sp"-->
-                <!--app:textStyle="@integer/roboto_medium" />-->
+            <com.localfriend.fonts.CustomFontPtSansText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Local Friend"
+                android:textColor="#33B38D"
+                android:textSize="30sp"
+                app:textStyle="@integer/roboto_bold" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <!--<com.localfriend.fonts.CustomFontTextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="10dp"-->
+            <!--android:text="Contact Person : Digvijay Singh"-->
+            <!--android:textColor="@color/gray_tab"-->
+            <!--android:textSize="15sp"-->
+            <!--app:textStyle="@integer/roboto_medium" />-->
+
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -57,12 +66,12 @@
                 android:textSize="15sp"
                 app:textStyle="@integer/roboto_medium" />
 
-            <com.localfriend.fonts.CustomFontTextView
+            <com.localfriend.fonts.CustomFontPtSansText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:padding="10dp"
-                android:layout_marginBottom="10dp"
                 android:text="Email : info@localfriend.in"
                 android:textColor="@color/gray_tab"
                 android:textSize="15sp"
@@ -70,16 +79,17 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-    <TextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/txt_leave_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="25dp"
+        app:textStyle="@integer/roboto_medium"
         android:text="Leave us a question"
         android:textSize="16sp" />
 
-    <EditText
+    <com.localfriend.fonts.CustomFontPtSansEditText                app:textStyle="@integer/roboto_medium"
         android:id="@+id/edt_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,17 +104,17 @@
         android:padding="10dp"
         android:textSize="16sp" />
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/txt_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/curvy_gradient_bg"
-        android:paddingBottom="10dp"
+        android:paddingBottom="8dp"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
-        android:paddingTop="10dp"
+        android:paddingTop="8dp"
         android:text="Submit"
         android:textColor="@color/white"
         android:textSize="18sp"

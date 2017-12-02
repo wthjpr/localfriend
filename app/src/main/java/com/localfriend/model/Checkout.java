@@ -12,6 +12,15 @@ public class Checkout {
     private String saveprice;
     private String totalitem;
     private List<CheckoutListData> checkoutlist;
+    private Address defoultaddress;
+
+    public Address getDefoultaddress() {
+        return defoultaddress;
+    }
+
+    public void setDefoultaddress(Address defoultaddress) {
+        this.defoultaddress = defoultaddress;
+    }
 
     public String getTotalprice() {
         return totalprice;

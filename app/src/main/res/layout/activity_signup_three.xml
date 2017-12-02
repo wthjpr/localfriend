@@ -19,7 +19,7 @@
         android:layout_below="@+id/toolbar_common"
         android:padding="@dimen/dim_10">
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:pinLineStroke="2dp"
             app:pinLineStrokeSelected="2dp"
             app:pinTextBottomPadding="10dp" />
-        <!--<EditText-->
+        <!--<com.localfriend.fonts.CustomFontPtSansEditText                app:textStyle="@integer/roboto_medium"-->
         <!--android:id="@+id/edt_code"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -112,7 +112,7 @@
         android:layout_marginBottom="@dimen/dim_15"
         android:padding="@dimen/dim_10">
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -122,7 +122,7 @@
             android:textStyle="bold"
             app:textStyle="@integer/roboto_medium" />
 
-        <com.localfriend.fonts.CustomFontTextView
+        <com.localfriend.fonts.CustomFontPtSansText
             android:id="@+id/tv_btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

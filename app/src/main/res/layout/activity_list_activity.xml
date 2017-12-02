@@ -8,6 +8,46 @@
 
     tools:context="com.localfriend.AddressActivity">
 
+    <RelativeLayout
+        android:id="@+id/rl_no_address"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/img_route"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/icon_route" />
+
+        <com.localfriend.fonts.CustomFontPtSansText
+            android:id="@+id/txt_oops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_route"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="oops you have not add-on any address yet."
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            app:textStyle="@integer/roboto_regular" />
+
+        <com.localfriend.fonts.CustomFontPtSansText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_oops"
+            android:layout_marginTop="20dp"
+            android:alpha=".6"
+            android:layout_centerHorizontal="true"
+            android:text="Tell us where you want your order delivery."
+            android:textColor="@color/gray_text"
+            android:textSize="14sp"
+            app:textStyle="@integer/roboto_regular" />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,17 +67,19 @@
 
     </LinearLayout>
 
-    <com.localfriend.fonts.CustomFontTextView
+    <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/txt_add_new"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dim_10"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/curvy_gradient_white_bg"
         android:gravity="center"
-        android:padding="@dimen/dim_10"
+        android:padding="10dp"
         android:text="Add New Address"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_18"
+        android:textSize="16sp"
         app:textStyle="@integer/roboto_medium" />
 </RelativeLayout>

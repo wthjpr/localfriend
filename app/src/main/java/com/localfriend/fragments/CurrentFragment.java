@@ -20,6 +20,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.CheckOutActivity;
 import com.localfriend.CustomActivity;
+import com.localfriend.MainActivity;
 import com.localfriend.R;
 import com.localfriend.adapter.CurrentAdapter;
 import com.localfriend.adapter.ViewHistoryItemsAdapter;
@@ -84,7 +85,8 @@ public class CurrentFragment extends CustomFragment implements CustomFragment.Re
     public void onClick(View v) {
         super.onClick(v);
         if (v == tv_start_shopping) {
-            getActivity().finish();
+            startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finishAffinity();
         }
     }
 
@@ -118,7 +120,7 @@ public class CurrentFragment extends CustomFragment implements CustomFragment.Re
                 ViewHistoryItemsAdapter adapter = new ViewHistoryItemsAdapter(getActivity(), false, h.getOrderItemlist());
                 showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener,
                         dismissListener, cancelListener,
-                        true);
+                        false);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -193,8 +195,8 @@ public class CurrentFragment extends CustomFragment implements CustomFragment.Re
 
                 .setContentHolder(holder)
                 .setHeader(R.layout.header_view_item)
-                .setContentBackgroundResource(R.drawable.bg_cart)
-                .setFooter(R.layout.footer)
+//                .setContentBackgroundResource(R.drawable.bg_cart)
+//                .setFooter(R.layout.footer)
 //                .setCancelable(true)
                 .setExpanded(true)
                 .setExpanded(true, ViewGroup.LayoutParams.MATCH_PARENT)

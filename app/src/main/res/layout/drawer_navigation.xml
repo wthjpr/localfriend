@@ -18,7 +18,6 @@
         android:paddingRight="@dimen/dim_10"
         android:paddingTop="@dimen/dim_5"
         android:text="Home"
-
         android:textSize="@dimen/dim_18" />
 
     <com.localfriend.fonts.CustomFontTextView

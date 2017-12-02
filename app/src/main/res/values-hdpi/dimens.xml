@@ -12,7 +12,7 @@
 <dimen name="dim_7">8.75px</dimen>
 <dimen name="dim_8">10.0px</dimen>
 <dimen name="dim_9">11.25px</dimen>
-<dimen name="dim_10">12.50px</dimen>
+<dimen name="dim_10">5px</dimen>
 <dimen name="dim_11">13.75px</dimen>
 <dimen name="dim_12">15.0px</dimen>
 <dimen name="dim_13">16.25px</dimen>
@@ -362,7 +362,7 @@
 <dimen name="dim_357">357.0px</dimen>
 <dimen name="dim_358">358.0px</dimen>
 <dimen name="dim_359">359.0px</dimen>
-<dimen name="dim_360">360.0px</dimen>
+<dimen name="dim_360">440.0px</dimen>
 <dimen name="dim_361">361.0px</dimen>
 <dimen name="dim_362">362.0px</dimen>
 <dimen name="dim_363">363.0px</dimen>
@@ -402,7 +402,7 @@
 <dimen name="dim_397">397.0px</dimen>
 <dimen name="dim_398">398.0px</dimen>
 <dimen name="dim_399">399.0px</dimen>
-<dimen name="dim_400">400.0px</dimen>
+<dimen name="dim_400">500.0px</dimen>
 <dimen name="dim_401">401.0px</dimen>
 <dimen name="dim_402">402.0px</dimen>
 <dimen name="dim_403">403.0px</dimen>
