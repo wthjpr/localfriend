@@ -38,6 +38,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,7 +49,6 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
     private ImageView img_empty;
 
     public WishListFragment() {
-
     }
 
     @Override
@@ -74,8 +74,18 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
         }
 
 //        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
-        showLoadingDialog("");
+        List<Cartlist> wishList = MyApp.getApplication().readWishList();
+        if (wishList.size() > 0) {
+            adapter = new WishListAdapter(wishList, WishListFragment.this);
+            recy_cart.setAdapter(adapter);
+            img_empty.setVisibility(View.GONE);
+        } else {
+            showLoadingDialog("");
+            img_empty.setVisibility(View.VISIBLE);
+        }
+
         getCallWithHeader(AppConstant.BASE_URL + "WishList", 1);
+
         return myView;
     }
 
@@ -88,6 +98,7 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getWishListlist().size() > 0) {
+                    MyApp.getApplication().writeWishList(c.getWishListlist());
                     adapter = new WishListAdapter(c.getWishListlist(), WishListFragment.this);
                     recy_cart.setAdapter(adapter);
                     img_empty.setVisibility(View.GONE);

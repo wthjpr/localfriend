@@ -149,6 +149,10 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
     }
 
     public void postCallJsonWithAuthorization(Context c, String url, JSONObject params, final int callNumber) {
+        if (!MyApp.isConnectingToInternet(this)){
+            dismissDialog();
+            return;
+        }
         Log.d("URl:", url);
         Log.d("Request:", params.toString());
         StringEntity entity = null;
@@ -216,6 +220,10 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
     }
 
     public void postCall(Context c, String url, RequestParams p, String loadingMsg, final int callNumber) {
+        if (!MyApp.isConnectingToInternet(this)){
+            dismissDialog();
+            return;
+        }
         if (!TextUtils.isEmpty(loadingMsg))
             MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);
@@ -250,6 +258,10 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
     }
 
     public void postCall(Context c, String url, JSONObject object, String loadingMsg, final int callNumber) {
+        if (!MyApp.isConnectingToInternet(this)){
+            dismissDialog();
+            return;
+        }
         if (!TextUtils.isEmpty(loadingMsg))
             MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);
@@ -299,57 +311,12 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         });
     }
 
-    public void deleteCall(Context c, String url, final int callNumber) {
-//        if (!TextUtils.isEmpty(loadingMsg))
-//            MyApp.spinnerStart(c, loadingMsg);
-        Log.d("URl:", url);
-//        Log.d("Request:", object.toString());
-        StringEntity entity = null;
-//        try {
-//            entity = new StringEntity(object.toString());
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.setTimeout(30000);
-        client.delete(c, url, new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
-                MyApp.spinnerStop();
-                Log.d("Response:", response.toString());
-                try {
-                    responseCallback.onJsonObjectResponseReceived(response, callNumber);
-                } catch (Exception e) {
-                    responseCallback.onErrorReceived(getString(R.string.no_data_avail));
-                }
-
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-                MyApp.spinnerStop();
-                if (statusCode == 0) {
-                    responseCallback.onTimeOutRetry(callNumber);
-                } else {
-                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                MyApp.spinnerStop();
-                if (statusCode == 0) {
-                    responseCallback.onTimeOutRetry(callNumber);
-                } else {
-                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
-                }
-            }
-        });
-    }
 
     public void postCall10Sec(Context c, String url, RequestParams p, String loadingMsg, final int callNumber) {
+        if (!MyApp.isConnectingToInternet(this)){
+            dismissDialog();
+            return;
+        }
         if (!TextUtils.isEmpty(loadingMsg))
             MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);
@@ -423,6 +390,10 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
     }
 
     public void getCallWithHeader(String url, final int callNumber) {
+        if (!MyApp.isConnectingToInternet(this)){
+            dismissDialog();
+            return;
+        }
 //        if (!TextUtils.isEmpty(loadingMsg))
 //            MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);
@@ -468,52 +439,12 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
     }
 
 
-    public void getCallWithHeaderForJsonArray(String url, final int callNumber) {
-//        if (!TextUtils.isEmpty(loadingMsg))
-//            MyApp.spinnerStart(c, loadingMsg);
-        Log.d("URl:", url);
-//        Log.d("Request:", p.toString());
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
-        client.setTimeout(30000);
-        client.get(url, new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, final JSONArray response) {
-                MyApp.spinnerStop();
-                Log.d("Response:", response.toString());
-                try {
-                    responseCallback.onJsonArrayResponseReceived(response, callNumber);
-                } catch (Exception e) {
-                    responseCallback.onErrorReceived(getString(R.string.no_data_avail));
-                }
-
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-                MyApp.spinnerStop();
-                if (statusCode == 0) {
-                    responseCallback.onTimeOutRetry(callNumber);
-                } else {
-                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                MyApp.spinnerStop();
-                if (statusCode == 0) {
-                    responseCallback.onTimeOutRetry(callNumber);
-                } else {
-                    responseCallback.onErrorReceived(getString(R.string.something_wrong) + "_" + statusCode);
-                }
-            }
-        });
-    }
-
     public void getCall(String url, String loadingMsg, final int callNumber) {
+        if (!MyApp.isConnectingToInternet(this)){
+            dismissDialog();
+            return;
+        }
+
 //        if (!TextUtils.isEmpty(loadingMsg))
 //            MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);
@@ -590,7 +521,7 @@ public class CustomActivity extends AppCompatActivity implements OnClickListener
         dialog.show();
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width =MyApp.getDisplayWidth();
+        lp.width = MyApp.getDisplayWidth();
         lp.height = MyApp.getDisplayHeight();
         dialog.getWindow().setAttributes(lp);
         dialog.show();

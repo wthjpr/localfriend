@@ -1,18 +1,20 @@
 package com.localfriend.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by SONI on 10/17/2017.
  */
 
-public class Cart {
-
+public class Cart implements Serializable{
+    private final static long serialVersionUID = 814468376534L;
     private String totalprice;
     private String sellingprice;
     private String saveprice;
     private int totalitem;
-    private List<Cartlist> cartlist;
+    private List<Cartlist> cartlist = new ArrayList<>();
     private List<Cartlist> wishListlist;
 
     public List<Cartlist> getWishListlist() {

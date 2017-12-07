@@ -582,6 +582,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getCartlist().size() > 0) {
+                    MyApp.getApplication().writeCart(c);
                     txt_cart_count.setVisibility(View.VISIBLE);
                     txt_cart_count.setText(c.getCartlist().size() + "");
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
@@ -670,8 +671,14 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         JSONObject o = new JSONObject();
         try {
             if (getHardwareId().isEmpty()) {
-
-            }else{
+                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_PHONE_STATE},
+                            121);
+                } else {
+                    MyApp.showMassage(getContext(), "Cannot update token...");
+                }
+            } else {
                 o.put("HardwareID", getHardwareId());
                 o.put("DeviceType", "Android");
                 o.put("DeviceID", MyApp.getSharedPrefString(AppConstant.DEVICE_TOKEN));

@@ -20,6 +20,7 @@ import com.google.gson.reflect.TypeToken;
 import com.localfriend.application.AppConstants;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
+import com.localfriend.model.Cart;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.model.Slider;
@@ -117,7 +118,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
 
         tv_description = findViewById(R.id.tv_description);
         tv_description.setText(productDetails.getuDescription());
-        tv_cost.setText("Cost : "+MyApp.getRupeeCurrency() + productDetails.getSellingPrice());
+        tv_cost.setText("Cost : " + MyApp.getRupeeCurrency() + productDetails.getSellingPrice());
         tv_one_kg = findViewById(R.id.tv_one_kg);
         tv_two_kg = findViewById(R.id.tv_two_kg);
         tv_three_kg = findViewById(R.id.tv_three_kg);
@@ -285,6 +286,31 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         if (callNumber == 1) {
             dismissDialog();
 //            MyApp.showMassage(getContext(), o.optString("message"));
+            getCallWithHeader(AppConstant.BASE_URL + "Cart", 33);
+        } else if (callNumber == 33){
+            try {
+                Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
+                if (c.getCartlist().size() > 0) {
+                    MyApp.getApplication().writeCart(c);
+                    txt_cart_count.setVisibility(View.VISIBLE);
+                    txt_cart_count.setText(c.getCartlist().size() + "");
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
+                    HashMap<String, String> map = MyApp.getApplication().readType();
+                    for (int i = 0; i < c.getCartlist().size(); i++) {
+                        if (!map.containsKey(c.getCartlist().get(i).getId())) {
+                            map.put(c.getCartlist().get(i).getId(), c.getCartlist().get(i).getId());
+                        }
+                    }
+                    MyApp.getApplication().writeType(map);
+                } else {
+                    txt_cart_count.setVisibility(View.GONE);
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
 
     }

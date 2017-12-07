@@ -61,6 +61,10 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void postCallJsonObject(Context c, String url, JSONObject params, String loadingMsg) {
+        if (!MyApp.isConnectingToInternet(c)){
+            dismissDialog();
+            return;
+        }
         Log.d("URl:", url);
         Log.d("Request:", params.toString());
         StringEntity entity = null;
@@ -93,6 +97,10 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void postCallJsonWithAuthorization(Context c, String url, JSONObject params, String loadingMsg) {
+        if (!MyApp.isConnectingToInternet(c)){
+            dismissDialog();
+            return;
+        }
         Log.d("URl:", url);
         Log.d("Request:", params.toString());
         StringEntity entity = null;
@@ -129,6 +137,10 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void postCall(Context c, String url, RequestParams p, String loadingMsg, final int callNumber) {
+        if (!MyApp.isConnectingToInternet(c)){
+            dismissDialog();
+            return;
+        }
         if (!TextUtils.isEmpty(loadingMsg))
             MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);
@@ -173,6 +185,10 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void getCall(String url, String loadingMsg, final int callNumber) {
+        if (!MyApp.isConnectingToInternet(getActivity())){
+            dismissDialog();
+            return;
+        }
 //        if (!TextUtils.isEmpty(loadingMsg))
 //            MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);
@@ -217,6 +233,10 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void getCallWithHeader(String url, final int callNumber) {
+        if (!MyApp.isConnectingToInternet(getActivity())){
+            dismissDialog();
+            return;
+        }
 //        if (!TextUtils.isEmpty(loadingMsg))
 //            MyApp.spinnerStart(c, loadingMsg);
         Log.d("URl:", url);

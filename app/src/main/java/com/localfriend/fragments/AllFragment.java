@@ -3,6 +3,7 @@ package com.localfriend.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.localfriend.AllActivity;
 import com.localfriend.ItemDetailActivity;
@@ -19,6 +21,7 @@ import com.localfriend.VegetableActivity;
 import com.localfriend.adapter.CustomAdapter;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
+import com.localfriend.model.Cart;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
 
@@ -26,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -82,7 +86,6 @@ public class AllFragment extends CustomFragment implements CustomFragment.Respon
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -91,6 +94,33 @@ public class AllFragment extends CustomFragment implements CustomFragment.Respon
 //        MyApp.popMessage("Local Friend",);
         dismissDialog();
 //        MyApp.showMassage(getContext(), o.optString("message"));
+        getCallWithHeader(AppConstant.BASE_URL + "Cart", 33);
+        if (callNumber == 33) {
+            try {
+                Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
+                if (c.getCartlist().size() > 0) {
+                    MyApp.getApplication().writeCart(c);
+//                    txt_cart_count.setVisibility(View.VISIBLE);
+//                    txt_cart_count.setText(c.getCartlist().size() + "");
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
+                    HashMap<String, String> map = MyApp.getApplication().readType();
+                    for (int i = 0; i < c.getCartlist().size(); i++) {
+                        if (!map.containsKey(c.getCartlist().get(i).getId())) {
+                            map.put(c.getCartlist().get(i).getId(), c.getCartlist().get(i).getId());
+                        }
+                    }
+                    MyApp.getApplication().writeType(map);
+                } else {
+//                    txt_cart_count.setVisibility(View.GONE);
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     @Override

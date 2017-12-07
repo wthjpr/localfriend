@@ -52,7 +52,15 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
         mTitle.setText("Address");
         actionBar.setTitle("");
         setupUiElements();
-        showLoadingDialog("");
+
+        List<Address> addresses = MyApp.getApplication().readAddress();
+        if (addresses.size() > 0) {
+            rl_no_address.setVisibility(View.GONE);
+            adapter = new AddressAdapter(addresses, getContext(), getIntent().getBooleanExtra(AppConstant.EXTRA_1, false));
+            rv_addresses.setAdapter(adapter);
+        } else {
+            showLoadingDialog("");
+        }
         getCallWithHeader(AppConstant.BASE_URL + "Address", 1);
     }
 
@@ -117,7 +125,9 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
                     new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
             if (addressList.size() == 0) {
                 rl_no_address.setVisibility(View.VISIBLE);
+
             } else {
+                MyApp.getApplication().writeAddress(addressList);
                 rl_no_address.setVisibility(View.GONE);
                 adapter = new AddressAdapter(addressList, getContext(), getIntent().getBooleanExtra(AppConstant.EXTRA_1, false));
                 rv_addresses.setAdapter(adapter);

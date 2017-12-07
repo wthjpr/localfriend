@@ -13,9 +13,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.localfriend.adapter.BreakfastAdapter;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
+import com.localfriend.model.Cart;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
@@ -214,7 +216,32 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         dismissDialog();
-//        MyApp.showMassage(getContext(), o.optString("message"));
+        getCallWithHeader(AppConstant.BASE_URL + "Cart", 22);
+        if(callNumber == 22){
+            try {
+                Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
+                if (c.getCartlist().size() > 0) {
+                    MyApp.getApplication().writeCart(c);
+                    txt_cart_count.setVisibility(View.VISIBLE);
+                    txt_cart_count.setText(c.getCartlist().size() + "");
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
+                    HashMap<String, String> map = MyApp.getApplication().readType();
+                    for (int i = 0; i < c.getCartlist().size(); i++) {
+                        if (!map.containsKey(c.getCartlist().get(i).getId())) {
+                            map.put(c.getCartlist().get(i).getId(), c.getCartlist().get(i).getId());
+                        }
+                    }
+                    MyApp.getApplication().writeType(map);
+                } else {
+                    txt_cart_count.setVisibility(View.GONE);
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     @Override

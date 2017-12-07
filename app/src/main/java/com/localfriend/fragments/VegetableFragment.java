@@ -3,6 +3,7 @@ package com.localfriend.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +12,15 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
 import com.localfriend.ItemDetailActivity;
 import com.localfriend.R;
 import com.localfriend.VegetableActivity;
 import com.localfriend.adapter.VegetableAdapter;
+import com.localfriend.adapter.WishListAdapter;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
+import com.localfriend.model.Cart;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
 
@@ -24,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -84,6 +89,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
     public void addToWish(ProductDetails p, boolean isWish) {
@@ -116,8 +122,45 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
+        getCallWithHeader(AppConstant.BASE_URL + "WishList", 325);
+        getCallWithHeader(AppConstant.BASE_URL + "Cart", 33);
         dismissDialog();
 //        MyApp.showMassage(getContext(), o.optString("message"));
+        if (callNumber == 325) {
+            try {
+                Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
+                if (c.getWishListlist().size() > 0) {
+                    MyApp.getApplication().writeWishList(c.getWishListlist());
+                } else {
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if(callNumber == 33){
+            try {
+                Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
+                if (c.getCartlist().size() > 0) {
+                    MyApp.getApplication().writeCart(c);
+//                    txt_cart_count.setVisibility(View.VISIBLE);
+//                    txt_cart_count.setText(c.getCartlist().size() + "");
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
+                    HashMap<String, String> map = MyApp.getApplication().readType();
+                    for (int i = 0; i < c.getCartlist().size(); i++) {
+                        if (!map.containsKey(c.getCartlist().get(i).getId())) {
+                            map.put(c.getCartlist().get(i).getId(), c.getCartlist().get(i).getId());
+                        }
+                    }
+                    MyApp.getApplication().writeType(map);
+                } else {
+//                    txt_cart_count.setVisibility(View.GONE);
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     @Override

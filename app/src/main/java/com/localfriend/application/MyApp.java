@@ -32,6 +32,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.localfriend.R;
+import com.localfriend.model.Address;
+import com.localfriend.model.Cart;
+import com.localfriend.model.Cartlist;
 import com.localfriend.model.User;
 
 import java.io.File;
@@ -47,9 +50,11 @@ import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -175,35 +180,40 @@ public class MyApp extends Application {
     }
 
     public static boolean isConnectingToInternet(Context context) {
-        ConnectivityManager connectivity = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivity != null) {
-            NetworkInfo[] info = connectivity.getAllNetworkInfo();
-            if (info != null)
-                for (int i = 0; i < info.length; i++)
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
-                    }
+        try {
+            ConnectivityManager connectivity = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (connectivity != null) {
+                NetworkInfo[] info = connectivity.getAllNetworkInfo();
+                if (info != null)
+                    for (int i = 0; i < info.length; i++)
+                        if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                            return true;
+                        }
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
         }
-        return false;
     }
 
 
     public static void popMessage(String titleMsg, String errorMsg,
                                   Context context) {
-        // pop error message
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(titleMsg).setMessage(errorMsg).setIcon(R.drawable.home_icon)
-                .setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-        AlertDialog alert = builder.create();
         try {
+            // pop error message
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle(titleMsg).setMessage(errorMsg).setIcon(R.drawable.home_icon)
+                    .setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+
             alert.show();
         } catch (Exception e) {
         }
@@ -537,7 +547,6 @@ public class MyApp extends Application {
     }
 
 
-
     public static String getDateOrTimeFromMillis(String x) {
         DateFormat formatter = new SimpleDateFormat("dd/MM/yy - hh:mm a");
 
@@ -739,6 +748,147 @@ public class MyApp extends Application {
                 FileInputStream fileIn = new FileInputStream(path);
                 ObjectInputStream in = new ObjectInputStream(fileIn);
                 user = (HashMap<String, String>) in.readObject();
+                in.close();
+                fileIn.close();
+            } catch (StreamCorruptedException e) {
+                e.printStackTrace();
+            } catch (OptionalDataException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
+
+    public void writeWishList(List<Cartlist> user) {
+        try {
+            String path = "/data/data/" + ctx.getPackageName()
+                    + "/wishlist.ser";
+            File f = new File(path);
+            if (f.exists()) {
+                f.delete();
+            }
+            FileOutputStream fileOut = new FileOutputStream(path);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(user);
+            out.close();
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Cartlist> readWishList() {
+        String path = "/data/data/" + ctx.getPackageName() + "/wishlist.ser";
+        File f = new File(path);
+        List<Cartlist> user = new ArrayList<>();
+        if (f.exists()) {
+            try {
+                System.gc();
+                FileInputStream fileIn = new FileInputStream(path);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                user = (List<Cartlist>) in.readObject();
+                in.close();
+                fileIn.close();
+            } catch (StreamCorruptedException e) {
+                e.printStackTrace();
+            } catch (OptionalDataException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
+
+    public void writeCart(Cart user) {
+        try {
+            String path = "/data/data/" + ctx.getPackageName()
+                    + "/Cart.ser";
+            File f = new File(path);
+            if (f.exists()) {
+                f.delete();
+            }
+            FileOutputStream fileOut = new FileOutputStream(path);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(user);
+            out.close();
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Cart readCart() {
+        String path = "/data/data/" + ctx.getPackageName() + "/Cart.ser";
+        File f = new File(path);
+        Cart user = new Cart();
+        if (f.exists()) {
+            try {
+                System.gc();
+                FileInputStream fileIn = new FileInputStream(path);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                user = (Cart) in.readObject();
+                in.close();
+                fileIn.close();
+            } catch (StreamCorruptedException e) {
+                e.printStackTrace();
+            } catch (OptionalDataException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
+
+    public void writeAddress(List<Address> user) {
+        try {
+            String path = "/data/data/" + ctx.getPackageName()
+                    + "/address.ser";
+            File f = new File(path);
+            if (f.exists()) {
+                f.delete();
+            }
+            FileOutputStream fileOut = new FileOutputStream(path);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(user);
+            out.close();
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Address> readAddress() {
+        String path = "/data/data/" + ctx.getPackageName() + "/address.ser";
+        File f = new File(path);
+        List<Address> user = new ArrayList<>();
+        if (f.exists()) {
+            try {
+                System.gc();
+                FileInputStream fileIn = new FileInputStream(path);
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                user = (List<Address>) in.readObject();
                 in.close();
                 fileIn.close();
             } catch (StreamCorruptedException e) {

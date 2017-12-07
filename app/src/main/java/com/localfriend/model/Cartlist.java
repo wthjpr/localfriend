@@ -1,10 +1,13 @@
 package com.localfriend.model;
 
+import java.io.Serializable;
+
 /**
  * Created by SONI on 10/17/2017.
  */
 
-public class Cartlist {
+public class Cartlist implements Serializable {
+    private final static long serialVersionUID = 8144686534L;
     private String id;
     private String productid;
     private String productname;

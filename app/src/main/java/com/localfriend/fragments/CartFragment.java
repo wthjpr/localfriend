@@ -92,9 +92,10 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
         tv_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (price < 49)
-//                    MyApp.popMessage("Local Friend","You must have an order with a minimum of Rs.49 to place your order.",getActivity());
-//                    else
+                if (!MyApp.isConnectingToInternet(getActivity()))
+                    MyApp.popMessage("Local Friend", "Please connect to a working internet connection" +
+                            " to place your order.\nThank you", getActivity());
+                else
                     startActivity(new Intent(getActivity(), CheckOutActivity.class));
             }
         });
@@ -104,14 +105,36 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
                 startActivity(new Intent(getActivity(), MainActivity.class));
             }
         });
-        showLoadingDialog("");
+
         if (Build.VERSION.SDK_INT >= 21) {
             RelativeLayout v = myView.findViewById(R.id.rl_main);
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) v.getLayoutParams();
             lp.setMargins(0, 1 * MyApp.getApplication().getStatusBarHeight(), 0, 0);
         }
+        Cart cart = MyApp.getApplication().readCart();
+        if (cart.getCartlist().size() > 0) {
+            rl_main.setBackgroundResource(R.drawable.bg_cart);
+            recy_cart.setVisibility(View.VISIBLE);
+            MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, cart.getCartlist().size());
+            ((MainActivity) getActivity()).txt_cart_count.setText("" + cart.getCartlist().size());
+            ((MainActivity) getActivity()).txt_cart_count.setVisibility(View.VISIBLE);
+            cartData.removeAll(cartData);
+            cartData.addAll(cart.getCartlist());
+            adapter.notifyDataSetChanged();
+            tv_checkout.setVisibility(View.VISIBLE);
+            recy_cart.setVisibility(View.VISIBLE);
+            card_price.setVisibility(View.VISIBLE);
+            String string = "Rs. ";
+            txt_total.setText(string + " " + cart.getSellingprice());
+            txt_subtotal.setText(string + " " + cart.getTotalprice());
 
-//        client.addHeader("Authorization", "bearer " + MyApp.getApplication().readUser().getData().getAccess_token());
+            HashMap<String, String> map = new HashMap<>();
+            for (int i = 0; i < cart.getCartlist().size(); i++) {
+                map.put(cart.getCartlist().get(i).getId(), cart.getCartlist().get(i).getId());
+            }
+            MyApp.getApplication().writeType(map);
+        } else
+            showLoadingDialog("");
         getCallWithHeader(AppConstant.BASE_URL + "Cart", 1);
         return myView;
     }
@@ -129,10 +152,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getCartlist().size() > 0) {
-//                    try {
-//                        price = Integer.parseInt(c.getSellingprice());
-//                    } catch (Exception e) {
-//                    }
+                    MyApp.getApplication().writeCart(c);
                     rl_main.setBackgroundResource(R.drawable.bg_cart);
                     recy_cart.setVisibility(View.VISIBLE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
@@ -145,13 +165,6 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
                     recy_cart.setVisibility(View.VISIBLE);
                     card_price.setVisibility(View.VISIBLE);
                     String string = "Rs. ";
-//                    byte[] utf8 = null;
-//                    try {
-//                        utf8 = string.getBytes("UTF-8");
-//                        string = new String(utf8, "UTF-8");
-//                    } catch (UnsupportedEncodingException e) {
-//                        e.printStackTrace();
-//                    }
                     txt_total.setText(string + " " + c.getSellingprice());
                     txt_subtotal.setText(string + " " + c.getTotalprice());
 
