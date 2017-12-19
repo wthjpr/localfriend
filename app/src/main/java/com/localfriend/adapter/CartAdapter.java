@@ -76,7 +76,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DataHolder> {
         holder.tv_item_cost.setText(string + item.getSellingprice());
         holder.tv_item_cost_old.setText(string + item.getPrice());
 
-        if (item.getPrice().equals(item.getSellingprice())) {
+        if (item.getPrice()==(item.getSellingprice())) {
             holder.tv_item_cost_old.setVisibility(View.GONE);
         } else {
             holder.tv_item_cost_old.setVisibility(View.VISIBLE);

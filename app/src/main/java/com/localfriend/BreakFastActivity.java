@@ -18,6 +18,7 @@ import com.localfriend.adapter.BreakfastAdapter;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.model.Cart;
+import com.localfriend.model.Cartlist;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
@@ -46,17 +47,17 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
         setResponseListener(this);
         productData = SingleInstance.getInstance().getProductData();
         setContentView(R.layout.activity_break_fast);
-        toolbar =  findViewById(R.id.toolbar_common);
+        toolbar = findViewById(R.id.toolbar_common);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        TextView mTitle =  toolbar.findViewById(R.id.toolbar_title_common);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title_common);
         mTitle.setText(getIntent().getStringExtra(AppConstant.EXTRA_1));
         actionBar.setTitle("");
 
-        recy_breakfast =  findViewById(R.id.recy_breakfast);
+        recy_breakfast = findViewById(R.id.recy_breakfast);
         recy_breakfast.setLayoutManager(new LinearLayoutManager(this));
 
 
@@ -194,6 +195,37 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
     }
 
     public void addToCart(ProductDetails p, ImageView view) {
+        MyApp.setStatus("BREAKFAST_ADDED", true);
+        try {
+            Cart c = MyApp.getApplication().readCart();
+            c.setTotalprice("" + (Integer.parseInt(c.getTotalprice()) + Integer.parseInt(p.getPrice())));
+            c.setSellingprice("" + (Integer.parseInt(c.getSellingprice()) + Integer.parseInt(p.getSellingPrice())));
+
+            Cartlist cartlist = new Cartlist();
+            cartlist.setProductid(p.getId());
+            cartlist.setProductname(p.getName());
+            cartlist.setProductimage(p.getpGalleryFileList().get(0));
+            cartlist.setPrice(p.getPrice());
+            cartlist.setSellingprice(p.getSellingPrice());
+            cartlist.setQuantiy(1);
+            cartlist.setVarient(p.getUnit() + " " + p.getuType());
+
+            boolean isFound = false;
+            for (int i = 0; i < c.getCartlist().size(); i++) {
+                if (c.getCartlist().get(i).getProductid().equals(cartlist.getProductid())) {
+                    isFound = true;
+                    c.getCartlist().get(i).setQuantiy((c.getCartlist().get(i).getQuantiy() + 1));
+                    MyApp.getApplication().writeCart(c);
+                }
+            }
+
+            if (!isFound) {
+                c.getCartlist().add(cartlist);
+                MyApp.getApplication().writeCart(c);
+            }
+        } catch (Exception e) {
+        }
+
         JSONObject o = new JSONObject();
         makeFlyAnimation(view, p.getId());
         try {
@@ -216,8 +248,8 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         dismissDialog();
-        getCallWithHeader(AppConstant.BASE_URL + "Cart", 22);
-        if(callNumber == 22){
+
+        if (callNumber == 22) {
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getCartlist().size() > 0) {
@@ -233,6 +265,7 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
                     }
                     MyApp.getApplication().writeType(map);
                 } else {
+                    MyApp.getApplication().writeCart(new Cart());
                     txt_cart_count.setVisibility(View.GONE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
                 }
@@ -241,6 +274,8 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
                 e.printStackTrace();
             }
 
+        } else {
+            getCallWithHeader(AppConstant.BASE_URL + "Cart", 22);
         }
     }
 

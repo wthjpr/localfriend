@@ -595,6 +595,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
                     MyApp.getApplication().writeType(map);
                 } else {
+                    MyApp.getApplication().writeCart(new Cart());
                     txt_cart_count.setVisibility(View.GONE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
                 }

@@ -21,6 +21,7 @@ import com.localfriend.adapter.WishListAdapter;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.model.Cart;
+import com.localfriend.model.Cartlist;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
 
@@ -77,6 +78,36 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
     }
 
     public void addToCart(ProductDetails p, ImageView view) {
+        try {
+            Cart c = MyApp.getApplication().readCart();
+            c.setTotalprice("" + (Integer.parseInt(c.getTotalprice()) + Integer.parseInt(p.getPrice())));
+            c.setSellingprice("" + (Integer.parseInt(c.getSellingprice()) + Integer.parseInt(p.getSellingPrice())));
+
+            Cartlist cartlist = new Cartlist();
+            cartlist.setProductid(p.getId());
+            cartlist.setProductname(p.getName());
+            cartlist.setProductimage(p.getpGalleryFileList().get(0));
+            cartlist.setPrice(p.getPrice());
+            cartlist.setSellingprice(p.getSellingPrice());
+            cartlist.setQuantiy(1);
+            cartlist.setVarient(p.getUnit() + " " + p.getuType());
+
+            boolean isFound = false;
+            for (int i = 0; i < c.getCartlist().size(); i++) {
+                if (c.getCartlist().get(i).getProductid().equals(cartlist.getProductid())) {
+                    isFound = true;
+                    c.getCartlist().get(i).setQuantiy((c.getCartlist().get(i).getQuantiy() + 1));
+                    MyApp.getApplication().writeCart(c);
+                }
+            }
+
+            if (!isFound) {
+                c.getCartlist().add(cartlist);
+                MyApp.getApplication().writeCart(c);
+            }
+        } catch (Exception e) {
+        }
+
         JSONObject o = new JSONObject();
         ((VegetableActivity) getActivity()).makeFlyAnimation(view, p.getId());
         try {
@@ -122,8 +153,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
-        getCallWithHeader(AppConstant.BASE_URL + "WishList", 325);
-        getCallWithHeader(AppConstant.BASE_URL + "Cart", 33);
+
         dismissDialog();
 //        MyApp.showMassage(getContext(), o.optString("message"));
         if (callNumber == 325) {
@@ -136,7 +166,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(callNumber == 33){
+        } else if (callNumber == 33) {
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getCartlist().size() > 0) {
@@ -153,6 +183,7 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
                     MyApp.getApplication().writeType(map);
                 } else {
 //                    txt_cart_count.setVisibility(View.GONE);
+                    MyApp.getApplication().writeCart(new Cart());
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
                 }
 
@@ -160,6 +191,9 @@ public class VegetableFragment extends CustomFragment implements CustomFragment.
                 e.printStackTrace();
             }
 
+        } else {
+//            getCallWithHeader(AppConstant.BASE_URL + "WishList", 325);
+//            getCallWithHeader(AppConstant.BASE_URL + "Cart", 33);
         }
     }
 

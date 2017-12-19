@@ -61,7 +61,7 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void postCallJsonObject(Context c, String url, JSONObject params, String loadingMsg) {
-        if (!MyApp.isConnectingToInternet(c)){
+        if (!MyApp.isConnectingToInternet(c)) {
             dismissDialog();
             return;
         }
@@ -97,7 +97,7 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void postCallJsonWithAuthorization(Context c, String url, JSONObject params, String loadingMsg) {
-        if (!MyApp.isConnectingToInternet(c)){
+        if (!MyApp.isConnectingToInternet(c)) {
             dismissDialog();
             return;
         }
@@ -137,7 +137,7 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void postCall(Context c, String url, RequestParams p, String loadingMsg, final int callNumber) {
-        if (!MyApp.isConnectingToInternet(c)){
+        if (!MyApp.isConnectingToInternet(c)) {
             dismissDialog();
             return;
         }
@@ -185,7 +185,7 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void getCall(String url, String loadingMsg, final int callNumber) {
-        if (!MyApp.isConnectingToInternet(getActivity())){
+        if (!MyApp.isConnectingToInternet(getActivity())) {
             dismissDialog();
             return;
         }
@@ -233,8 +233,9 @@ public class CustomFragment extends Fragment implements View.OnClickListener {
     }
 
     public void getCallWithHeader(String url, final int callNumber) {
-        if (!MyApp.isConnectingToInternet(getActivity())){
+        if (!MyApp.isConnectingToInternet(getActivity())) {
             dismissDialog();
+//            MyApp.popMessage("Alert!", "Please connect to a working internet connection", getContext());
             return;
         }
 //        if (!TextUtils.isEmpty(loadingMsg))

@@ -303,6 +303,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
                     }
                     MyApp.getApplication().writeType(map);
                 } else {
+                    MyApp.getApplication().writeCart(new Cart());
                     txt_cart_count.setVisibility(View.GONE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
                 }

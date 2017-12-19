@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECF2F2">
+
+    <include layout="@layout/toolbar_common" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_common"
+        android:orientation="vertical"
+        tools:context="com.localfriend.fragments.ScheduleFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/card_price">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/dim_10"
+                    android:paddingRight="@dimen/dim_10"
+                    android:paddingTop="@dimen/dim_10">
+
+                    <com.localfriend.fonts.CustomFontPtSansText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="Delivery Address"
+                        android:textColor="@color/gray_text_light"
+                        android:textSize="15sp"
+                        app:textStyle="@integer/roboto_medium" />
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="8dp"
+                        android:elevation="@dimen/dim_10"
+                        app:cardBackgroundColor="@color/white">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+
+                                <com.localfriend.fonts.CustomFontPtSansText
+                                    android:id="@+id/txt_address_type"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dim_10"
+                                    android:padding="@dimen/dim_5"
+                                    android:textColor="@color/gray_tab"
+                                    android:textSize="14sp"
+                                    app:textStyle="@integer/roboto_medium" />
+
+                                <com.localfriend.fonts.CustomFontPtSansText
+                                    android:id="@+id/txt_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dim_10"
+                                    android:layout_marginTop="-5dp"
+                                    android:padding="@dimen/dim_5"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    app:textStyle="@integer/roboto_medium" />
+
+                                <com.localfriend.fonts.CustomFontPtSansText
+                                    android:id="@+id/txt_address"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="@dimen/dim_10"
+                                    android:padding="5dp"
+                                    android:text=""
+                                    android:textColor="@color/gray_tab"
+                                    app:textStyle="@integer/roboto_medium" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/txt_add_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/add_address"
+                                android:text="+  Add Address"
+                                android:textColor="@color/gray_text_light" />
+
+                            <ImageView
+                                android:id="@+id/img_change"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:padding="5dp"
+                                android:src="@drawable/edit_address"
+                                android:visibility="visible" />
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <com.localfriend.fonts.CustomFontPtSansText
+                        android:id="@+id/txt_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Delivery Address"
+                        android:textColor="@color/gray_text_light"
+                        android:textSize="15sp"
+                        app:textStyle="@integer/roboto_medium" />
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="8dp"
+
+                        android:elevation="@dimen/dim_10"
+                        app:cardBackgroundColor="@color/white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <com.localfriend.fonts.CustomFontPtSansText
+                                    android:id="@+id/txt_total1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:text="Total price :- Rs. 3000/mo"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <com.localfriend.fonts.CustomFontPtSansText
+                                    android:id="@+id/txt_start_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:padding="10dp"
+                                    android:text="Start From : 12/15/2017"
+                                    android:textColor="@color/monthlyPriceColor"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+                            <com.localfriend.fonts.CustomFontPtSansEditText
+                                android:id="@+id/edt_note"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/rounded_gray_edit_text"
+                                android:gravity="start"
+                                android:hint="Note..."
+                                android:maxLines="4"
+                                android:minLines="4"
+                                android:padding="10dp"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <com.localfriend.fonts.CustomFontPtSansText
+            android:id="@+id/txt_total2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_make_payment"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Total Price :- Rs 3000/mo"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:textStyle="@integer/roboto_bold" />
+
+        <com.localfriend.fonts.CustomFontPtSansText
+            android:id="@+id/tv_make_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/curvy_gradient_white_bg"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Place Order"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:textStyle="@integer/roboto_medium" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

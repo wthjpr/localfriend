@@ -26,6 +26,16 @@ public class SingleInstance {
     }
 
     private List<Slider> sliderList = new ArrayList();
+    private List<Product> monthlyPkgList = new ArrayList();
+
+    public List<Product> getMonthlyPkgList() {
+        return monthlyPkgList;
+    }
+
+    public void setMonthlyPkgList(List<Product> monthlyPkgList) {
+        this.monthlyPkgList = monthlyPkgList;
+    }
+
     private List<CategoryDetails> catList = new ArrayList<>();
     private List<CategoryDetails> tiffinCatList = new ArrayList<>();
 
@@ -45,6 +55,15 @@ public class SingleInstance {
     private Address selectedAddress;
     private String ShippingID;
     private String payAmount;
+    private Product subscriptionProduct;
+
+    public Product getSubscriptionProduct() {
+        return subscriptionProduct;
+    }
+
+    public void setSubscriptionProduct(Product subscriptionProduct) {
+        this.subscriptionProduct = subscriptionProduct;
+    }
 
     public String getPayAmount() {
         return payAmount;

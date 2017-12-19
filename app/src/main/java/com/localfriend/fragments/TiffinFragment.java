@@ -31,12 +31,14 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.AllActivity;
 import com.localfriend.BreakFastActivity;
+import com.localfriend.MonthlyPackageListActivity;
 import com.localfriend.R;
 import com.localfriend.adapter.SimpleAdapter;
 import com.localfriend.application.AppConstants;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.model.CategoryDetails;
+import com.localfriend.model.Product;
 import com.localfriend.model.ProductData;
 import com.localfriend.model.StoreList;
 import com.localfriend.utils.AppConstant;
@@ -216,25 +218,16 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 break;
             }
             case R.id.card_snacks: {
-                showTiffinPopup();
-//
-//                titleSend = "Snacks";
-//                currentStoreList = catList.get(3).getStorelist();
-//                catId = "18";
-//                List<String> listStore = new ArrayList<>();
-//                for (int i = 0; i < catList.get(0).getStorelist().size(); i++) {
-//                    listStore.add(catList.get(0).getStorelist().get(i).getsName());
-//                }
-//                if (listStore.size() == 1) {
-//                    getProducts("18", catList.get(0).getStorelist().get(0).getsID());
-//                    return;
-//                }
-//                currentStoreList = catList.get(0).getStorelist();
-//                SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
-//                showCompleteDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener, dismissListener, cancelListener,
-//                        true);
-//
-//                break;
+//                showTiffinPopup();
+//                showLoadingDialog("");
+//                getCallWithHeader(AppConstant.BASE_URL + "Product/MonthlyPackage", 5);
+                List<String> listStore = new ArrayList<>();
+                listStore.add("Monthly Offers");
+                listStore.add("Weekly Offers");
+                SimpleAdapter adapter = new SimpleAdapter(getContext(), false, listStore);
+                showOffersDialog(new ListHolder(), Gravity.CENTER, adapter, clickListener, itemClickListener,
+                        dismissListener, cancelListener,
+                        false);
             }
         }
     }
@@ -316,6 +309,46 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        } else if (callNumber == 5) {
+            Type listType = new TypeToken<ArrayList<Product>>() {
+            }.getType();
+            try {
+                List<Product> productList =
+                        new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
+                if (catList.size() == 0) {
+                } else {
+                    SingleInstance.getInstance().setMonthlyPkgList(productList);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            startActivity(new Intent(getContext(), MonthlyPackageListActivity.class).putExtra(AppConstant.EXTRA_1, false));
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dismissDialog();
+                }
+            }, 2000);
+        } else if (callNumber == 6) {
+            Type listType = new TypeToken<ArrayList<Product>>() {
+            }.getType();
+            try {
+                List<Product> productList =
+                        new GsonBuilder().create().fromJson(o.getJSONArray("data").toString(), listType);
+                if (catList.size() == 0) {
+                } else {
+                    SingleInstance.getInstance().setMonthlyPkgList(productList);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            startActivity(new Intent(getContext(), MonthlyPackageListActivity.class).putExtra(AppConstant.EXTRA_1, true));
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dismissDialog();
+                }
+            }, 2000);
         }
     }
 
@@ -357,10 +390,63 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                     @Override
                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
                         if (position == -1) return;
-                        if (position == (currentStoreList.size()-1)){ dialog.dismiss(); return;}
+                        if (position == (currentStoreList.size() - 1)) {
+                            dialog.dismiss();
+                            return;
+                        }
                         getProducts(catId, currentStoreList.get(position).getsID());
                         Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
                                 item + "], position = [" + position + "]");
+                    }
+                })
+                .setOnDismissListener(dismissListener)
+                .setExpanded(expanded)
+//        .setContentWidth(800)
+                .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT)
+                .setOnCancelListener(cancelListener)
+                .setOverlayBackgroundResource(R.color.transparent)
+//        .setContentBackgroundResource(R.drawable.corner_background)
+                //                .setOutMostMargin(0, 100, 0, 0)
+                .create();
+        // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+    }
+
+    private void showOffersDialog(Holder holder, int gravity, final BaseAdapter adapter,
+                                  OnClickListener clickListener, OnItemClickListener itemClickListener,
+                                  OnDismissListener dismissListener, OnCancelListener cancelListener,
+                                  boolean expanded) {
+        final DialogPlus dialog = DialogPlus.newDialog(getActivity())
+
+                .setContentHolder(holder)
+//                .setHeader(R.layout.header_store)
+                .setContentBackgroundResource(R.drawable.rounded_corner_white)
+//                .setFooter(R.layout.footer)
+                .setCancelable(true)
+                .setGravity(gravity)
+                .setAdapter(adapter)
+                .setOnClickListener(clickListener)
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                        if (position == -1) return;
+                        if (position == 2) {
+                            dialog.dismiss();
+                            return;
+                        }
+                        if (position == 0) {
+                            showLoadingDialog("");
+                            getCallWithHeader(AppConstant.BASE_URL + "Product/MonthlyPackage", 5);
+                            dialog.dismiss();
+
+                        } else if (position == 1) {
+                            showLoadingDialog("");
+                            getCallWithHeader(AppConstant.BASE_URL + "Product/WeeklyPackage", 6);
+                            dialog.dismiss();
+                        }
+//                        getProducts(catId, currentStoreList.get(position).getsID());
+//                        Log.d("DialogPlus", "onItemClick() called with: " + "item = [" +
+//                                item + "], position = [" + position + "]");
                     }
                 })
                 .setOnDismissListener(dismissListener)

@@ -55,6 +55,8 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
     private CardView card_price;
     private RelativeLayout rl_main;
     private List<Cartlist> cartData = new ArrayList<>();
+    private boolean isNotConnectedCall = false;
+    private Cart myCart;
 
     public CartFragment() {
 
@@ -79,7 +81,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
         txt_subtotal_title.getPaint().setShader(textShader);
         txt_total_title.getPaint().setShader(textShader);
 
-        recy_cart = (RecyclerView) myView.findViewById(R.id.recy_cart);
+        recy_cart = myView.findViewById(R.id.recy_cart);
         recy_cart.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new CartAdapter(cartData, CartFragment.this);
         recy_cart.setAdapter(adapter);
@@ -92,11 +94,27 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
         tv_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!MyApp.isConnectingToInternet(getActivity()))
+                if (!MyApp.isConnectingToInternet(getActivity())) {
+                    isNotConnectedCall = true;
                     MyApp.popMessage("Local Friend", "Please connect to a working internet connection" +
                             " to place your order.\nThank you", getActivity());
-                else
-                    startActivity(new Intent(getActivity(), CheckOutActivity.class));
+                } else {
+                    if (Integer.parseInt(myCart.getTotalprice()) < 49 && !MyApp.getStatus("BREAKFAST_ADDED")) {
+                        MyApp.popMessage("Message", "Cart total amount should equal or greater then " +
+                                "Rs. 49 to proceed for checkout." +
+                                "\nThank you", getContext());
+                    } else if (isNotConnectedCall) {
+                        MyApp.showMassage(getContext(), "Updating online data");
+                        isNotConnectedCall = false;
+                        showLoadingDialog("");
+                        getCallWithHeader(AppConstant.BASE_URL + "Cart", 1);
+                    } else {
+                        startActivity(new Intent(getActivity(), CheckOutActivity.class));
+                        MyApp.setStatus("BREAKFAST_ADDED", false);
+                    }
+
+                }
+
             }
         });
         tv_start_shopping.setOnClickListener(new View.OnClickListener() {
@@ -111,26 +129,26 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) v.getLayoutParams();
             lp.setMargins(0, 1 * MyApp.getApplication().getStatusBarHeight(), 0, 0);
         }
-        Cart cart = MyApp.getApplication().readCart();
-        if (cart.getCartlist().size() > 0) {
+        myCart = MyApp.getApplication().readCart();
+        if (myCart.getCartlist().size() > 0) {
             rl_main.setBackgroundResource(R.drawable.bg_cart);
             recy_cart.setVisibility(View.VISIBLE);
-            MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, cart.getCartlist().size());
-            ((MainActivity) getActivity()).txt_cart_count.setText("" + cart.getCartlist().size());
+            MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, myCart.getCartlist().size());
+            ((MainActivity) getActivity()).txt_cart_count.setText("" + myCart.getCartlist().size());
             ((MainActivity) getActivity()).txt_cart_count.setVisibility(View.VISIBLE);
             cartData.removeAll(cartData);
-            cartData.addAll(cart.getCartlist());
+            cartData.addAll(myCart.getCartlist());
             adapter.notifyDataSetChanged();
             tv_checkout.setVisibility(View.VISIBLE);
             recy_cart.setVisibility(View.VISIBLE);
             card_price.setVisibility(View.VISIBLE);
             String string = "Rs. ";
-            txt_total.setText(string + " " + cart.getSellingprice());
-            txt_subtotal.setText(string + " " + cart.getTotalprice());
+            txt_total.setText(string + " " + myCart.getSellingprice());
+            txt_subtotal.setText(string + " " + myCart.getTotalprice());
 
             HashMap<String, String> map = new HashMap<>();
-            for (int i = 0; i < cart.getCartlist().size(); i++) {
-                map.put(cart.getCartlist().get(i).getId(), cart.getCartlist().get(i).getId());
+            for (int i = 0; i < myCart.getCartlist().size(); i++) {
+                map.put(myCart.getCartlist().get(i).getId(), myCart.getCartlist().get(i).getId());
             }
             MyApp.getApplication().writeType(map);
         } else
@@ -138,9 +156,6 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
         getCallWithHeader(AppConstant.BASE_URL + "Cart", 1);
         return myView;
     }
-
-    private boolean isOnceDismiss = false;
-//    private int price = 51;
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
@@ -150,27 +165,27 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             dismissDialog();
 
             try {
-                Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
-                if (c.getCartlist().size() > 0) {
-                    MyApp.getApplication().writeCart(c);
+                myCart = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
+                if (myCart.getCartlist().size() > 0) {
+                    MyApp.getApplication().writeCart(myCart);
                     rl_main.setBackgroundResource(R.drawable.bg_cart);
                     recy_cart.setVisibility(View.VISIBLE);
-                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, c.getCartlist().size());
-                    ((MainActivity) getActivity()).txt_cart_count.setText("" + c.getCartlist().size());
+                    MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, myCart.getCartlist().size());
+                    ((MainActivity) getActivity()).txt_cart_count.setText("" + myCart.getCartlist().size());
                     ((MainActivity) getActivity()).txt_cart_count.setVisibility(View.VISIBLE);
                     cartData.removeAll(cartData);
-                    cartData.addAll(c.getCartlist());
+                    cartData.addAll(myCart.getCartlist());
                     adapter.notifyDataSetChanged();
                     tv_checkout.setVisibility(View.VISIBLE);
                     recy_cart.setVisibility(View.VISIBLE);
                     card_price.setVisibility(View.VISIBLE);
                     String string = "Rs. ";
-                    txt_total.setText(string + " " + c.getSellingprice());
-                    txt_subtotal.setText(string + " " + c.getTotalprice());
+                    txt_total.setText(string + " " + myCart.getSellingprice());
+                    txt_subtotal.setText(string + " " + myCart.getTotalprice());
 
                     HashMap<String, String> map = new HashMap<>();
-                    for (int i = 0; i < c.getCartlist().size(); i++) {
-                        map.put(c.getCartlist().get(i).getId(), c.getCartlist().get(i).getId());
+                    for (int i = 0; i < myCart.getCartlist().size(); i++) {
+                        map.put(myCart.getCartlist().get(i).getId(), myCart.getCartlist().get(i).getId());
                     }
 
                     MyApp.getApplication().writeType(map);
@@ -180,11 +195,12 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
                     rl_main.setBackgroundColor(Color.WHITE);
                     recy_cart.setVisibility(View.GONE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
-                    ((MainActivity) getActivity()).txt_cart_count.setText("0" + c.getCartlist().size());
+                    ((MainActivity) getActivity()).txt_cart_count.setText("0" + myCart.getCartlist().size());
                     ((MainActivity) getActivity()).txt_cart_count.setVisibility(View.GONE);
                     img_empty_cart.setVisibility(View.VISIBLE);
                     tv_start_shopping.setVisibility(View.VISIBLE);
                     card_price.setVisibility(View.GONE);
+                    MyApp.getApplication().writeCart(new Cart());
                 }
 
             } catch (JSONException e) {
@@ -195,7 +211,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
 //            dismissDialog();
 //            MyApp.showMassage(getContext(), o.optString("message"));
 //            showLoadingDialog("");
-            getCallWithHeader(AppConstant.BASE_URL + "Cart", 1);
+//            getCallWithHeader(AppConstant.BASE_URL + "Cart", 1);
         }
     }
 
@@ -222,7 +238,12 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             o.put("oprationid", 1);
             o.put("pDetailsId", item.getProductid());
             o.put("pQuantity", 1);
-            showLoadingShadowDialog("");
+            myCart.setTotalprice("" + (Integer.parseInt(myCart.getTotalprice()) + Integer.parseInt(item.getPrice())));
+            myCart.setSellingprice("" + (Integer.parseInt(myCart.getSellingprice()) + Integer.parseInt(item.getSellingprice())));
+            adapter.notifyDataSetChanged();
+            txt_total.setText("Rs. " + myCart.getSellingprice());
+            txt_subtotal.setText("Rs. " + myCart.getTotalprice());
+//            showLoadingShadowDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -237,7 +258,12 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
             o.put("oprationid", 2);
             o.put("pDetailsId", item.getProductid());
             o.put("pQuantity", 1);
-            showLoadingShadowDialog("");
+//            showLoadingShadowDialog("");
+            myCart.setTotalprice("" + (Integer.parseInt(myCart.getTotalprice()) - Integer.parseInt(item.getPrice())));
+            myCart.setSellingprice("" + (Integer.parseInt(myCart.getSellingprice()) - Integer.parseInt(item.getSellingprice())));
+            adapter.notifyDataSetChanged();
+            txt_total.setText("Rs. " + myCart.getSellingprice());
+            txt_subtotal.setText("Rs. " + myCart.getTotalprice());
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -246,16 +272,24 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
 
     public void deleteItem(Cartlist item) {
         JSONObject o = new JSONObject();
-
         try {
             o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
             o.put("oprationid", 3);
             o.put("pDetailsId", item.getProductid());
             o.put("pQuantity", 1);
-            showLoadingShadowDialog("");
+            myCart.setTotalprice("" + (Integer.parseInt(myCart.getTotalprice()) - (Integer.parseInt(item.getPrice()) *
+                    item.getQuantiy())));
+            myCart.setSellingprice("" + (Integer.parseInt(myCart.getSellingprice()) - (Integer.parseInt(item.getSellingprice()) *
+                    item.getQuantiy())));
+            adapter.notifyDataSetChanged();
+            txt_total.setText("Rs. " + myCart.getSellingprice());
+            txt_subtotal.setText("Rs. " + myCart.getTotalprice());
+//            showLoadingShadowDialog("");
             postCallJsonWithAuthorization(getActivity(), AppConstant.BASE_URL + "Cart", o, "");
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) - 1));
+        ((MainActivity) getActivity()).txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
     }
 }

@@ -12,9 +12,18 @@ public class Product {
     private String pName;
     private String pTitle;
     private String pPrice;
+    private String pFoodType;
     private String pDescription;
     private List<ProductDetails> pDetailsList;
     private List<String> pGalleryFileList;
+
+    public String getpFoodType() {
+        return pFoodType;
+    }
+
+    public void setpFoodType(String pFoodType) {
+        this.pFoodType = pFoodType;
+    }
 
     public String getCategoryID() {
         return categoryID;

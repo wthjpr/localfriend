@@ -205,7 +205,6 @@ public class MyApp extends Application {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle(titleMsg).setMessage(errorMsg).setIcon(R.drawable.home_icon)
                     .setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
-
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();

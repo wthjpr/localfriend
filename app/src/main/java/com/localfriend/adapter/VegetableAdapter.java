@@ -120,7 +120,7 @@ public class VegetableAdapter extends BaseAdapter {
             }
         });
 
-        if (productList.get(position).getPrice().equals(productList.get(position).getSellingPrice())) {
+        if (productList.get(position).getPrice()==(productList.get(position).getSellingPrice())) {
             listViewHolder.tv_cost_old.setVisibility(View.GONE);
         } else {
             listViewHolder.tv_cost_old.setVisibility(View.VISIBLE);

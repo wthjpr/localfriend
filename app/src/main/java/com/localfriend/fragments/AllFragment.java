@@ -22,6 +22,7 @@ import com.localfriend.adapter.CustomAdapter;
 import com.localfriend.application.MyApp;
 import com.localfriend.application.SingleInstance;
 import com.localfriend.model.Cart;
+import com.localfriend.model.Cartlist;
 import com.localfriend.model.ProductDetails;
 import com.localfriend.utils.AppConstant;
 
@@ -74,6 +75,37 @@ public class AllFragment extends CustomFragment implements CustomFragment.Respon
     }
 
     public void addToCart(ImageView view, ProductDetails p) {
+
+        try {
+            Cart c = MyApp.getApplication().readCart();
+            c.setTotalprice("" + (Integer.parseInt(c.getTotalprice()) + Integer.parseInt(p.getPrice())));
+            c.setSellingprice("" + (Integer.parseInt(c.getSellingprice()) + Integer.parseInt(p.getSellingPrice())));
+
+            Cartlist cartlist = new Cartlist();
+            cartlist.setProductid(p.getId());
+            cartlist.setProductname(p.getName());
+            cartlist.setProductimage(p.getpGalleryFileList().get(0));
+            cartlist.setPrice(p.getPrice());
+            cartlist.setSellingprice(p.getSellingPrice());
+            cartlist.setQuantiy(1);
+            cartlist.setVarient(p.getUnit() + " " + p.getuType());
+
+            boolean isFound = false;
+            for (int i = 0; i < c.getCartlist().size(); i++) {
+                if (c.getCartlist().get(i).getProductid().equals(cartlist.getProductid())) {
+                    isFound = true;
+                    c.getCartlist().get(i).setQuantiy((c.getCartlist().get(i).getQuantiy() + 1));
+                    MyApp.getApplication().writeCart(c);
+                }
+            }
+
+            if (!isFound) {
+                c.getCartlist().add(cartlist);
+                MyApp.getApplication().writeCart(c);
+            }
+        } catch (Exception e) {
+        }
+
         JSONObject o = new JSONObject();
         ((AllActivity) getActivity()).makeFlyAnimation(view, p.getId());
         try {
@@ -94,7 +126,7 @@ public class AllFragment extends CustomFragment implements CustomFragment.Respon
 //        MyApp.popMessage("Local Friend",);
         dismissDialog();
 //        MyApp.showMassage(getContext(), o.optString("message"));
-        getCallWithHeader(AppConstant.BASE_URL + "Cart", 33);
+
         if (callNumber == 33) {
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
@@ -111,6 +143,7 @@ public class AllFragment extends CustomFragment implements CustomFragment.Respon
                     }
                     MyApp.getApplication().writeType(map);
                 } else {
+                    MyApp.getApplication().writeCart(new Cart());
 //                    txt_cart_count.setVisibility(View.GONE);
                     MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
                 }
@@ -119,6 +152,8 @@ public class AllFragment extends CustomFragment implements CustomFragment.Respon
                 e.printStackTrace();
             }
 
+        } else {
+            getCallWithHeader(AppConstant.BASE_URL + "Cart", 33);
         }
 
     }

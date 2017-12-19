@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_bg">
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/rl_no_address"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:visibility="gone">-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/img_route"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:src="@drawable/icon_route" />-->
+
+    <!--<com.localfriend.fonts.CustomFontPtSansText-->
+    <!--android:id="@+id/txt_oops"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/img_route"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="50dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text="oops you have not add-on any address yet."-->
+    <!--android:textColor="@color/colorPrimaryDark"-->
+    <!--android:textSize="16sp"-->
+    <!--app:textStyle="@integer/roboto_regular" />-->
+
+    <!--<com.localfriend.fonts.CustomFontPtSansText-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/txt_oops"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="20dp"-->
+    <!--android:alpha=".6"-->
+    <!--android:text="Tell us where you want your order delivery."-->
+    <!--android:textColor="@color/gray_text"-->
+    <!--android:textSize="14sp"-->
+    <!--app:textStyle="@integer/roboto_regular" />-->
+    <!--</RelativeLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_nav_layout"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_common"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_addresses"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dim_10"
+            android:paddingRight="@dimen/dim_10">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_nav_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/bottom"></include>
+    </LinearLayout>
+</RelativeLayout>
