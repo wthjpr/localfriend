@@ -319,6 +319,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     @Override
     public void onItemSelected(int position) {
         if (position == 0) {
+            SingleInstance.getInstance().setTabClicked(1);
             try {
                 mTitle.setText("Local Friend");
                 img_home.setSelected(true);
@@ -377,7 +378,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new WishListFragment()).commit();
-
+            SingleInstance.getInstance().setTabClicked(0);
         } else if (position == 3) {
             startActivity(new Intent(getContext(), AddressListActivity.class));
         } else if (position == 4) {
@@ -461,6 +462,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.rl_tab_1) {
+            if (SingleInstance.getInstance().getTabClicked() == 1) return;
             mTitle.setText("Local Friend");
             img_home.setSelected(true);
             img_tiffin.setSelected(false);
@@ -488,7 +490,9 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new HomeFragment()).commit();
 
+            SingleInstance.getInstance().setTabClicked(1);
         } else if (v.getId() == R.id.rl_tab_2) {
+            if (SingleInstance.getInstance().getTabClicked() == 2) return;
             mTitle.setText("Tiffin");
             img_home.setSelected(false);
             img_tiffin.setSelected(true);
@@ -515,8 +519,9 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new TiffinFragment()).commit();
-
+            SingleInstance.getInstance().setTabClicked(2);
         } else if (v.getId() == R.id.rl_tab_3) {
+            if (SingleInstance.getInstance().getTabClicked() == 3) return;
             mTitle.setText("Cart");
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
@@ -543,7 +548,9 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new CartFragment()).commit();
+            SingleInstance.getInstance().setTabClicked(3);
         } else if (v.getId() == R.id.rl_tab_4) {
+            if (SingleInstance.getInstance().getTabClicked() == 4) return;
             toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
             mTitle.setText("More");
             img_home.setSelected(false);
@@ -568,6 +575,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentManager = getSupportFragmentManager();
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new MoreFragment()).commit();
+            SingleInstance.getInstance().setTabClicked(4);
         }
     }
 

@@ -120,7 +120,7 @@ public class VegetableAdapter extends BaseAdapter {
             }
         });
 
-        if (productList.get(position).getPrice()==(productList.get(position).getSellingPrice())) {
+        if (productList.get(position).getPrice().equals(productList.get(position).getSellingPrice())) {
             listViewHolder.tv_cost_old.setVisibility(View.GONE);
         } else {
             listViewHolder.tv_cost_old.setVisibility(View.VISIBLE);
@@ -136,7 +136,6 @@ public class VegetableAdapter extends BaseAdapter {
     public static class ViewHolder {
         ImageView img_veg, img_anim, img_wish;
         TextView tv_cost, tv_cost_old, txt_unit, tv_veg_name, tv_add_cart;
-
     }
 
 }

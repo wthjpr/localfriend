@@ -56,6 +56,15 @@ public class SingleInstance {
     private String ShippingID;
     private String payAmount;
     private Product subscriptionProduct;
+    private int tabClicked = 1;
+
+    public int getTabClicked() {
+        return tabClicked;
+    }
+
+    public void setTabClicked(int tabClicked) {
+        this.tabClicked = tabClicked;
+    }
 
     public Product getSubscriptionProduct() {
         return subscriptionProduct;

@@ -99,7 +99,12 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
         setTouchNClick(R.id.tv_make_payment);
 
         dateSelected = MyApp.millsToDate(System.currentTimeMillis());
-        txt_total2.setText("Total Price :- Rs. " + product.getpPrice() + "/mo");
+        if (getIntent().getBooleanExtra(AppConstant.EXTRA_2, false)) {
+            txt_total2.setText("Total Price :- Rs. " + product.getpPrice() + "/ "+product.getpName());//weekly
+        } else {
+            txt_total2.setText("Total Price :- Rs. " + product.getpPrice() + "/ mo");
+        }
+
         txt_total1.setText("Total Price :- Rs. " + product.getpPrice());
         txt_start_date.setText("Start From : " + dateSelected);
     }
@@ -164,7 +169,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
         if (callNumber == 1) {
             if (o.optString("status").equals("success")) {
                 AlertDialog.Builder b = new AlertDialog.Builder(getContext());
-                b.setMessage("Your information has been submitted successfully\nThank you.");
+                b.setMessage("Thank you user!\nYour order has been placed successfully.");
                 b.setTitle("Success");
                 b.setCancelable(false);
                 b.setIcon(R.mipmap.ic_launcher);

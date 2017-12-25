@@ -27,6 +27,7 @@ import com.localfriend.R;
 import com.localfriend.adapter.CartAdapter;
 import com.localfriend.adapter.WishListAdapter;
 import com.localfriend.application.MyApp;
+import com.localfriend.application.SingleInstance;
 import com.localfriend.model.Cart;
 import com.localfriend.model.Cartlist;
 import com.localfriend.utils.AppConstant;
@@ -37,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -84,6 +86,7 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
             img_empty.setVisibility(View.VISIBLE);
         }
 
+        SingleInstance.getInstance().setTabClicked(0);
         getCallWithHeader(AppConstant.BASE_URL + "WishList", 1);
 
         return myView;
@@ -103,6 +106,7 @@ public class WishListFragment extends CustomFragment implements CustomFragment.R
                     recy_cart.setAdapter(adapter);
                     img_empty.setVisibility(View.GONE);
                 } else {
+                    MyApp.getApplication().writeWishList(new ArrayList<Cartlist>());
                     img_empty.setVisibility(View.VISIBLE);
 //                    MyApp.showMassage(getContext(), "No data available");
                 }

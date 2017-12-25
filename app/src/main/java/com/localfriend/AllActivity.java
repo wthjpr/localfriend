@@ -91,7 +91,6 @@ public class AllActivity extends CustomActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.rl_tab_1) {
-
             img_home.setSelected(true);
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
@@ -111,6 +110,7 @@ public class AllActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
+            SingleInstance.getInstance().setTabClicked(1);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 1));
             finishAffinity();
 
@@ -134,6 +134,7 @@ public class AllActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tiffin_active);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
+            SingleInstance.getInstance().setTabClicked(2);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 2));
             finishAffinity();
 
@@ -157,11 +158,11 @@ public class AllActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart_active);
             img_more.setImageResource(R.drawable.ic_more);
+            SingleInstance.getInstance().setTabClicked(3);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 3));
             finishAffinity();
 
         } else if (v.getId() == R.id.rl_tab_4) {
-
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
@@ -181,6 +182,7 @@ public class AllActivity extends CustomActivity {
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more_active);
+            SingleInstance.getInstance().setTabClicked(4);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 4));
             finishAffinity();
         }
@@ -205,8 +207,6 @@ public class AllActivity extends CustomActivity {
             d.setMyList(myList);
             allProducts.add(d);
 //            }
-
-
         }
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());

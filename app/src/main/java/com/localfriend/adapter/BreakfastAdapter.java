@@ -2,6 +2,7 @@ package com.localfriend.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.localfriend.BreakFastActivity;
 import com.localfriend.R;
+import com.localfriend.application.MyApp;
 import com.localfriend.model.ProductDetails;
 import com.squareup.picasso.Picasso;
 
@@ -68,14 +70,21 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
 //            e.printStackTrace();
 //        }
         holder.tv_breakfast_cost.setText(string + p.getSellingPrice());
-        try{
+        try {
             Glide.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_break_fast);
             Glide.with(c).load(p.getpGalleryFileList().get(0)).into(holder.rel_animated);
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
         holder.tv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((BreakFastActivity) c).addToCart(p, holder.rel_break_fast);
+                Log.d("time float", MyApp.millisTo(System.currentTimeMillis()) + "");
+                if (MyApp.millisTo(System.currentTimeMillis()) <= 10.3) {
+                    ((BreakFastActivity) c).addToCart(p, holder.rel_break_fast);
+                } else {
+                    MyApp.popMessage("Alert!", "You are not allowed to order breakfast at this time.\n" +
+                            "You can order breakfast before 10.30 AM only.\nThank you.", c);
+                }
             }
         });
 //        holder.rel_break_fast.setBackgroundResource(item.getBreakFastImage());
@@ -87,7 +96,7 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
     }
 
 
-    class DataHolder extends RecyclerView.ViewHolder {
+    class DataHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tv_breakfast_cost, tv_add, tv_breakfast_name;
         ImageView rel_break_fast;
         ImageView rel_animated;
@@ -95,12 +104,17 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
 
         public DataHolder(final View itemView) {
             super(itemView);
-            tv_breakfast_name =  itemView.findViewById(R.id.tv_breakfast_name);
-            tv_breakfast_cost =  itemView.findViewById(R.id.tv_breakfast_cost);
-            tv_add =  itemView.findViewById(R.id.tv_add);
+            tv_breakfast_name = itemView.findViewById(R.id.tv_breakfast_name);
+            tv_breakfast_cost = itemView.findViewById(R.id.tv_breakfast_cost);
+            tv_add = itemView.findViewById(R.id.tv_add);
+            rel_break_fast = itemView.findViewById(R.id.rel_break_fast);
+            rel_animated = itemView.findViewById(R.id.rel_animated);
+            itemView.setOnClickListener(this);
+        }
 
-            rel_break_fast =  itemView.findViewById(R.id.rel_break_fast);
-            rel_animated =  itemView.findViewById(R.id.rel_animated);
+        @Override
+        public void onClick(View v) {
+            ((BreakFastActivity) c).gotoDetails(allProducts.get(getLayoutPosition()));
         }
     }
 }

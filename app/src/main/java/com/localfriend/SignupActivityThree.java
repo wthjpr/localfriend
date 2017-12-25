@@ -112,20 +112,20 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
             return;
 
         }
-        if (isForgot && code.equals("111111")) {
+        if (isForgot) {
             Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
             intent.putExtra("name", userName);
             intent.putExtra(AppConstant.EXTRA_2, phoneNumber);
             startActivity(intent);
             return;
         }
-        if (code.equals("111111")) {
-            Intent intent = new Intent(getContext(), SignupActivityFour.class);
-            intent.putExtra("name", userName);
-            intent.putExtra("phone", phoneNumber);
-            startActivity(intent);
-            return;
-        }
+//        if (code.equals("111111")) {
+//            Intent intent = new Intent(getContext(), SignupActivityFour.class);
+//            intent.putExtra("name", userName);
+//            intent.putExtra("phone", phoneNumber);
+//            startActivity(intent);
+//            return;
+//        }
 
 
         try {
@@ -286,24 +286,24 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
 
                         } else {
-                            if (isForgot && enteredPin.toString().equals("111111")) {
+                            if (isForgot ) {
                                 Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
                                 intent.putExtra("name", userName);
                                 intent.putExtra(AppConstant.EXTRA_2, phoneNumber);
                                 startActivity(intent);
                                 return;
                             }
-                            if (enteredPin.toString().equals("111111")) {
-
-
-                                Intent intent = new Intent(getContext(), SignupActivityFour.class);
-                                intent.putExtra("name", userName);
-                                intent.putExtra("phone", phoneNumber);
-                                startActivity(intent);
-                                return;
-
-
-                            }
+//                            if (enteredPin.toString().equals("111111")) {
+//
+//
+//                                Intent intent = new Intent(getContext(), SignupActivityFour.class);
+//                                intent.putExtra("name", userName);
+//                                intent.putExtra("phone", phoneNumber);
+//                                startActivity(intent);
+//                                return;
+//
+//
+//                            }
                             // Sign in failed, display a message and update the UI
                             Log.w("phone", "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {

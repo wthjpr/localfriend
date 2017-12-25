@@ -125,7 +125,7 @@ public class MonthlyPackageListActivity extends CustomActivity implements Custom
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
-
+            SingleInstance.getInstance().setTabClicked(1);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 1));
             finishAffinity();
 
@@ -149,6 +149,7 @@ public class MonthlyPackageListActivity extends CustomActivity implements Custom
             img_tiffin.setImageResource(R.drawable.ic_tiffin_active);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
+            SingleInstance.getInstance().setTabClicked(2);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 2));
             finishAffinity();
 
@@ -172,7 +173,7 @@ public class MonthlyPackageListActivity extends CustomActivity implements Custom
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart_active);
             img_more.setImageResource(R.drawable.ic_more);
-
+            SingleInstance.getInstance().setTabClicked(3);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 3));
             finishAffinity();
         } else if (v.getId() == R.id.rl_tab_4) {
@@ -196,6 +197,7 @@ public class MonthlyPackageListActivity extends CustomActivity implements Custom
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more_active);
+            SingleInstance.getInstance().setTabClicked(4);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 4));
             finishAffinity();
         }

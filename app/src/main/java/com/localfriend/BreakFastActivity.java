@@ -66,6 +66,12 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
             ProductDetails d = productData.getProduct().get(i).getpDetailsList().get(0);
             d.setpGalleryFileList(productData.getProduct().get(i).getpGalleryFileList());
             d.setName(productData.getProduct().get(i).getpTitle());
+            d.setCategoryId(productData.getProduct().get(i).getCategoryID());
+            List<ProductDetails> myList = new ArrayList<>();
+            for (int j = 0; j < productData.getProduct().get(i).getpDetailsList().size(); j++) {
+                myList.add(productData.getProduct().get(i).getpDetailsList().get(j));
+            }
+            d.setMyList(myList);
             allProducts.add(d);
 //            }
         }
@@ -99,7 +105,6 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.rl_tab_1) {
-
             img_home.setSelected(true);
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
@@ -119,7 +124,7 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
-
+            SingleInstance.getInstance().setTabClicked(1);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 1));
             finish();
         } else if (v.getId() == R.id.rl_tab_2) {
@@ -142,7 +147,7 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
             img_tiffin.setImageResource(R.drawable.ic_tiffin_active);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more);
-
+            SingleInstance.getInstance().setTabClicked(2);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 2));
             finish();
         } else if (v.getId() == R.id.rl_tab_3) {
@@ -165,11 +170,10 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart_active);
             img_more.setImageResource(R.drawable.ic_more);
-
+            SingleInstance.getInstance().setTabClicked(3);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 3));
             finish();
         } else if (v.getId() == R.id.rl_tab_4) {
-
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
@@ -189,6 +193,7 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
             img_tiffin.setImageResource(R.drawable.ic_tifin);
             img_cart.setImageResource(R.drawable.ic_cart);
             img_more.setImageResource(R.drawable.ic_more_active);
+            SingleInstance.getInstance().setTabClicked(4);
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 4));
             finish();
         }
@@ -239,6 +244,20 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
             e.printStackTrace();
         }
 
+    }
+
+    public void gotoDetails(ProductDetails p) {
+        try {
+            String imgUrl = p.getpGalleryFileList().get(0);
+            SingleInstance.getInstance().setSelectedProduct(p);
+            startActivity(new Intent(getContext(), ItemDetailActivity.class)
+                    .putExtra(AppConstant.EXTRA_1, imgUrl).putExtra("isBreakfast",true));
+        } catch (Exception e) {
+            String imgUrl = "";
+            SingleInstance.getInstance().setSelectedProduct(p);
+            startActivity(new Intent(getContext(), ItemDetailActivity.class)
+                    .putExtra(AppConstant.EXTRA_1, imgUrl).putExtra("isBreakfast",true));
+        }
     }
 
     private Context getContext() {

@@ -191,6 +191,7 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
                     MyApp.getApplication().writeType(map);
 
                 } else {
+                    MyApp.setStatus("BREAKFAST_ADDED", false);
                     rl_main.setBackgroundResource(0);
                     rl_main.setBackgroundColor(Color.WHITE);
                     recy_cart.setVisibility(View.GONE);
@@ -291,5 +292,18 @@ public class CartFragment extends CustomFragment implements CustomFragment.Respo
         }
         MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) - 1));
         ((MainActivity) getActivity()).txt_cart_count.setText("" + MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER));
+        if (MyApp.getSharedPrefInteger(AppConstant.CART_COUNTER) <= 0) {
+            rl_main.setBackgroundResource(0);
+            rl_main.setBackgroundColor(Color.WHITE);
+            recy_cart.setVisibility(View.GONE);
+            MyApp.setSharedPrefInteger(AppConstant.CART_COUNTER, 0);
+            ((MainActivity) getActivity()).txt_cart_count.setText("0" + myCart.getCartlist().size());
+            ((MainActivity) getActivity()).txt_cart_count.setVisibility(View.GONE);
+            img_empty_cart.setVisibility(View.VISIBLE);
+            tv_start_shopping.setVisibility(View.VISIBLE);
+            card_price.setVisibility(View.GONE);
+            MyApp.getApplication().writeCart(new Cart());
+        }
+
     }
 }

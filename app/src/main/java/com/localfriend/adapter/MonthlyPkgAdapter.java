@@ -65,9 +65,9 @@ public class MonthlyPkgAdapter extends RecyclerView.Adapter<MonthlyPkgAdapter.Da
         holder.txt_description.setText(a.getpDescription());
         holder.txt_name.setText(a.getpTitle());
         if (a.getpName().equals("Monthly")) {
-            holder.txt_price.setText("Rs. " + a.getpPrice() + "/mo");
+            holder.txt_price.setText("Rs. " + a.getpPrice() + "/ mo");
         } else {
-            holder.txt_price.setText("Rs. " + a.getpPrice() + "/" + a.getpName());
+            holder.txt_price.setText("Rs. " + a.getpPrice() + "/ " + a.getpName());
         }
 
     }

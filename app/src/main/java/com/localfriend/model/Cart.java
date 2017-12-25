@@ -15,7 +15,7 @@ public class Cart implements Serializable{
     private String saveprice;
     private int totalitem;
     private List<Cartlist> cartlist = new ArrayList<>();
-    private List<Cartlist> wishListlist;
+    private List<Cartlist> wishListlist = new ArrayList<>();
 
     public List<Cartlist> getWishListlist() {
         return wishListlist;

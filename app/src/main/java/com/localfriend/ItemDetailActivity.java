@@ -144,20 +144,38 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.tv_add_cart) {
-
-            JSONObject o = new JSONObject();
-            makeFlyAnimation(img_product, productDetails.getId());
-            try {
-                o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
-                o.put("oprationid", 1);
-                o.put("pDetailsId", productId);
-                o.put("pQuantity", 1);
+            if (getIntent().getBooleanExtra("isBreakfast", false)) {
+                if (MyApp.millisTo(System.currentTimeMillis()) <= 10.3) {
+                    JSONObject o = new JSONObject();
+                    makeFlyAnimation(img_product, productDetails.getId());
+                    try {
+                        o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
+                        o.put("oprationid", 1);
+                        o.put("pDetailsId", productId);
+                        o.put("pQuantity", 1);
 //                showLoadingDialog("");
-                postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Cart", o, 1);
-            } catch (JSONException e) {
-                e.printStackTrace();
+                        postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Cart", o, 1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    MyApp.popMessage("Alert!", "You are not allowed to order breakfast at this time.\n" +
+                            "You can order breakfast before 10.30 AM only.\nThank you.", getContext());
+                }
+            } else {
+                JSONObject o = new JSONObject();
+                makeFlyAnimation(img_product, productDetails.getId());
+                try {
+                    o.put("access_token", MyApp.getApplication().readUser().getData().getAccess_token());
+                    o.put("oprationid", 1);
+                    o.put("pDetailsId", productId);
+                    o.put("pQuantity", 1);
+//                showLoadingDialog("");
+                    postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Cart", o, 1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-
 
         } else if (v.getId() == R.id.tv_one_kg) {
             tv_description.setText(productDetails.getuDescription());
@@ -287,7 +305,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
             dismissDialog();
 //            MyApp.showMassage(getContext(), o.optString("message"));
             getCallWithHeader(AppConstant.BASE_URL + "Cart", 33);
-        } else if (callNumber == 33){
+        } else if (callNumber == 33) {
             try {
                 Cart c = new Gson().fromJson(o.getJSONObject("data").toString(), Cart.class);
                 if (c.getCartlist().size() > 0) {

@@ -516,14 +516,13 @@ public class MyApp extends Application {
         return new SimpleDateFormat(format).format(d);
     }
 
-    public static double millsToDayTime(long mills) {
-
+    public static float millisTo(long mills) {
         Date d = new Date(mills);
-        String format = "kk:mm";
+        String format = "HH:mm";
         String dateString = new SimpleDateFormat(format).format(d);
-        double hr = Double.parseDouble(dateString.split(":")[0]);
-        double min = Double.parseDouble(dateString.split(":")[1]);
-        return hr + (min / 100d);
+        int hr = Integer.parseInt(dateString.split(":")[0]);
+        int min = Integer.parseInt(dateString.split(":")[1]);
+        return (float) hr + (min / 100f);
     }
 
 
