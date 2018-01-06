@@ -203,7 +203,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
         } else if (v.getId() == R.id.tv_five_kg) {
             Toast.makeText(this, "5 kg Added", Toast.LENGTH_SHORT).show();
         } else if (v.getId() == R.id.rl_tab_1) {
-
+            SingleInstance.getInstance().setTabClicked(1);
             img_home.setSelected(true);
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);
@@ -227,6 +227,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
             startActivity(new Intent(getContext(), MainActivity.class).putExtra(AppConstant.TAB, 1));
             finishAffinity();
         } else if (v.getId() == R.id.rl_tab_2) {
+            SingleInstance.getInstance().setTabClicked(2);
             img_home.setSelected(false);
             img_tiffin.setSelected(true);
             img_cart.setSelected(false);
@@ -250,6 +251,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
             finishAffinity();
 
         } else if (v.getId() == R.id.rl_tab_3) {
+            SingleInstance.getInstance().setTabClicked(3);
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
             img_cart.setSelected(true);
@@ -273,7 +275,7 @@ public class ItemDetailActivity extends CustomActivity implements CustomActivity
             finishAffinity();
 
         } else if (v.getId() == R.id.rl_tab_4) {
-
+            SingleInstance.getInstance().setTabClicked(4);
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
             img_cart.setSelected(false);

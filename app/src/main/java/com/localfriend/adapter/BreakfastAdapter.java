@@ -29,6 +29,7 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
     private ItemClickCallback itemclickcallback;
     private int count = 0;
     private Context c;
+    private boolean isBreakfast;
 
     public interface ItemClickCallback {
         void onItemClick(int p);
@@ -41,10 +42,11 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
         this.itemclickcallback = itemClickCallback;
     }
 
-    public BreakfastAdapter(List<ProductDetails> allProducts, Context c) {
+    public BreakfastAdapter(List<ProductDetails> allProducts, Context c, boolean isBreakfast) {
         this.inflater = LayoutInflater.from(c);
         this.allProducts = allProducts;
         this.c = c;
+        this.isBreakfast = isBreakfast;
     }
 
 
@@ -79,7 +81,7 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
             @Override
             public void onClick(View v) {
                 Log.d("time float", MyApp.millisTo(System.currentTimeMillis()) + "");
-                if (MyApp.millisTo(System.currentTimeMillis()) <= 10.3) {
+                if (MyApp.millisTo(System.currentTimeMillis()) <= 10.3 || !isBreakfast) {
                     ((BreakFastActivity) c).addToCart(p, holder.rel_break_fast);
                 } else {
                     MyApp.popMessage("Alert!", "You are not allowed to order breakfast at this time.\n" +
@@ -96,7 +98,7 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.Data
     }
 
 
-    class DataHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class DataHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tv_breakfast_cost, tv_add, tv_breakfast_name;
         ImageView rel_break_fast;
         ImageView rel_animated;

@@ -277,7 +277,8 @@ public class TiffinFragment extends CustomFragment implements View.OnClickListen
                 ProductData data = new Gson().fromJson(o.getJSONObject("data").toString(), ProductData.class);
                 SingleInstance.getInstance().setProductData(data);
                 if (data.getProduct().size() > 0) {
-                    startActivity(new Intent(getActivity(), BreakFastActivity.class).putExtra(AppConstant.EXTRA_1, titleSend));
+                    startActivity(new Intent(getActivity(), BreakFastActivity.class).putExtra(AppConstant.EXTRA_1, titleSend)
+                            .putExtra("isBreakfast", titleSend.equals("Breakfast")));
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {

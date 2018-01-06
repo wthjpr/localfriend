@@ -76,7 +76,7 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
 //            }
         }
 
-        adapter = new BreakfastAdapter(allProducts, this);
+        adapter = new BreakfastAdapter(allProducts, this, getIntent().getBooleanExtra("isBreakfast", false));
         recy_breakfast.setAdapter(adapter);
 
         img_home = findViewById(R.id.img_home);
@@ -251,12 +251,12 @@ public class BreakFastActivity extends CustomActivity implements CustomActivity.
             String imgUrl = p.getpGalleryFileList().get(0);
             SingleInstance.getInstance().setSelectedProduct(p);
             startActivity(new Intent(getContext(), ItemDetailActivity.class)
-                    .putExtra(AppConstant.EXTRA_1, imgUrl).putExtra("isBreakfast",true));
+                    .putExtra(AppConstant.EXTRA_1, imgUrl).putExtra("isBreakfast", getIntent().getBooleanExtra("isBreakfast", false)));
         } catch (Exception e) {
             String imgUrl = "";
             SingleInstance.getInstance().setSelectedProduct(p);
             startActivity(new Intent(getContext(), ItemDetailActivity.class)
-                    .putExtra(AppConstant.EXTRA_1, imgUrl).putExtra("isBreakfast",true));
+                    .putExtra(AppConstant.EXTRA_1, imgUrl).putExtra("isBreakfast", getIntent().getBooleanExtra("isBreakfast", false)));
         }
     }
 

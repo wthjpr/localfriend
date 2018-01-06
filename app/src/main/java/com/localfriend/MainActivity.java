@@ -1,8 +1,10 @@
 package com.localfriend;
 
 import android.animation.Animator;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
@@ -199,6 +201,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
     public void changeTab(int tabNumber) {
         switch (tabNumber) {
             case 1:
+                SingleInstance.getInstance().setTabClicked(1);
                 mTitle.setText("Local Friend");
                 img_home.setSelected(true);
                 img_tiffin.setSelected(false);
@@ -228,6 +231,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
 
                 break;
             case 2:
+                SingleInstance.getInstance().setTabClicked(2);
                 mTitle.setText("Tiffin");
                 img_home.setSelected(false);
                 img_tiffin.setSelected(true);
@@ -279,7 +283,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 img_more.setImageResource(R.drawable.ic_more);
 
                 toolbar.setBackgroundResource(R.drawable.main_gradient_bg);
-
+                SingleInstance.getInstance().setTabClicked(3);
                 mFragmentManager = getSupportFragmentManager();
                 mFragmentTransaction = mFragmentManager.beginTransaction();
                 mFragmentTransaction.replace(R.id.service_container, new CartFragment()).commit();
@@ -295,7 +299,7 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
                 tv_tiffin.setSelected(false);
                 tv_cart.setSelected(false);
                 tv_more.setSelected(true);
-
+                SingleInstance.getInstance().setTabClicked(4);
                 tv_home.setTextColor(Color.parseColor("#888F8C"));
                 tv_tiffin.setTextColor(Color.parseColor("#888F8C"));
                 tv_cart.setTextColor(Color.parseColor("#888F8C"));
@@ -727,5 +731,22 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
         String deviceId = deviceUuid.toString();
         return deviceId;
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder b = new AlertDialog.Builder(getContext());
+        b.setMessage("Are you sure to Exit").setTitle("Local Friend").setIcon(R.mipmap.ic_launcher);
+        b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishAffinity();
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).create().show();
     }
 }
