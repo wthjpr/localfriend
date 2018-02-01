@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+android:paddingTop="@dimen/dim_10"
+    android:paddingBottom="@dimen/dim_10"
+    android:paddingLeft="@dimen/dim_15"
+    android:paddingRight="@dimen/dim_15"
+    tools:context="com.localfriend.ScheduleMealActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Schedule your meals for this address"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dim_16"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dim_15"
+        android:paddingRight="@dimen/dim_15">
+
+        <CheckBox
+            android:id="@+id/chk_break_fast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dim_5"
+            android:text="Breakfast"
+            android:textSize="@dimen/dim_16" />
+
+        <CheckBox
+            android:id="@+id/chk_lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dim_5"
+            android:text="Lunch"
+            android:textSize="@dimen/dim_16" />
+
+        <CheckBox
+            android:id="@+id/chk_dinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dim_5"
+            android:text="Dinner"
+            android:textSize="@dimen/dim_16" />
+    </RelativeLayout>
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Schedule Breakfast"
+    android:layout_marginTop="@dimen/dim_15"
+    android:textSize="@dimen/dim_16"
+    android:layout_marginLeft="@dimen/dim_5"
+    android:textColor="@color/colorPrimaryDark"
+    android:textStyle="bold"
+    />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow"
+    android:layout_marginTop="@dimen/dim_5"
+    android:paddingTop="@dimen/dim_10"
+    android:paddingBottom="@dimen/dim_10"
+
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Breakfast time for this address"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/dim_16"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edt_bg"
+        android:text="8:30-9:30"
+        android:id="@+id/tv_breakfast_time"
+        android:padding="@dimen/dim_5"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/dim_5"
+        />
+    <com.edmodo.rangebar.RangeBar
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rangebar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        custom:tickCount="7" />
+
+</LinearLayout>
+
+</LinearLayout>

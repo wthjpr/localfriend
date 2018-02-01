@@ -9,14 +9,14 @@ repositories {
     }
 }
 android {
-    signingConfigs {
-        config {
-            keyAlias 'LocalFriend'
-            keyPassword '111111'
-            storeFile file('D:/Android/wdh/lf_ley.jks')
-            storePassword '111111'
-        }
-    }
+//    signingConfigs {
+//        config {
+//            keyAlias 'LocalFriend'
+//            keyPassword '111111'
+//            storeFile file('D:/Android/wdh/lf_ley.jks')
+//            storePassword '111111'
+//        }
+//    }
     lintOptions {
         checkReleaseBuilds false
     }
@@ -35,9 +35,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug {
-            signingConfig signingConfigs.config
-        }
+//        debug {
+//            signingConfig signingConfigs.config
+//        }
     }
 }
 
@@ -71,6 +71,7 @@ dependencies {
     compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
 //    compile 'devlight.io:navigationtabbar:1.2.5'
 //    compile 'com.jaredrummler:material-spinner:1.2.1'
+    compile 'com.edmodo:rangebar:1.0.0'
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'us.feras.mdv:markdownview:1.1.0'
     testCompile 'junit:junit:4.12'

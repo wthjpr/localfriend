@@ -17,4 +17,16 @@
         <item>@drawable/menu_adress</item>
         <item>@drawable/menu_need_help</item>
     </array>
+    <string-array name="markArraybreakfast">
+        <item>7</item>
+        <item>7.30</item>
+        <item>8</item>
+        <item>8.30</item>
+        <item>9</item>
+        <item>9.30</item>
+        <item>10</item>
+        <item>10.30</item>
+        <item>11</item>
+        <item>11.30</item>
+    </string-array>
 </resources>
