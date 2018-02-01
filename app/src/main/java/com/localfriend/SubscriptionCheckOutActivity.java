@@ -50,13 +50,14 @@ import java.util.List;
 public class SubscriptionCheckOutActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     private Toolbar toolbar;
     private Product product;
-    private TextView txt_total2, txt_total1, txt_address_type, txt_name, txt_address, txt_title, txt_start_date;
+    private TextView txt_total2, txt_total1, txt_discount, txt_address_type, txt_name, txt_address, txt_title, txt_start_date;
     private EditText edt_note;
     private ImageView txt_add_address, img_change;
-    private TextView tv_make_payment;
+    private TextView tv_make_payment, txt_apply;
     private boolean isAddressSelected = false;
     private String dateSelected;
     private String shippingId = null;
+    private EditText edt_promo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,10 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
     }
 
     private void setupUiElements() {
+        txt_apply = findViewById(R.id.txt_apply);
+        edt_promo = findViewById(R.id.edt_promo);
         txt_total2 = findViewById(R.id.txt_total2);
+        txt_discount = findViewById(R.id.txt_discount);
         txt_total1 = findViewById(R.id.txt_total1);
         txt_address_type = findViewById(R.id.txt_address_type);
         txt_name = findViewById(R.id.txt_name);
@@ -97,12 +101,15 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
         setTouchNClick(R.id.img_change);
         setTouchNClick(R.id.txt_add_address);
         setTouchNClick(R.id.tv_make_payment);
+        setTouchNClick(R.id.txt_apply);
 
         dateSelected = MyApp.millsToDate(System.currentTimeMillis());
         if (getIntent().getBooleanExtra(AppConstant.EXTRA_2, false)) {
-            txt_total2.setText("Total Price :- Rs. " + product.getpPrice() + "/ "+product.getpName());//weekly
+            txt_total2.setText("Rs. " + product.getpPrice());//weekly // + "/ "+product.getpName()
+            tv_make_payment.setText("Pay Rs. " + product.getpPrice());
         } else {
-            txt_total2.setText("Total Price :- Rs. " + product.getpPrice() + "/ mo");
+            txt_total2.setText("Rs. " + product.getpPrice());// + "/ mo"
+            tv_make_payment.setText("Pay Rs. " + product.getpPrice());
         }
 
         txt_total1.setText("Total Price :- Rs. " + product.getpPrice());
@@ -143,8 +150,15 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
                     o.put("startdate", dateSelected);
                     o.put("extraNote", edt_note.getText().toString());
                     o.put("payAmount", "0");
-                    o.put("promoCode", "");
-                    o.put("promoDiscount", "");
+                    if (promoDiscount > 0) {
+                        o.put("promoCode", "NEW30");
+                        o.put("promoDiscount", 70);
+                    } else {
+                        o.put("promoCode", "");
+                        o.put("promoDiscount", "");
+                    }
+
+
                     o.put("paymentMethod", "");
                     if (getIntent().getBooleanExtra(AppConstant.EXTRA_2, false))
                         o.put("CategoryID", "35");//weekly
@@ -159,9 +173,24 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
                 }
             } else
                 MyApp.popMessage("Alert!", "Please select delivery address first.", getContext());
+        } else if (v == txt_apply) {
+            showLoadingShadowDialog("");
+            JSONObject o = new JSONObject();
+
+            try {
+                o.put("packageID", product.getpId());
+                o.put("promocode", edt_promo.getText().toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Order/PackagePromoApply?",
+                    o, 2);
         }
     }
 
+    private int promoDiscount = 0;
+
+    private int finalPayment = 0;
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
@@ -182,6 +211,17 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
                     }
                 });
                 b.create().show();
+            } else {
+                MyApp.popMessage("Error!", o.optString("message"), getContext());
+            }
+        } else if (callNumber == 2) {
+//            {"status":"success","message":"Promo Code Successfully Applied","discount":900}
+            dismissDialog();
+            if (o.optString("status").equals("success")) {
+                promoDiscount = o.optInt("discount");
+                MyApp.showMassage(getContext(), o.optString("message"));
+                txt_discount.setText("Rs. " + promoDiscount);
+                tv_make_payment.setText("Pay Rs. " + (Integer.parseInt(product.getpPrice()) - promoDiscount));
             } else {
                 MyApp.popMessage("Error!", o.optString("message"), getContext());
             }

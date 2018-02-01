@@ -79,9 +79,10 @@ import static java.sql.Types.NULL;
 public class MainActivity extends CustomActivity implements DrawerAdapter.OnItemSelectedListener, CustomActivity.ResponseCallback {
     private static final int HOME = 0;
     private static final int ORDER = 1;
-    private static final int WISH_LIST = 2;
-    private static final int ADDRESS = 3;
-    private static final int NEED_HELP = 4;
+    private static final int SUB_ORDER = 2;
+    private static final int WISH_LIST = 3;
+    private static final int ADDRESS = 4;
+    private static final int NEED_HELP = 5;
     //    private static final int LOGOUT = 5;
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -129,13 +130,14 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         DrawerAdapter adapter = new DrawerAdapter(Arrays.asList(
                 createItemFor(HOME).setChecked(true),
                 createItemFor(ORDER),
+                createItemFor(SUB_ORDER),
                 createItemFor(WISH_LIST),
                 createItemFor(ADDRESS),
                /* new SpaceItem(48),*/
                 createItemFor(NEED_HELP)));
 //                createItemFor(LOGOUT)));
         adapter.setListener(this);
-        RelativeLayout v = findViewById(R.id.main_drawer_layout);
+//        RelativeLayout v = findViewById(R.id.main_drawer_layout);
         // transparent statusbar for marshmallow and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (toolbar
@@ -356,6 +358,8 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
         } else if (position == 1) {
             startActivity(new Intent(getContext(), OrderActivity.class));
         } else if (position == 2) {
+            startActivity(new Intent(getContext(), OrderSubscriptionsActivity.class));
+        } else if (position == 3) {
             mTitle.setText("Wish List");
             img_home.setSelected(false);
             img_tiffin.setSelected(false);
@@ -383,11 +387,11 @@ public class MainActivity extends CustomActivity implements DrawerAdapter.OnItem
             mFragmentTransaction = mFragmentManager.beginTransaction();
             mFragmentTransaction.replace(R.id.service_container, new WishListFragment()).commit();
             SingleInstance.getInstance().setTabClicked(0);
-        } else if (position == 3) {
-            startActivity(new Intent(getContext(), AddressListActivity.class));
         } else if (position == 4) {
-            startActivity(new Intent(getContext(), NeedHelp.class));
+            startActivity(new Intent(getContext(), AddressListActivity.class));
         } else if (position == 5) {
+            startActivity(new Intent(getContext(), NeedHelp.class));
+        } else if (position == 6) {
             MyApp.setStatus(AppConstant.IS_LOGIN, false);
             startActivity(new Intent(getContext(), LoginSignupActivity.class));
             finish();
