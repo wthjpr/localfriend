@@ -1,118 +1,757 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-android:paddingTop="@dimen/dim_10"
     android:paddingBottom="@dimen/dim_10"
     android:paddingLeft="@dimen/dim_15"
     android:paddingRight="@dimen/dim_15"
+    android:paddingTop="@dimen/dim_10"
     tools:context="com.localfriend.ScheduleMealActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Schedule your meals for this address"
-        android:textColor="@color/black"
-        android:textSize="@dimen/dim_16"
-        android:textStyle="bold" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_10"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/dim_15"
-        android:paddingRight="@dimen/dim_15">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_done"
+        android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/chk_break_fast"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:buttonTint="@color/colorPrimaryDark"
-            android:gravity="center_vertical"
-            android:padding="@dimen/dim_5"
-            android:text="Breakfast"
-            android:textSize="@dimen/dim_16" />
-
-        <CheckBox
-            android:id="@+id/chk_lunch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:buttonTint="@color/colorPrimaryDark"
-            android:gravity="center_vertical"
-            android:padding="@dimen/dim_5"
-            android:text="Lunch"
-            android:textSize="@dimen/dim_16" />
+            android:text="Schedule your meals for this address"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dim_16"
+            android:textStyle="bold" />
 
-        <CheckBox
-            android:id="@+id/chk_dinner"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:buttonTint="@color/colorPrimaryDark"
-            android:gravity="center_vertical"
-            android:padding="@dimen/dim_5"
-            android:text="Dinner"
-            android:textSize="@dimen/dim_16" />
-    </RelativeLayout>
+            android:layout_marginTop="@dimen/dim_10"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dim_15"
+            android:paddingRight="@dimen/dim_15">
+
+            <CheckBox
+                android:id="@+id/chk_break_fast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dim_5"
+                android:text="Breakfast"
+                android:textSize="@dimen/dim_16" />
+
+            <CheckBox
+                android:id="@+id/chk_lunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dim_5"
+                android:text="Lunch"
+                android:textSize="@dimen/dim_16" />
+
+            <CheckBox
+                android:id="@+id/chk_dinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dim_5"
+                android:text="Dinner"
+                android:textSize="@dimen/dim_16" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/dim_10"
+                android:paddingRight="@dimen/dim_10"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_schedule_breakfast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_5"
+                    android:layout_marginTop="@dimen/dim_15"
+                    android:text="Schedule Breakfast"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/dim_16"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/lnr_breakfast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_5"
+                    android:background="@drawable/shadow"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dim_15"
+
+                    android:paddingTop="@dimen/dim_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Choose Breakfast time for this address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_16" />
+
+                    <TextView
+                        android:id="@+id/tv_breakfast_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dim_5"
+                        android:background="@drawable/edt_bg"
+                        android:padding="@dimen/dim_5"
+                        android:text="8:30-9:30"
+                        android:textColor="@color/black" />
+
+                    <com.edmodo.rangebar.RangeBar xmlns:custom="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/rangebar1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dim_15"
+                        android:layout_marginLeft="@dimen/dim_10"
+                        android:layout_marginRight="@dimen/dim_10"
+                        android:layout_marginTop="@dimen/dim_15"
+                        custom:tickCount="7" />
 
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Schedule Breakfast"
-    android:layout_marginTop="@dimen/dim_15"
-    android:textSize="@dimen/dim_16"
-    android:layout_marginLeft="@dimen/dim_5"
-    android:textColor="@color/colorPrimaryDark"
-    android:textStyle="bold"
-    />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dim_2"
+                        android:background="@color/gray_text" />
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/shadow"
-    android:layout_marginTop="@dimen/dim_5"
-    android:paddingTop="@dimen/dim_10"
-    android:paddingBottom="@dimen/dim_10"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dim_10"
+                        android:text="Choose Breakfast Days for this Address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_16" />
 
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose Breakfast time for this address"
-        android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/dim_16"
-        android:textColor="@color/black"
-        />
+                    <TextView
+                        android:id="@+id/tv_selected_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dim_5"
+                        android:text="Monday,Tuesday"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_15" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edt_bg"
-        android:text="8:30-9:30"
-        android:id="@+id/tv_breakfast_time"
-        android:padding="@dimen/dim_5"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/black"
-        android:layout_marginTop="@dimen/dim_5"
-        />
-    <com.edmodo.rangebar.RangeBar
-        xmlns:custom="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/rangebar1"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dim_10"
+                        android:layout_marginLeft="@dimen/dim_5"
+                        android:layout_marginRight="@dimen/dim_5"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/rel_sun_bf"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_sunday_bf"
+                                android:textColor="@color/gray_text"
+                                android:text="S"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_mon_bf"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_monday_bf"
+                                android:textColor="@color/gray_text"
+                                android:text="M"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_tue_bf"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_tuesday_bf"
+                                android:textColor="@color/gray_text"
+                                android:text="T"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_wed_bf"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_wednesday_bf"
+                                android:textColor="@color/gray_text"
+                                android:text="W"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_thurs_bf"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_thursday_bf"
+                                android:textColor="@color/gray_text"
+                                android:text="T"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_fri_bf"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_friday_bf"
+                                android:textColor="@color/gray_text"
+                                android:text="F"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_sat_bf"
+                            android:layout_marginLeft="@dimen/dim_10"
+
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_saturday_bf"
+                                android:textColor="@color/gray_text"
+                                android:text="S"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_schedule_lunch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_5"
+                    android:layout_marginTop="@dimen/dim_15"
+                    android:text="Schedule Lunch"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/dim_16"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/lnr_lunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_5"
+                    android:background="@drawable/shadow"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dim_15"
+
+                    android:paddingTop="@dimen/dim_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Choose Lunch time for this address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_16" />
+
+                    <TextView
+                        android:id="@+id/tv_lunch_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dim_5"
+                        android:background="@drawable/edt_bg"
+                        android:padding="@dimen/dim_5"
+                        android:text="8:30-9:30"
+                        android:textColor="@color/black" />
+
+                    <com.edmodo.rangebar.RangeBar xmlns:custom="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/rangebar_lunch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dim_15"
+                        android:layout_marginLeft="@dimen/dim_10"
+                        android:layout_marginRight="@dimen/dim_10"
+                        android:layout_marginTop="@dimen/dim_15"
+                        custom:tickCount="7" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dim_2"
+                        android:background="@color/gray_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dim_10"
+                        android:text="Choose Lunch Days for this Address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_16" />
+
+                    <TextView
+                        android:id="@+id/tv_selected_days_lunch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dim_5"
+                        android:text="Monday,Tuesday"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_15" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dim_10"
+                        android:layout_marginLeft="@dimen/dim_5"
+                        android:layout_marginRight="@dimen/dim_5"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/rel_sun_lnch"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_sunday_lnch"
+                                android:textColor="@color/gray_text"
+                                android:text="S"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_mon_lnch"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_monday_lnch"
+                                android:textColor="@color/gray_text"
+                                android:text="M"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_tue_lnch"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_tuesday_lnch"
+                                android:textColor="@color/gray_text"
+                                android:text="T"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_wed_lnch"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_wednesday_lnch"
+                                android:textColor="@color/gray_text"
+                                android:text="W"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_thurs_lnch"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_thursday_lnch"
+                                android:textColor="@color/gray_text"
+                                android:text="T"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_fri_lnch"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_friday_lnch"
+                                android:textColor="@color/gray_text"
+                                android:text="F"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_sat_lnch"
+                            android:layout_marginLeft="@dimen/dim_10"
+
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_saturday_lnch"
+                                android:textColor="@color/gray_text"
+                                android:text="S"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_schedule_dinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_5"
+                    android:layout_marginTop="@dimen/dim_15"
+                    android:text="Schedule Dinner"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/dim_16"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/lnr_dinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_5"
+                    android:background="@drawable/shadow"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dim_15"
+
+                    android:paddingTop="@dimen/dim_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Choose Dinner time for this address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_16" />
+
+                    <TextView
+                        android:id="@+id/tv_dinner_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dim_5"
+                        android:background="@drawable/edt_bg"
+                        android:padding="@dimen/dim_5"
+                        android:text="8:30-9:30"
+                        android:textColor="@color/black" />
+
+                    <com.edmodo.rangebar.RangeBar xmlns:custom="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/rangebar_dinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dim_15"
+                        android:layout_marginLeft="@dimen/dim_10"
+                        android:layout_marginRight="@dimen/dim_10"
+                        android:layout_marginTop="@dimen/dim_15"
+                        custom:tickCount="7" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dim_2"
+                        android:background="@color/gray_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dim_10"
+                        android:text="Choose Dinner Days for this Address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_16" />
+
+                    <TextView
+                        android:id="@+id/tv_selected_days_dinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dim_5"
+                        android:text="Monday,Tuesday"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dim_15" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dim_10"
+                        android:layout_marginLeft="@dimen/dim_5"
+                        android:layout_marginRight="@dimen/dim_5"
+                        android:id="@+id/days_layout"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/rel_sun"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_sunday"
+                                android:textColor="@color/gray_text"
+                                android:text="S"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_mon"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_monday"
+                                android:textColor="@color/gray_text"
+                                android:text="M"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_tue"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_tuesday"
+                                android:textColor="@color/gray_text"
+                                android:text="T"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_wed"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_wednesday"
+                                android:textColor="@color/gray_text"
+                                android:text="W"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_thurs"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_thursday"
+                                android:textColor="@color/gray_text"
+                                android:text="T"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_fri"
+                            android:layout_marginLeft="@dimen/dim_10"
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_friday"
+                                android:textColor="@color/gray_text"
+                                android:text="F"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dim_10"
+                            android:id="@+id/rel_sat"
+                            android:layout_marginLeft="@dimen/dim_10"
+
+                            android:background="@drawable/edt_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_saturday"
+                                android:textColor="@color/gray_text"
+                                android:text="S"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/dim_20"
+                                android:gravity="center"/>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_done"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="50dp"
-        custom:tickCount="7" />
-
-</LinearLayout>
-
-</LinearLayout>
+        android:layout_height="@dimen/dim_40"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradient_new"
+        android:text="Done"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dim_18" />
+</RelativeLayout>
