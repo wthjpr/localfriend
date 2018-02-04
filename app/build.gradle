@@ -21,7 +21,7 @@ android {
         checkReleaseBuilds false
     }
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '25.0.3'
     defaultConfig {
         applicationId "com.localfriend"
         minSdkVersion 16
@@ -71,6 +71,7 @@ dependencies {
     compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
 //    compile 'devlight.io:navigationtabbar:1.2.5'
 //    compile 'com.jaredrummler:material-spinner:1.2.1'
+    compile 'me.bendik.simplerangeview:simplerangeview:0.2.0'
     compile 'com.edmodo:rangebar:1.0.0'
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'us.feras.mdv:markdownview:1.1.0'

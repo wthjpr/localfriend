@@ -121,15 +121,12 @@
                         android:text="8:30-9:30"
                         android:textColor="@color/black" />
 
-                    <com.edmodo.rangebar.RangeBar xmlns:custom="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/rangebar1"
+                    <me.bendik.simplerangeview.SimpleRangeView
+                        android:id="@+id/rangeview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dim_15"
-                        android:layout_marginLeft="@dimen/dim_10"
-                        android:layout_marginRight="@dimen/dim_10"
-                        android:layout_marginTop="@dimen/dim_15"
-                        custom:tickCount="7" />
+                        app:count="9"
+                        />
 
 
                     <View
@@ -151,10 +148,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/dim_5"
+                        android:layout_margin="@dimen/dim_5"
                         android:text="Monday,Tuesday"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/dim_15" />
+
+                        android:textSize="@dimen/dim_14"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -168,7 +166,8 @@
                             android:layout_weight="1"
                             android:id="@+id/rel_sun_bf"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:background="@drawable/edt_bg">
                             <TextView
                                 android:layout_width="wrap_content"
@@ -185,7 +184,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_mon_bf"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -204,7 +204,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_tue_bf"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -224,7 +225,8 @@
                             android:layout_weight="1"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_wed_bf"
                             android:background="@drawable/edt_bg">
                             <TextView
@@ -242,7 +244,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_thurs_bf"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -261,7 +264,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_fri_bf"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -280,7 +284,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_sat_bf"
                             android:layout_marginLeft="@dimen/dim_10"
 
@@ -388,7 +393,8 @@
                             android:layout_weight="1"
                             android:id="@+id/rel_sun_lnch"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:background="@drawable/edt_bg">
                             <TextView
                                 android:layout_width="wrap_content"
@@ -405,7 +411,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_mon_lnch"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -424,7 +431,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_tue_lnch"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -444,7 +452,8 @@
                             android:layout_weight="1"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_wed_lnch"
                             android:background="@drawable/edt_bg">
                             <TextView
@@ -462,7 +471,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_thurs_lnch"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -481,7 +491,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_fri_lnch"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -500,7 +511,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_sat_lnch"
                             android:layout_marginLeft="@dimen/dim_10"
 
@@ -592,10 +604,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/dim_5"
+                        android:layout_margin="@dimen/dim_5"
                         android:text="Monday,Tuesday"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/dim_15" />
+
+                        android:textSize="@dimen/dim_14" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -610,7 +623,8 @@
                             android:layout_weight="1"
                             android:id="@+id/rel_sun"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:background="@drawable/edt_bg">
                             <TextView
                                 android:layout_width="wrap_content"
@@ -627,7 +641,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_mon"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -646,7 +661,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_tue"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -666,7 +682,8 @@
                             android:layout_weight="1"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_wed"
                             android:background="@drawable/edt_bg">
                             <TextView
@@ -684,7 +701,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_thurs"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -703,7 +721,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_fri"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:background="@drawable/edt_bg">
@@ -722,7 +741,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/dim_10"
+                            android:paddingTop="@dimen/dim_5"
+                            android:paddingBottom="@dimen/dim_5"
                             android:id="@+id/rel_sat"
                             android:layout_marginLeft="@dimen/dim_10"
 
