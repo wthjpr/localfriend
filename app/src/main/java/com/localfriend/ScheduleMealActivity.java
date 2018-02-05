@@ -31,7 +31,7 @@ import me.bendik.simplerangeview.SimpleRangeView;
 public class ScheduleMealActivity extends CustomActivity implements SimpleRangeView.OnRangeLabelsListener, SimpleRangeView.OnTrackRangeListener{
     private CheckBox chk_break_fast, chk_lunch, chk_dinner;
     private TextView tv_breakfast_time, tv_lunch_time, tv_dinner_time;
-    private RangeBar rangebar, rangebar_dinner, rangebar_lunch;
+  //  private RangeBar rangebar, rangebar_dinner, rangebar_lunch;
     private TextView tv_schedule_breakfast, tv_schedule_lunch, tv_schedule_dinner;
     private TextView tv_selected_days, tv_selected_days_lunch, tv_selected_days_dinner;
     private RelativeLayout rel_sun_bf, rel_mon_bf, rel_tue_bf, rel_wed_bf, rel_thurs_bf, rel_fri_bf, rel_sat_bf;
@@ -50,8 +50,12 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
 
     private LinearLayout lnr_breakfast, lnr_lunch, lnr_dinner;
     private String[] labels = new String[] {"7:00","7:30","8:00","8:30","9:00","9:30","10:00","10:30","11:00"};
-    SimpleRangeView rangeView;
+    private String[] labelsLunch = new String[] {"12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00"};
+    private String[] labelsDinner = new String[] {"19:00","19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00"};
+    SimpleRangeView rangeView,rangebar_dinner,rangebar_lunch;
     String breakfast_start="",breakfast_end="";
+    String lunch_start="",lunch_end="";
+    String dinner_start="",dinner_end="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,9 +118,9 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
         //Range bars for setting time range
         rangeView = (SimpleRangeView) findViewById(R.id.rangeview);
         rangebarBreakfast();
-        rangebar_dinner = (RangeBar) findViewById(R.id.rangebar_dinner);
+        rangebar_dinner = (SimpleRangeView) findViewById(R.id.rangebar_dinner);
         rangebarDinner();
-        rangebar_lunch = (RangeBar) findViewById(R.id.rangebar_lunch);
+        rangebar_lunch = (SimpleRangeView) findViewById(R.id.rangebar_lunch);
         rangebarLunch();
 
 //Textview for showing selected days.
@@ -233,7 +237,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_sun.setSelected(false);
                 rel_sun.setBackgroundResource(R.drawable.edt_bg);
-                tv_sunday.setTextColor(Color.parseColor("#000000"));
+                tv_sunday.setTextColor(Color.parseColor("#999999"));
                 rel_sunc = 0;
                 dinner = dinner.replace("Sunday,", "");
             }
@@ -248,7 +252,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_mon.setSelected(false);
                 rel_mon.setBackgroundResource(R.drawable.edt_bg);
-                tv_monday.setTextColor(Color.parseColor("#000000"));
+                tv_monday.setTextColor(Color.parseColor("#999999"));
                 rel_monc = 0;
                 dinner = dinner.replace("Monday,", "");
             }
@@ -263,7 +267,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_tue.setSelected(false);
                 rel_tue.setBackgroundResource(R.drawable.edt_bg);
-                tv_tuesday.setTextColor(Color.parseColor("#000000"));
+                tv_tuesday.setTextColor(Color.parseColor("#999999"));
                 rel_tuec = 0;
                 dinner = dinner.replace("Tuesday,", "");
             }
@@ -278,7 +282,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_wed.setSelected(false);
                 rel_wed.setBackgroundResource(R.drawable.edt_bg);
-                tv_wednesday.setTextColor(Color.parseColor("#000000"));
+                tv_wednesday.setTextColor(Color.parseColor("#999999"));
                 rel_wedc = 0;
                 dinner = dinner.replace("Wednesday,", "");
             }
@@ -293,7 +297,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_thurs.setSelected(false);
                 rel_thurs.setBackgroundResource(R.drawable.edt_bg);
-                tv_thursday.setTextColor(Color.parseColor("#000000"));
+                tv_thursday.setTextColor(Color.parseColor("#999999"));
                 rel_thursc = 0;
                 dinner = dinner.replace("Thursday,", "");
             }
@@ -308,7 +312,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_fri.setSelected(false);
                 rel_fri.setBackgroundResource(R.drawable.edt_bg);
-                tv_friday.setTextColor(Color.parseColor("#000000"));
+                tv_friday.setTextColor(Color.parseColor("#999999"));
                 rel_fric = 0;
                 dinner = dinner.replace("Friday,", "");
             }
@@ -323,7 +327,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_sat.setSelected(false);
                 rel_sat.setBackgroundResource(R.drawable.edt_bg);
-                tv_saturday.setTextColor(Color.parseColor("#000000"));
+                tv_saturday.setTextColor(Color.parseColor("#999999"));
                 rel_satc = 0;
                 dinner = dinner.replace("Saturday,", "");
             }
@@ -342,7 +346,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_sun_lnch.setSelected(false);
                 rel_sun_lnch.setBackgroundResource(R.drawable.edt_bg);
-                tv_sunday_lnch.setTextColor(Color.parseColor("#000000"));
+                tv_sunday_lnch.setTextColor(Color.parseColor("#999999"));
                 rel_sun_lnchc = 0;
                 lunch = lunch.replace("Sunday,", "");
             }
@@ -357,7 +361,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_mon_lnch.setSelected(false);
                 rel_mon_lnch.setBackgroundResource(R.drawable.edt_bg);
-                tv_monday_lnch.setTextColor(Color.parseColor("#000000"));
+                tv_monday_lnch.setTextColor(Color.parseColor("#999999"));
                 rel_mon_lnchc = 0;
                 lunch = lunch.replace("Monday,", "");
             }
@@ -372,7 +376,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_tue_lnch.setSelected(false);
                 rel_tue_lnch.setBackgroundResource(R.drawable.edt_bg);
-                tv_tuesday_lnch.setTextColor(Color.parseColor("#000000"));
+                tv_tuesday_lnch.setTextColor(Color.parseColor("#999999"));
                 rel_tue_lnchc = 0;
                 lunch = lunch.replace("Tuesday,", "");
             }
@@ -387,7 +391,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_wed_lnch.setSelected(false);
                 rel_wed_lnch.setBackgroundResource(R.drawable.edt_bg);
-                tv_wednesday_lnch.setTextColor(Color.parseColor("#000000"));
+                tv_wednesday_lnch.setTextColor(Color.parseColor("#999999"));
                 rel_wed_lnchc = 0;
                 lunch = lunch.replace("Wednesday,", "");
             }
@@ -402,7 +406,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_thurs_lnch.setSelected(false);
                 rel_thurs_lnch.setBackgroundResource(R.drawable.edt_bg);
-                tv_thursday_lnch.setTextColor(Color.parseColor("#000000"));
+                tv_thursday_lnch.setTextColor(Color.parseColor("#999999"));
                 rel_thurs_lnchc = 0;
                 lunch = lunch.replace("Thursday,", "");
             }
@@ -417,7 +421,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_fri_lnch.setSelected(false);
                 rel_fri_lnch.setBackgroundResource(R.drawable.edt_bg);
-                tv_friday_lnch.setTextColor(Color.parseColor("#000000"));
+                tv_friday_lnch.setTextColor(Color.parseColor("#999999"));
                 rel_fri_lnchc = 0;
                 lunch = lunch.replace("Friday,", "");
             }
@@ -432,7 +436,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_sat_lnch.setSelected(false);
                 rel_sat_lnch.setBackgroundResource(R.drawable.edt_bg);
-                tv_saturday_lnch.setTextColor(Color.parseColor("#000000"));
+                tv_saturday_lnch.setTextColor(Color.parseColor("#999999"));
                 rel_sat_lnchc = 0;
                 lunch = lunch.replace("Saturday,", "");
             }
@@ -452,7 +456,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_sun_bf.setSelected(false);
                 rel_sun_bf.setBackgroundResource(R.drawable.edt_bg);
-                tv_sunday_bf.setTextColor(Color.parseColor("#000000"));
+                tv_sunday_bf.setTextColor(Color.parseColor("#999999"));
                 rel_sun_bfc = 0;
                 breakfast = breakfast.replace("Sunday,", "");
             }
@@ -469,7 +473,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_mon_bf.setSelected(false);
                 rel_mon_bf.setBackgroundResource(R.drawable.edt_bg);
-                tv_monday_bf.setTextColor(Color.parseColor("#000000"));
+                tv_monday_bf.setTextColor(Color.parseColor("#999999"));
                 rel_mon_bfc = 0;
                 breakfast = breakfast.replace("Monday,", "");
             }
@@ -485,7 +489,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_tue_bf.setSelected(false);
                 rel_tue_bf.setBackgroundResource(R.drawable.edt_bg);
-                tv_tuesday_bf.setTextColor(Color.parseColor("#000000"));
+                tv_tuesday_bf.setTextColor(Color.parseColor("#999999"));
                 rel_tue_bfc = 0;
                 breakfast = breakfast.replace("Tuesday,", "");
             }
@@ -501,7 +505,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_wed_bf.setSelected(false);
                 rel_wed_bf.setBackgroundResource(R.drawable.edt_bg);
-                tv_wednesday_bf.setTextColor(Color.parseColor("#000000"));
+                tv_wednesday_bf.setTextColor(Color.parseColor("#999999"));
                 rel_wed_bfc = 0;
                 breakfast = breakfast.replace("Wednesday,", "");
             }
@@ -516,7 +520,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_thurs_bf.setSelected(false);
                 rel_thurs_bf.setBackgroundResource(R.drawable.edt_bg);
-                tv_thursday_bf.setTextColor(Color.parseColor("#000000"));
+                tv_thursday_bf.setTextColor(Color.parseColor("#999999"));
                 rel_thurs_bfc = 0;
                 breakfast = breakfast.replace("Thursday,", "");
             }
@@ -531,7 +535,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_fri_bf.setSelected(false);
                 rel_fri_bf.setBackgroundResource(R.drawable.edt_bg);
-                tv_friday_bf.setTextColor(Color.parseColor("#000000"));
+                tv_friday_bf.setTextColor(Color.parseColor("#999999"));
                 rel_fri_bfc = 0;
                 breakfast = breakfast.replace("Friday,", "");
             }
@@ -547,7 +551,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
             } else {
                 rel_sat_bf.setSelected(false);
                 rel_sat_bf.setBackgroundResource(R.drawable.edt_bg);
-                tv_saturday_bf.setTextColor(Color.parseColor("#000000"));
+                tv_saturday_bf.setTextColor(Color.parseColor("#999999"));
                 rel_sat_bfc = 0;
                 breakfast = breakfast.replace("Saturday,", "");
             }
@@ -606,11 +610,11 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
         rangeView.setOnRangeLabelsListener(this);
         rangeView.setOnTrackRangeListener(this);
 
-        rangeView.setActiveLineColor(getResources().getColor(R.color.colorAccent));
-        rangeView.setActiveThumbColor(getResources().getColor(R.color.colorAccent));
-        rangeView.setActiveLabelColor(getResources().getColor(R.color.colorAccent));
-        rangeView.setActiveThumbLabelColor(getResources().getColor(R.color.colorAccent));
-        rangeView.setActiveFocusThumbColor(getResources().getColor(R.color.colorAccent));
+        rangeView.setActiveLineColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangeView.setActiveThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangeView.setActiveLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangeView.setActiveThumbLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangeView.setActiveFocusThumbColor(getResources().getColor(R.color.colorPrimaryDark));
         rangeView.setActiveFocusThumbAlpha(0.26f);
       //  rangebar.setTickCount(25 * 4);//SMALLEST_HOUR_FRACTION = 4;
       //  rangebar.setTickHeight(20);
@@ -641,7 +645,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
     }
 
     private void rangebarLunch() {
-        rangebar_lunch.setTickCount(25 * 4);//SMALLEST_HOUR_FRACTION = 4;
+       /* rangebar_lunch.setTickCount(25 * 4);//SMALLEST_HOUR_FRACTION = 4;
         rangebar_lunch.setTickHeight(20);
         rangebar_lunch.setThumbRadius(10);
         rangebar_lunch.setConnectingLineWeight(3);
@@ -665,12 +669,41 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
                 //leftIndexValue.setText(deciFormat.format(minHour) + ":" + deciFormat.format(minMinute));
                 //  rightIndexValue.setText(deciFormat.format(maxHour) + ":" + deciFormat.format(maxMinute));
             }
+        });*/
+
+
+        rangebar_lunch.setOnRangeLabelsListener(new SimpleRangeView.OnRangeLabelsListener() {
+            @Nullable
+            @Override
+            public String getLabelTextForPosition(SimpleRangeView simpleRangeView, int i, SimpleRangeView.State state) {
+                return labelsLunch[i];
+            }
         });
+        rangebar_lunch.setOnTrackRangeListener(new SimpleRangeView.OnTrackRangeListener() {
+            @Override
+            public void onStartRangeChanged(SimpleRangeView simpleRangeView, int i) {
+               lunch_start=labelsLunch[i];
+                tv_lunch_time.setText(lunch_start+"-"+lunch_end);
+            }
+
+            @Override
+            public void onEndRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                lunch_end=labelsLunch[i];
+                tv_lunch_time.setText(lunch_start+"-"+lunch_end);
+            }
+        });
+
+        rangebar_lunch.setActiveLineColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_lunch.setActiveThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_lunch.setActiveLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_lunch.setActiveThumbLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_lunch.setActiveFocusThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_lunch.setActiveFocusThumbAlpha(0.26f);
 
     }
 
     private void rangebarDinner() {
-        rangebar_dinner.setTickCount(25 * 4);//SMALLEST_HOUR_FRACTION = 4;
+      /*  rangebar_dinner.setTickCount(25 * 4);//SMALLEST_HOUR_FRACTION = 4;
         rangebar_dinner.setTickHeight(20);
         rangebar_dinner.setThumbRadius(10);
         rangebar_dinner.setConnectingLineWeight(3);
@@ -694,8 +727,35 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
                 //leftIndexValue.setText(deciFormat.format(minHour) + ":" + deciFormat.format(minMinute));
                 //  rightIndexValue.setText(deciFormat.format(maxHour) + ":" + deciFormat.format(maxMinute));
             }
+        });*/
+        rangebar_dinner.setOnRangeLabelsListener(new SimpleRangeView.OnRangeLabelsListener() {
+            @Nullable
+            @Override
+            public String getLabelTextForPosition(SimpleRangeView simpleRangeView, int i, SimpleRangeView.State state) {
+                return labelsDinner[i];
+            }
+        });
+        rangebar_dinner.setOnTrackRangeListener(new SimpleRangeView.OnTrackRangeListener() {
+            @Override
+            public void onStartRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                dinner_start=labelsDinner[i];
+                tv_dinner_time.setText(dinner_start+"-"+dinner_end);
+
+            }
+
+            @Override
+            public void onEndRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                dinner_end=labelsDinner[i];
+                tv_dinner_time.setText(dinner_start+"-"+dinner_end);
+            }
         });
 
+        rangebar_dinner.setActiveLineColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_dinner.setActiveThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_dinner.setActiveLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_dinner.setActiveThumbLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_dinner.setActiveFocusThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+        rangebar_dinner.setActiveFocusThumbAlpha(0.26f);
     }
 
     @Nullable
