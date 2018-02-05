@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -597,12 +598,18 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
         rangebar_lunch.setOnTrackRangeListener(new SimpleRangeView.OnTrackRangeListener() {
             @Override
             public void onStartRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                rangebar_lunch.setMinDistance(1);
+                rangebar_lunch.setMaxDistance(1);
+                rangebar_lunch.setMovable(true);
                 lunch_start = labelsLunch[i];
                 tv_lunch_time.setText(lunch_start + "-" + lunch_end);
             }
 
             @Override
             public void onEndRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                rangebar_lunch.setMinDistance(1);
+                rangebar_lunch.setMaxDistance(1);
+                rangebar_lunch.setMovable(true);
                 lunch_end = labelsLunch[i];
                 tv_lunch_time.setText(lunch_start + "-" + lunch_end);
             }
@@ -618,6 +625,8 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
     }
 
     private void rangebarDinner() {
+
+
         rangebar_dinner.setOnRangeLabelsListener(new SimpleRangeView.OnRangeLabelsListener() {
             @Nullable
             @Override
@@ -628,6 +637,9 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
         rangebar_dinner.setOnTrackRangeListener(new SimpleRangeView.OnTrackRangeListener() {
             @Override
             public void onStartRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                rangebar_dinner.setMinDistance(1);
+                rangebar_dinner.setMaxDistance(1);
+                rangebar_dinner.setMovable(true);
                 dinner_start = labelsDinner[i];
                 tv_dinner_time.setText(dinner_start + "-" + dinner_end);
 
@@ -635,6 +647,9 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
 
             @Override
             public void onEndRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                rangebar_dinner.setMinDistance(1);
+                rangebar_dinner.setMaxDistance(1);
+                rangebar_dinner.setMovable(true);
                 dinner_end = labelsDinner[i];
                 tv_dinner_time.setText(dinner_start + "-" + dinner_end);
             }
@@ -646,6 +661,13 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
         rangebar_dinner.setActiveThumbLabelColor(getResources().getColor(R.color.colorPrimaryDark));
         rangebar_dinner.setActiveFocusThumbColor(getResources().getColor(R.color.colorPrimaryDark));
         rangebar_dinner.setActiveFocusThumbAlpha(0.26f);
+
+
+
+
+
+
+
     }
 
     @Nullable
@@ -656,6 +678,9 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
 
     @Override
     public void onStartRangeChanged(SimpleRangeView simpleRangeView, int i) {
+        rangeView.setMinDistance(1);
+        rangeView.setMaxDistance(1);
+        rangeView.setMovable(true);
         breakfast_start = labels[i];
         tv_breakfast_time.setText(breakfast_start + "-" + breakfast_end);
     }
@@ -663,6 +688,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
     @Override
     public void onEndRangeChanged(SimpleRangeView simpleRangeView, int i) {
         breakfast_end = labels[i];
+
         tv_breakfast_time.setText(breakfast_start + "-" + breakfast_end);
     }
 
