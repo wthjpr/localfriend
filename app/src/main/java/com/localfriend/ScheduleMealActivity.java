@@ -40,9 +40,9 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
     private String[] labelsLunch = new String[]{"12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00"};
     private String[] labelsDinner = new String[]{"19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00"};
     SimpleRangeView rangeView, rangebar_dinner, rangebar_lunch;
-    String breakfast_start = "", breakfast_end = "";
-    String lunch_start = "", lunch_end = "";
-    String dinner_start = "", dinner_end = "";
+    String breakfast_start = "8:00", breakfast_end = "8:30";
+    String lunch_start = "13:00", lunch_end = "13:30";
+    String dinner_start = "20:00", dinner_end = "20:30";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -364,7 +364,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
                 lunch = lunch.replace("Wed,", "");
             }
             tv_selected_days_lunch.setText(lunch);
-        } else if (v == rel_thurs_lnch) {//, , , , , , ;
+        } else if (v == rel_thurs_lnch) {
             if (rel_thurs_lnchc == 0) {
                 rel_thurs_lnch.setSelected(true);
                 rel_thurs_lnch.setBackgroundResource(R.drawable.selected_bg);
@@ -412,7 +412,7 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
         }
 
 /////////// Click Functionalities for Breakfast///////////////////////////
-        // , , , , , ,
+
         else if (v == rel_sun_bf) {
             if (rel_sun_bfc == 0) {
                 rel_sun_bf.setSelected(true);
@@ -687,8 +687,10 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
 
     @Override
     public void onEndRangeChanged(SimpleRangeView simpleRangeView, int i) {
+        rangeView.setMinDistance(1);
+        rangeView.setMaxDistance(1);
+        rangeView.setMovable(true);
         breakfast_end = labels[i];
-
         tv_breakfast_time.setText(breakfast_start + "-" + breakfast_end);
     }
 
