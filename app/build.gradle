@@ -9,19 +9,19 @@ repositories {
     }
 }
 android {
-//    signingConfigs {
-//        config {
-//            keyAlias 'LocalFriend'
-//            keyPassword '111111'
-//            storeFile file('D:/Android/wdh/lf_ley.jks')
-//            storePassword '111111'
-//        }
-//    }
+    signingConfigs {
+        config {
+            keyAlias 'LocalFriend'
+            keyPassword '111111'
+            storeFile file('D:/Android/wdh/lf_ley.jks')
+            storePassword '111111'
+        }
+    }
     lintOptions {
         checkReleaseBuilds false
     }
     compileSdkVersion 26
-    buildToolsVersion '25.0.3'
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.localfriend"
         minSdkVersion 16
@@ -35,9 +35,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-//        debug {
-//            signingConfig signingConfigs.config
-//        }
+        debug {
+            signingConfig signingConfigs.config
+        }
     }
 }
 

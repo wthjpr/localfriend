@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
@@ -20,10 +21,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -39,13 +45,18 @@ import com.localfriend.model.Product;
 import com.localfriend.utils.AppConstant;
 import com.localfriend.utils.CustomViewPager;
 
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import me.bendik.simplerangeview.SimpleRangeView;
 
 public class SubscriptionCheckOutActivity extends CustomActivity implements CustomActivity.ResponseCallback {
     private Toolbar toolbar;
@@ -79,6 +90,8 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
 
         setupUiElements();
         txt_title.setText(mTitle.getText().toString());
+
+        showDialog();
     }
 
     private void setupUiElements() {
@@ -116,6 +129,12 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
         txt_start_date.setText("Start From : " + dateSelected);
     }
 
+    private JSONArray scheduleArr;
+
+    private JSONArray getScheduleArr() {
+        return scheduleArr;
+    }
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -150,6 +169,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
                     o.put("startdate", dateSelected);
                     o.put("extraNote", edt_note.getText().toString());
                     o.put("payAmount", "0");
+                    o.put("suhedule", getScheduleArr());
                     if (promoDiscount > 0) {
                         o.put("promoCode", "NEW30");
                         o.put("promoDiscount", 70);
@@ -360,6 +380,8 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             img_change.setVisibility(View.GONE);
             txt_name.setText("");
         }
+
+        setValuesScheduleArray();
     }
 
     public static class DatePickerFragment extends DialogFragment {
@@ -407,4 +429,493 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             return picker;
         }
     }
+
+    private void setValuesScheduleArray() {
+
+        scheduleArr = new JSONArray();
+
+        try {
+            JSONObject breakfastObject = new JSONObject();
+            breakfastObject.put("meals", "Breakfast");
+
+            JSONArray bfArr = new JSONArray();
+            JSONObject bfo = new JSONObject();
+            bfo.put("addressID", shippingId);
+            bfo.put("day", "Monday");
+            bfo.put("timestemp", "8:00 - 8:30");
+
+            bfArr.put(bfo);
+            bfo = new JSONObject();
+            bfo.put("addressID", shippingId);
+            bfo.put("day", "Tuesday");
+            bfo.put("timestemp", "8:00 - 8:30");
+            bfArr.put(bfo);
+            bfo = new JSONObject();
+
+            bfo.put("addressID", shippingId);
+            bfo.put("day", "Wednesday");
+            bfo.put("timestemp", "8:00 - 8:30");
+            bfArr.put(bfo);
+            bfo = new JSONObject();
+
+            bfo.put("addressID", shippingId);
+            bfo.put("day", "Thursday");
+            bfo.put("timestemp", "8:00 - 8:30");
+            bfArr.put(bfo);
+            bfo = new JSONObject();
+
+            bfo.put("addressID", shippingId);
+            bfo.put("day", "Friday");
+            bfo.put("timestemp", "8:00 - 8:30");
+            bfArr.put(bfo);
+            bfo = new JSONObject();
+
+            bfo.put("addressID", shippingId);
+            bfo.put("day", "Saturday");
+            bfo.put("timestemp", "8:00 - 8:30");
+            bfArr.put(bfo);
+            bfo = new JSONObject();
+
+            bfo.put("addressID", shippingId);
+            bfo.put("day", "Sunday");
+            bfo.put("timestemp", "8:00 - 8:30");
+            bfArr.put(bfo);
+
+            breakfastObject.put("mealsday", bfArr);
+            scheduleArr.put(breakfastObject);
+
+            JSONObject lunchObject = new JSONObject();
+            lunchObject.put("meals", "Lunch");
+
+            JSONArray lunchArr = new JSONArray();
+            JSONObject lo = new JSONObject();
+            lo.put("addressID", shippingId);
+            lo.put("day", "Monday");
+            lo.put("timestemp", "12:00 - 12:30");
+            lunchArr.put(lo);
+
+            lo = new JSONObject();
+            lo.put("addressID", shippingId);
+            lo.put("day", "Tuesday");
+            lo.put("timestemp", "12:00 - 12:30");
+            lunchArr.put(lo);
+
+            lo = new JSONObject();
+            lo.put("addressID", shippingId);
+            lo.put("day", "Wednesday");
+            lo.put("timestemp", "12:00 - 12:30");
+            lunchArr.put(lo);
+
+            lo = new JSONObject();
+            lo.put("addressID", shippingId);
+            lo.put("day", "Thursday");
+            lo.put("timestemp", "12:00 - 12:30");
+            lunchArr.put(lo);
+
+            lo = new JSONObject();
+            lo.put("addressID", shippingId);
+            lo.put("day", "Friday");
+            lo.put("timestemp", "12:00 - 12:30");
+            lunchArr.put(lo);
+
+            lo = new JSONObject();
+            lo.put("addressID", shippingId);
+            lo.put("day", "Saturday");
+            lo.put("timestemp", "12:00 - 12:30");
+            lunchArr.put(lo);
+
+            lo = new JSONObject();
+            lo.put("addressID", shippingId);
+            lo.put("day", "Sunday");
+            lo.put("timestemp", "12:00 - 12:30");
+            lunchArr.put(lo);
+
+            lunchObject.put("mealsday", lunchArr);
+            scheduleArr.put(lunchObject);
+
+            JSONObject dinnerObject = new JSONObject();
+            lunchObject.put("meals", "Dinner");
+            JSONArray dinnerArr = new JSONArray();
+            JSONObject d = new JSONObject();
+            d.put("addressID", shippingId);
+            d.put("day", "Monday");
+            d.put("timestemp", "19:00 - 19:30");
+            dinnerArr.put(d);
+
+            d = new JSONObject();
+            d.put("addressID", shippingId);
+            d.put("day", "Tuesday");
+            d.put("timestemp", "19:00 - 19:30");
+            dinnerArr.put(d);
+
+            d = new JSONObject();
+            d.put("addressID", shippingId);
+            d.put("day", "Wednesday");
+            d.put("timestemp", "19:00 - 19:30");
+            dinnerArr.put(d);
+
+            d = new JSONObject();
+            d.put("addressID", shippingId);
+            d.put("day", "Thursday");
+            d.put("timestemp", "19:00 - 19:30");
+            dinnerArr.put(d);
+
+            d = new JSONObject();
+            d.put("addressID", shippingId);
+            d.put("day", "Friday");
+            d.put("timestemp", "19:00 - 19:30");
+            dinnerArr.put(d);
+
+            d = new JSONObject();
+            d.put("addressID", shippingId);
+            d.put("day", "Saturday");
+            d.put("timestemp", "19:00 - 19:30");
+            dinnerArr.put(d);
+
+            d = new JSONObject();
+            d.put("addressID", shippingId);
+            d.put("day", "Sunday");
+            d.put("timestemp", "19:00 - 19:30");
+            dinnerArr.put(d);
+
+            dinnerObject.put("mealsday", dinnerArr);
+            scheduleArr.put(dinnerObject);
+            Log.d("timings", scheduleArr.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Dialog dialog;
+
+    private void showDialog() {
+
+
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.activity_schedule_meal);
+        ImageView img_close = dialog.findViewById(R.id.img_close);
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
+        chk_break_fast = dialog.findViewById(R.id.chk_break_fast);
+        chk_lunch = dialog.findViewById(R.id.chk_lunch);
+        chk_dinner = dialog.findViewById(R.id.chk_dinner);
+
+// Schedule Label Above the layout
+
+        tv_schedule_breakfast = dialog.findViewById(R.id.tv_schedule_breakfast);
+        tv_schedule_breakfast.setVisibility(View.GONE);
+        tv_schedule_lunch = dialog.findViewById(R.id.tv_schedule_lunch);
+        tv_schedule_lunch.setVisibility(View.GONE);
+        tv_schedule_dinner = dialog.findViewById(R.id.tv_schedule_dinner);
+        tv_schedule_dinner.setVisibility(View.GONE);
+
+
+//Linear layout the layout
+
+        lnr_breakfast = dialog.findViewById(R.id.lnr_breakfast);
+        lnr_breakfast.setVisibility(View.GONE);
+        lnr_lunch = dialog.findViewById(R.id.lnr_lunch);
+        lnr_lunch.setVisibility(View.GONE);
+        lnr_dinner = dialog.findViewById(R.id.lnr_dinner);
+        lnr_dinner.setVisibility(View.GONE);
+
+// time range texviews
+        tv_breakfast_time = dialog.findViewById(R.id.tv_breakfast_time);
+        tv_lunch_time = dialog.findViewById(R.id.tv_lunch_time);
+        tv_dinner_time = dialog.findViewById(R.id.tv_dinner_time);
+
+        //Range bars for setting time range
+        rangeView = dialog.findViewById(R.id.rangeview);
+        {
+            rangeView.setOnRangeLabelsListener(new SimpleRangeView.OnRangeLabelsListener() {
+                @Nullable
+                @Override
+                public String getLabelTextForPosition(SimpleRangeView simpleRangeView, int i, SimpleRangeView.State state) {
+                    return labels[i];
+                }
+            });
+            rangeView.setOnTrackRangeListener(new SimpleRangeView.OnTrackRangeListener() {
+                @Override
+                public void onEndRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                    rangeView.setMinDistance(1);
+                    rangeView.setMaxDistance(1);
+                    rangeView.setMovable(true);
+                    breakfast_end = labels[i];
+                    tv_breakfast_time.setText(breakfast_start + "-" + breakfast_end);
+                }
+
+                @Override
+                public void onStartRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                    rangeView.setMinDistance(1);
+                    rangeView.setMaxDistance(1);
+                    rangeView.setMovable(true);
+                    breakfast_start = labels[i];
+                    tv_breakfast_time.setText(breakfast_start + "-" + breakfast_end);
+                }
+            });
+
+            rangeView.setActiveLineColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangeView.setActiveThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangeView.setActiveLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangeView.setActiveThumbLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangeView.setActiveFocusThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangeView.setActiveFocusThumbAlpha(0.26f);
+        }
+        rangebar_dinner = dialog.findViewById(R.id.rangebar_dinner);
+        {
+
+
+            rangebar_dinner.setOnRangeLabelsListener(new SimpleRangeView.OnRangeLabelsListener() {
+                @Nullable
+                @Override
+                public String getLabelTextForPosition(SimpleRangeView simpleRangeView, int i, SimpleRangeView.State state) {
+                    return labelsDinner[i];
+                }
+            });
+            rangebar_dinner.setOnTrackRangeListener(new SimpleRangeView.OnTrackRangeListener() {
+                @Override
+                public void onStartRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                    rangebar_dinner.setMinDistance(1);
+                    rangebar_dinner.setMaxDistance(1);
+                    rangebar_dinner.setMovable(true);
+                    dinner_start = labelsDinner[i];
+                    tv_dinner_time.setText(dinner_start + "-" + dinner_end);
+
+                }
+
+                @Override
+                public void onEndRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                    rangebar_dinner.setMinDistance(1);
+                    rangebar_dinner.setMaxDistance(1);
+                    rangebar_dinner.setMovable(true);
+                    dinner_end = labelsDinner[i];
+                    tv_dinner_time.setText(dinner_start + "-" + dinner_end);
+                }
+            });
+
+            rangebar_dinner.setActiveLineColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_dinner.setActiveThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_dinner.setActiveLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_dinner.setActiveThumbLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_dinner.setActiveFocusThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_dinner.setActiveFocusThumbAlpha(0.26f);
+        }
+        rangebar_lunch = dialog.findViewById(R.id.rangebar_lunch);
+        {
+
+            rangebar_lunch.setOnRangeLabelsListener(new SimpleRangeView.OnRangeLabelsListener() {
+                @Nullable
+                @Override
+                public String getLabelTextForPosition(SimpleRangeView simpleRangeView, int i, SimpleRangeView.State state) {
+                    return labelsLunch[i];
+                }
+            });
+            rangebar_lunch.setOnTrackRangeListener(new SimpleRangeView.OnTrackRangeListener() {
+                @Override
+                public void onStartRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                    rangebar_lunch.setMinDistance(1);
+                    rangebar_lunch.setMaxDistance(1);
+                    rangebar_lunch.setMovable(true);
+                    lunch_start = labelsLunch[i];
+                    tv_lunch_time.setText(lunch_start + "-" + lunch_end);
+                }
+
+                @Override
+                public void onEndRangeChanged(SimpleRangeView simpleRangeView, int i) {
+                    rangebar_lunch.setMinDistance(1);
+                    rangebar_lunch.setMaxDistance(1);
+                    rangebar_lunch.setMovable(true);
+                    lunch_end = labelsLunch[i];
+                    tv_lunch_time.setText(lunch_start + "-" + lunch_end);
+                }
+            });
+
+            rangebar_lunch.setActiveLineColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_lunch.setActiveThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_lunch.setActiveLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_lunch.setActiveThumbLabelColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_lunch.setActiveFocusThumbColor(getResources().getColor(R.color.colorPrimaryDark));
+            rangebar_lunch.setActiveFocusThumbAlpha(0.26f);
+
+        }
+
+//Textview for showing selected days.
+
+        tv_selected_days = dialog.findViewById(R.id.tv_selected_days);
+        tv_selected_days_lunch = dialog.findViewById(R.id.tv_selected_days_lunch);
+        tv_selected_days_dinner = dialog.findViewById(R.id.tv_selected_days_dinner);
+
+////////////////////////////////////////////Breakfast/////////////////////////////////////////////////
+        //relative layout for breakfast days
+
+        rel_sun_bf = dialog.findViewById(R.id.rel_sun_bf);
+        rel_mon_bf = dialog.findViewById(R.id.rel_mon_bf);
+        rel_tue_bf = dialog.findViewById(R.id.rel_tue_bf);
+        rel_wed_bf = dialog.findViewById(R.id.rel_wed_bf);
+        rel_thurs_bf = dialog.findViewById(R.id.rel_thurs_bf);
+        rel_fri_bf = dialog.findViewById(R.id.rel_fri_bf);
+        rel_sat_bf = dialog.findViewById(R.id.rel_sat_bf);
+
+        //Textview for breakfast days
+        tv_sunday_bf = dialog.findViewById(R.id.tv_sunday_bf);
+        tv_monday_bf = dialog.findViewById(R.id.tv_monday_bf);
+        tv_tuesday_bf = dialog.findViewById(R.id.tv_tuesday_bf);
+        tv_wednesday_bf = dialog.findViewById(R.id.tv_wednesday_bf);
+        tv_thursday_bf = dialog.findViewById(R.id.tv_thursday_bf);
+        tv_friday_bf = dialog.findViewById(R.id.tv_friday_bf);
+        tv_saturday_bf = dialog.findViewById(R.id.tv_saturday_bf);
+
+// click event for breakfast
+//        setTouchNClick(R.id.rel_sun_bf);
+//        setTouchNClick(R.id.rel_mon_bf);
+//        setTouchNClick(R.id.rel_tue_bf);
+//        setTouchNClick(R.id.rel_wed_bf);
+//        setTouchNClick(R.id.rel_thurs_bf);
+//        setTouchNClick(R.id.rel_fri_bf);
+//        setTouchNClick(R.id.rel_sat_bf);
+
+////////////////////////////////////////LUNCH//////////////////////////////////////////
+        //relative layout for lunch days
+
+        rel_sun_lnch = dialog.findViewById(R.id.rel_sun_lnch);
+        rel_mon_lnch = dialog.findViewById(R.id.rel_mon_lnch);
+        rel_tue_lnch = dialog.findViewById(R.id.rel_tue_lnch);
+        rel_wed_lnch = dialog.findViewById(R.id.rel_wed_lnch);
+        rel_thurs_lnch = dialog.findViewById(R.id.rel_thurs_lnch);
+        rel_fri_lnch = dialog.findViewById(R.id.rel_fri_lnch);
+        rel_sat_lnch = dialog.findViewById(R.id.rel_sat_lnch);
+
+        //Textview for lunch days
+
+        tv_sunday_lnch = dialog.findViewById(R.id.tv_sunday_lnch);
+        tv_monday_lnch = dialog.findViewById(R.id.tv_monday_lnch);
+        tv_tuesday_lnch = dialog.findViewById(R.id.tv_tuesday_lnch);
+        tv_wednesday_lnch = dialog.findViewById(R.id.tv_wednesday_lnch);
+        tv_thursday_lnch = dialog.findViewById(R.id.tv_thursday_lnch);
+        tv_friday_lnch = dialog.findViewById(R.id.tv_friday_lnch);
+        tv_saturday_lnch = dialog.findViewById(R.id.tv_saturday_lnch);
+// click event for lunch
+//        setTouchNClick(R.id.rel_sun_lnch);
+//        setTouchNClick(R.id.rel_mon_lnch);
+//        setTouchNClick(R.id.rel_tue_lnch);
+//        setTouchNClick(R.id.rel_wed_lnch);
+//        setTouchNClick(R.id.rel_thurs_lnch);
+//        setTouchNClick(R.id.rel_fri_lnch);
+//        setTouchNClick(R.id.rel_sat_lnch);
+
+/////////////Dinner///////////////////////////////////////////////////////
+        //relative layout for Dinner days
+
+        rel_sun = dialog.findViewById(R.id.rel_sun);
+        rel_mon = dialog.findViewById(R.id.rel_mon);
+        rel_tue = dialog.findViewById(R.id.rel_tue);
+        rel_wed = dialog.findViewById(R.id.rel_wed);
+        rel_thurs = dialog.findViewById(R.id.rel_thurs);
+        rel_fri = dialog.findViewById(R.id.rel_fri);
+        rel_sat = dialog.findViewById(R.id.rel_sat);
+
+        //Textview for Dinner days
+
+        tv_sunday = dialog.findViewById(R.id.tv_sunday);
+        tv_monday = dialog.findViewById(R.id.tv_monday);
+        tv_tuesday = dialog.findViewById(R.id.tv_tuesday);
+        tv_wednesday = dialog.findViewById(R.id.tv_wednesday);
+        tv_thursday = dialog.findViewById(R.id.tv_thursday);
+        tv_friday = dialog.findViewById(R.id.tv_friday);
+        tv_saturday = dialog.findViewById(R.id.tv_saturday);
+
+// click event for diner
+//        setTouchNClick(R.id.rel_sun);
+//        setTouchNClick(R.id.rel_mon);
+//        setTouchNClick(R.id.rel_tue);
+//        setTouchNClick(R.id.rel_wed);
+//        setTouchNClick(R.id.rel_thurs);
+//        setTouchNClick(R.id.rel_fri);
+//        setTouchNClick(R.id.rel_sat);
+
+
+        chk_break_fast.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (chk_break_fast.isChecked()) {
+                    tv_schedule_breakfast.setVisibility(View.VISIBLE);
+                    lnr_breakfast.setVisibility(View.VISIBLE);
+                } else if (!chk_break_fast.isChecked()) {
+                    tv_schedule_breakfast.setVisibility(View.GONE);
+                    lnr_breakfast.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        chk_lunch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (chk_lunch.isChecked()) {
+                    tv_schedule_lunch.setVisibility(View.VISIBLE);
+                    lnr_lunch.setVisibility(View.VISIBLE);
+                } else if (!chk_lunch.isChecked()) {
+                    tv_schedule_lunch.setVisibility(View.GONE);
+                    lnr_lunch.setVisibility(View.GONE);
+                }
+            }
+        });
+        chk_dinner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (chk_dinner.isChecked()) {
+                    tv_schedule_dinner.setVisibility(View.VISIBLE);
+                    lnr_dinner.setVisibility(View.VISIBLE);
+                } else if (!chk_dinner.isChecked()) {
+                    tv_schedule_dinner.setVisibility(View.GONE);
+                    lnr_dinner.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = -1;
+        lp.height = -1;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
+
+
+    CheckBox chk_break_fast, chk_lunch, chk_dinner;
+    TextView tv_breakfast_time, tv_lunch_time, tv_dinner_time;
+    //   RangeBar rangebar, rangebar_dinner, rangebar_lunch;
+    TextView tv_schedule_breakfast, tv_schedule_lunch, tv_schedule_dinner;
+    TextView tv_selected_days, tv_selected_days_lunch, tv_selected_days_dinner;
+    RelativeLayout rel_sun_bf, rel_mon_bf, rel_tue_bf, rel_wed_bf, rel_thurs_bf, rel_fri_bf, rel_sat_bf;
+    TextView tv_sunday_bf, tv_monday_bf, tv_tuesday_bf, tv_wednesday_bf, tv_thursday_bf, tv_friday_bf, tv_saturday_bf;
+
+    RelativeLayout rel_sun_lnch, rel_mon_lnch, rel_tue_lnch, rel_wed_lnch, rel_thurs_lnch, rel_fri_lnch, rel_sat_lnch;
+    TextView tv_sunday_lnch, tv_monday_lnch, tv_tuesday_lnch, tv_wednesday_lnch, tv_thursday_lnch, tv_friday_lnch, tv_saturday_lnch;
+
+    RelativeLayout rel_sun, rel_mon, rel_tue, rel_wed, rel_thurs, rel_fri, rel_sat;
+    int rel_sun_lnchc = 0, rel_mon_lnchc = 0, rel_tue_lnchc = 0, rel_wed_lnchc = 0, rel_thurs_lnchc = 0, rel_fri_lnchc = 0, rel_sat_lnchc = 0;
+    int rel_sunc = 0, rel_monc = 0, rel_tuec = 0, rel_wedc = 0, rel_thursc = 0, rel_fric = 0, rel_satc = 0;
+    int rel_sun_bfc = 0, rel_mon_bfc = 0, rel_tue_bfc = 0, rel_wed_bfc = 0, rel_thurs_bfc = 0, rel_fri_bfc = 0, rel_sat_bfc = 0;
+    TextView tv_sunday, tv_monday, tv_tuesday, tv_wednesday, tv_thursday, tv_friday, tv_saturday;
+    String breakfast = "", lunch = "", dinner = "";
+
+    LinearLayout lnr_breakfast, lnr_lunch, lnr_dinner;
+    final String[] labels = new String[]{"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00"};
+    final String[] labelsLunch = new String[]{"12:00", "12:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00"};
+    final String[] labelsDinner = new String[]{"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00"};
+    SimpleRangeView rangeView, rangebar_dinner, rangebar_lunch;
+    String breakfast_start = "8:00", breakfast_end = "8:30";
+    String lunch_start = "13:00", lunch_end = "13:30";
+    String dinner_start = "20:00", dinner_end = "20:30";
 }

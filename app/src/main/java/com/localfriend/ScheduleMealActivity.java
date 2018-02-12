@@ -8,7 +8,6 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -32,13 +31,12 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
     int rel_sunc = 0, rel_monc = 0, rel_tuec = 0, rel_wedc = 0, rel_thursc = 0, rel_fric = 0, rel_satc = 0;
     int rel_sun_bfc = 0, rel_mon_bfc = 0, rel_tue_bfc = 0, rel_wed_bfc = 0, rel_thurs_bfc = 0, rel_fri_bfc = 0, rel_sat_bfc = 0;
     private TextView tv_sunday, tv_monday, tv_tuesday, tv_wednesday, tv_thursday, tv_friday, tv_saturday;
-    int minHour, minMinute, maxHour, maxMinute;
     private String breakfast = "", lunch = "", dinner = "";
 
     private LinearLayout lnr_breakfast, lnr_lunch, lnr_dinner;
     private String[] labels = new String[]{"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00"};
-    private String[] labelsLunch = new String[]{"12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00"};
-    private String[] labelsDinner = new String[]{"19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00"};
+    private String[] labelsLunch = new String[]{"12:00", "12:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00"};
+    private String[] labelsDinner = new String[]{"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00"};
     SimpleRangeView rangeView, rangebar_dinner, rangebar_lunch;
     String breakfast_start = "8:00", breakfast_end = "8:30";
     String lunch_start = "13:00", lunch_end = "13:30";
@@ -55,67 +53,67 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
 
     private void setupUiElement() {
 
-        chk_break_fast = (CheckBox) findViewById(R.id.chk_break_fast);
-        chk_lunch = (CheckBox) findViewById(R.id.chk_lunch);
-        chk_dinner = (CheckBox) findViewById(R.id.chk_dinner);
+        chk_break_fast =  findViewById(R.id.chk_break_fast);
+        chk_lunch =  findViewById(R.id.chk_lunch);
+        chk_dinner =  findViewById(R.id.chk_dinner);
 
 // Schedule Label Above the layout
 
-        tv_schedule_breakfast = (TextView) findViewById(R.id.tv_schedule_breakfast);
+        tv_schedule_breakfast =  findViewById(R.id.tv_schedule_breakfast);
         tv_schedule_breakfast.setVisibility(View.GONE);
-        tv_schedule_lunch = (TextView) findViewById(R.id.tv_schedule_lunch);
+        tv_schedule_lunch =  findViewById(R.id.tv_schedule_lunch);
         tv_schedule_lunch.setVisibility(View.GONE);
-        tv_schedule_dinner = (TextView) findViewById(R.id.tv_schedule_dinner);
+        tv_schedule_dinner =  findViewById(R.id.tv_schedule_dinner);
         tv_schedule_dinner.setVisibility(View.GONE);
 
 
 //Linear layout the layout
 
-        lnr_breakfast = (LinearLayout) findViewById(R.id.lnr_breakfast);
+        lnr_breakfast =  findViewById(R.id.lnr_breakfast);
         lnr_breakfast.setVisibility(View.GONE);
-        lnr_lunch = (LinearLayout) findViewById(R.id.lnr_lunch);
+        lnr_lunch =  findViewById(R.id.lnr_lunch);
         lnr_lunch.setVisibility(View.GONE);
-        lnr_dinner = (LinearLayout) findViewById(R.id.lnr_dinner);
+        lnr_dinner =  findViewById(R.id.lnr_dinner);
         lnr_dinner.setVisibility(View.GONE);
 
 // time range texviews
-        tv_breakfast_time = (TextView) findViewById(R.id.tv_breakfast_time);
-        tv_lunch_time = (TextView) findViewById(R.id.tv_lunch_time);
-        tv_dinner_time = (TextView) findViewById(R.id.tv_dinner_time);
+        tv_breakfast_time =  findViewById(R.id.tv_breakfast_time);
+        tv_lunch_time =  findViewById(R.id.tv_lunch_time);
+        tv_dinner_time =  findViewById(R.id.tv_dinner_time);
 
         //Range bars for setting time range
-        rangeView = (SimpleRangeView) findViewById(R.id.rangeview);
+        rangeView =  findViewById(R.id.rangeview);
         rangebarBreakfast();
-        rangebar_dinner = (SimpleRangeView) findViewById(R.id.rangebar_dinner);
+        rangebar_dinner =  findViewById(R.id.rangebar_dinner);
         rangebarDinner();
-        rangebar_lunch = (SimpleRangeView) findViewById(R.id.rangebar_lunch);
+        rangebar_lunch =  findViewById(R.id.rangebar_lunch);
         rangebarLunch();
 
 //Textview for showing selected days.
 
-        tv_selected_days = (TextView) findViewById(R.id.tv_selected_days);
-        tv_selected_days_lunch = (TextView) findViewById(R.id.tv_selected_days_lunch);
-        tv_selected_days_dinner = (TextView) findViewById(R.id.tv_selected_days_dinner);
+        tv_selected_days =  findViewById(R.id.tv_selected_days);
+        tv_selected_days_lunch =  findViewById(R.id.tv_selected_days_lunch);
+        tv_selected_days_dinner =  findViewById(R.id.tv_selected_days_dinner);
 
 ////////////////////////////////////////////Breakfast/////////////////////////////////////////////////
         //relative layout for breakfast days
 
-        rel_sun_bf = (RelativeLayout) findViewById(R.id.rel_sun_bf);
-        rel_mon_bf = (RelativeLayout) findViewById(R.id.rel_mon_bf);
-        rel_tue_bf = (RelativeLayout) findViewById(R.id.rel_tue_bf);
-        rel_wed_bf = (RelativeLayout) findViewById(R.id.rel_wed_bf);
-        rel_thurs_bf = (RelativeLayout) findViewById(R.id.rel_thurs_bf);
-        rel_fri_bf = (RelativeLayout) findViewById(R.id.rel_fri_bf);
-        rel_sat_bf = (RelativeLayout) findViewById(R.id.rel_sat_bf);
+        rel_sun_bf =  findViewById(R.id.rel_sun_bf);
+        rel_mon_bf =  findViewById(R.id.rel_mon_bf);
+        rel_tue_bf =  findViewById(R.id.rel_tue_bf);
+        rel_wed_bf =  findViewById(R.id.rel_wed_bf);
+        rel_thurs_bf =  findViewById(R.id.rel_thurs_bf);
+        rel_fri_bf =  findViewById(R.id.rel_fri_bf);
+        rel_sat_bf =  findViewById(R.id.rel_sat_bf);
 
         //Textview for breakfast days
-        tv_sunday_bf = (TextView) findViewById(R.id.tv_sunday_bf);
-        tv_monday_bf = (TextView) findViewById(R.id.tv_monday_bf);
-        tv_tuesday_bf = (TextView) findViewById(R.id.tv_tuesday_bf);
-        tv_wednesday_bf = (TextView) findViewById(R.id.tv_wednesday_bf);
-        tv_thursday_bf = (TextView) findViewById(R.id.tv_thursday_bf);
-        tv_friday_bf = (TextView) findViewById(R.id.tv_friday_bf);
-        tv_saturday_bf = (TextView) findViewById(R.id.tv_saturday_bf);
+        tv_sunday_bf =  findViewById(R.id.tv_sunday_bf);
+        tv_monday_bf =  findViewById(R.id.tv_monday_bf);
+        tv_tuesday_bf =  findViewById(R.id.tv_tuesday_bf);
+        tv_wednesday_bf =  findViewById(R.id.tv_wednesday_bf);
+        tv_thursday_bf =  findViewById(R.id.tv_thursday_bf);
+        tv_friday_bf =  findViewById(R.id.tv_friday_bf);
+        tv_saturday_bf =  findViewById(R.id.tv_saturday_bf);
 
 // click event for breakfast
         setTouchNClick(R.id.rel_sun_bf);
@@ -129,23 +127,23 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
 ////////////////////////////////////////LUNCH//////////////////////////////////////////
         //relative layout for lunch days
 
-        rel_sun_lnch = (RelativeLayout) findViewById(R.id.rel_sun_lnch);
-        rel_mon_lnch = (RelativeLayout) findViewById(R.id.rel_mon_lnch);
-        rel_tue_lnch = (RelativeLayout) findViewById(R.id.rel_tue_lnch);
-        rel_wed_lnch = (RelativeLayout) findViewById(R.id.rel_wed_lnch);
-        rel_thurs_lnch = (RelativeLayout) findViewById(R.id.rel_thurs_lnch);
-        rel_fri_lnch = (RelativeLayout) findViewById(R.id.rel_fri_lnch);
-        rel_sat_lnch = (RelativeLayout) findViewById(R.id.rel_sat_lnch);
+        rel_sun_lnch =  findViewById(R.id.rel_sun_lnch);
+        rel_mon_lnch =  findViewById(R.id.rel_mon_lnch);
+        rel_tue_lnch =  findViewById(R.id.rel_tue_lnch);
+        rel_wed_lnch =  findViewById(R.id.rel_wed_lnch);
+        rel_thurs_lnch =  findViewById(R.id.rel_thurs_lnch);
+        rel_fri_lnch =  findViewById(R.id.rel_fri_lnch);
+        rel_sat_lnch =  findViewById(R.id.rel_sat_lnch);
 
         //Textview for lunch days
 
-        tv_sunday_lnch = (TextView) findViewById(R.id.tv_sunday_lnch);
-        tv_monday_lnch = (TextView) findViewById(R.id.tv_monday_lnch);
-        tv_tuesday_lnch = (TextView) findViewById(R.id.tv_tuesday_lnch);
-        tv_wednesday_lnch = (TextView) findViewById(R.id.tv_wednesday_lnch);
-        tv_thursday_lnch = (TextView) findViewById(R.id.tv_thursday_lnch);
-        tv_friday_lnch = (TextView) findViewById(R.id.tv_friday_lnch);
-        tv_saturday_lnch = (TextView) findViewById(R.id.tv_saturday_lnch);
+        tv_sunday_lnch =  findViewById(R.id.tv_sunday_lnch);
+        tv_monday_lnch =  findViewById(R.id.tv_monday_lnch);
+        tv_tuesday_lnch =  findViewById(R.id.tv_tuesday_lnch);
+        tv_wednesday_lnch =  findViewById(R.id.tv_wednesday_lnch);
+        tv_thursday_lnch =  findViewById(R.id.tv_thursday_lnch);
+        tv_friday_lnch =  findViewById(R.id.tv_friday_lnch);
+        tv_saturday_lnch =  findViewById(R.id.tv_saturday_lnch);
 // click event for lunch
         setTouchNClick(R.id.rel_sun_lnch);
         setTouchNClick(R.id.rel_mon_lnch);
@@ -158,23 +156,23 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
 /////////////Dinner///////////////////////////////////////////////////////
         //relative layout for Dinner days
 
-        rel_sun = (RelativeLayout) findViewById(R.id.rel_sun);
-        rel_mon = (RelativeLayout) findViewById(R.id.rel_mon);
-        rel_tue = (RelativeLayout) findViewById(R.id.rel_tue);
-        rel_wed = (RelativeLayout) findViewById(R.id.rel_wed);
-        rel_thurs = (RelativeLayout) findViewById(R.id.rel_thurs);
-        rel_fri = (RelativeLayout) findViewById(R.id.rel_fri);
-        rel_sat = (RelativeLayout) findViewById(R.id.rel_sat);
+        rel_sun =  findViewById(R.id.rel_sun);
+        rel_mon =  findViewById(R.id.rel_mon);
+        rel_tue =  findViewById(R.id.rel_tue);
+        rel_wed =  findViewById(R.id.rel_wed);
+        rel_thurs =  findViewById(R.id.rel_thurs);
+        rel_fri =  findViewById(R.id.rel_fri);
+        rel_sat =  findViewById(R.id.rel_sat);
 
         //Textview for Dinner days
 
-        tv_sunday = (TextView) findViewById(R.id.tv_sunday);
-        tv_monday = (TextView) findViewById(R.id.tv_monday);
-        tv_tuesday = (TextView) findViewById(R.id.tv_tuesday);
-        tv_wednesday = (TextView) findViewById(R.id.tv_wednesday);
-        tv_thursday = (TextView) findViewById(R.id.tv_thursday);
-        tv_friday = (TextView) findViewById(R.id.tv_friday);
-        tv_saturday = (TextView) findViewById(R.id.tv_saturday);
+        tv_sunday =  findViewById(R.id.tv_sunday);
+        tv_monday =  findViewById(R.id.tv_monday);
+        tv_tuesday =  findViewById(R.id.tv_tuesday);
+        tv_wednesday =  findViewById(R.id.tv_wednesday);
+        tv_thursday =  findViewById(R.id.tv_thursday);
+        tv_friday =  findViewById(R.id.tv_friday);
+        tv_saturday =  findViewById(R.id.tv_saturday);
 
 // click event for diner
         setTouchNClick(R.id.rel_sun);

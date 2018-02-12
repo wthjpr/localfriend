@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/dim_10"
-    android:paddingLeft="@dimen/dim_15"
-    android:paddingRight="@dimen/dim_15"
+    android:paddingLeft="@dimen/dim_10"
+    android:paddingRight="@dimen/dim_10"
     android:paddingTop="@dimen/dim_10"
     tools:context="com.localfriend.ScheduleMealActivity">
 
@@ -17,64 +16,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/pt_regular"
-            android:text="Schedule your meals for this address"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dim_16" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_10"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/dim_15"
-            android:paddingRight="@dimen/dim_15">
-
-            <CheckBox
-                android:id="@+id/chk_break_fast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:fontFamily="@font/pt_regular"
-                android:gravity="center_vertical"
-                android:padding="5dp"
-                android:text="Breakfast"
-                android:textSize="14sp" />
-
-            <CheckBox
-                android:id="@+id/chk_lunch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:fontFamily="@font/pt_regular"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dim_5"
-                android:text="Lunch"
-                android:textSize="14sp" />
-
-            <CheckBox
-                android:id="@+id/chk_dinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:fontFamily="@font/pt_regular"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dim_5"
-                android:text="Dinner"
-                android:textSize="14sp" />
-        </RelativeLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -82,6 +28,61 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/dim_10"
                 android:paddingRight="@dimen/dim_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/pt_regular"
+                    android:text="Schedule your meals for this address"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dim_16" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_10"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dim_15"
+                    android:paddingRight="@dimen/dim_15">
+
+                    <CheckBox
+                        android:id="@+id/chk_break_fast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:buttonTint="@color/colorPrimaryDark"
+                        android:fontFamily="@font/pt_regular"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="Breakfast"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/chk_lunch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:buttonTint="@color/colorPrimaryDark"
+                        android:fontFamily="@font/pt_regular"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dim_5"
+                        android:text="Lunch"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/chk_dinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:buttonTint="@color/colorPrimaryDark"
+                        android:fontFamily="@font/pt_regular"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dim_5"
+                        android:text="Dinner"
+                        android:textSize="14sp" />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/tv_schedule_breakfast"
@@ -122,7 +123,7 @@
                         android:background="@drawable/edt_bg"
                         android:fontFamily="@font/pt_regular"
                         android:padding="@dimen/dim_5"
-                        android:text="8:00-8:30"
+                        android:text="8:00 - 8:30"
                         android:textColor="@color/black" />
 
                     <me.bendik.simplerangeview.SimpleRangeView
@@ -134,12 +135,12 @@
                         app:activeThumbFocusRadius="2dp"
                         app:activeThumbRadius="7dp"
                         app:count="9"
-                        app:start="2"
                         app:end="3"
                         app:fixedLineThickness="3dp"
                         app:innerRangePadding="3dp"
                         app:labelFontSize="10sp"
-                        app:lineThickness="1dp" />
+                        app:lineThickness="1dp"
+                        app:start="2" />
 
                     <View
                         android:layout_width="match_parent"
@@ -385,12 +386,12 @@
                         app:activeThumbFocusRadius="2dp"
                         app:activeThumbRadius="7dp"
                         app:count="9"
-                        app:start="2"
                         app:end="3"
                         app:fixedLineThickness="3dp"
                         app:innerRangePadding="3dp"
                         app:labelFontSize="10sp"
-                        app:lineThickness="1dp" />
+                        app:lineThickness="1dp"
+                        app:start="2" />
 
                     <View
                         android:layout_width="match_parent"
@@ -636,16 +637,16 @@
                         android:layout_margin="@dimen/dim_10"
                         app:activeLineThickness="3dp"
                         app:activeThumbFocusRadius="2dp"
-                        app:start="2"
-                        app:end="3"
                         app:activeThumbRadius="7dp"
                         app:count="9"
-
-
+                        app:end="3"
                         app:fixedLineThickness="3dp"
+
+
                         app:innerRangePadding="3dp"
                         app:labelFontSize="10sp"
-                        app:lineThickness="1dp" />
+                        app:lineThickness="1dp"
+                        app:start="2" />
 
                     <View
                         android:layout_width="match_parent"
@@ -850,5 +851,14 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="45dp"
+        android:layout_marginRight="-15dp"
+        android:layout_marginTop="-15dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:foregroundGravity="right"
+        android:padding="15dp"
+        android:src="@drawable/close" />
 </RelativeLayout>
