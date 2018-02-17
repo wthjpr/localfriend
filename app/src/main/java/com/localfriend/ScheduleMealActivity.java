@@ -661,11 +661,6 @@ public class ScheduleMealActivity extends CustomActivity implements SimpleRangeV
         rangebar_dinner.setActiveFocusThumbAlpha(0.26f);
 
 
-
-
-
-
-
     }
 
     @Nullable

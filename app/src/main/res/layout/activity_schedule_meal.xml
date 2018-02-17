@@ -137,8 +137,8 @@
                         app:count="9"
                         app:end="3"
                         app:fixedLineThickness="3dp"
-                        app:innerRangePadding="3dp"
-                        app:labelFontSize="10sp"
+                        app:innerRangePadding="1dp"
+                        app:labelFontSize="9sp"
                         app:lineThickness="1dp"
                         app:start="2" />
 
