@@ -8,305 +8,1526 @@
 
     <include layout="@layout/toolbar_common" />
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar_common"
-        android:orientation="vertical"
-        tools:context="com.localfriend.fragments.ScheduleFragment">
+        android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/card_price">
 
-            <LinearLayout
+            android:orientation="vertical"
+            tools:context="com.localfriend.fragments.ScheduleFragment">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_above="@+id/card_price">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="@dimen/dim_10"
-                    android:paddingRight="@dimen/dim_10"
-                    android:paddingTop="@dimen/dim_10">
+                    android:orientation="vertical">
 
-                    <com.localfriend.fonts.CustomFontPtSansText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:text="Delivery Address"
-                        android:textColor="@color/gray_text_light"
-                        android:textSize="15sp"
-                        app:textStyle="@integer/roboto_medium" />
-
-                    <android.support.v7.widget.CardView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="8dp"
-                        android:elevation="@dimen/dim_10"
-                        app:cardBackgroundColor="@color/white">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="@dimen/dim_10"
+                        android:paddingRight="@dimen/dim_10"
+                        android:paddingTop="@dimen/dim_10">
 
-                        <RelativeLayout
+                        <com.localfriend.fonts.CustomFontPtSansText
+                            android:id="@+id/txt_head1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:text="Delivery Address"
+                            android:textColor="@color/gray_text_light"
+                            android:textSize="15sp"
+                            app:textStyle="@integer/roboto_medium" />
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/card_main_address"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="8dp"
+                            android:elevation="@dimen/dim_10"
+                            app:cardBackgroundColor="@color/white">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+
+                                    <com.localfriend.fonts.CustomFontPtSansText
+                                        android:id="@+id/txt_address_type"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/dim_10"
+                                        android:padding="@dimen/dim_5"
+                                        android:textColor="@color/gray_tab"
+                                        android:textSize="14sp"
+                                        app:textStyle="@integer/roboto_medium" />
+
+                                    <com.localfriend.fonts.CustomFontPtSansText
+                                        android:id="@+id/txt_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/dim_10"
+                                        android:layout_marginTop="-5dp"
+                                        android:padding="@dimen/dim_5"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp"
+                                        app:textStyle="@integer/roboto_medium" />
+
+                                    <com.localfriend.fonts.CustomFontPtSansText
+                                        android:id="@+id/txt_address"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginLeft="@dimen/dim_10"
+                                        android:padding="5dp"
+                                        android:text=""
+                                        android:textColor="@color/gray_tab"
+                                        app:textStyle="@integer/roboto_medium" />
+
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/txt_add_address"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/add_address"
+                                    android:textColor="@color/gray_text_light" />
+
+                                <ImageView
+                                    android:id="@+id/img_change"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_alignParentRight="true"
+                                    android:padding="5dp"
+                                    android:src="@drawable/edit_address"
+                                    android:visibility="gone" />
+                            </RelativeLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                        <com.localfriend.fonts.CustomFontPtSansText
+                            android:id="@+id/txt_shipping_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Shipping Address"
+                            android:textColor="@color/gray_text_light"
+                            android:textSize="15sp"
+                            android:visibility="gone"
+                            app:textStyle="@integer/roboto_medium" />
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/card_first_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="8dp"
+                            android:elevation="@dimen/dim_10"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/white">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-
-                                <com.localfriend.fonts.CustomFontPtSansText
-                                    android:id="@+id/txt_address_type"
+                                <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/dim_10"
-                                    android:padding="@dimen/dim_5"
-                                    android:textColor="@color/gray_tab"
-                                    android:textSize="14sp"
-                                    app:textStyle="@integer/roboto_medium" />
+                                    android:layout_marginBottom="-15dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Delivery Address 1 "
+                                    android:textColor="@color/black" />
 
-                                <com.localfriend.fonts.CustomFontPtSansText
-                                    android:id="@+id/txt_name"
-                                    android:layout_width="wrap_content"
+                                <TextView
+                                    android:id="@+id/txt_address1"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/dim_10"
-                                    android:layout_marginTop="-5dp"
-                                    android:padding="@dimen/dim_5"
-                                    android:textColor="@color/black"
-                                    android:textSize="18sp"
-                                    app:textStyle="@integer/roboto_medium" />
+                                    android:layout_marginTop="20dp"
+                                    android:alpha=".6"
+                                    android:fontFamily="@font/pt_regular"
+                                    android:gravity="center"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:text="Address" />
 
-                                <com.localfriend.fonts.CustomFontPtSansText
-                                    android:id="@+id/txt_address"
-                                    android:layout_width="wrap_content"
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1px"
+                                    android:layout_margin="5dp"
+                                    android:alpha=".8"
+                                    android:background="@color/gray_tab"></View>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_first_time"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="10dp"
-                                    android:layout_marginLeft="@dimen/dim_10"
-                                    android:padding="5dp"
-                                    android:text=""
-                                    android:textColor="@color/gray_tab"
-                                    app:textStyle="@integer/roboto_medium" />
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp">
 
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Breakfast"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/txt_first_times"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:text="7:00 - 800 AM"
+                                        android:textColor="@color/blue_text" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_first_times"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_sun_b1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_mon_b1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_tue_b1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_wed_b1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_thu_b1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_fri_b1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_sat_b1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_second_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Lunch"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/txt_second_times"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:text="7:00 - 800 AM"
+                                        android:textColor="@color/blue_text" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_second_times"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_sun_l1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_mon_l1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_tue_l1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_wed_l1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_thu_l1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_fri_l1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_sat_l1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_third_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Dinner"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/txt_third_times"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:text="7:00 - 800 AM"
+                                        android:textColor="@color/blue_text" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_third_times"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="30dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_sun_d1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_mon_d1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_tue_d1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_wed_d1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_thu_d1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_fri_d1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_sat_d1"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+                                </LinearLayout>
                             </LinearLayout>
+                        </android.support.v7.widget.CardView>
 
-                            <ImageView
-                                android:id="@+id/txt_add_address"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:src="@drawable/add_address"
-                                android:text="+  Add Address"
-                                android:textColor="@color/gray_text_light" />
-
-                            <ImageView
-                                android:id="@+id/img_change"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_alignParentRight="true"
-                                android:padding="5dp"
-                                android:src="@drawable/edit_address"
-                                android:visibility="visible" />
-                        </RelativeLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <com.localfriend.fonts.CustomFontPtSansText
-                        android:id="@+id/txt_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="8dp"
-                        android:text="Delivery Address"
-                        android:textColor="@color/gray_text_light"
-                        android:textSize="15sp"
-                        app:textStyle="@integer/roboto_medium" />
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="8dp"
-
-                        android:elevation="@dimen/dim_10"
-                        app:cardBackgroundColor="@color/white">
-
-                        <LinearLayout
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/card_add_second_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_marginBottom="-8dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="8dp"
+                            android:elevation="@dimen/dim_10"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/white">
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <com.localfriend.fonts.CustomFontPtSansText
-                                    android:id="@+id/txt_total1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:text="Total price :- Rs. 3000/mo"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp" />
-
-                                <com.localfriend.fonts.CustomFontPtSansText
-                                    android:id="@+id/txt_start_date"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:padding="10dp"
-                                    android:text="Start From : 12/15/2017"
-                                    android:textColor="@color/monthlyPriceColor"
-                                    android:textSize="14sp" />
-                            </RelativeLayout>
-
-                            <com.localfriend.fonts.CustomFontPtSansEditText
-                                android:id="@+id/edt_note"
+                            <TextView
+                                android:id="@+id/txt_add_address2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_marginTop="5dp"
-                                android:background="@drawable/rounded_gray_edit_text"
-                                android:gravity="start"
-                                android:hint="Note..."
-                                android:maxLines="3"
-                                android:minLines="3"
+                                android:layout_marginBottom="15dp"
+                                android:layout_marginLeft="50dp"
+                                android:layout_marginRight="50dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/green_box"
+                                android:fontFamily="@font/pt_regular"
+                                android:gravity="center"
                                 android:padding="10dp"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
+                                android:text="+   Add Address"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/card_second_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="8dp"
+                            android:elevation="@dimen/dim_10"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/white">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="-15dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Delivery Address 2 "
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/txt_address2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="20dp"
+                                    android:alpha=".6"
+                                    android:fontFamily="@font/pt_regular"
+                                    android:gravity="center"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:text="Address" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1px"
+                                    android:layout_margin="5dp"
+                                    android:alpha=".8"
+                                    android:background="@color/gray_tab"></View>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_bf_time_a2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Breakfast"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/txt_bf_times_a2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:text="7:00 - 800 AM"
+                                        android:textColor="@color/blue_text" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_bf_times_a2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_sun_b2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_mon_b2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_tue_b2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_wed_b2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_thu_b2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_fri_b2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_sat_b2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_second_time_a2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Lunch"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/txt_second_times_a2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:text="7:00 - 800 AM"
+                                        android:textColor="@color/blue_text" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_second_times_a2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_sun_l2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_mon_l2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_tue_l2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_wed_l2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_thu_l2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_fri_l2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_sat_l2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_third_time_a2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Dinner"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/txt_third_times_a2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:text="7:00 - 800 AM"
+                                        android:textColor="@color/blue_text" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_third_times_a2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="30dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_sun_d2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_mon_d2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_tue_d2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_wed_d2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_thu_d2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_fri_d2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_sat_d2"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/card_add_third_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-8dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="8dp"
+                            android:elevation="@dimen/dim_10"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/white">
+
+                            <TextView
+                                android:id="@+id/txt_add_address3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:layout_marginLeft="50dp"
+                                android:layout_marginRight="50dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/green_box"
+                                android:fontFamily="@font/pt_regular"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="+   Add Address"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/card_third_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="8dp"
+                            android:elevation="@dimen/dim_10"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/white">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="-15dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Delivery Address 3 "
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/txt_address3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="20dp"
+                                    android:alpha=".6"
+                                    android:fontFamily="@font/pt_regular"
+                                    android:gravity="center"
+                                    android:paddingLeft="10dp"
+                                    android:paddingRight="10dp"
+                                    android:text="Address" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1px"
+                                    android:layout_margin="5dp"
+                                    android:alpha=".8"
+                                    android:background="@color/gray_tab"></View>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_bf_time_a3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Breakfast"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/txt_bf_times_a3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:text="7:00 - 800 AM"
+                                        android:textColor="@color/blue_text" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_bf_times_a3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_sun_b3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_mon_b3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_tue_b3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_wed_b3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_thu_b3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_fri_b3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_sat_b3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_second_time_a3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Lunch"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/txt_second_times_a3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:text="7:00 - 800 AM"
+                                        android:textColor="@color/blue_text" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_second_times_a3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_sun_l3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_mon_l3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_tue_l3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_wed_l3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_thu_l3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_fri_l3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_sat_l3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_third_time_a3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Dinner"
+                                        android:textColor="@color/black" />
+
+                                    <TextView
+                                        android:id="@+id/txt_third_times_a3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:text="7:00 - 800 AM"
+                                        android:textColor="@color/blue_text" />
+
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_third_times_a3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="30dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_sun_d3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_mon_d3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="M"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_tue_d3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_wed_d3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="W"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_thu_d3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="T"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_fri_d3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/gray_text_light" />
+
+                                    <TextView
+                                        android:id="@+id/txt_sat_d3"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/edt_bg"
+                                        android:fontFamily="@font/pt_regular"
+                                        android:gravity="center"
+                                        android:text="S"
+                                        android:textColor="@color/gray_text_light" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+                        <com.localfriend.fonts.CustomFontPtSansText
+                            android:id="@+id/txt_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Breakfast + Lunch + Dinner"
+                            android:textColor="@color/gray_text_light"
+                            android:textSize="15sp"
+                            app:textStyle="@integer/roboto_medium" />
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="8dp"
+                            android:elevation="@dimen/dim_10"
+                            app:cardBackgroundColor="@color/white">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <com.localfriend.fonts.CustomFontPtSansText
+                                        android:id="@+id/txt_total1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:text="Total price :- Rs. 3000/mo"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+
+                                    <com.localfriend.fonts.CustomFontPtSansText
+                                        android:id="@+id/txt_start_date"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:padding="10dp"
+                                        android:text="Start From : 12/15/2017"
+                                        android:textColor="@color/monthlyPriceColor"
+                                        android:textSize="14sp" />
+                                </RelativeLayout>
+
+                                <com.localfriend.fonts.CustomFontPtSansEditText
+                                    android:id="@+id/edt_note"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="@drawable/rounded_gray_edit_text"
+                                    android:gravity="start"
+                                    android:hint="Note..."
+                                    android:maxLines="3"
+                                    android:minLines="3"
+                                    android:padding="10dp"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pt_bold"
+                            android:text="Total Price"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <com.localfriend.fonts.CustomFontPtSansText
+                            android:id="@+id/txt_total2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="Rs 3000"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:textStyle="@integer/roboto_bold" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_discount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_price"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="-10dp"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pt_bold"
+                            android:text="Discount"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <com.localfriend.fonts.CustomFontPtSansText
+                            android:id="@+id/txt_discount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="Rs 0"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:textStyle="@integer/roboto_bold" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_promo"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/rl_discount"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/rounded_gray_edit_text"
+                        android:gravity="center"
+                        android:text="Discount    :- Rs 3000"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/txt_apply"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/tv_gradient_bg"
+                            android:fontFamily="@font/pt_regular"
+                            android:gravity="center"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:text="Apply"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/edt_promo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_toLeftOf="@+id/txt_apply"
+                            android:background="@null"
+                            android:fontFamily="@font/pt_regular"
+                            android:hint="Promo Code"
+                            android:inputType="text"
+                            android:paddingLeft="20dp" />
+                    </RelativeLayout>
+
+                    <com.localfriend.fonts.CustomFontPtSansText
+                        android:id="@+id/tv_make_payment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_promo"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/curvy_gradient_white_bg"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Pay Rs. 3000"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:textStyle="@integer/roboto_medium" />
                 </LinearLayout>
-
-
-            </LinearLayout>
-
+            </RelativeLayout>
         </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/rl_discount"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:padding="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_bold"
-                android:text="Total Price"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <com.localfriend.fonts.CustomFontPtSansText
-                android:id="@+id/txt_total2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="Rs 3000"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                app:textStyle="@integer/roboto_bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_discount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/rl_promo"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="-10dp"
-            android:padding="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pt_bold"
-                android:text="Discount"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <com.localfriend.fonts.CustomFontPtSansText
-                android:id="@+id/txt_discount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="Rs 0"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                app:textStyle="@integer/roboto_bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_promo"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_above="@+id/tv_make_payment"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/rounded_gray_edit_text"
-            android:gravity="center"
-            android:text="Discount    :- Rs 3000"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:visibility="visible">
-
-            <TextView
-                android:id="@+id/txt_apply"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/tv_gradient_bg"
-                android:fontFamily="@font/pt_regular"
-                android:gravity="center"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="Apply"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/edt_promo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/txt_apply"
-                android:background="@null"
-                android:inputType="text"
-                android:fontFamily="@font/pt_regular"
-                android:hint="Promo Code"
-                android:paddingLeft="20dp" />
-        </RelativeLayout>
-
-        <com.localfriend.fonts.CustomFontPtSansText
-            android:id="@+id/tv_make_payment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/curvy_gradient_white_bg"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Pay Rs. 3000"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:textStyle="@integer/roboto_medium" />
-
-    </RelativeLayout>
-
+    </ScrollView>
 </RelativeLayout>

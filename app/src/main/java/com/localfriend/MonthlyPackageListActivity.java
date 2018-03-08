@@ -231,6 +231,7 @@ public class MonthlyPackageListActivity extends CustomActivity implements Custom
     }
 
     public void clickBuyNow(Product product) {
+        SingleInstance.getInstance().setSelectedAddress(null);
         SingleInstance.getInstance().setSubscriptionProduct(product);
         startActivity(new Intent(getContext(), SubscriptionCheckOutActivity.class).putExtra(AppConstant.EXTRA_1,
                 product.getpTitle()).putExtra(AppConstant.EXTRA_2, getIntent().getBooleanExtra(AppConstant.EXTRA_1, false)));

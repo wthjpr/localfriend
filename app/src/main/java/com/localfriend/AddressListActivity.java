@@ -34,12 +34,14 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
     private AddressAdapter adapter;
     private TextView txt_add_new;
     private RelativeLayout rl_no_address;
+    private boolean hideAlreadyChecked = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setResponseListener(this);
+        hideAlreadyChecked = getIntent().getBooleanExtra(AppConstant.EXTRA_2, false);
         setContentView(R.layout.activity_list_activity);
         toolbar = findViewById(R.id.toolbar_common);
         rl_no_address = findViewById(R.id.rl_no_address);
@@ -56,7 +58,7 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
         List<Address> addresses = MyApp.getApplication().readAddress();
         if (addresses.size() > 0) {
             rl_no_address.setVisibility(View.GONE);
-            adapter = new AddressAdapter(addresses, getContext(), getIntent().getBooleanExtra(AppConstant.EXTRA_1, false));
+            adapter = new AddressAdapter(addresses, getContext(), getIntent().getBooleanExtra(AppConstant.EXTRA_1, false), hideAlreadyChecked);
             rv_addresses.setAdapter(adapter);
         } else {
             showLoadingDialog("");
@@ -129,7 +131,7 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
             } else {
                 MyApp.getApplication().writeAddress(addressList);
                 rl_no_address.setVisibility(View.GONE);
-                adapter = new AddressAdapter(addressList, getContext(), getIntent().getBooleanExtra(AppConstant.EXTRA_1, false));
+                adapter = new AddressAdapter(addressList, getContext(), getIntent().getBooleanExtra(AppConstant.EXTRA_1, false), hideAlreadyChecked);
                 rv_addresses.setAdapter(adapter);
             }
         } catch (JSONException e) {
@@ -155,9 +157,14 @@ public class AddressListActivity extends CustomActivity implements CustomActivit
     }
 
 
-    public void setItemClicked(Address address) {
+    public void setItemClicked(Address address, boolean isCheck) {
 
         SingleInstance.getInstance().setSelectedAddress(address);
+
+        if (isCheck) {
+            finish();
+            return;
+        }
         if (getIntent().getBooleanExtra(AppConstant.EXTRA_1, false)) {
             RequestParams p = new RequestParams();
             p.put("addressid", address.getAddID());

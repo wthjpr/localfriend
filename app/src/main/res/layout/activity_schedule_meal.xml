@@ -55,6 +55,7 @@
                         android:fontFamily="@font/pt_regular"
                         android:gravity="center_vertical"
                         android:padding="5dp"
+                        android:checked="true"
                         android:text="Breakfast"
                         android:textSize="14sp" />
 
@@ -63,6 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:checked="true"
                         android:layout_gravity="center_horizontal"
                         android:buttonTint="@color/colorPrimaryDark"
                         android:fontFamily="@font/pt_regular"
@@ -79,6 +81,7 @@
                         android:buttonTint="@color/colorPrimaryDark"
                         android:fontFamily="@font/pt_regular"
                         android:gravity="center_vertical"
+                        android:checked="true"
                         android:padding="@dimen/dim_5"
                         android:text="Dinner"
                         android:textSize="14sp" />
@@ -137,10 +140,10 @@
                         app:count="9"
                         app:end="3"
                         app:fixedLineThickness="3dp"
-                        app:innerRangePadding="1dp"
-                        app:labelFontSize="9sp"
+                        app:innerRangePadding="3dp"
+                        app:labelFontSize="10sp"
                         app:lineThickness="1dp"
-                        app:start="2" />
+                        app:start="2"  />
 
                     <View
                         android:layout_width="match_parent"
@@ -181,7 +184,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -193,7 +196,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="S"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -203,7 +206,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -215,7 +218,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="M"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -225,7 +228,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -237,7 +240,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="T"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -247,7 +250,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -259,7 +262,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="W"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -269,7 +272,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -281,7 +284,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="T"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -291,7 +294,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -303,7 +306,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="F"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -313,9 +316,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
-
                             android:paddingTop="6dp">
 
                             <TextView
@@ -326,7 +328,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="S"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -374,7 +376,7 @@
                         android:background="@drawable/edt_bg"
                         android:fontFamily="@font/pt_regular"
                         android:padding="@dimen/dim_5"
-                        android:text="12:00-12:30"
+                        android:text="1:00-1:30"
                         android:textColor="@color/black" />
 
                     <me.bendik.simplerangeview.SimpleRangeView
@@ -432,7 +434,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -444,7 +446,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="S"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -454,7 +456,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -466,7 +468,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="M"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -476,7 +478,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -488,7 +490,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="T"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -498,7 +500,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -510,7 +512,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="W"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -520,7 +522,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -532,7 +534,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="T"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -542,7 +544,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -554,7 +556,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="F"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -564,7 +566,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
 
                             android:paddingTop="6dp">
@@ -577,7 +579,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="S"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -626,7 +628,7 @@
                         android:background="@drawable/edt_bg"
                         android:fontFamily="@font/pt_regular"
                         android:padding="@dimen/dim_5"
-                        android:text="19:00-19:30"
+                        android:text="8:00-8:30"
                         android:textColor="@color/black" />
 
 
@@ -688,7 +690,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -700,7 +702,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="S"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -710,7 +712,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -722,7 +724,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="M"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -732,7 +734,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -744,7 +746,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="T"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -754,7 +756,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -766,7 +768,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="W"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -776,7 +778,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -788,7 +790,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="T"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -798,7 +800,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -810,7 +812,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="F"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -820,7 +822,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dim_10"
                             android:layout_weight="1"
-                            android:background="@drawable/edt_bg"
+                            android:background="@drawable/selected_bg"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp">
 
@@ -832,7 +834,7 @@
                                 android:fontFamily="@font/pt_regular"
                                 android:gravity="center"
                                 android:text="S"
-                                android:textColor="@color/gray_text_light"
+                                android:textColor="@color/white"
                                 android:textSize="16sp" />
                         </RelativeLayout>
 
@@ -843,6 +845,8 @@
                     android:id="@+id/btn_done"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dim_40"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_alignParentBottom="true"
                     android:background="@drawable/gradient_new"
                     android:text="Done"
@@ -851,13 +855,14 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+
     <ImageView
         android:id="@+id/img_close"
         android:layout_width="45dp"
-        android:layout_marginRight="-15dp"
-        android:layout_marginTop="-15dp"
         android:layout_height="45dp"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="-15dp"
+        android:layout_marginTop="-15dp"
         android:foregroundGravity="right"
         android:padding="15dp"
         android:src="@drawable/close" />

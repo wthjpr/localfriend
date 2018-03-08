@@ -41,11 +41,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
     }
 
     private boolean isCheckShow;
+    private boolean isItemClick;
 
-    public AddressAdapter(List<Address> listdata, Context c, boolean isCheckShow) {
+    public AddressAdapter(List<Address> listdata, Context c, boolean isCheckShow, boolean isItemClick) {
         this.inflater = LayoutInflater.from(c);
         this.listdata = listdata;
         this.isCheckShow = isCheckShow;
+        this.isItemClick = isItemClick;
         this.c = c;
     }
 
@@ -128,6 +130,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
             txt_edit.setOnClickListener(this);
             txt_delete.setOnClickListener(this);
             img_check.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -142,7 +145,9 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.DataHold
                 listdata.get(getLayoutPosition()).setAddIsActive(true);
                 notifyDataSetChanged();
                 listdata.get(getLayoutPosition()).setSelectedPosition(1);
-                ((AddressListActivity) c).setItemClicked(listdata.get(getLayoutPosition()));
+                ((AddressListActivity) c).setItemClicked(listdata.get(getLayoutPosition()), false);
+            } else if (v == itemView && isItemClick) {
+                ((AddressListActivity) c).setItemClicked(listdata.get(getLayoutPosition()), true);
             }
 
         }
