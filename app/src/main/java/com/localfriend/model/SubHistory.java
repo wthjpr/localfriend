@@ -17,6 +17,7 @@ public class SubHistory {
     private String totalTax;
     private String totalprice;
     private String cash;
+    private String subscriptionid;
     private String payamount;
     private String cashmethod;
     private String customername;
@@ -24,6 +25,13 @@ public class SubHistory {
     private String address;
     private String chk;
 
+    public String getSubscriptionid() {
+        return subscriptionid;
+    }
+
+    public void setSubscriptionid(String subscriptionid) {
+        this.subscriptionid = subscriptionid;
+    }
 
     public String getOrderID() {
         return orderID;

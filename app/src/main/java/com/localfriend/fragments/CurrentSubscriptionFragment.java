@@ -1,7 +1,11 @@
 package com.localfriend.fragments;
 
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +15,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,9 +29,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.localfriend.MainActivity;
 import com.localfriend.R;
-import com.localfriend.adapter.CurrentAdapter;
 import com.localfriend.adapter.CurrentSubscriptionAdapter;
 import com.localfriend.adapter.ViewHistoryItemsAdapter;
+import com.localfriend.application.MyApp;
 import com.localfriend.model.History;
 import com.localfriend.model.SubHistory;
 import com.localfriend.utils.AppConstant;
@@ -39,7 +48,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -120,6 +133,11 @@ public class CurrentSubscriptionFragment extends CustomFragment implements Custo
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        } else if (callNumber == 0) {
+            dismissDialog();
+            MyApp.popMessage("LocalFriend", o.optString("message"), getActivity());
+        } else if (callNumber == 3) {
+            dismissDialog();
         } else {
 //            MyApp.showMassage(getActivity(), o.optString("message"));
 //            showLoadingDialog("");
@@ -127,6 +145,7 @@ public class CurrentSubscriptionFragment extends CustomFragment implements Custo
         }
 
     }
+
     OnItemClickListener itemClickListener = new OnItemClickListener() {
         @Override
         public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
@@ -152,6 +171,7 @@ public class CurrentSubscriptionFragment extends CustomFragment implements Custo
         public void onCancel(DialogPlus dialog) {
         }
     };
+
     @Override
     public void onJsonArrayResponseReceived(JSONArray a, int callNumber) {
         dismissDialog();
@@ -219,4 +239,184 @@ public class CurrentSubscriptionFragment extends CustomFragment implements Custo
         // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
     }
+
+    public void getOrderDetails(SubHistory subHistory) {
+        showLoadingDialog("");
+        getCallWithHeader(AppConstant.BASE_URL + "Order/Subscription/PackageReport?subscriptionid=" + subHistory.getSubscriptionid(), 3);
+    }
+
+    public void cancelClicked(final SubHistory subHistory) {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_cancel_meals);
+        ImageView img_close = dialog.findViewById(R.id.img_close);
+
+        final CheckBox chk_break_fast = dialog.findViewById(R.id.chk_break_fast);
+        final CheckBox chk_lunch = dialog.findViewById(R.id.chk_lunch);
+        final CheckBox chk_dinner = dialog.findViewById(R.id.chk_dinner);
+
+        if (MyApp.millisTo(System.currentTimeMillis()) > 8.0) {
+            chk_break_fast.setEnabled(false);
+        }
+        if (MyApp.millisTo(System.currentTimeMillis()) > 11.0) {
+            chk_lunch.setEnabled(false);
+        }
+        if (MyApp.millisTo(System.currentTimeMillis()) > 19.0) {
+            chk_dinner.setEnabled(false);
+        }
+
+
+        final TextView txt_from_date = dialog.findViewById(R.id.txt_from_date);
+        txt_from_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dateDialog(txt_from_date, 1);
+            }
+        });
+
+        final TextView txt_to_date = dialog.findViewById(R.id.txt_to_date);
+        txt_to_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dateDialog(txt_to_date, 2);
+            }
+        });
+
+        TextView txt_done = dialog.findViewById(R.id.txt_done);
+        txt_done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("logcancel", startDate + "\n" + endDate);
+                boolean isProcessed = false;
+                if (chk_break_fast.isChecked() || chk_lunch.isChecked() || chk_dinner.isChecked()) {
+                    isProcessed = true;
+                    JSONObject o = new JSONObject();
+                    try {
+                        o.put("subscriptionID", subHistory.getOrderID());
+                        JSONArray arr = new JSONArray();
+                        arr.put("Breckfast");
+                        arr.put("Lunch");
+                        arr.put("Dinner");
+                        o.put("meals", arr);
+                        showLoadingDialog("");
+                        postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Order/CancelToday", o, "");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                if (!txt_from_date.getText().toString().equals("Choose Date") && !txt_to_date.getText().toString().equals("Choose Date")) {
+                    if (!isProcessed) {
+                        showLoadingDialog("");
+                    }
+                    JSONObject o = new JSONObject();
+                    try {
+                        o.put("subscriptionID", subHistory.getOrderID());
+                        o.put("startdate", startDate);
+                        o.put("enddate", endDate);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    isProcessed = true;
+                    postCallJsonWithAuthorization(getContext(), AppConstant.BASE_URL + "Order/CancelComingDays", o, "");
+                }
+
+                if (isProcessed) {
+                    dialog.dismiss();
+                } else {
+                    MyApp.showMassage(getContext(), "No changes detected");
+                }
+            }
+        });
+
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = -1;
+        lp.height = -1;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+    }
+
+    private String startDate;
+    private String endDate;
+
+    public void dateDialog(final TextView textView, final int number) {
+        final Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+
+        final int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        if (dayOfMonth <= (mDay + 1) && number == 1) {
+                            MyApp.showMassage(getContext(), "You can't select today or previous day");
+                        } else if (dayOfMonth < (mDay + 2) && number == 2) {
+                            MyApp.showMassage(getContext(), "You can't select today or previous day");
+                        } else
+                            textView.setText(parseDate(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year, number));
+                    }
+                }, mYear, mMonth, mDay + 1);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
+    }
+
+    public String parseDate(String time, int number) {
+        if (time.length() != 10) {
+            String[] ar = time.split("-");
+            time = "";
+            if (ar[0].length() == 1) {
+                time += "0" + ar[0] + "-";
+            } else {
+                time += ar[0] + "-";
+            }
+            if (ar[1].length() == 1) {
+                time += "0" + ar[1] + "-";
+            } else {
+                time += ar[1] + "-";
+            }
+            time += ar[2];
+        }
+        Log.e("Date", "parseDateToHHMM: " + time);
+        String inputPattern = "dd-MM-yyyy";
+        String outputPattern = "d MMM, yyyy";
+        String outPutPattern2 = "MM/dd/yyyy";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+        SimpleDateFormat outputFormat2 = new SimpleDateFormat(outPutPattern2);
+
+        Date date;
+        String str = null;
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+
+            if (number == 1) {
+                startDate = outputFormat2.format(date);
+            } else {
+                endDate = outputFormat2.format(date);
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
+
 }

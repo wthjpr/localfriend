@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.localfriend.R;
 import com.localfriend.TrackOrderActivity;
 import com.localfriend.fragments.CurrentFragment;
+import com.localfriend.fragments.CurrentSubscriptionFragment;
 import com.localfriend.model.History;
 import com.localfriend.model.SubHistory;
 import com.localfriend.utils.AppConstant;
@@ -111,11 +112,11 @@ public class CurrentSubscriptionAdapter extends RecyclerView.Adapter<CurrentSubs
         @Override
         public void onClick(View v) {
             if (v == txt_cancel) {
-//                ((CurrentFragment) c).cancelClicked(listdata.get(getLayoutPosition()).getOrder_Id());
+                ((CurrentSubscriptionFragment) c).cancelClicked(listdata.get(getLayoutPosition()));
             } else if (v == txt_view_details) {
-//                ((CurrentFragment) c).getOrderDetails(listdata.get(getLayoutPosition()).getOrder_Id());
+                ((CurrentSubscriptionFragment) c).getOrderDetails(listdata.get(getLayoutPosition()));
             } else if (v == txt_track) {
-//                c.startActivity(new Intent(c.getContext(), TrackOrderActivity.class).putExtra(AppConstant.EXTRA_1, true));
+                c.startActivity(new Intent(c.getContext(), TrackOrderActivity.class).putExtra(AppConstant.EXTRA_1, true));
             }
         }
     }

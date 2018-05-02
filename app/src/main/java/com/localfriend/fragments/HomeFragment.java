@@ -19,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import com.localfriend.AllActivity;
 import com.localfriend.FoodActivity;
 import com.localfriend.MainActivity;
+import com.localfriend.OrganisationActivity;
 import com.localfriend.R;
 import com.localfriend.VegetableActivity;
 import com.localfriend.adapter.SimpleAdapter;
@@ -58,7 +59,7 @@ import ss.com.bannerslider.views.BannerSlider;
 public class HomeFragment extends CustomFragment implements CustomFragment.ResponseCallback {
 
     private BannerSlider bannerSlider;
-    private LinearLayout lrn_fruit, lrn_vegetable, lrn_tiffin, lrn_food, lrn_mithaiwala, lrn_discount;
+    private LinearLayout lrn_fruit, lrn_vegetable, lrn_tiffin, lrn_food, lrn_mithaiwala, lrn_discount, lrn_organisation;
     private GifImageView gif_loader;
 //    private AVLoadingIndicatorView loading;
 
@@ -75,6 +76,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         lrn_vegetable = myView.findViewById(R.id.lrn_vegetable);
         lrn_tiffin = myView.findViewById(R.id.lrn_tiffin);
         lrn_food = myView.findViewById(R.id.lrn_food);
+        lrn_organisation = myView.findViewById(R.id.lrn_organisation);
         lrn_mithaiwala = myView.findViewById(R.id.lrn_mithaiwala);
         lrn_discount = myView.findViewById(R.id.lrn_discount);
         gif_loader = myView.findViewById(R.id.gif_loader);
@@ -84,6 +86,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         setTouchNClick(lrn_vegetable);
         setTouchNClick(lrn_tiffin);
         setTouchNClick(lrn_food);
+        setTouchNClick(lrn_organisation);
         setTouchNClick(lrn_mithaiwala);
         setTouchNClick(lrn_discount);
 
@@ -141,8 +144,10 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
         } else if (v == lrn_discount) {
             title = "Morning Meals";
             showLoadingDialog("");
-            getCall(AppConstants.BASE_URL + "Category/" + 0, "",8 );
+            getCall(AppConstants.BASE_URL + "Category/" + 0, "", 8);
 //            MyApp.popMessage("LocalFriend", "No Deals available for now.\nThank you", getContext());
+        } else if (v == lrn_organisation) {
+            startActivity(new Intent(getContext(), OrganisationActivity.class));
         }
     }
 

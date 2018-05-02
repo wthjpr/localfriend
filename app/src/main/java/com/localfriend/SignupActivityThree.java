@@ -49,14 +49,10 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
     private String value;
     private String mb_no;
-    //    private TextView txt_counter;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private String mVerificationId;
-    private boolean isRegister = false;
-    private String countryId = "94";
-    private boolean isProvider = false;
     private String phoneNumber;
     private String userName;
     private boolean isForgot;
@@ -72,12 +68,12 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_common);
+        TextView mTitle =  toolbar.findViewById(R.id.toolbar_title_common);
         mTitle.setText("SIGN UP");
         actionBar.setTitle("");
         toolbar.setBackgroundResource(NULL);
         setResponseListener(this);
-        RelativeLayout v = (RelativeLayout) findViewById(R.id.toolbar);
+        RelativeLayout v =  findViewById(R.id.toolbar);
         // transparent statusbar for marshmallow and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (v != null) {
@@ -119,14 +115,6 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
             startActivity(intent);
             return;
         }
-//        if (code.equals("111111")) {
-//            Intent intent = new Intent(getContext(), SignupActivityFour.class);
-//            intent.putExtra("name", userName);
-//            intent.putExtra("phone", phoneNumber);
-//            startActivity(intent);
-//            return;
-//        }
-
 
         try {
             // [START verify_with_code]
@@ -141,10 +129,7 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
         setTouchNClick(R.id.tv_btn_next);
 
-
-        tv_btn_next = (TextView) findViewById(R.id.tv_btn_next);
-
-//        txt_counter = (TextView) findViewById(R.id.txt_counter);
+        tv_btn_next =  findViewById(R.id.tv_btn_next);
 
         Shader textShader = new LinearGradient(0, 0, 0, 50,
                 new int[]{Color.parseColor("#3CBEA3"), Color.parseColor("#1D6D9E")},
@@ -166,13 +151,6 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.tv_btn_next) {
-
-
-//            String code = edt_code.getText().toString();
-//            if (TextUtils.isEmpty(edt_code.getText().toString())) {
-//                edt_code.setError("Enter the verification code");
-//                return;
-//            }
             verifyPhoneNumberWithCode(mVerificationId, enteredPin);
         }
 
@@ -181,24 +159,6 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
     private String enteredPin = "";
 
     private void showCounter() {
-
-//        CountDownTimer mCountDownTimer = new CountDownTimer(60 * 1000, 1000) {
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                //this will be called every second.
-//                txt_counter.setText(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) + ":" + TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished));
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                txt_counter.setText("00:00");
-//                //txt_resend.setVisibility(View.VISIBLE);
-//                //you are good to go.
-//                //30 seconds passed.
-//            }
-//        };
-//        mCountDownTimer.start();
-
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             @Override
@@ -293,17 +253,6 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
                                 startActivity(intent);
                                 return;
                             }
-//                            if (enteredPin.toString().equals("111111")) {
-//
-//
-//                                Intent intent = new Intent(getContext(), SignupActivityFour.class);
-//                                intent.putExtra("name", userName);
-//                                intent.putExtra("phone", phoneNumber);
-//                                startActivity(intent);
-//                                return;
-//
-//
-//                            }
                             // Sign in failed, display a message and update the UI
                             Log.w("phone", "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {

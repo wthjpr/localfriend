@@ -312,7 +312,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
 
                     JSONObject o = new JSONObject();
 
-                    o.put("addressID", Integer.parseInt(shippingId1));
+                    o.put("addressID", Long.parseLong(shippingId1));
                     o.put("packageID", Integer.parseInt(product.getpId()));
                     o.put("transactionID", 0);
                     o.put("startdate", dateSelected);
@@ -617,7 +617,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
 
             bfo.put("addressID", shippingId1);
             bfo.put("day", "Sunday");
-            bfo.put("timestemp", "8:00 AM - 8:30 AM");
+            bfo.put("timestemp", "08:00 AM - 08:30 AM");
             bfo.put("isSelect", true);
             bfo.put("isChecked", false);
             bfArr.put(bfo);
@@ -625,7 +625,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             bfo = new JSONObject();
             bfo.put("addressID", shippingId1);
             bfo.put("day", "Monday");
-            bfo.put("timestemp", "8:00 AM - 8:30 AM");
+            bfo.put("timestemp", "08:00 AM - 08:30 AM");
             bfo.put("isSelect", true);
             bfo.put("isChecked", false);
 
@@ -633,7 +633,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             bfo = new JSONObject();
             bfo.put("addressID", shippingId1);
             bfo.put("day", "Tuesday");
-            bfo.put("timestemp", "8:00 AM - 8:30 AM");
+            bfo.put("timestemp", "08:00 AM - 08:30 AM");
             bfo.put("isSelect", true);
             bfo.put("isChecked", false);
             bfArr.put(bfo);
@@ -641,7 +641,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
 
             bfo.put("addressID", shippingId1);
             bfo.put("day", "Wednesday");
-            bfo.put("timestemp", "8:00 AM - 8:30 AM");
+            bfo.put("timestemp", "08:00 AM - 08:30 AM");
             bfo.put("isSelect", true);
             bfo.put("isChecked", false);
             bfArr.put(bfo);
@@ -649,7 +649,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
 
             bfo.put("addressID", shippingId1);
             bfo.put("day", "Thursday");
-            bfo.put("timestemp", "8:00 AM- 8:30 AM");
+            bfo.put("timestemp", "08:00 AM - 08:30 AM");
             bfo.put("isSelect", true);
             bfo.put("isChecked", false);
             bfArr.put(bfo);
@@ -657,7 +657,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
 
             bfo.put("addressID", shippingId1);
             bfo.put("day", "Friday");
-            bfo.put("timestemp", "8:00 AM - 8:30 AM");
+            bfo.put("timestemp", "08:00 AM - 08:30 AM");
             bfo.put("isSelect", true);
             bfo.put("isChecked", false);
             bfArr.put(bfo);
@@ -665,7 +665,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
 
             bfo.put("addressID", shippingId1);
             bfo.put("day", "Saturday");
-            bfo.put("timestemp", "8:00 AM - 8:30 AM");
+            bfo.put("timestemp", "08:00 AM - 08:30 AM");
             bfo.put("isSelect", true);
             bfo.put("isChecked", false);
             bfArr.put(bfo);
@@ -685,7 +685,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
 
             lo.put("addressID", shippingId1);
             lo.put("day", "Sunday");
-            lo.put("timestemp", "1:00 PM - 1:30 PM");
+            lo.put("timestemp", "01:00 PM - 01:30 PM");
             lo.put("isSelect", true);
             lo.put("isChecked", false);
             lunchArr.put(lo);
@@ -693,7 +693,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             lo = new JSONObject();
             lo.put("addressID", shippingId1);
             lo.put("day", "Monday");
-            lo.put("timestemp", "1:00 PM - 1:30 PM");
+            lo.put("timestemp", "01:00 PM - 01:30 PM");
             lo.put("isSelect", true);
             lo.put("isChecked", false);
             lunchArr.put(lo);
@@ -701,7 +701,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             lo = new JSONObject();
             lo.put("addressID", shippingId1);
             lo.put("day", "Tuesday");
-            lo.put("timestemp", "1:00 PM - 1:30 PM");
+            lo.put("timestemp", "01:00 PM - 01:30 PM");
             lo.put("isSelect", true);
             lo.put("isChecked", false);
             lunchArr.put(lo);
@@ -709,7 +709,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             lo = new JSONObject();
             lo.put("addressID", shippingId1);
             lo.put("day", "Wednesday");
-            lo.put("timestemp", "1:00 PM - 1:30 PM");
+            lo.put("timestemp", "01:00 PM - 01:30 PM");
             lo.put("isSelect", true);
             lo.put("isChecked", false);
             lunchArr.put(lo);
@@ -717,7 +717,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             lo = new JSONObject();
             lo.put("addressID", shippingId1);
             lo.put("day", "Thursday");
-            lo.put("timestemp", "1:00 PM - 1:30 PM");
+            lo.put("timestemp", "01:00 PM - 01:30 PM");
             lo.put("isSelect", true);
             lo.put("isChecked", false);
             lunchArr.put(lo);
@@ -725,7 +725,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             lo = new JSONObject();
             lo.put("addressID", shippingId1);
             lo.put("day", "Friday");
-            lo.put("timestemp", "1:00 PM - 1:30 PM");
+            lo.put("timestemp", "01:00 PM - 01:30 PM");
             lo.put("isSelect", true);
             lo.put("isChecked", false);
             lunchArr.put(lo);
@@ -733,7 +733,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             lo = new JSONObject();
             lo.put("addressID", shippingId1);
             lo.put("day", "Saturday");
-            lo.put("timestemp", "1:00 PM - 1:30 PM");
+            lo.put("timestemp", "01:00 PM - 01:30 PM");
             lo.put("isSelect", true);
             lo.put("isChecked", false);
             lunchArr.put(lo);
@@ -750,7 +750,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             JSONObject d = new JSONObject();
             d.put("addressID", shippingId1);
             d.put("day", "Sunday");
-            d.put("timestemp", "8:00 PM - 8:30 PM");
+            d.put("timestemp", "08:00 PM - 08:30 PM");
             d.put("isSelect", true);
             d.put("isChecked", false);
             dinnerArr.put(d);
@@ -758,7 +758,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             d = new JSONObject();
             d.put("addressID", shippingId1);
             d.put("day", "Monday");
-            d.put("timestemp", "8:00 PM - 8:30 PM");
+            d.put("timestemp", "08:00 PM - 08:30 PM");
             d.put("isSelect", true);
             d.put("isChecked", false);
             dinnerArr.put(d);
@@ -766,7 +766,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             d = new JSONObject();
             d.put("addressID", shippingId1);
             d.put("day", "Tuesday");
-            d.put("timestemp", "8:00 PM - 8:30 PM");
+            d.put("timestemp", "08:00 PM - 08:30 PM");
             d.put("isSelect", true);
             d.put("isChecked", false);
             dinnerArr.put(d);
@@ -774,7 +774,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             d = new JSONObject();
             d.put("addressID", shippingId1);
             d.put("day", "Wednesday");
-            d.put("timestemp", "8:00 PM - 8:30 PM");
+            d.put("timestemp", "08:00 PM - 08:30 PM");
             d.put("isSelect", true);
             d.put("isChecked", false);
             dinnerArr.put(d);
@@ -782,14 +782,14 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             d = new JSONObject();
             d.put("addressID", shippingId1);
             d.put("day", "Thursday");
-            d.put("timestemp", "8:00 PM - 8:30 PM");
+            d.put("timestemp", "08:00 PM - 08:30 PM");
             d.put("isSelect", true);
             dinnerArr.put(d);
 
             d = new JSONObject();
             d.put("addressID", shippingId1);
             d.put("day", "Friday");
-            d.put("timestemp", "8:00 PM - 8:30 PM");
+            d.put("timestemp", "08:00 PM - 08:30 PM");
             d.put("isSelect", true);
             d.put("isChecked", false);
             dinnerArr.put(d);
@@ -797,7 +797,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             d = new JSONObject();
             d.put("addressID", shippingId1);
             d.put("day", "Saturday");
-            d.put("timestemp", "8:00 PM - 8:30 PM");
+            d.put("timestemp", "08:00 PM - 08:30 PM");
             d.put("isSelect", true);
             d.put("isChecked", false);
             dinnerArr.put(d);
@@ -2971,75 +2971,75 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
     String breakfast = "", lunch = "", dinner = "";
 
     LinearLayout lnr_breakfast, lnr_lunch, lnr_dinner;
-    final String[] labels = new String[]{"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00"};
-    final String[] labelsLunch = new String[]{"12:00", "12:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00"};
-    final String[] labelsDinner = new String[]{"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00"};
+    final String[] labels = new String[]{"07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00"};
+    final String[] labelsLunch = new String[]{"12:00", "12:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00"};
+    final String[] labelsDinner = new String[]{"07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00"};
     SimpleRangeView rangeView, rangebar_dinner, rangebar_lunch;
-    String breakfast_start = "8:00", breakfast_end = "8:30";
-    String lunch_start = "1:00", lunch_end = "1:30";
-    String dinner_start = "8:00", dinner_end = "8:30";
+    String breakfast_start = "08:00", breakfast_end = "08:30";
+    String lunch_start = "01:00", lunch_end = "01:30";
+    String dinner_start = "08:00", dinner_end = "08:30";
 
     private String getBreakfastTime() {
         if (rangeView.getStart() == 0) {
-            return "7:00 AM - 7:30 AM";
+            return "07:00 AM - 07:30 AM";
         } else if (rangeView.getStart() == 1) {
-            return "7:30 AM - 8:00 AM";
+            return "07:30 AM - 08:00 AM";
         } else if (rangeView.getStart() == 2) {
-            return "8:00 AM - 8:30 AM";
+            return "08:00 AM - 08:30 AM";
         } else if (rangeView.getStart() == 3) {
-            return "8:30 AM - 9:00 AM";
+            return "08:30 AM - 09:00 AM";
         } else if (rangeView.getStart() == 4) {
-            return "9:00 AM - 9:30 AM";
+            return "09:00 AM - 09:30 AM";
         } else if (rangeView.getStart() == 5) {
-            return "9:30 AM - 10:00 AM";
+            return "09:30 AM - 10:00 AM";
         } else if (rangeView.getStart() == 6) {
             return "10:00 AM - 10:30 AM";
         } else if (rangeView.getStart() == 7) {
             return "10:30 AM - 11:00 AM";
         }
-        return "8:00 AM - 8:30 AM";
+        return "08:00 AM - 08:30 AM";
     }
 
     private String getLunchTime() {
         if (rangebar_lunch.getStart() == 0) {
             return "12:00 PM - 12:30 PM";
         } else if (rangebar_lunch.getStart() == 1) {
-            return "12:30 PM - 1:00 PM";
+            return "12:30 PM - 01:00 PM";
         } else if (rangebar_lunch.getStart() == 2) {
-            return "1:00 PM - 1:30 PM";
+            return "01:00 PM - 01:30 PM";
         } else if (rangebar_lunch.getStart() == 3) {
-            return "1:30 PM - 2:00 PM";
+            return "01:30 PM - 02:00 PM";
         } else if (rangebar_lunch.getStart() == 4) {
-            return "2:00 PM - 2:30 PM";
+            return "02:00 PM - 02:30 PM";
         } else if (rangebar_lunch.getStart() == 5) {
-            return "2:30 PM - 3:00 PM";
+            return "02:30 PM - 03:00 PM";
         } else if (rangebar_lunch.getStart() == 6) {
-            return "3:00 PM - 3:30 PM";
+            return "03:00 PM - 03:30 PM";
         } else if (rangebar_lunch.getStart() == 7) {
-            return "3:30 PM - 4:00 PM";
+            return "03:30 PM - 04:00 PM";
         }
-        return "1:00 PM - 1:30 PM";
+        return "01:00 PM - 01:30 PM";
     }
 
     private String getDinnerTime() {
         if (rangebar_dinner.getStart() == 0) {
-            return "7:00 PM - 7:30 PM";
+            return "07:00 PM - 07:30 PM";
         } else if (rangebar_dinner.getStart() == 1) {
-            return "7:30 PM - 8:00 PM";
+            return "07:30 PM - 08:00 PM";
         } else if (rangebar_dinner.getStart() == 2) {
-            return "8:00 PM - 8:30 PM";
+            return "08:00 PM - 08:30 PM";
         } else if (rangebar_dinner.getStart() == 3) {
-            return "8:30 PM - 9:00 PM";
+            return "08:30 PM - 09:00 PM";
         } else if (rangebar_dinner.getStart() == 4) {
-            return "9:00 PM - 9:30 PM";
+            return "09:00 PM - 09:30 PM";
         } else if (rangebar_dinner.getStart() == 5) {
-            return "9:30 PM - 10:00 PM";
+            return "09:30 PM - 10:00 PM";
         } else if (rangebar_dinner.getStart() == 6) {
             return "10:00 PM - 10:30 PM";
         } else if (rangebar_dinner.getStart() == 7) {
             return "10:30 PM - 11:00 PM";
         }
-        return "8:00 PM - 8:30 PM";
+        return "08:00 PM - 08:30 PM";
     }
 
     private boolean isDayRemaining(boolean clearExtra, boolean isLast) {
