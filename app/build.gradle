@@ -13,7 +13,7 @@ android {
         config {
             keyAlias 'LocalFriend'
             keyPassword '111111'
-            storeFile file('D:/Android/wdh/lf_ley.jks')
+            storeFile file('/home/avinash/Desktop/Office Backup/Avinash_Etamine/lf_ley.jks')
             storePassword '111111'
         }
     }
