@@ -66,7 +66,7 @@ public class CurrentSubscriptionFragment extends CustomFragment implements Custo
     private RecyclerView rv_history;
     private TextView tv_start_shopping;
     private CurrentSubscriptionAdapter adapter;
-    private List<SubscriptionModel.Data.Track> trackList= new ArrayList<>();
+    private List<SubscriptionModel.Data.Track> trackList = new ArrayList<>();
 
     public CurrentSubscriptionFragment() {
         // Required empty public constructor
@@ -162,25 +162,28 @@ public class CurrentSubscriptionFragment extends CustomFragment implements Custo
             TextView remaining_lunch = dialog.findViewById(R.id.remaining_lunch);
             TextView remaining_dinner = dialog.findViewById(R.id.remaining_dinner);
             packagetype.setText(subscriptionModel.getData().getPackagedetails().getTitle());
-            pkg_price.setText("Rs. " +subscriptionModel.getData().getPackagedetails().getPrice());
+            pkg_price.setText("Rs. " + subscriptionModel.getData().getPackagedetails().getPrice());
             startfrom.setText(subscriptionModel.getData().getPackagedetails().getStartdate());
-            //bf
-            received_bf.setText(subscriptionModel.getData().getStatus().get(0).getDeleverd());
-            cancelled_bf.setText(subscriptionModel.getData().getStatus().get(0).getCanceled());
-            remaining_bf.setText(subscriptionModel.getData().getStatus().get(0).getRemaining());
-            //lunch
-            received_lunch.setText(subscriptionModel.getData().getStatus().get(1).getDeleverd());
-            cancelled_lunch.setText(subscriptionModel.getData().getStatus().get(1).getCanceled());
-            remaining_lunch.setText(subscriptionModel.getData().getStatus().get(1).getRemaining());
-            //dinner
-            received_dinner.setText(subscriptionModel.getData().getStatus().get(2).getDeleverd());
-            remaining_dinner.setText(subscriptionModel.getData().getStatus().get(2).getRemaining());
-            cancelled_dinner.setText(subscriptionModel.getData().getStatus().get(2).getCanceled());
+            try {
+                //bf
+                received_bf.setText(subscriptionModel.getData().getStatus().get(0).getDeleverd());
+                cancelled_bf.setText(subscriptionModel.getData().getStatus().get(0).getCanceled());
+                remaining_bf.setText(subscriptionModel.getData().getStatus().get(0).getRemaining());
+                //lunch
+                received_lunch.setText(subscriptionModel.getData().getStatus().get(1).getDeleverd());
+                cancelled_lunch.setText(subscriptionModel.getData().getStatus().get(1).getCanceled());
+                remaining_lunch.setText(subscriptionModel.getData().getStatus().get(1).getRemaining());
+                //dinner
+                received_dinner.setText(subscriptionModel.getData().getStatus().get(2).getDeleverd());
+                remaining_dinner.setText(subscriptionModel.getData().getStatus().get(2).getRemaining());
+                cancelled_dinner.setText(subscriptionModel.getData().getStatus().get(2).getCanceled());
+            } catch (Exception e) {
+            }
 
 
             RecyclerView rv_subscription = dialog.findViewById(R.id.rv_subscription);
             rv_subscription.setLayoutManager(new LinearLayoutManager(getContext()));
-            SubscriptionDetailsAdapter subscriptionDetailsAdapter= new SubscriptionDetailsAdapter(getContext(), trackList);
+            SubscriptionDetailsAdapter subscriptionDetailsAdapter = new SubscriptionDetailsAdapter(getContext(), trackList);
             rv_subscription.setAdapter(subscriptionDetailsAdapter);
             subscriptionDetailsAdapter.notifyDataSetChanged();
 
@@ -197,9 +200,6 @@ public class CurrentSubscriptionFragment extends CustomFragment implements Custo
             lp.height = -1;
             dialog.getWindow().setAttributes(lp);
             dialog.show();
-
-
-
 
         } else {
 //            MyApp.showMassage(getActivity(), o.optString("message"));

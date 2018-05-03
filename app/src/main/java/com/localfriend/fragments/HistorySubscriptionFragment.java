@@ -1,7 +1,10 @@
 package com.localfriend.fragments;
 
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +14,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -23,9 +28,11 @@ import com.localfriend.MainActivity;
 import com.localfriend.R;
 import com.localfriend.adapter.HistoryAdapter;
 import com.localfriend.adapter.HistorySubscriptionAdapter;
+import com.localfriend.adapter.SubscriptionDetailsAdapter;
 import com.localfriend.adapter.ViewHistoryItemsAdapter;
 import com.localfriend.model.History;
 import com.localfriend.model.SubHistory;
+import com.localfriend.model.SubscriptionModel;
 import com.localfriend.utils.AppConstant;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
@@ -53,6 +60,7 @@ public class HistorySubscriptionFragment extends CustomFragment implements Custo
     private TextView tv_start_shopping;
     private HistorySubscriptionAdapter adapter;
     private ImageView empty_no_order;
+    private List<SubscriptionModel.Data.Track> trackList = new ArrayList<>();
 
     public HistorySubscriptionFragment() {
         // Required empty public constructor
@@ -135,6 +143,68 @@ public class HistorySubscriptionFragment extends CustomFragment implements Custo
                     e.printStackTrace();
                 }
             }
+        }else if (callNumber == 3) {
+            dismissDialog();
+            SubscriptionModel subscriptionModel = new Gson().fromJson(o.toString(), SubscriptionModel.class);
+            trackList.addAll(subscriptionModel.getData().getTrack());
+            final Dialog dialog = new Dialog(getActivity());
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.dialog_subscription_details);
+            ImageView img_close = dialog.findViewById(R.id.img_close);
+            TextView packagetype = dialog.findViewById(R.id.txt_packageType);
+            TextView pkg_price = dialog.findViewById(R.id.txt_pkgCost);
+            TextView startfrom = dialog.findViewById(R.id.txt_startDate);
+            TextView received_bf = dialog.findViewById(R.id.received_bf);
+            TextView received_lunch = dialog.findViewById(R.id.received_lunch);
+            TextView received_dinner = dialog.findViewById(R.id.received_dinner);
+            TextView cancelled_bf = dialog.findViewById(R.id.cancelled_bf);
+            TextView cancelled_lunch = dialog.findViewById(R.id.cancelled_lunch);
+            TextView cancelled_dinner = dialog.findViewById(R.id.cancelled_dinner);
+            TextView remaining_bf = dialog.findViewById(R.id.remaining_bf);
+            TextView remaining_lunch = dialog.findViewById(R.id.remaining_lunch);
+            TextView remaining_dinner = dialog.findViewById(R.id.remaining_dinner);
+            packagetype.setText(subscriptionModel.getData().getPackagedetails().getTitle());
+            pkg_price.setText("Rs. " + subscriptionModel.getData().getPackagedetails().getPrice());
+            startfrom.setText(subscriptionModel.getData().getPackagedetails().getStartdate());
+            try {
+                //bf
+                received_bf.setText(subscriptionModel.getData().getStatus().get(0).getDeleverd());
+                cancelled_bf.setText(subscriptionModel.getData().getStatus().get(0).getCanceled());
+                remaining_bf.setText(subscriptionModel.getData().getStatus().get(0).getRemaining());
+                //lunch
+                received_lunch.setText(subscriptionModel.getData().getStatus().get(1).getDeleverd());
+                cancelled_lunch.setText(subscriptionModel.getData().getStatus().get(1).getCanceled());
+                remaining_lunch.setText(subscriptionModel.getData().getStatus().get(1).getRemaining());
+                //dinner
+                received_dinner.setText(subscriptionModel.getData().getStatus().get(2).getDeleverd());
+                remaining_dinner.setText(subscriptionModel.getData().getStatus().get(2).getRemaining());
+                cancelled_dinner.setText(subscriptionModel.getData().getStatus().get(2).getCanceled());
+            } catch (Exception e) {
+            }
+
+
+            RecyclerView rv_subscription = dialog.findViewById(R.id.rv_subscription);
+            rv_subscription.setLayoutManager(new LinearLayoutManager(getContext()));
+            SubscriptionDetailsAdapter subscriptionDetailsAdapter = new SubscriptionDetailsAdapter(getContext(), trackList);
+            rv_subscription.setAdapter(subscriptionDetailsAdapter);
+            subscriptionDetailsAdapter.notifyDataSetChanged();
+
+            img_close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+            lp.copyFrom(dialog.getWindow().getAttributes());
+            lp.width = -1;
+            lp.height = -1;
+            dialog.getWindow().setAttributes(lp);
+            dialog.show();
+
         } else {
 //            MyApp.showMassage(getActivity(), o.optString("message"));
         }
@@ -221,5 +291,10 @@ public class HistorySubscriptionFragment extends CustomFragment implements Custo
                 .create();
         // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
+    }
+
+    public void viewDetails(SubHistory subHistory) {
+        showLoadingDialog("");
+        getCallWithHeader(AppConstant.BASE_URL + "Order/Subscription/PackageReport?subscriptionid=" + subHistory.getSubscriptionid(), 3);
     }
 }

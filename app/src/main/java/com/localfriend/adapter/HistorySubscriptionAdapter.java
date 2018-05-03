@@ -114,7 +114,7 @@ public class HistorySubscriptionAdapter extends RecyclerView.Adapter<HistorySubs
         @Override
         public void onClick(View v) {
             if (v == txt_repeat) {
-//                ((HistorySubscriptionFragment) c).viewDetails(listdata.get(getLayoutPosition()).getorder);
+                ((HistorySubscriptionFragment) c).viewDetails(listdata.get(getLayoutPosition()));
             }
         }
     }

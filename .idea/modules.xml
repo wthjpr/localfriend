@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LocalFriend.iml" filepath="$PROJECT_DIR$/LocalFriend.iml" />
-      <module fileurl="file://D:\Android\wdh\LocalFriend\LocalfriendGitHub.iml" filepath="D:\Android\wdh\LocalFriend\LocalfriendGitHub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
