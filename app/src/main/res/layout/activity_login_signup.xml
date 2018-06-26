@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/gradient_new"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:id="@+id/ll_main"
+    android:orientation="vertical"
 
     tools:context="com.localfriend.LoginSignupActivity">
 
@@ -15,10 +15,10 @@
         android:id="@+id/img_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dim_15"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:background="@null"
+        android:padding="@dimen/dim_15"
         android:src="@drawable/home_icon" />
 
     <Space
@@ -35,34 +35,33 @@
 
     <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_hello_label"
-        app:textStyle="@integer/roboto_medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner_blue"
-        android:padding="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:background="@drawable/rounded_corner_blue"
+        android:padding="10dp"
         android:text="Hello there, I'm your Local Friend"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_14" />
+        android:textSize="@dimen/dim_14"
+        app:textStyle="@integer/roboto_medium" />
 
     <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_help"
-        app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_15"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginTop="@dimen/dim_15"
         android:background="@drawable/rounded_corner_blue"
         android:padding="10dp"
         android:text="I'm here to help you with anything , anytime"
         android:textColor="@color/white"
-        android:textSize="@dimen/dim_14" />
+        android:textSize="@dimen/dim_14"
+        app:textStyle="@integer/roboto_medium" />
 
     <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_lets_get_started"
-        app:textStyle="@integer/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
@@ -74,11 +73,11 @@
         android:padding="10dp"
         android:text="Let's get started"
         android:textColor="@color/blue_text"
-        android:textSize="@dimen/dim_16" />
+        android:textSize="@dimen/dim_16"
+        app:textStyle="@integer/roboto_medium" />
 
     <com.localfriend.fonts.CustomFontPtSansText
         android:id="@+id/tv_already_account"
-        app:textStyle="@integer/roboto_medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -87,6 +86,7 @@
         android:padding="@dimen/dim_5"
         android:text="Already have an account ? "
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:textStyle="@integer/roboto_medium" />
     <!--    </LinearLayout>-->
 </LinearLayout>

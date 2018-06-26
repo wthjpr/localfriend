@@ -246,13 +246,13 @@ public class SignupActivityThree extends CustomActivity implements CustomActivit
 
 
                         } else {
-                            if (isForgot ) {
-                                Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
-                                intent.putExtra("name", userName);
-                                intent.putExtra(AppConstant.EXTRA_2, phoneNumber);
-                                startActivity(intent);
-                                return;
-                            }
+//                            if (isForgot ) {
+//                                Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
+//                                intent.putExtra("name", userName);
+//                                intent.putExtra(AppConstant.EXTRA_2, phoneNumber);
+//                                startActivity(intent);
+//                                return;
+//                            }
                             // Sign in failed, display a message and update the UI
                             Log.w("phone", "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {

@@ -61,7 +61,7 @@ public class HomeFragment extends CustomFragment implements CustomFragment.Respo
     private BannerSlider bannerSlider;
     private LinearLayout lrn_fruit, lrn_vegetable, lrn_tiffin, lrn_food, lrn_mithaiwala, lrn_discount, lrn_organisation;
     private GifImageView gif_loader;
-//    private AVLoadingIndicatorView loading;
+//    private AVLoadingIndicatorView loading;lrn_organisation
 
     public HomeFragment() {
     }

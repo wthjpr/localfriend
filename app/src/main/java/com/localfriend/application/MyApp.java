@@ -502,6 +502,13 @@ public class MyApp extends Application {
         return new SimpleDateFormat(format).format(d);
     }
 
+    public static String millsTommddyyyy(long mills) {
+
+        Date d = new Date(mills);
+        String format = "MM/dd/yyyy";
+        return new SimpleDateFormat(format).format(d);
+    }
+
     public static String millsToDate1(long mills) {
 
         Date d = new Date(mills);

@@ -53,6 +53,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
     private TextView tv_make_payment, txt_apply;
     private boolean isAddressSelected = false;
     private String dateSelected;
+    private String dateSelectedSend;
     private String shippingId1 = null;
     private String shippingId2 = null;
     private String shippingId3 = null;
@@ -244,7 +245,11 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
         setTouchNClick(R.id.txt_address3);
         setTouchNClick(R.id.txt_add_address3);
 
-        dateSelected = MyApp.millsToDate(System.currentTimeMillis());
+        long milli = System.currentTimeMillis() + (1000*60*60*24);
+
+        dateSelected = MyApp.millsTommddyyyy(milli);
+
+        dateSelectedSend = MyApp.millsToDate(milli);
         if (getIntent().getBooleanExtra(AppConstant.EXTRA_2, false)) {
             txt_total2.setText("Rs. " + product.getpPrice());//weekly // + "/ "+product.getpName()
             tv_make_payment.setText("Pay Rs. " + product.getpPrice());
@@ -287,7 +292,8 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
             fragment.setCallBack(new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    dateSelected = (month + 1) + "/" + dayOfMonth + "/" + year;
+                    dateSelected =  dayOfMonth  + "/" +(month + 1)+ "/" + year;
+                    dateSelectedSend = (month + 1)+ "/" +dayOfMonth  + "/" + year;
                     txt_start_date.setText("Start From : " + (month + 1) + "/" + dayOfMonth + "/" + year);
                 }
             });
@@ -315,7 +321,7 @@ public class SubscriptionCheckOutActivity extends CustomActivity implements Cust
                     o.put("addressID", Long.parseLong(shippingId1));
                     o.put("packageID", Integer.parseInt(product.getpId()));
                     o.put("transactionID", 0);
-                    o.put("startdate", dateSelected);
+                    o.put("startdate", dateSelectedSend);
                     o.put("extraNote", edt_note.getText().toString());
                     o.put("payAmount", (Float.parseFloat(product.getpPrice()) - (float) promoDiscount));
                     o.put("suhedule", getScheduleArr());

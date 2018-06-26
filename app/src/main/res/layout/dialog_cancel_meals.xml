@@ -58,11 +58,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:buttonTint="@color/colorPrimaryDark"
                 android:checked="false"
                 android:fontFamily="@font/pt_regular"
                 android:gravity="center_vertical"
                 android:padding="5dp"
+                android:theme="@style/MyCheckbox"
                 android:text="Breakfast"
                 android:textSize="14sp" />
 
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:buttonTint="@color/colorPrimaryDark"
+                android:theme="@style/MyCheckbox"
                 android:checked="false"
                 android:fontFamily="@font/pt_regular"
                 android:gravity="center_vertical"
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:buttonTint="@color/colorPrimaryDark"
+                android:theme="@style/MyCheckbox"
                 android:checked="false"
                 android:fontFamily="@font/pt_regular"
                 android:gravity="center_vertical"
@@ -120,6 +120,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/ll_from"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -155,6 +156,7 @@
                 android:layout_height="20dp"></View>
 
             <LinearLayout
+                android:id="@+id/ll_to"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

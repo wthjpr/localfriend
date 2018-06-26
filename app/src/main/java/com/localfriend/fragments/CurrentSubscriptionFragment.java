@@ -19,8 +19,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -320,30 +322,84 @@ public class CurrentSubscriptionFragment extends CustomFragment implements Custo
         final CheckBox chk_lunch = dialog.findViewById(R.id.chk_lunch);
         final CheckBox chk_dinner = dialog.findViewById(R.id.chk_dinner);
 
+//        chk_break_fast.setAlpha(.5f);
+//        chk_lunch.setAlpha(.5f);
+//        chk_dinner.setAlpha(.5f);
+
+//        chk_break_fast.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(b){
+//                    chk_break_fast.setAlpha(1);
+//                }else{
+//                    chk_break_fast.setAlpha(.5f);
+//                }
+//            }
+//        });chk_lunch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(b){
+//                    chk_lunch.setAlpha(1);
+//                }else{
+//                    chk_lunch.setAlpha(.5f);
+//                }
+//            }
+//        });chk_dinner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(b){
+//                    chk_dinner.setAlpha(1);
+//                }else{
+//                    chk_dinner.setAlpha(.5f);
+//                }
+//            }
+//        });
+
         if (MyApp.millisTo(System.currentTimeMillis()) > 8.0) {
             chk_break_fast.setEnabled(false);
+//            chk_break_fast.setAlpha(.5f);
         }
         if (MyApp.millisTo(System.currentTimeMillis()) > 11.0) {
             chk_lunch.setEnabled(false);
+//            chk_lunch.setAlpha(.5f);;
         }
         if (MyApp.millisTo(System.currentTimeMillis()) > 19.0) {
             chk_dinner.setEnabled(false);
+//            chk_dinner.setAlpha(.5f);
         }
-
-
         final TextView txt_from_date = dialog.findViewById(R.id.txt_from_date);
-        txt_from_date.setOnClickListener(new View.OnClickListener() {
+        final TextView txt_to_date = dialog.findViewById(R.id.txt_to_date);
+        LinearLayout ll_from = dialog.findViewById(R.id.ll_from);
+        ll_from.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+
+            }
+        });
+
+        LinearLayout ll_to = dialog.findViewById(R.id.ll_to);
+        ll_from.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 dateDialog(txt_from_date, 1);
             }
         });
 
-        final TextView txt_to_date = dialog.findViewById(R.id.txt_to_date);
-        txt_to_date.setOnClickListener(new View.OnClickListener() {
+
+
+
+        txt_from_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dateDialog(txt_to_date, 2);
+            }
+        });
+
+
+        txt_to_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
